@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import MainPage from '../pages/MainPage';
-import UserPage from '../pages/UserPage';
-import OneProductPage from '../pages/OneProductPage';
-import ProductsPage from '../pages/ProductsPage';
-import LogInPage from '../pages/LogInPage';
-import Footer from './Footer';
+import MainPage from '../../pages/MainPage/MainPage';
+import UserPage from '../../pages/UserPage/UserPage';
+import OneProductPage from '../../pages/OneProductPage/OneProductPage';
+import ProductsPage from '../../pages/ProductsPage/ProductsPage';
+import LogInPage from '../../pages/LogInPage/LogInPage';
+import Footer from '../Footer/Footer';
 
 function App() {
     return (
