@@ -12,12 +12,8 @@ export default function Home() {
                 <a>LogInPage</a>
             </Link>
 
-            {/* Кнопка для перехода на LoginPage */}
-            {/* <Link href="/LoginPage">
-                <p>Login Page</p>
-            </Link> */}
 
-            {/* Кнопка для перехода на MainPage */}
+
             <Link href="/MainPage/MainPage">
                 <p>Main Page</p>
             </Link>
