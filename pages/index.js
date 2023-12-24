@@ -10,8 +10,8 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>Описание товара</title>
-                <meta name="5678jghjy" content="Описание вашего товара здесь456456456756" />
+                <title>Головна сорінка</title>
+                {/* <meta name="5678jghjy" content="Опис товару" /> */}
             </Head>
             <main className='wrapper'>
                 <h1>Домашня сторінка</h1>
