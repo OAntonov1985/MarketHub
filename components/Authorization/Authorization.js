@@ -46,7 +46,7 @@ export default function Authorization() {
                         <div className="wrapper__for__right_info">
                             <div className='sing__in__right__column__info'>
                                 <p className='sing__up__hello_paragraf'>Hello!
-                                    If you don't have an account yet, you can create one here.</p>
+                                    If you dont have an account yet, you can create one here.</p>
                             </div>
                             <div className="sing__up__right__column__btn">
                                 <button className='login__page__btn singup__btn'>Sign up</button>
