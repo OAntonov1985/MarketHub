@@ -3,7 +3,10 @@
 export default function Footer() {
     return (
         <>
-            Компонент Футер. About, додаткоа інфо
+            <div className="footer">
+                Компонент Футер. About, додаткоа інфо
+            </div>
+
         </>
     )
 }
