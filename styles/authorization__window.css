@@ -1,4 +1,5 @@
 .sing__in__wondow {
+    width: 80%;
     display: flex;  
     flex-wrap: wrap;   
     margin: 0 auto;
@@ -6,8 +7,8 @@
     border-radius: 40px;
 }
 
-.sing__in__left__column, .sing__in__right__column {
-    flex: 1 1 50%;    
+.sing__in__left__column, .sing__in__right__column {    
+    flex: 1 1 50%;  
 }
 
 .sing__in__left__column {
@@ -119,4 +120,8 @@ margin-bottom: 30px;
     text-align: left;
     font-size: 32px;
     font-weight: 300;
+}
+
+.singup__btn {
+    margin-bottom: 20px;
 }

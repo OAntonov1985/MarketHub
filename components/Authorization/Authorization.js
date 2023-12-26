@@ -14,7 +14,7 @@ export default function Authorization() {
         setSingInText(singInText => (singInText === 'Sign in' ? 'Sign up' : 'Sign in'));
         setSingUpText(singUpText => (singUpText === 'Sign up' ? 'Sign in' : 'Sign up'));
         setLogInText(logInText => (logInText === 'Log in' ? 'Sign up' : 'Log in'));
-        setHelloText(lhelloTextogInText => (helloText === helloTextMod1 ? helloTextMod2 : helloTextMod1));
+        setHelloText(helloText => (helloText === helloTextMod1 ? helloTextMod2 : helloTextMod1));
     };
 
 
@@ -26,11 +26,14 @@ export default function Authorization() {
                     <form action="" method='POST' className='login__form' onSubmit={(event) => GetInputInfo(event)}>
                         <div className='left__column__row__one input__row'>
                             <label htmlFor="input__email" className='label'>Email</label>
-                            <input type="email" className='input__email input__log' placeholder='Enter your email' pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required />
+                            <input type="email" className='input__email input__log' placeholder='Enter your email' pattern='^[^\s@]+@[^\s@]+\.[^\s@]{2,}$' required />
                         </div>
                         <div className='left__column__row__two input__row'>
                             <label htmlFor="input__password" className='label'>Password</label>
-                            <input type="password" className='input__password input__log' placeholder='Enter your password' required />
+                            <input type="password"
+                                className='input__password input__log'
+                                minLength={7}
+                                placeholder='Enter your password' required />
                         </div>
 
 
