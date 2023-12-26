@@ -1,23 +1,9 @@
-.autorization__window
-{
-    display: flex;
-    flex-direction: column;   
-    text-align: center;
-}
-
-.author__select__window {
-    width: 100%;
-    margin: auto;  
-    display: block;  
-}
-
 .sing__in__wondow {
-    display: flex;    
-    flex:  50%;
+    display: flex;  
     flex-wrap: wrap;   
     margin: 0 auto;
-    background-color: #F2F2F2;
-    border-radius: 4px;
+    background: #cac1c1;
+    border-radius: 40px;
 }
 
 .sing__in__left__column, .sing__in__right__column {
@@ -28,7 +14,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center; 
-    align-items: center;   
+    align-items: center;       
 }
 
 .login__form {
@@ -38,6 +24,8 @@
 .author__title {
     font-size: 32px;
     margin: 24px 0 16px 0;
+    font-style: normal;
+    font-weight: 400;
 }
 .label {
     font-size: 20px;
