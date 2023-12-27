@@ -11,12 +11,20 @@ export default function Authorization() {
     const [logInText, setLogInText] = useState('Log in');
     const [helloText, setHelloText] = useState(helloTextMod1);
 
+    const [pass, setPass] = useState("/nopass.png")
+    const [typeInput, setTypeInput] = useState("password")
+
     const toggleTemp = () => {
         setSingInText(singInText => (singInText === 'Sign in' ? 'Sign up' : 'Sign in'));
         setSingUpText(singUpText => (singUpText === 'Sign up' ? 'Sign in' : 'Sign up'));
         setLogInText(logInText => (logInText === 'Log in' ? 'Sign up' : 'Log in'));
         setHelloText(helloText => (helloText === helloTextMod1 ? helloTextMod2 : helloTextMod1));
     };
+
+    const togglePass = () => {
+        setPass(pass => (pass === "/nopass.png" ? "/pass.png" : "/nopass.png"));
+        setTypeInput(typeInput => (typeInput === "password" ? "text" : "password"));
+    }
 
 
 
@@ -32,24 +40,39 @@ export default function Authorization() {
                         </div>
                         <div className='left__column__row__two input__row'>
                             <label htmlFor="input__password" className='label'>Password</label>
+                            <input type={typeInput}
+                                className='input__password input__log'
+                                minLength={7}
+                                placeholder='Enter your password'
+                                required />
+                            <button type="button" className='button__show__pass'><Image alt='pass logo' src={pass} width={28} height={28} onClick={togglePass} /></button>
+                        </div>
+
+
+                        {/* <div className='left__column__row__two input__row'>
+                            <label htmlFor="input__password" className='label'>Password</label>
                             <input type="password"
                                 className='input__password input__log'
                                 minLength={7}
-                                placeholder='Enter your password' required />
-                        </div>
+                                placeholder='Enter your password'
+                                required />
+                        </div> */}
+
+
 
                         <button type='submit' className='author__submit__button login__page__btn' >{logInText}</button>
                     </form>
+                    {/* <Image src="/pass.png" width={28} height={28} /> */}
                     <div className='anowter__way__author'>
                         <p className='hello'>or</p>
                         <button className='anowter__way__author__bth__google log__btn'>
                             Continue with Google
-                            <Image src="/googleicon.png" alt="google logo" className='img__logo' />
+                            <Image src="/googleicon.png" alt="google logo" className='img__logo' width={28} height={28} />
 
                         </button>
                         <button className='anowter__way__author__bth__fb log__btn'>
                             Continue with Facebook
-                            <Image src="/fb.png" alt="" className='img__logo' />
+                            <Image src="/fb.png" alt="facebook logo" className='img__logo' width={28} height={28} />
                         </button>
 
                     </div>
