@@ -2,7 +2,7 @@
     width: 80%;
     display: flex;  
     flex-wrap: wrap;   
-    margin: 0 auto;
+    margin: auto;
     background: #cac1c1;
     border-radius: 40px;
 }

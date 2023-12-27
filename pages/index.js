@@ -13,7 +13,7 @@ export default function Home() {
                 <title>MarketHub - знайденться все!</title>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-                {/* <meta name="5678jghjy" content="Опис товару" /> */}
+                <meta name="MarketHub" content="MarketHub" />
             </Head>
             <main className='wrapper'>
                 <h1>Домашня сторінка</h1>
