@@ -54,6 +54,7 @@ margin-bottom: 30px;
 .anowter__way__author {
     display: flex;
     flex-direction: column;
+    width: 80%;
 }
 
 .log__btn {
@@ -75,9 +76,9 @@ margin-bottom: 30px;
     width: 28px;
 }
 
-.left__column__row__two {
+/* .left__column__row__two {
     margin-bottom: 0;
-}
+} */
 
 .login__page__btn {    
     width: 100%;
@@ -124,4 +125,19 @@ margin-bottom: 30px;
 
 .singup__btn {
     margin-bottom: 20px;
+}
+
+
+/* ///////////////////////////////// @media ///////////////////////////////// */
+
+@media screen and (max-width: 600px) {
+  .sing__in__wondow {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .sing__in__wondow {
+    width: 85%;
+  }
 }

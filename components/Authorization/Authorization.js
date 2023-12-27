@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import GetInputInfo from '../servises/GetInputFromLoginPage';
+import Image from 'next/image';
 
 export default function Authorization() {
     const helloTextMod1 = `Hello! If you dont have an account yet, you can create one here.`
@@ -16,6 +17,7 @@ export default function Authorization() {
         setLogInText(logInText => (logInText === 'Log in' ? 'Sign up' : 'Log in'));
         setHelloText(helloText => (helloText === helloTextMod1 ? helloTextMod2 : helloTextMod1));
     };
+
 
 
     return (
@@ -36,23 +38,21 @@ export default function Authorization() {
                                 placeholder='Enter your password' required />
                         </div>
 
-
-                        <div className='anowter__way__author'>
-                            <p className='hello'>or</p>
-                            <button className='anowter__way__author__bth__google log__btn'>
-                                Continue with Google
-                                <img src="/googleicon.png" alt="google logo" className='img__logo' />
-
-                            </button>
-                            <button className='anowter__way__author__bth__fb log__btn'>
-                                Continue with Facebook
-                                <img src="/fb.png" alt="" className='img__logo' />
-                            </button>
-
-                        </div>
                         <button type='submit' className='author__submit__button login__page__btn' >{logInText}</button>
-
                     </form>
+                    <div className='anowter__way__author'>
+                        <p className='hello'>or</p>
+                        <button className='anowter__way__author__bth__google log__btn'>
+                            Continue with Google
+                            <Image src="/googleicon.png" alt="google logo" className='img__logo' />
+
+                        </button>
+                        <button className='anowter__way__author__bth__fb log__btn'>
+                            Continue with Facebook
+                            <Image src="/fb.png" alt="" className='img__logo' />
+                        </button>
+
+                    </div>
                     <div className='looser__button'>
                         <Link href="/">
                             <p className='looser__orgot__password' >Forgot password</p>
