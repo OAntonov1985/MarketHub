@@ -45,7 +45,7 @@ export default function Authorization() {
 
     return (
         <>
-            <div className="sing__in__wondow">
+            <div className="sing__in__wondow flex">
                 <div className="sing__in__left__column">
                     <h4 className="author__title left__column__title">
                         {singInText}
