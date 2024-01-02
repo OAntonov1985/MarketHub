@@ -5,8 +5,8 @@ export default function Layout({ children }) {
     return (
         <>
             <Header />
-            <main className='wrapper'>{children}</main>
+            <main className="wrapper">{children}</main>
             <Footer />
         </>
-    )
+    );
 }
