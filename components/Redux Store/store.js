@@ -2,10 +2,10 @@ import {
     createSlice,
     configureStore,
     createAsyncThunk,
-} from '@reduxjs/toolkit';
+} from "@reduxjs/toolkit";
 
 const userInfo = createSlice({
-    name: 'markethub__store',
+    name: "markethub__store",
     initialState: {
         userID: null,
         userName: null,

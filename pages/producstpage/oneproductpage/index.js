@@ -1,24 +1,24 @@
-import Link from 'next/link';
-import Head from 'next/head';
+import Link from "next/link";
+import Head from "next/head";
 
 export default function ProductPage() {
     return (
-        <div className="wrapper">
+        <div className='wrapper'>
             <Head>
                 <title>Опис продукту</title>
                 <meta
-                    name="description675688"
-                    content="Описание вашего товара здесь"
+                    name='description675688'
+                    content='Описание вашего товара здесь'
                 />
             </Head>
             <main>
                 <h3>Опис продукту 1</h3>
 
-                <Link href="/">
+                <Link href='/'>
                     <button>На головну</button> <br />
                 </Link>
 
-                <Link href="/producstpage/">
+                <Link href='/producstpage/'>
                     <button>На сторінку пошуку продуктів</button> <br />
                 </Link>
                 <br />
