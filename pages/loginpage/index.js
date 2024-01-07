@@ -1,6 +1,16 @@
-import Link from "next/link";
-import Authorization from "@/components/Authorization/Authorization";
+import React from 'react';
+import SingIn from '@/components/SingIn/SingIn';
+
+
 
 export default function LogInPage() {
-    return <Authorization />;
+    return (
+        <div className='login-page'>
+            <SingIn />
+        </div>
+
+    );
 }
+
+
+

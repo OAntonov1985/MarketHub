@@ -1,9 +1,9 @@
-// import Image from 'next/image'
-// import { Inter } from 'next/font/google'i
 import Link from 'next/link';
 import Head from "next/head";
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
-// const inter = Inter({ subsets: ['latin'] })
+
 
 export default function Home() {
     return (
@@ -18,7 +18,8 @@ export default function Home() {
                 />
                 <meta name='MarketHub' content='MarketHub' />
             </Head>
-            <main className='wrapper'>
+            <Header />
+            <main className='main main-part'>
                 <h1>Домашня сторінка</h1>
                 <Link legacyBehavior href='/loginpage/'>
                     <button>Сторінка авторизації</button>
@@ -32,6 +33,7 @@ export default function Home() {
                     <p>Сторінка з результатами пошуку</p>
                 </Link>
             </main>
+            <Footer />
         </>
     );
 }
