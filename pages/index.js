@@ -22,17 +22,17 @@ export default function Home() {
             <main className='main'>
                 <Header />
                 <div className="main-content">
-                    <h1>Домашня сторінка</h1>
-                    <Link legacyBehavior href='/loginpage/'>
-                        <button>Сторінка авторизації</button>
+                    <h1 className='header-title'>Домашня сторінка</h1>
+                    <Link legacyBehavior href='/loginpage/' className='main-link'>
+                        <button className='button-main'>Сторінка авторизації</button>
                     </Link>
 
-                    <Link href='/mainpage/'>
-                        <p>Головна сторінка з категоріями і пошуком</p>
+                    <Link href='/mainpage/' className='main-link'>
+                        <p className='main-link'>Головна сторінка з категоріями і пошуком</p>
                     </Link>
 
-                    <Link href='/producstpage/'>
-                        <p>Сторінка з результатами пошуку</p>
+                    <Link href='/producstpage/' className='main-link'>
+                        <p className='main-link'>Сторінка з результатами пошуку</p>
                     </Link>
                 </div>
                 <Footer />

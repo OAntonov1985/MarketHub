@@ -8,7 +8,7 @@ export default function MainPage() {
 
             <div className="main">
                 <Header />
-                <h1>Головна сторінка</h1>
+                <h2 >Головна сторінка</h2>
                 <p className="flex center"></p>
                 <Link href='/'>
                     <button>Повернутись на головну</button>

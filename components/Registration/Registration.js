@@ -3,15 +3,15 @@
 export default function Registration({ toggleMode }) {
     return (
         <>
-            <div className='sing-in-left-column'>
+            <div className="sing-in-left-column">
                 <h4 className='right-column-paragraph'>Реєстрація</h4>
                 <form action="" className='registration-form'>
-                    <label htmlFor="userName" className='label-title'>Ім'я</label>
+                    <label htmlFor="userName" className='label-title'>Ім`я</label>
                     <input
                         id="userName"
                         type="text"
                         className='userName'
-                        placeholder='Введіть своє імя'
+                        placeholder='Введіть своє і`мя'
                         required />
 
                     <label htmlFor="userSurname" className='label-title'>Прізвище</label>
