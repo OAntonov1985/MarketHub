@@ -18,8 +18,9 @@ export default function Home() {
                 />
                 <meta name='MarketHub' content='MarketHub' />
             </Head>
-            <Header />
+
             <main className='main main-part'>
+                <Header />
                 <h1>Домашня сторінка</h1>
                 <Link legacyBehavior href='/loginpage/'>
                     <button>Сторінка авторизації</button>
@@ -32,8 +33,9 @@ export default function Home() {
                 <Link href='/producstpage/'>
                     <p>Сторінка з результатами пошуку</p>
                 </Link>
+                <Footer />
             </main>
-            <Footer />
+
         </>
     );
 }

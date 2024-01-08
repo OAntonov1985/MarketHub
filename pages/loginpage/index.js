@@ -7,8 +7,7 @@ import bg from "@/public/vector1.svg"
 
 export default function LogInPage() {
     return (
-        <>
-
+        <div className='login-page'>
             <Image
                 alt="Mountains"
                 src={bg}
@@ -25,7 +24,7 @@ export default function LogInPage() {
                 }}
             />
             <SingIn />
-        </>
+        </div>
 
     );
 }

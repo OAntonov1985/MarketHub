@@ -5,15 +5,17 @@ import Footer from '@/components/Footer';
 export default function MainPage() {
     return (
         <>
-            <Header />
+
             <div className="main-part">
+                <Header />
                 <h1>Головна сторінка</h1>
                 <p className="flex center"></p>
                 <Link href='/'>
                     <button>Повернутись на головну</button>
                 </Link>
+                <Footer />
             </div>
-            <Footer />
+
         </>
     );
 }
