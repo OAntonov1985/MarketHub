@@ -22,7 +22,7 @@ export default function Registration({ toggleMode }) {
                         placeholder='Введіть своє прізвище'
                         required
                     />
-                    <label htmlFor="userTel" className='label-title'>Номер телефон</label>
+                    <label htmlFor="userTel" className='label-title'>Номер телефону</label>
                     <input
                         id="userTel"
                         type="number"
@@ -46,14 +46,14 @@ export default function Registration({ toggleMode }) {
                         placeholder='Придумайте пароль'
                         required
                     />
-                    <label htmlFor="userPasswordAgain" className='label-title'>Пароль</label>
+                    {/* <label htmlFor="userPasswordAgain" className='label-title'>Пароль</label>
                     <input
                         id="userPasswordAgain"
                         type="password"
                         className='userPasswordAgain'
                         placeholder='Повторно введіть пароль'
                         required
-                    />
+                    /> */}
                     <div className='button-singin'>
                         <button className='button-singin-push btn-login-page'>Зареєструватися</button>
                     </div>
