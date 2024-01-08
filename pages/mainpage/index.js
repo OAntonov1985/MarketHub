@@ -6,7 +6,7 @@ export default function MainPage() {
     return (
         <>
 
-            <div className="main-part">
+            <div className="main">
                 <Header />
                 <h1>Головна сторінка</h1>
                 <p className="flex center"></p>

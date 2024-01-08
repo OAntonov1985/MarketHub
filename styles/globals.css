@@ -22,17 +22,31 @@ body {
   height: 100vh;
 }
 
-.main-part {
-  text-align: center;
-  flex: 1 1 auto;
-}
-
 .header {
   height: 2rem;
+  font-size: 2rem;
+}
+
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main-content {
+  margin-top: 2rem;
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: 2rem;
+  gap: 1rem;
 }
 
 .footer {
   height: 2rem;
+  font-size: 2rem;
 }
 
 .login-page {
