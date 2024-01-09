@@ -1,5 +1,42 @@
+"use client"
+
+import { useState } from 'react';
+import login from '../../pages/api/auth'
+// import { FormEvent } from 'react'
+
 
 export default function SingIn({ toggleMode }) {
+
+    async function handleclick(event) {
+        event.preventDefault();
+        console.log('go')
+        try {
+            const response = await fetch('https://markethub-mfbw.onrender.com/markethub/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: "notyourbusinestt.gmail.com",
+                    password: "pass777333",
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const token = data.token;
+                Cookies.set('jwtToken', token);
+                console.log('JWT Token:', token);
+
+            } else {
+                console.error('Login failed');
+
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+        }
+
+    }
 
     return (
         <>
@@ -12,11 +49,11 @@ export default function SingIn({ toggleMode }) {
             </div>
             <div className='sing-in-right-column'>
                 <h4 className='right-column-paragraph'>Вхід</h4>
-                <form action="" className='singin-form'>
+                <form onSubmit={handleclick} className='singin-form'>
                     <label htmlFor="userEmail" className='label-title'>Електронна пошта</label>
                     <input
                         id="userEmail"
-                        type="email"
+                        type="text"
                         className='userEmail'
                         placeholder='Введіть свою електронну пошту'
                         required />
@@ -30,7 +67,7 @@ export default function SingIn({ toggleMode }) {
                         required
                     />
                     <div className='button-singin'>
-                        <button className='button-singin-push btn-login-page'>Увійти</button>
+                        <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
                     </div>
                 </form>
             </div>
