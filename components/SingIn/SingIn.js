@@ -2,7 +2,10 @@
 
 import { useState } from 'react';
 import login from '../../pages/api/auth'
+import axios from 'axios';
 // import { FormEvent } from 'react'
+const url = 'https://markethub-mfbw.onrender.com/markethub/users/8';
+const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJub3R5b3VyYnVzaW5lc3R0LmdtYWlsLmNvbSIsImlzcyI6InRva2VuIiwiaWF0IjoxNzA0ODEzMzE2LCJleHAiOjE3MDQ4OTk3MTZ9.C68eqXFlqQoi5eX_Q2Ndvq-OOqLH78nDPLV-_N6FLcNkiitR65XZOulBSxn1N_b98CoiqWNLAePo6O4zVZnHlA';
 
 
 export default function SingIn({ toggleMode }) {
@@ -11,29 +14,15 @@ export default function SingIn({ toggleMode }) {
         event.preventDefault();
         console.log('go')
         try {
-            const response = await fetch('https://market-hub-sigma.vercel.app/loginpage', {
-                method: 'POST',
+            const response = await axios.get(url, {
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
-                body: JSON.stringify({
-                    email: "notyourbusinestt.gmail.com",
-                    password: "pass777333",
-                }),
             });
 
-            if (response.ok) {
-                const data = await response.json();
-                const token = data.token;
-                Cookies.set('jwtToken', token);
-                console.log('JWT Token:', token);
-
-            } else {
-                console.error('Login failed');
-
-            }
+            console.log('Успех:', response.data);
         } catch (error) {
-            console.error('Error during login:', error);
+            console.error('Ошибка:', error);
         }
 
     }
