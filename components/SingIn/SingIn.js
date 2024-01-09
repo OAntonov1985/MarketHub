@@ -11,7 +11,7 @@ export default function SingIn({ toggleMode }) {
         event.preventDefault();
         console.log('go')
         try {
-            const response = await fetch('https://markethub-mfbw.onrender.com/markethub/login', {
+            const response = await fetch('https://market-hub-sigma.vercel.app/loginpage', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
