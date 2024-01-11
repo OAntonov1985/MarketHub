@@ -8,7 +8,7 @@ import bgupsidedown from "@/public/vectorupsidedown.svg"
 
 
 
-export default function LogInPage() {
+function LogInPage() {
 
     const [isRegistration, setIsRegistration] = useState(true);
 
@@ -39,6 +39,7 @@ export default function LogInPage() {
 
     );
 }
+export default React.memo(LogInPage);
 
 
 

@@ -1,42 +1,40 @@
-"use client"
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import React from 'react';
+// import singInFunction from '../FunctionHelpers/SingInFunction';
+import singInFunction from '@/pages/api/SingInFunction';
 
-import { useState } from 'react';
-import login from '../../pages/api/auth'
-// import { FormEvent } from 'react'
 
 
-export default function SingIn({ toggleMode }) {
+
+function SingIn({ toggleMode }) {
+    const router = useRouter();
+    const [userEmail, setUserEmail] = useState('');
+    const [userPassword, setUserPassword] = useState('');
+
 
     async function handleclick(event) {
         event.preventDefault();
-        console.log('go')
-        try {
-            const response = await fetch('https://markethub-mfbw.onrender.com/markethub/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: "notyourbusinestt.gmail.com",
-                    password: "pass777333",
-                }),
-            });
+        const body = {
+            "email": userEmail,
+            "password": userPassword
+        };
+        // singInFunction(body);
 
-            if (response.ok) {
-                const data = await response.json();
-                const token = data.token;
-                Cookies.set('jwtToken', token);
-                console.log('JWT Token:', token);
-
-            } else {
-                console.error('Login failed');
-
-            }
-        } catch (error) {
-            console.error('Error during login:', error);
+        const { JWTToken } = await singInFunction(body);
+        if (JWTToken) {
+            router.push('/userpage');
         }
-
     }
+
+
+    // useEffect(() => {
+    //     console.log(userEmail);
+    //     console.log(userPassword);
+    //     // const token = Cookies.get('jwtToken')
+    //     // console.log(token)
+    //     // console.log(body)
+    // }, [userEmail, userPassword]);
 
     return (
         <>
@@ -49,13 +47,18 @@ export default function SingIn({ toggleMode }) {
             </div>
             <div className='sing-in-right-column'>
                 <h4 className='right-column-paragraph'>Вхід</h4>
-                <form onSubmit={handleclick} className='singin-form'>
-                    <label htmlFor="userEmail" className='label-title'>Електронна пошта</label>
+                <form
+                    onSubmit={handleclick}
+                    className='singin-form'>
+                    <label htmlFor="userEmail" className='label-title' >Електронна пошта</label>
                     <input
                         id="userEmail"
-                        type="text"
+                        type="email"
                         className='userEmail'
                         placeholder='Введіть свою електронну пошту'
+                        onChange={(e) => setUserEmail(e.target.value)}
+                        pattern='^[^\s@]+@[^\s@]+\.[^\s@]{2,}$'
+                        value={userEmail}
                         required />
 
                     <label htmlFor="userPassword" className='label-title'>Пароль</label>
@@ -64,6 +67,11 @@ export default function SingIn({ toggleMode }) {
                         type="password"
                         className='userPassword'
                         placeholder='Введіть свій пароль'
+                        onInput={(e) => setUserPassword(e.target.value)}
+                        pattern='^[^\-+=\s]{2,}$'
+                        title="Некорректные символы: -, +, =, или пробел"
+                        value={userPassword}
+                        min={8}
                         required
                     />
                     <div className='button-singin'>
@@ -74,3 +82,5 @@ export default function SingIn({ toggleMode }) {
         </>
     );
 }
+
+export default React.memo(SingIn);

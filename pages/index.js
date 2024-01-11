@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Head from "next/head";
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
 
 
 
@@ -34,6 +34,9 @@ export default function Home() {
                     <Link href='/producstpage/' className='main-link'>
                         <p className='main-link'>Сторінка з результатами пошуку</p>
                     </Link>
+                    <a href='/userpage/' className='main-link'>
+                        <p className='main-link'>Сторінка з інфо про клієнта</p>
+                    </a>
                 </div>
                 <Footer />
             </main>

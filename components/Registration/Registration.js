@@ -1,6 +1,6 @@
+import React from 'react';
 
-
-export default function Registration({ toggleMode }) {
+function Registration({ toggleMode }) {
     return (
         <>
             <div className="sing-in-left-column">
@@ -69,3 +69,4 @@ export default function Registration({ toggleMode }) {
         </>
     );
 }
+export default React.memo(Registration)
