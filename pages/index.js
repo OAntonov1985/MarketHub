@@ -34,9 +34,9 @@ export default function Home() {
                     <Link href='/producstpage/' className='main-link'>
                         <p className='main-link'>Сторінка з результатами пошуку</p>
                     </Link>
-                    <a href='/userpage/' className='main-link'>
+                    <p href='/userpage/' className='main-link'>
                         <p className='main-link'>Сторінка з інфо про клієнта</p>
-                    </a>
+                    </p>
                 </div>
                 <Footer />
             </main>

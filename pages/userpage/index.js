@@ -14,7 +14,7 @@ const Profile = () => {
         if (!JWT) {
             router.push('/loginpage/')
         }
-    }, [router]);
+    },);
 
     // if (!JWT) {
     //     router.push('/loginpage/')
