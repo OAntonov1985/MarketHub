@@ -25,7 +25,7 @@ export default async function singInFunction(body) {
 
                 .catch(error => {
                     console.error(error);
-                    prompt(error)
+                    prompt(error);
                 });
 
         } else {

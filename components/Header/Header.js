@@ -1,7 +1,9 @@
 "use client"
 import Cookies from 'js-cookie'
-import { useState } from 'react';
-import { useSession } from 'next-auth/react'
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+// import { useSession } from 'next-auth/react'
 
 export default function Header() {
     // const [token, setToket] = useState(null);
@@ -9,14 +11,31 @@ export default function Header() {
     // console.log(getToken)
     // setToket(getToken);
     // const session = useSession();
-    // console.log(session)
+    const router = useRouter();
+    // console.log(getToken)
+    const deleteToken = () => {
+        Cookies.remove('jwtToken');
+        router.push('/');
+    }
+
+
+    // useEffect(() => {
+
+    // }, [getToken]);
+
 
     return (
         <>
             <div className="header">
                 Компонент Хедер. Навбар, кнопка логін кошик і так далі
             </div>
-            <div> {getToken === null ? "Log In" : "Log out"}</div>
+            <div> {getToken === undefined && getToken !== Cookies.remove('jwtToken') ?
+                <Link legacyBehavior href='/loginpage/' className='main-link'>
+                    <button href='/loginpage/'>Log In</button>
+                </Link>
+                :
+                <button onClick={deleteToken}>Log out</button>
+            }</div>
         </>
     );
 }
