@@ -70,7 +70,7 @@ function Registration({ toggleMode }) {
                 <p className='singin-paragraph login-page-text'>Привіт!</p>
                 <p className='singin-paragraph login-page-text'>Якщо ти вже маєш аккаутн, то можеш увійти тут.</p>
                 <div className='button-singin'>
-                    <button className='button-singin-push btn-login-page' onClick={toggleMode}>Увійти</button>
+                    <button className='button-singin-push secondary-button' onClick={toggleMode}>Увійти</button>
                 </div>
                 <div className='forgot-password-link'>
                     <a className='forgot-link' href='#'>Забули пароль</a>

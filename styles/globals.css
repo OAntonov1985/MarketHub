@@ -105,6 +105,17 @@ body {
   line-height: 4.8rem;
 }
 
+.secondary-button {
+  padding: 1.3rem;
+  border-radius: 0.8rem;
+  width: 15.5rem;
+  border: none;
+  color: #F8FAFC;
+  background-color: #012767;
+  border: 1px solid #F8FAFC;
+  margin-top: 2.4rem;
+}
+
 .btn-login-page {
   font-size: 1.6rem;
   line-height: 2rem;
@@ -139,7 +150,7 @@ body {
 
 .right-column-paragraph {
   color: #F8FAFC;
-  font-size: 3.2rem;
+  font-size: 2rem;
   font-weight: 300;
   line-height: 3.7rem;
   margin-bottom: 1rem;

@@ -84,7 +84,7 @@ function SingIn({ toggleMode }) {
                 <p className='singin-paragraph login-page-text'>Привіт!</p>
                 <p className='singin-paragraph login-page-text'>Якщо ти ще не маєш аккаунту, то  можеш створити його тут.</p>
                 <div className='button-singin'>
-                    <button className='button-singin-push btn-login-page' onClick={toggleMode} >Зареєструватися</button>
+                    <button className='button-singin-push secondary-button' onClick={toggleMode} >Зареєструватися</button>
                 </div>
             </div>
         </>
