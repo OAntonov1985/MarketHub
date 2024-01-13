@@ -65,6 +65,9 @@ function Registration({ toggleMode }) {
                 <div className='button-singin'>
                     <button className='button-singin-push btn-login-page' onClick={toggleMode}>Увійти</button>
                 </div>
+                <div className='forgot-password-link'>
+                    <a className='forgot-link' href='#'>Забули пароль</a>
+                </div>
             </div>
         </>
     );

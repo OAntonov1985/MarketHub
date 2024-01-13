@@ -58,7 +58,7 @@ body {
 }
 
 .login-page {
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -67,19 +67,26 @@ body {
 }
 
 .content {
+  padding: 0 6rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  width: 100vw;
+  width: 75%;
+  min-height: 75%;
+  background-color: #012767;
+  border-radius: 1.6rem;
 }
 
 .sing-in-left-column,
 .sing-in-right-column {
-  max-width: 40rem;
-  margin: 2rem;
-  flex-basis: 40%;
+  padding: 2rem 0;
+  flex-basis: 50%;
   box-sizing: border-box;
+}
+
+.sing-in-right-column {
+  padding-left: 2rem;
 }
 
 .login-page-text {
@@ -87,10 +94,6 @@ body {
   font-weight: 300;
   font-size: 3.2rem;
   line-height: 4.8rem;
-}
-
-.button-singin {
-  margin-top: 2.4rem;
 }
 
 .btn-login-page {
@@ -102,6 +105,16 @@ body {
   border: none;
   color: #F8FAFC;
   border-radius: 1rem;
+  margin-bottom: 1.3rem;
+}
+
+.forgot-password-link {
+  width: 16rem;
+  text-align: center;
+}
+
+.forgot-link {
+  color: #F8FAFC;
 }
 
 .right-column-paragraph {
@@ -109,7 +122,7 @@ body {
   font-size: 3.2rem;
   font-weight: 300;
   line-height: 3.7rem;
-  margin-bottom: 2.4rem;
+  margin-bottom: 1.8rem;
 }
 
 .singin-form, .registration-form {
@@ -126,6 +139,7 @@ body {
 }
 
 .userEmail, .userPasswor, .userName, .userSurname, .userTel, .userPassword, .userPasswordAgain {
+  max-width: 30rem;
   padding: 1.2rem 0 1.2rem 1.6rem;
   border-radius: 1rem;
   border: none;
@@ -133,5 +147,5 @@ body {
   font-size: 1.6rem;
   line-height: 2rem;
   color: #6B7280;
-  margin-bottom: 2.4rem;
+  margin-bottom: 1.8rem;
 }/*# sourceMappingURL=globals.css.map */

@@ -1,26 +1,33 @@
 @import "_variables.sass"
 .login-page
-    min-height: 100vh   
+    height: 100vh   
     position: relative    
     display: flex
     flex-wrap: wrap
     justify-content: center
-    align-items: center       
+    align-items: center          
 
 .content
+    padding: 0 6rem 
     display: flex
     justify-content: space-around
     align-items: center
-    flex-wrap: wrap
-    width: 100vw
+    flex-wrap: wrap    
+    width: 75%
+    min-height: 75%    
+    background-color: $color-background-loginpage
+    border-radius: 1.6rem 
 
 .sing-in-left-column, 
 .sing-in-right-column
-    max-width: 40rem
-    margin: 2rem 
-    flex-basis: 40%
-    box-sizing: border-box
-    // max-width: 
+    padding: 2rem 0
+    // height: 100%
+    // max-width: 30rem    
+    flex-basis: 50%
+    box-sizing: border-box   
+
+.sing-in-right-column 
+    padding-left: 2rem 
 
 .login-page-text
     color: $color-white
@@ -28,8 +35,8 @@
     font-size: 3.2rem
     line-height: 4.8rem    
 
-.button-singin
-    margin-top: 2.4rem 
+// .button-singin
+//     margin-top: 2.4rem 
 
 
 .btn-login-page
@@ -41,6 +48,13 @@
     border: none
     color: $color-white
     border-radius: 1rem
+    margin-bottom: 1.3rem
+
+.forgot-password-link
+    width: 16rem
+    text-align: center
+.forgot-link
+    color: $color-white
 
 
 ///////////////////////// right-column-paragraph  /////////////////////////
@@ -50,7 +64,7 @@
     font-size: 3.2rem
     font-weight: 300
     line-height: 3.7rem
-    margin-bottom: 2.4rem
+    margin-bottom: 1.8rem
 
 .singin-form, .registration-form
     display: flex
@@ -65,6 +79,7 @@
     margin-bottom: 1rem
 
 .userEmail, .userPasswor, .userName, .userSurname, .userTel, .userPassword, .userPasswordAgain
+    max-width: 30rem
     padding: 1.2rem 0 1.2rem 1.6rem
     border-radius: 1rem
     border: none
@@ -72,5 +87,5 @@
     font-size: 1.6rem
     line-height: 2rem
     color: $color-text-gray
-    margin-bottom: 2.4rem
+    margin-bottom: 1.8rem
 

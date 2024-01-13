@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import SingIn from '@/components/SingIn/SingIn';
 import Registration from '@/components/Registration/Registration';
-import bg from "@/public/vector1.svg"
+import backgroundImageg from "@/public/Back.png"
 import bgupsidedown from "@/public/vectorupsidedown.svg"
 
 
@@ -20,7 +20,7 @@ function LogInPage() {
         <div className='login-page'>
             <Image
                 alt="background image"
-                src={isRegistration ? bg : bgupsidedown}
+                src={backgroundImageg}
                 quality={100}
                 layout="fill"
                 objectFit="cover"

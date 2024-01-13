@@ -39,13 +39,6 @@ function SingIn({ toggleMode }) {
     return (
         <>
             <div className='sing-in-left-column'>
-                <p className='singin-paragraph login-page-text'>Привіт!</p>
-                <p className='singin-paragraph login-page-text'>Якщо ти ще не маєш акаунту, то  можеш створити його тут.</p>
-                <div className='button-singin'>
-                    <button className='button-singin-push btn-login-page' onClick={toggleMode} >Зареєструватися</button>
-                </div>
-            </div>
-            <div className='sing-in-right-column'>
                 <h4 className='right-column-paragraph'>Вхід</h4>
                 <form
                     onSubmit={handleclick}
@@ -60,7 +53,6 @@ function SingIn({ toggleMode }) {
                         pattern='^[^\s@]+@[^\s@]+\.[^\s@]{2,}$'
                         value={userEmail}
                         required />
-
                     <label htmlFor="userPassword" className='label-title'>Пароль</label>
                     <input
                         id="userPassword"
@@ -77,10 +69,22 @@ function SingIn({ toggleMode }) {
                     <div className='button-singin'>
                         <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
                     </div>
+                    <div className='forgot-password-link'>
+                        <a className='forgot-link' href='#'>Забули пароль</a>
+                    </div>
                 </form>
+            </div>
+            <div className='sing-in-right-column'>
+                <p className='singin-paragraph login-page-text'>Привіт!</p>
+                <p className='singin-paragraph login-page-text'>Якщо ти ще не маєш акаунту, то  можеш створити його тут.</p>
+                <div className='button-singin'>
+                    <button className='button-singin-push btn-login-page' onClick={toggleMode} >Зареєструватися</button>
+                </div>
             </div>
         </>
     );
 }
 
 export default React.memo(SingIn);
+
+
