@@ -1,6 +1,12 @@
 import React from 'react';
+import { useState } from 'react';
+import ShowOrHidePasswordIcon from '../ShowOrHidePasswordIcon/ShowOrHidePasswordIcon';
 
 function Registration({ toggleMode }) {
+
+    const [showPassword, setShowPassword] = useState('password');
+    const propsForPass = { showPassword, setShowPassword }
+
     return (
         <>
             <div className="sing-in-left-column">
@@ -10,15 +16,15 @@ function Registration({ toggleMode }) {
                     <input
                         id="userName"
                         type="text"
-                        className='userName'
+                        className='user-name'
                         placeholder='Введіть своє і`мя'
                         required />
 
                     <label htmlFor="userSurname" className='label-title'>Прізвище</label>
                     <input
-                        id="userSurname"
+                        id="user-surname"
                         type="text"
-                        className='userSurname'
+                        className='user-surname'
                         placeholder='Введіть своє прізвище'
                         required
                     />
@@ -26,7 +32,7 @@ function Registration({ toggleMode }) {
                     <input
                         id="userTel"
                         type="number"
-                        className='userTel'
+                        className='user-tel'
                         placeholder='Введіть свій телефон'
                         required
                     />
@@ -34,26 +40,27 @@ function Registration({ toggleMode }) {
                     <input
                         id="userEmail"
                         type="email"
-                        className='userEmail'
+                        className='user-email'
                         placeholder='Введіть електронну пошту'
                         required
                     />
                     <label htmlFor="userPassword" className='label-title'>Пароль</label>
                     <input
-                        id="userPassword"
-                        type="password"
-                        className='userPassword'
+                        type={showPassword}
+                        className='user-password'
                         placeholder='Придумайте пароль'
                         required
                     />
-                    {/* <label htmlFor="userPasswordAgain" className='label-title'>Пароль</label>
+                    {/* <ShowOrHidePasswordIcon props={propsForPass} /> */}
+                    <label htmlFor="userPasswordAgain" className='label-title label-title-last'>Підтвердження паролю</label>
                     <input
                         id="userPasswordAgain"
-                        type="password"
-                        className='userPasswordAgain'
+                        type={showPassword}
+                        className='user-passwordAgain'
                         placeholder='Повторно введіть пароль'
                         required
-                    /> */}
+                    />
+                    {/* <ShowOrHidePasswordIcon props={propsForPass} /> */}
                     <div className='button-singin'>
                         <button className='button-singin-push btn-login-page'>Зареєструватися</button>
                     </div>
@@ -61,7 +68,7 @@ function Registration({ toggleMode }) {
             </div>
             <div className='sing-in-right-column'>
                 <p className='singin-paragraph login-page-text'>Привіт!</p>
-                <p className='singin-paragraph login-page-text'>Якщо ти вже маєш акаутн, то можеш увійти тут.</p>
+                <p className='singin-paragraph login-page-text'>Якщо ти вже маєш аккаутн, то можеш увійти тут.</p>
                 <div className='button-singin'>
                     <button className='button-singin-push btn-login-page' onClick={toggleMode}>Увійти</button>
                 </div>

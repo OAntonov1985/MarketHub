@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+// import Image from 'next/image';
 import React from 'react';
-// import singInFunction from '../FunctionHelpers/SingInFunction';
 import singInFunction from '@/pages/api/SingInFunction';
-
-
+import ShowOrHidePasswordIcon from '../ShowOrHidePasswordIcon/ShowOrHidePasswordIcon';
 
 
 function SingIn({ toggleMode }) {
     const router = useRouter();
+
+
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
+
+    const [showPassword, setShowPassword] = useState('password');
+    const propsForPass = { showPassword, setShowPassword }
 
 
     async function handleclick(event) {
@@ -19,7 +23,6 @@ function SingIn({ toggleMode }) {
             "email": userEmail,
             "password": userPassword
         };
-        // singInFunction(body);
 
         const { JWTToken } = await singInFunction(body);
         if (JWTToken) {
@@ -47,25 +50,28 @@ function SingIn({ toggleMode }) {
                     <input
                         id="userEmail"
                         type="email"
-                        className='userEmail'
+                        className='user-email'
                         placeholder='Введіть свою електронну пошту'
                         onChange={(e) => setUserEmail(e.target.value)}
                         pattern='^[^\s@]+@[^\s@]+\.[^\s@]{2,}$'
                         value={userEmail}
                         required />
                     <label htmlFor="userPassword" className='label-title'>Пароль</label>
+
                     <input
                         id="userPassword"
-                        type="password"
-                        className='userPassword'
+                        type={showPassword}
+                        className='user-password'
                         placeholder='Введіть свій пароль'
                         onInput={(e) => setUserPassword(e.target.value)}
                         pattern='^[^\-+=\s]{2,}$'
-                        title="Некорректные символы: -, +, =, или пробел"
+                        title="Некоректні символи: -, +, =, або пробіл"
                         value={userPassword}
                         min={8}
                         required
                     />
+                    {/* <ShowOrHidePasswordIcon props={propsForPass} /> */}
+
                     <div className='button-singin'>
                         <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
                     </div>
@@ -76,7 +82,7 @@ function SingIn({ toggleMode }) {
             </div>
             <div className='sing-in-right-column'>
                 <p className='singin-paragraph login-page-text'>Привіт!</p>
-                <p className='singin-paragraph login-page-text'>Якщо ти ще не маєш акаунту, то  можеш створити його тут.</p>
+                <p className='singin-paragraph login-page-text'>Якщо ти ще не маєш аккаунту, то  можеш створити його тут.</p>
                 <div className='button-singin'>
                     <button className='button-singin-push btn-login-page' onClick={toggleMode} >Зареєструватися</button>
                 </div>

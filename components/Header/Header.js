@@ -31,10 +31,13 @@ export default function Header() {
             </div>
             <div> {getToken === undefined && getToken !== Cookies.remove('jwtToken') ?
                 <Link legacyBehavior href='/loginpage/' className='main-link'>
-                    <button href='/loginpage/'>Log In</button>
+                    <button >Log out</button>
                 </Link>
                 :
-                <button onClick={deleteToken}>Log out</button>
+                <Link legacyBehavior href='/loginpage/' className='main-link'>
+                    <button href='/loginpage/'>Log in</button>
+                </Link>
+
             }</div>
         </>
     );

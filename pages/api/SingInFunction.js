@@ -20,6 +20,7 @@ export default async function singInFunction(body) {
                 .then(data => {
                     Cookies.set('jwtToken', data.token);
                     console.log('JWT Token:', data.token);
+                    console.log(data);
                     JWTToken = data.token;
                 })
 

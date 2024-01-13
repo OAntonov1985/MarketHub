@@ -19,7 +19,8 @@
         "react": "^18",
         "react-dom": "^18",
         "react-hook-form": "^7.49.3",
-        "sass": "^1.69.5"
+        "sass": "^1.69.5",
+        "typeface-ubuntu": "^1.1.13"
     },
     "devDependencies": {
         "autoprefixer": "^10.0.1",

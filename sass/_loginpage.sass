@@ -1,6 +1,6 @@
 @import "_variables.sass"
 .login-page
-    height: 100vh   
+    min-height: 100vh   
     position: relative    
     display: flex
     flex-wrap: wrap
@@ -9,22 +9,25 @@
 
 .content
     padding: 0 6rem 
+    position: relative
     display: flex
     justify-content: space-around
     align-items: center
     flex-wrap: wrap    
     width: 75%
-    min-height: 75%    
+    min-height: 75vh   
     background-color: $color-background-loginpage
     border-radius: 1.6rem 
 
 .sing-in-left-column, 
-.sing-in-right-column
-    padding: 2rem 0
-    // height: 100%
-    // max-width: 30rem    
+.sing-in-right-column 
+    // padding: 1.2rem 0        
     flex-basis: 50%
-    box-sizing: border-box   
+    box-sizing: border-box 
+
+.sing-in-left-column
+    padding-top: 1rem
+    padding-bottom: 1.4rem  
 
 .sing-in-right-column 
     padding-left: 2rem 
@@ -33,28 +36,38 @@
     color: $color-white
     font-weight: 300
     font-size: 3.2rem
-    line-height: 4.8rem    
-
-// .button-singin
-//     margin-top: 2.4rem 
+    line-height: 4.8rem 
 
 
 .btn-login-page
     font-size: 1.6rem
     line-height: 2rem
     width: 16rem
-    padding: 1.6rem 1.4rem
-    background-color: $color-blue
+    padding: 1.2rem 1.4rem
+    // background-color: $color-blue
     border: none
     color: $color-white
-    border-radius: 1rem
-    margin-bottom: 1.3rem
+    font-family: "Ubuntu"
+    border-radius: 1rem    
+    background: linear-gradient( #116ACC, #116ACC00)
+    transition: background 0.3s
+
+.btn-login-page:hover
+    background: #34C3DD
+
+.btn-login-page:active
+    background: #116ACC
+
 
 .forgot-password-link
     width: 16rem
     text-align: center
+    margin-top: 1.3rem
+
 .forgot-link
     color: $color-white
+    font-size: 1.2rem
+   
 
 
 ///////////////////////// right-column-paragraph  /////////////////////////
@@ -64,28 +77,43 @@
     font-size: 3.2rem
     font-weight: 300
     line-height: 3.7rem
-    margin-bottom: 1.8rem
+    margin-bottom: 1rem
 
 .singin-form, .registration-form
     display: flex
     flex-direction: column
+    position: relative
     
 
 .label-title
     font-weight: 300
-    font-size: 2rem
+    font-size: 1.8rem
     line-height: 2.3rem
     color: $color-white
-    margin-bottom: 1rem
+    margin-bottom: .8rem
 
-.userEmail, .userPasswor, .userName, .userSurname, .userTel, .userPassword, .userPasswordAgain
-    max-width: 30rem
-    padding: 1.2rem 0 1.2rem 1.6rem
+.user-email, .user-passwor, .user-name, .user-surname, .user-tel, .user-password, .user-passwordAgain    
+    max-width: 35rem
+    padding: 1.2rem 1rem 1.2rem 1.6rem
     border-radius: 1rem
-    border: none
+    border: 1px solid #9CA3AF
     font-weight: 400
     font-size: 1.6rem
     line-height: 2rem
     color: $color-text-gray
-    margin-bottom: 1.8rem
+    margin-bottom: 1.6rem 
+
+.user-email:focus
+    border: 1px solid #116ACC
+    background-color:rgba(160, 195, 255, 0.1)
+    // opacity: .1
+
+
+.showOrHidePassword    
+    // display: inline-block
+    position: relative
+    top: -5rem
+    // left: 31.4rem
+    right: -31rem
+
 

@@ -10,11 +10,15 @@ html {
   max-width: 100%;
 }
 
+input {
+  font-family: "Ubuntu", serif;
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Ubuntu";
+  font-family: "Ubuntu", sans-serif;
   height: 100vh;
 }
 
@@ -58,7 +62,7 @@ body {
 }
 
 .login-page {
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -68,21 +72,26 @@ body {
 
 .content {
   padding: 0 6rem;
+  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   width: 75%;
-  min-height: 75%;
+  min-height: 75vh;
   background-color: #012767;
   border-radius: 1.6rem;
 }
 
 .sing-in-left-column,
 .sing-in-right-column {
-  padding: 2rem 0;
   flex-basis: 50%;
   box-sizing: border-box;
+}
+
+.sing-in-left-column {
+  padding-top: 1rem;
+  padding-bottom: 1.4rem;
 }
 
 .sing-in-right-column {
@@ -100,21 +109,32 @@ body {
   font-size: 1.6rem;
   line-height: 2rem;
   width: 16rem;
-  padding: 1.6rem 1.4rem;
-  background-color: #116ACC;
+  padding: 1.2rem 1.4rem;
   border: none;
   color: #F8FAFC;
+  font-family: "Ubuntu";
   border-radius: 1rem;
-  margin-bottom: 1.3rem;
+  background: linear-gradient(#116ACC, rgba(17, 106, 204, 0));
+  transition: background 0.3s;
+}
+
+.btn-login-page:hover {
+  background: #34C3DD;
+}
+
+.btn-login-page:active {
+  background: #116ACC;
 }
 
 .forgot-password-link {
   width: 16rem;
   text-align: center;
+  margin-top: 1.3rem;
 }
 
 .forgot-link {
   color: #F8FAFC;
+  font-size: 1.2rem;
 }
 
 .right-column-paragraph {
@@ -122,30 +142,40 @@ body {
   font-size: 3.2rem;
   font-weight: 300;
   line-height: 3.7rem;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1rem;
 }
 
 .singin-form, .registration-form {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .label-title {
   font-weight: 300;
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 2.3rem;
   color: #F8FAFC;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
-.userEmail, .userPasswor, .userName, .userSurname, .userTel, .userPassword, .userPasswordAgain {
-  max-width: 30rem;
-  padding: 1.2rem 0 1.2rem 1.6rem;
+.user-email, .user-passwor, .user-name, .user-surname, .user-tel, .user-password, .user-passwordAgain {
+  max-width: 35rem;
+  padding: 1.2rem 1rem 1.2rem 1.6rem;
   border-radius: 1rem;
-  border: none;
+  border: 1px solid #9CA3AF;
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 2rem;
   color: #6B7280;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.user-email:focus {
+  border: 1px solid #116ACC;
+}
+.showOrHidePassword {
+  position: relative;
+  top: -5rem;
+  right: -31rem;
 }/*# sourceMappingURL=globals.css.map */
