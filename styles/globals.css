@@ -14,6 +14,10 @@ input {
   font-family: "Ubuntu", serif;
 }
 
+button {
+  font-family: "Ubuntu", serif;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -114,6 +118,7 @@ body {
   background-color: #012767;
   border: 1px solid #F8FAFC;
   margin-top: 2.4rem;
+  transition: background 0.3s;
 }
 
 .btn-login-page {
@@ -121,19 +126,19 @@ body {
   line-height: 2rem;
   width: 16rem;
   padding: 1.2rem 1.4rem;
-  border: none;
+  border: 1px solid #116ACC;
   color: #F8FAFC;
-  font-family: "Ubuntu";
   border-radius: 1rem;
   background: linear-gradient(#116ACC, rgba(17, 106, 204, 0));
   transition: background 0.3s;
 }
 
-.btn-login-page:hover {
+.btn-login-page:hover, .secondary-button:hover {
   background: #34C3DD;
+  border: 1px solid #34C3DD;
 }
 
-.btn-login-page:active {
+.btn-login-page:active, .secondary-button:active {
   background: #116ACC;
 }
 
@@ -146,6 +151,7 @@ body {
 .forgot-link {
   color: #F8FAFC;
   font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
 .right-column-paragraph {

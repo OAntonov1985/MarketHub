@@ -47,6 +47,7 @@
     background-color: $color-background-loginpage    
     border: 1px solid #F8FAFC
     margin-top: 2.4rem
+    transition: background 0.3s
 
 
 .btn-login-page
@@ -54,17 +55,17 @@
     line-height: 2rem
     width: 16rem
     padding: 1.2rem 1.4rem    
-    border: none
-    color: $color-white
-    font-family: "Ubuntu"
+    border: 1px solid $color-blue
+    color: $color-white    
     border-radius: 1rem    
-    background: linear-gradient( #116ACC, #116ACC00)
+    background: linear-gradient( $color-blue, #116ACC00)
     transition: background 0.3s
 
-.btn-login-page:hover
+.btn-login-page:hover, .secondary-button:hover
     background: #34C3DD
+    border: 1px solid #34C3DD
 
-.btn-login-page:active
+.btn-login-page:active, .secondary-button:active
     background: #116ACC
 
 
@@ -76,6 +77,7 @@
 .forgot-link
     color: $color-white
     font-size: 1.2rem
+    margin-bottom: 2rem
    
 
 
