@@ -172,7 +172,7 @@ body {
 
 .user-email, .user-passwor, .user-name, .user-surname, .user-tel, .user-password, .user-passwordAgain {
   max-width: 30rem;
-  padding: 1.2rem 1rem 1.2rem 1.6rem;
+  padding: 0.9rem 0.9rem 1rem 1.6rem;
   border-radius: 1rem;
   border: 1px solid #9CA3AF;
   font-weight: 400;
