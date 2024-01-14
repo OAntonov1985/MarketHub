@@ -1,6 +1,6 @@
 // import { URLADRESS } from '../Constants';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { URLADRESS } from '@/components/Constants';
 
 export default async function singInFunction(body) {
@@ -19,8 +19,9 @@ export default async function singInFunction(body) {
             const data = await response.json()
                 .then(data => {
                     Cookies.set('jwtToken', data.token);
-                    console.log('JWT Token:', data.token);
-                    console.log(data);
+                    Cookies.set('userName', data.username);
+                    // console.log('userID', data.id);
+                    // console.log(data);
                     JWTToken = data.token;
                 })
 

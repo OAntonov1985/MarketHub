@@ -18,11 +18,19 @@ button {
   font-family: "Ubuntu", serif;
 }
 
+input:focus-visible {
+  outline: 1px solid #116ACC;
+}
+
+input:invalid {
+  border-color: 5px solid #76CA66;
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu", serif;
   height: 100vh;
 }
 
@@ -76,12 +84,14 @@ body {
 
 .content {
   padding: 0 6rem;
+  margin: 2rem 0;
   position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   width: 75%;
+  max-width: 108rem;
   min-height: 75vh;
   background-color: #012767;
   border-radius: 1.6rem;
@@ -126,16 +136,16 @@ body {
   line-height: 2rem;
   width: 16rem;
   padding: 1.2rem 1.4rem;
-  border: 1px solid #116ACC;
+  border: 0.1rem solid #116ACC;
   color: #F8FAFC;
-  border-radius: 1rem;
+  border-radius: 0.8rem;
   background: linear-gradient(#116ACC, rgba(17, 106, 204, 0));
   transition: background 0.3s;
 }
 
 .btn-login-page:hover, .secondary-button:hover {
   background: #34C3DD;
-  border: 1px solid #34C3DD;
+  border: 0.1rem solid #34C3DD;
 }
 
 .btn-login-page:active, .secondary-button:active {
@@ -151,7 +161,6 @@ body {
 .forgot-link {
   color: #F8FAFC;
   font-size: 1.2rem;
-  margin-bottom: 2rem;
 }
 
 .right-column-paragraph {
@@ -189,8 +198,13 @@ body {
 }
 
 .user-email:focus {
-  border: 1px solid #116ACC;
+  background: rgba(160, 195, 255, 0.95);
 }
+
+.user-email:invalid, .user-passwor:invalid {
+  background-color: 5px solid #76CA66;
+}
+
 .showOrHidePassword {
   position: relative;
   top: -5rem;

@@ -68,7 +68,7 @@ function Registration({ toggleMode }) {
             </div>
             <div className='sing-in-right-column'>
                 <p className='singin-paragraph login-page-text'>Привіт!</p>
-                <p className='singin-paragraph login-page-text'>Якщо ти вже маєш аккаутн, то можеш увійти тут.</p>
+                <p className='singin-paragraph login-page-text'>Якщо ти вже маєш аккаунт, то можеш увійти тут.</p>
                 <div className='button-singin'>
                     <button className='button-singin-push secondary-button' onClick={toggleMode}>Увійти</button>
                 </div>

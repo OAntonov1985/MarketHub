@@ -9,12 +9,14 @@
 
 .content
     padding: 0 6rem 
+    margin: 2rem 0
     position: relative
     display: flex
     justify-content: space-around
     align-items: center
     flex-wrap: wrap    
     width: 75%
+    max-width: 108rem
     min-height: 75vh   
     background-color: $color-background-loginpage
     border-radius: 1.6rem 
@@ -55,18 +57,18 @@
     line-height: 2rem
     width: 16rem
     padding: 1.2rem 1.4rem    
-    border: 1px solid $color-blue
+    border: .1rem solid $color-blue
     color: $color-white    
-    border-radius: 1rem    
+    border-radius: .8rem    
     background: linear-gradient( $color-blue, #116ACC00)
     transition: background 0.3s
 
 .btn-login-page:hover, .secondary-button:hover
-    background: #34C3DD
-    border: 1px solid #34C3DD
+    background: $color-hover-button
+    border: .1rem solid $color-hover-button
 
 .btn-login-page:active, .secondary-button:active
-    background: #116ACC
+    background: $color-blue
 
 
 .forgot-password-link
@@ -77,8 +79,10 @@
 .forgot-link
     color: $color-white
     font-size: 1.2rem
-    margin-bottom: 2rem
    
+// .forgot-password-link
+//     margin-bottom: 2rem
+
 
 
 ///////////////////////// right-column-paragraph  /////////////////////////
@@ -115,9 +119,13 @@
     margin-bottom: 1.6rem 
 
 .user-email:focus
-    border: 1px solid #116ACC
-    background-color:rgba(160, 195, 255, 0.1)
-    // opacity: .1
+  background: rgba(160, 195, 255, 0.95)
+//   background: #A0C3FF1A
+//   border: 1px solid #116ACC
+    border: none
+
+.user-email:invalid, .user-passwor:invalid 
+  background-color: 5px solid #76CA66
 
 
 .showOrHidePassword    

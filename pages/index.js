@@ -5,17 +5,19 @@ import Footer from '@/components/Footer/Footer';
 
 
 
+
 export default function Home() {
     return (
         <>
             <Head>
                 <title>MarketHub - знайденться все!</title>
-                <link rel='preconnect' href='https://fonts.googleapis.com' />
+                <link rel="icon" href="/frame380.png" sizes="any" />
+                {/* <link rel='preconnect' href='https://fonts.googleapis.com' />
                 <link
                     rel='preconnect'
                     href='https://fonts.gstatic.com'
                     crossOrigin
-                />
+                /> */}
                 <meta name='MarketHub' content='MarketHub' />
             </Head>
 

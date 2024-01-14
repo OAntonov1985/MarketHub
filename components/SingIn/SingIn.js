@@ -53,7 +53,7 @@ function SingIn({ toggleMode }) {
                         className='user-email'
                         placeholder='Введіть свою електронну пошту'
                         onChange={(e) => setUserEmail(e.target.value)}
-                        pattern='^[^\s@]+@[^\s@]+\.[^\s@]{2,}$'
+                        pattern='^[^\s@]+@[a-zA-Z]+(?:\.[a-zA-Z]{2,})+$'
                         value={userEmail}
                         required />
                     <label htmlFor="userPassword" className='label-title'>Пароль</label>
@@ -64,10 +64,10 @@ function SingIn({ toggleMode }) {
                         className='user-password'
                         placeholder='Введіть свій пароль'
                         onInput={(e) => setUserPassword(e.target.value)}
+                        min={8}
                         pattern='^[^\-+=\s]{2,}$'
                         title="Некоректні символи: -, +, =, або пробіл"
                         value={userPassword}
-                        min={8}
                         required
                     />
                     {/* <ShowOrHidePasswordIcon props={propsForPass} /> */}

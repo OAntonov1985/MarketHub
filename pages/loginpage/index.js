@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import SingIn from '@/components/SingIn/SingIn';
 import Registration from '@/components/Registration/Registration';
+import Head from 'next/head';
 import backgroundImageg from "@/public/Back.png"
 import bgupsidedown from "@/public/vectorupsidedown.svg"
 
@@ -18,41 +19,46 @@ function LogInPage() {
     };
 
     return (
-        <div className='login-page'>
-            <Image
-                alt="background image"
-                src={backgroundImageg}
-                quality={100}
-                layout="fill"
-                objectFit="cover"
-                // objectPosition="55% top"
-                objectPosition="center"
-                style={{
-                    zIndex: -1,
-                }}
-            />
-            <div className="content">
-                {isRegistration ? <SingIn toggleMode={toggleMode} /> : <Registration toggleMode={toggleMode} />}
+        <>
+            <Head>
+                <title>Сторінка автентифікації/реєстрації клієнта</title>
+                <link rel="icon" href="/frame3810.png" sizes="any" />
+            </Head>
+            <main className='login-page'>
                 <Image
-                    alt="logo image"
-                    src='/logo.png'
-                    quality={100}
-                    width={146}
-                    height={75}
-                    className='logo-image'
+                    alt="background image"
+                    src={backgroundImageg}
+                    quality={70}
+                    placeholder="blur"
+                    sizes="100vw"
+                    layout="fill"
+                    priority
                     style={{
-                        position: 'absolute',
-                        top: "5px",
-                        zIndex: 1,
-                        marginTop: "24px"
+                        objectFit: "cover",
+                        zIndex: -1,
                     }}
                 />
-
-            </div>
-
-
-        </div>
-
+                <div className="content">
+                    {isRegistration ? <SingIn toggleMode={toggleMode} /> : <Registration toggleMode={toggleMode} />}
+                    <Image
+                        alt="logo image"
+                        src='/logo.png'
+                        quality={100}
+                        width={146}
+                        height={75}
+                        className='logo-image'
+                        // placeholder="blur"
+                        priority
+                        style={{
+                            position: 'absolute',
+                            top: ".5rem",
+                            zIndex: 1,
+                            marginTop: "2.4rem"
+                        }}
+                    />
+                </div>
+            </main>
+        </>
     );
 }
 export default React.memo(LogInPage);

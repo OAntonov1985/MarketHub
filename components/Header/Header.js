@@ -1,4 +1,4 @@
-"use client"
+
 import Cookies from 'js-cookie'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 export default function Header() {
     // const [token, setToket] = useState(null);
     const getToken = Cookies.get('jwtToken');
+    const userName = Cookies.get('userName');
     // console.log(getToken)
     // setToket(getToken);
     // const session = useSession();
@@ -15,28 +16,35 @@ export default function Header() {
     // console.log(getToken)
     const deleteToken = () => {
         Cookies.remove('jwtToken');
+        Cookies.remove('userName');
         router.push('/');
+    }
+    const redirectToLoginPage = () => {
+        router.push('/loginpage/');
     }
 
 
-    // useEffect(() => {
-
-    // }, [getToken]);
+    useEffect(() => {
+        console.log(getToken)
+        console.log(userName)
+    }, [getToken]);
 
 
     return (
         <>
             <div className="header">
-                Компонент Хедер. Навбар, кнопка логін кошик і так далі
+                <p>  {userName === undefined ? 'Компонент Хедер.' : `Привіт, ${userName}`}</p>
             </div>
-            <div> {getToken === undefined && getToken !== Cookies.remove('jwtToken') ?
-                <Link legacyBehavior href='/loginpage/' className='main-link'>
-                    <button >Log out</button>
-                </Link>
+            <div> {getToken === undefined ?
+
+                <button className='main-link' onClick={redirectToLoginPage}>Push to log in</button>
+
+                // <button className='main-link' onClick={redirectToLoginPage}>Log out</button>
+                // console.log('no toket must login')
                 :
-                <Link legacyBehavior href='/loginpage/' className='main-link'>
-                    <button href='/loginpage/'>Log in</button>
-                </Link>
+
+                // <button className='main-link' onClick={deleteToken}>Log in</button>
+                <button className='main-link' onClick={deleteToken}>Push to log out</button>
 
             }</div>
         </>
