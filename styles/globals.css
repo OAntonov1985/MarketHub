@@ -83,8 +83,7 @@ body {
 }
 
 .content {
-  padding: 0 6rem;
-  margin: 2rem 0;
+  margin: 12.8rem 0;
   position: relative;
   display: flex;
   justify-content: space-around;
@@ -92,7 +91,7 @@ body {
   flex-wrap: wrap;
   width: 75%;
   max-width: 108rem;
-  min-height: 75vh;
+  min-height: 76.8vh;
   background-color: #012767;
   border-radius: 1.6rem;
 }
@@ -104,12 +103,11 @@ body {
 }
 
 .sing-in-left-column {
-  padding-top: 1rem;
-  padding-bottom: 1.4rem;
+  padding: 10.3rem 6rem 4.4rem;
 }
 
 .sing-in-right-column {
-  padding-left: 2rem;
+  padding: 10.3rem 6rem 4.4rem 6.5rem;
 }
 
 .login-page-text {
@@ -141,6 +139,7 @@ body {
   border-radius: 0.8rem;
   background: linear-gradient(#116ACC, rgba(17, 106, 204, 0));
   transition: background 0.3s;
+  margin-bottom: 0.8rem;
 }
 
 .btn-login-page:hover, .secondary-button:hover {
@@ -209,4 +208,18 @@ body {
   position: relative;
   top: -5rem;
   right: -31rem;
+}
+
+.politcik-registration {
+  max-width: 30rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: normal;
+  color: #F8FAFC;
+  font-family: Montserrat;
+}
+
+.politcik-registration-link {
+  color: #116ACC;
+  font-family: Montserrat;
 }/*# sourceMappingURL=globals.css.map */

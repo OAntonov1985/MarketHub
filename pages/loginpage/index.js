@@ -11,12 +11,13 @@ import bgupsidedown from "@/public/vectorupsidedown.svg"
 
 function LogInPage() {
     const [isRegistration, setIsRegistration] = useState(true);
-
+    const [loading, setLoading] = useState(false);
 
 
     const toggleMode = () => {
         setIsRegistration(prevState => !prevState);
     };
+    const obj = { loading, setLoading, toggleMode }
 
     return (
         <>
@@ -39,7 +40,9 @@ function LogInPage() {
                     }}
                 />
                 <div className="content">
-                    {isRegistration ? <SingIn toggleMode={toggleMode} /> : <Registration toggleMode={toggleMode} />}
+                    {isRegistration ?
+                        <SingIn props={obj} /> :
+                        <Registration props={obj} />}
                     <Image
                         alt="logo image"
                         src='/logo.png'

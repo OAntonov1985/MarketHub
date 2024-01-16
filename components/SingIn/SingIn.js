@@ -6,8 +6,9 @@ import singInFunction from '@/pages/api/SingInFunction';
 import ShowOrHidePasswordIcon from '../ShowOrHidePasswordIcon/ShowOrHidePasswordIcon';
 
 
-function SingIn({ toggleMode }) {
+function SingIn({ props }) {
     const router = useRouter();
+    const { loading, setLoading, toggleMode } = props;
 
 
     const [userEmail, setUserEmail] = useState('');

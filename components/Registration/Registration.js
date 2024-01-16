@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 // import Spinner from '../Spinner/Spinner';
-// import RegistrationFunction from '@/pages/api/RegistrationFunction';
+import RegistrationFunction from '@/pages/api/RegistrationFunction';
 import { useRouter } from 'next/router';
 
 
@@ -29,18 +29,14 @@ function Registration({ props }) {
             "password": userPassword
         };
         console.log(body)
-        setLoading(false)
+        // setLoading(false)
 
-        router.push('/userpage');
 
-        // const data = await RegistrationFunction(body);
-        // console.log(data)
 
-        // if (data) {
-        //     setLoading(false)
-        //     console.lo(data)
-        //     router.push('/userpage');
-        // }
+        const { JWTToken } = await RegistrationFunction(body);
+        if (JWTToken) {
+            router.push('/userpage');
+        }
     }
 
 

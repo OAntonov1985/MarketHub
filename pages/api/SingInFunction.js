@@ -1,6 +1,4 @@
-// import { URLADRESS } from '../Constants';
 import Cookies from 'js-cookie';
-// import { useRouter } from 'next/router';
 import { URLADRESS } from '@/components/Constants';
 
 export default async function singInFunction(body) {
