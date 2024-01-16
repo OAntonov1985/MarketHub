@@ -19,7 +19,7 @@ button {
 }
 
 input:focus-visible {
-  outline: 1px solid #116ACC;
+  outline: 1px solid #116ACC !important;
 }
 
 input:invalid {
@@ -222,4 +222,43 @@ body {
 .politcik-registration-link {
   color: #116ACC;
   font-family: Montserrat;
+}
+
+.user-email-test {
+  max-width: 30rem;
+  background-color: #F8FAFC;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  height: 4rem !important;
+  margin-bottom: 2rem;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+}
+
+.input-test {
+  font-size: 1.6rem !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 2rem !important;
+  letter-spacing: -0.16px !important;
+  font-family: Ubuntu !important;
+  color: #6B7280 !important;
+  height: 4rem !important;
+  border: 1px solid #116ACC !important;
+  text-align: center;
+  display: flex !important;
+  align-content: center !important;
+  justify-content: center !important;
+  height: 100vh;
+}
+
+.label-test {
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  font-family: Ubuntu;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }/*# sourceMappingURL=globals.css.map */
