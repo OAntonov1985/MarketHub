@@ -8,9 +8,9 @@ const ubuntu = Ubuntu({
 
 export default function MyApp({ Component, pageProps }) {
     return (
-        <main className={ubuntu.className}>
+        <div className={ubuntu.className}>
             <Component {...pageProps} />
-        </main>
+        </div>
     )
 
 }

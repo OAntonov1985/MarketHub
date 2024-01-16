@@ -3,6 +3,7 @@ import { URLADRESS } from '@/components/Constants';
 
 export default async function singInFunction(body) {
     let JWTToken
+    let flag
     try {
         const response = await fetch(URLADRESS + 'login', {
             method: 'POST',
@@ -30,10 +31,11 @@ export default async function singInFunction(body) {
 
         } else {
             alert('Невірно введені пошта або пароль! Спробуйте ще');
-
+            flag = true
         };
     } catch (error) {
         alert('Упс.... Щось пішло не так');
+        flag = true
     };
-    return { JWTToken }
+    return { JWTToken, flag }
 }

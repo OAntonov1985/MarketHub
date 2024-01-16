@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Spinner from '../Spinner/Spinner';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import InputAdornment from '@mui/material/InputAdornment'
@@ -35,13 +36,19 @@ function SingIn({ props }) {
 
     async function handleclick(event) {
         event.preventDefault();
+        console.log(777)
+        setLoading(true);
         const body = {
             "email": userEmail,
             "password": userPassword
         };
 
-        const { JWTToken } = await singInFunction(body);
-        if (JWTToken) {
+        const { JWTToken, flag } = await singInFunction(body);
+        if (flag) {
+            setLoading(false);
+        }
+        else if (JWTToken) {
+            setLoading(false)
             router.push('/userpage');
         }
     }

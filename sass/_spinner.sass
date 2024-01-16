@@ -1,0 +1,72 @@
+@import "_variables.sass"
+.spinner
+    position: absolute   
+    top: 0
+    left: 0
+    background-color: black
+    opacity: 0.4
+    z-index: 4
+    min-width: 100vw
+    min-height: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center  
+
+.spinner-container   
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center    
+    z-index: 5
+
+
+.spinner-circle 
+    width: 62px
+    height: 62px
+    border: 2px solid $color-blue
+    border-radius: 50%
+    border-top: 2px solid #b3cee2
+    animation: rotate 2s linear infinite    
+
+
+.spinner-line 
+    margin-top: 42px
+    width: 186px
+    height: 2px
+    background: linear-gradient(to right, $color-light-blue 25%, $color-blue 50%, $color-blue 75%, $color-light-blue 100%)  
+    // background: linear-gradient(to right, $color-light-blue, $color-blue)
+    // background: linear-gradient(to right, $color-light-blue, $color-blue)
+    background-size: 200% 100%
+    background-size: 200% 100%
+    animation: colorTransition 5s linear infinite
+
+
+@keyframes rotate
+  to
+    transform: rotate(360deg)
+
+
+@keyframes colorTransition 
+    0%
+        background-position: 0 0 
+    
+    50% 
+        background-position: 100% 0 
+
+    100% 
+        background-position: 0 0
+  
+@keyframes colorTransition 
+    0%
+        background-position: 400% 0 
+    25%
+        background-position: 300% 0 
+    50% 
+        background-position: 200% 0 
+    75%
+        background-position: 100% 0 
+
+    100% 
+        background-position: 0 0
+

@@ -27,6 +27,8 @@ function LogInPage() {
                 <link rel="icon" href="/frame3810.png" sizes="any" />
             </Head>
             <main className='login-page'>
+                {/* <Spinner /> */}
+                {loading === true ? <Spinner /> : null}
                 <Image
                     alt="background image"
                     src={backgroundImageg}
@@ -40,8 +42,9 @@ function LogInPage() {
                         zIndex: -1,
                     }}
                 />
-                <Spinner />
+
                 <div className="content">
+
                     {isRegistration ?
                         <SingIn props={obj} /> :
                         <Registration props={obj} />}

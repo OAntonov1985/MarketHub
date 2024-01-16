@@ -1,17 +1,12 @@
 import { ColorRing } from 'react-loader-spinner'
 
-export default function spinner() {
+export default function Spinner() {
     return (
-        <>
-            <ColorRing
-                visible={true}
-                height="80"
-                width="80"
-                ariaLabel="color-ring-loading"
-                wrapperStyle={{}}
-                wrapperClass="color-ring-wrapper"
-                colors={['#116ACC', '#116ACC', '#116ACC', '#116ACC', '#116ACC']}
-            />
-        </>
+        <div className="spinner">
+            <div className="spinner-container">
+                <div className="spinner-circle"></div>
+                <div className="spinner-line"></div>
+            </div>
+        </div>
     )
 }

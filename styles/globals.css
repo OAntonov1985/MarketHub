@@ -31,7 +31,8 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Ubuntu", serif;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
 #__next {
@@ -75,6 +76,7 @@ body {
 
 .login-page {
   min-height: 100vh;
+  min-width: 100vw;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -261,4 +263,80 @@ body {
   display: flex;
   align-content: center;
   justify-content: center;
+}
+
+.spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.4;
+  z-index: 4;
+  min-width: 100vw;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.spinner-circle {
+  width: 62px;
+  height: 62px;
+  border: 2px solid #116ACC;
+  border-radius: 50%;
+  border-top: 2px solid #b3cee2;
+  animation: rotate 2s linear infinite;
+}
+
+.spinner-line {
+  margin-top: 42px;
+  width: 186px;
+  height: 2px;
+  background: linear-gradient(to right, #b3cee2 25%, #116ACC 50%, #116ACC 75%, #b3cee2 100%);
+  background-size: 200% 100%;
+  background-size: 200% 100%;
+  animation: colorTransition 5s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes colorTransition {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+@keyframes colorTransition {
+  0% {
+    background-position: 400% 0;
+  }
+  25% {
+    background-position: 300% 0;
+  }
+  50% {
+    background-position: 200% 0;
+  }
+  75% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }/*# sourceMappingURL=globals.css.map */
