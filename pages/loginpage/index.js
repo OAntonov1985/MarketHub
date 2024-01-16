@@ -6,6 +6,7 @@ import Registration from '@/components/Registration/Registration';
 import Head from 'next/head';
 import backgroundImageg from "@/public/Back.png"
 import bgupsidedown from "@/public/vectorupsidedown.svg"
+import Spinner from '@/components/Spinner/Spinner';
 
 
 
@@ -39,6 +40,7 @@ function LogInPage() {
                         zIndex: -1,
                     }}
                 />
+                <Spinner />
                 <div className="content">
                     {isRegistration ?
                         <SingIn props={obj} /> :
