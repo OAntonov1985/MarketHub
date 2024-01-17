@@ -1,4 +1,4 @@
-import { ColorRing } from 'react-loader-spinner'
+
 
 export default function Spinner() {
     return (
@@ -8,5 +8,5 @@ export default function Spinner() {
                 <div className="spinner-line"></div>
             </div>
         </div>
-    )
-}
+    );
+};

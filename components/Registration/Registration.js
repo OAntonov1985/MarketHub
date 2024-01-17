@@ -28,13 +28,13 @@ function Registration({ props }) {
             "phone": userPhone,
             "password": userPassword
         };
-        console.log(body)
-        // setLoading(false)
 
-
-
-        const { JWTToken } = await RegistrationFunction(body);
-        if (JWTToken) {
+        const { JWTToken, Errormasage } = await RegistrationFunction(body);
+        if (Errormasage) {
+            setLoading(false);
+        }
+        else if (JWTToken) {
+            setLoading(false);
             router.push('/userpage');
         }
     }

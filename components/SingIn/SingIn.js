@@ -43,15 +43,15 @@ function SingIn({ props }) {
             "password": userPassword
         };
 
-        const { JWTToken, flag } = await singInFunction(body);
-        if (flag) {
+        const { JWTToken, Errorflag } = await singInFunction(body);
+        if (Errorflag) {
             setLoading(false);
         }
         else if (JWTToken) {
             setLoading(false)
             router.push('/userpage');
-        }
-    }
+        };
+    };
 
 
     // useEffect(() => {

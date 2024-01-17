@@ -4,6 +4,7 @@ import { URLADRESS } from '@/components/Constants';
 
 export default async function RegistrationFunction(body) {
     let JWTToken
+    let Errormasage
     try {
         const response = await fetch(URLADRESS + 'authorization', {
             method: 'POST',
@@ -13,28 +14,22 @@ export default async function RegistrationFunction(body) {
             body: JSON.stringify(body),
 
         });
-
         if (response.ok) {
             const data = await response.json()
                 .then(data => {
                     Cookies.set('jwtToken', data.token);
                     Cookies.set('userName', data.username);
-                    // console.log('userID', data.id);
-                    // console.log(data);
                     JWTToken = data.token;
                 })
 
-                .catch(error => {
-                    console.error(error);
-                    prompt(error);
-                });
-
         } else {
-            alert('Невірно введені пошта або пароль! Спробуйте ще');
-
+            console.log(response)
+            alert('Користувач з такою поштою або телефоном вже існує!');
+            Errormasage = true;
         };
     } catch (error) {
-        alert('Упс.... Щось пішло не так');
+        alert('Упс.... Щось пішло не так. зверніться до розробників');
+        Errormasage = true;
     };
-    return { JWTToken }
+    return { JWTToken, Errormasage }
 }
