@@ -1,32 +1,45 @@
 import { useState } from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form, ErrorMessage, useField } from 'formik';
 
 import * as Yup from 'yup';
 
 
-// const validationSchema = Yup.object({
-//     email: Yup.string()
-//         .matches(/^[a-zA-Z0-9]+@[a-zA-Z]{3,}\.[a-zA-Z]{2,}$/, 'Невірний формат введення пошти. Будь ласка викирстайте наступний формат: example@gmail.com')
-//         .required('Це поле обов`язково має бути заповнене'),
-//     password: Yup.string().min(6, 'Мінімальна довжина паролю складає 6 сімволів').required('Це поле обов`язково має бути заповнене'),
-// });
-
 const validationSchema = Yup.object({
     email: Yup.string()
-        .test('email-validation', 'Невірний формат введення пошти. Будь ласка використайте наступний формат: example@gmail.com', function (value) {
-            // Ваша логика для проверки формата email
-            if (/^[a-zA-Z0-9]+@[a-zA-Z]{3,}\.[a-zA-Z]{2,}$/.test(value)) {
-                return true; // Вернуть true для успешной валидации
-            } else {
-                // Возвращаем объект ошибки с пользовательским сообщением
-                return this.createError({ message: this.message });
-            }
-        })
+        .matches(/^[a-zA-Z0-9]+@[a-zA-Z]{3,}\.[a-zA-Z]{2,}$/, 'Невірний формат введення пошти. Будь ласка викирстайте наступний формат: example@gmail.com')
         .required('Це поле обов`язково має бути заповнене'),
-    password: Yup.string()
-        .min(6, 'Мінімальна довжина паролю складає 6 сімволів')
-        .required('Це поле обов`язково має бути заповнене'),
+    password: Yup.string().min(6, 'Мінімальна довжина паролю складає 6 сімволів').required('Це поле обов`язково має бути заповнене'),
 });
+
+// const validationSchema = Yup.object({
+//     email: Yup.string()
+//         .test('email-validation', 'Невірний формат введення пошти. Будь ласка використайте наступний формат: example@gmail.com', function (value) {
+//             // Ваша логика для проверки формата email
+//             if (/^[a-zA-Z0-9]+@[a-zA-Z]{3,}\.[a-zA-Z]{2,}$/.test(value)) {
+//                 return true; // Вернуть true для успешной валидации
+//             } else {
+//                 // Возвращаем объект ошибки с пользовательским сообщением
+//                 return this.createError({ message: this.message });
+//             }
+//         })
+//         .required('Це поле обов`язково має бути заповнене'),
+//     password: Yup.string()
+//         .min(6, 'Мінімальна довжина паролю складає 6 сімволів')
+//         .required('Це поле обов`язково має бути заповнене'),
+// });
+
+// const validationSchema = Yup.object({
+//     email: Yup.string()
+//         .when('nextField', {
+//             is: (nextFieldValue) => nextFieldValue !== undefined && nextFieldValue !== null,
+//             then: Yup.string()
+//                 .matches(/^[a-zA-Z0-9]+@[a-zA-Z]{3,}\.[a-zA-Z]{2,}$/, 'Невірний формат введення пошти. Будь ласка використайте наступний формат: example@gmail.com')
+//                 .required('Це поле обов`язково має бути заповнене'),
+//             otherwise: Yup.string().nullable(),
+//         }),
+//     password: Yup.string().min(6, 'Мінімальна довжина паролю складає 6 сімволів').required('Це поле обов`язково має бути заповнене'),
+//     nextField: Yup.string(), // Замените 'nextField' на реальное имя следующего поля
+// });
 
 const FormSingIn = () => {
     const [email, setEmail] = useState("")
@@ -45,8 +58,7 @@ const FormSingIn = () => {
     };
 
     const handleInputBlur = (event) => {
-        event.target.style.backgroundColor = '';
-        event.target.style.border = '';
+        console.log(777)
     };
 
     return (
@@ -69,6 +81,7 @@ const FormSingIn = () => {
                             name="email"
                             value={email}
                             className={`input-login-page customBorder customBackground customBorderColorOnInvalid user-email ${touched.email && !errors.email && 'success-border'}`}
+                            onBlur={handleInputBlur}
                         />
                         <ErrorMessage name="email" component="div" className="error" />
                     </div>

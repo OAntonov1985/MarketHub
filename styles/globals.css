@@ -236,6 +236,26 @@ body {
   justify-content: center;
 }
 
+.user-email-test {
+  max-width: 30rem;
+  padding: 0.9rem 0.9rem 1rem 1.6rem;
+  border-radius: 1rem;
+  border: 1px solid #9CA3AF;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  color: #6B7280;
+  margin-bottom: 0.2rem;
+}
+
+.paragraf-buttom {
+  color: white;
+}
+
+.user-email-test:focus {
+  background-color: #116ACC;
+}
+
 .spinner {
   position: absolute;
   top: 0;

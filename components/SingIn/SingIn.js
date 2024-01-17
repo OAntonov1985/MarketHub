@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import FormSingIn from './FormSingIn';
+import FormDouble from './FormDouble';
 
 import React from 'react';
 import singInFunction from '@/pages/api/SingInFunction';
@@ -49,7 +51,7 @@ function SingIn({ props }) {
         <>
             <div className='sing-in-left-column'>
                 <h4 className='right-column-paragraph'>Вхід</h4>
-                <form
+                {/* <form
                     onSubmit={handleclick}
                     className='singin-form'>
                     <label htmlFor="userEmail" className='label-title' >Електронна пошта</label>
@@ -79,13 +81,15 @@ function SingIn({ props }) {
                     />
                     {/* <ShowOrHidePasswordIcon props={propsForPass} /> */}
 
-                    <div className='button-singin'>
-                        <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
-                    </div>
-                    <div className='forgot-password-link'>
-                        <a className='forgot-link' href='#'>Забули пароль</a>
-                    </div>
-                </form>
+                {/* <div className='button-singin'>
+                    <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
+                </div>
+                <div className='forgot-password-link'>
+                    <a className='forgot-link' href='#'>Забули пароль</a>
+                </div> */}
+                {/* </form> */}
+
+                <FormDouble />
             </div>
             <div className='sing-in-right-column'>
                 <p className='singin-paragraph login-page-text'>Привіт!</p>
