@@ -18,14 +18,6 @@ button {
   font-family: "Ubuntu", serif;
 }
 
-input:focus-visible {
-  outline: 1px solid #116ACC !important;
-}
-
-input:invalid {
-  border-color: 5px solid #76CA66;
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -199,17 +191,8 @@ body {
 }
 
 .user-email:focus {
-  background: rgba(160, 195, 255, 0.95);
-}
-
-.user-email:invalid, .user-passwor:invalid {
-  background-color: 5px solid #76CA66;
-}
-
-.showOrHidePassword {
-  position: relative;
-  top: -5rem;
-  right: -31rem;
+  background: #b3cee2;
+  background-border: none;
 }
 
 .politcik-registration {
@@ -224,18 +207,6 @@ body {
 .politcik-registration-link {
   color: #116ACC;
   font-family: Montserrat;
-}
-
-.user-email-test {
-  max-width: 30rem;
-  background-color: #F8FAFC;
-  border-radius: 0.5rem;
-  font-size: 1.6rem;
-  height: 4rem !important;
-  margin-bottom: 2rem;
-  display: flex !important;
-  justify-content: center !important;
-  align-content: center !important;
 }
 
 .input-test {
@@ -339,4 +310,29 @@ body {
   100% {
     background-position: 0 0;
   }
+}
+.div-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-login-page:focus {
+  border: 1px solid #116ACC;
+  outline: 1px solid #116ACC;
+}
+
+.input-login-page:invalid {
+  border-color: #ba0000;
+  outline: 1px solid #ba0000;
+}
+
+.error {
+  color: #ba0000;
+  margin-top: 4px;
+}
+
+.error {
+  color: green;
+  font-size: 14px;
+  margin-top: 5px;
 }/*# sourceMappingURL=globals.css.map */

@@ -20,24 +20,29 @@ function Registration({ props }) {
 
     async function handleclick(event) {
         event.preventDefault();
-        setLoading(true)
-        const body = {
-            "firstname": userName,
-            "lastname": userSurname,
-            "email": userEmail,
-            "phone": userPhone,
-            "password": userPassword
-        };
+        if (userPassword !== userConfirmPassword) {
+            alert("Значення поля Пароль та поля Підтвердження паролю не співпадають!")
+        }
+        else {
+            setLoading(true)
+            const body = {
+                "firstname": userName,
+                "lastname": userSurname,
+                "email": userEmail,
+                "phone": userPhone,
+                "password": userPassword
+            };
 
-        const { JWTToken, Errormasage } = await RegistrationFunction(body);
-        if (Errormasage) {
-            setLoading(false);
-        }
-        else if (JWTToken) {
-            setLoading(false);
-            router.push('/userpage');
-        }
-    }
+            const { JWTToken, Errormasage } = await RegistrationFunction(body);
+            if (Errormasage) {
+                setLoading(false);
+            }
+            else if (JWTToken) {
+                setLoading(false);
+                router.push('/userpage');
+            };
+        };
+    };
 
 
     return (

@@ -1,20 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Spinner from '../Spinner/Spinner';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import InputAdornment from '@mui/material/InputAdornment'
-import IconButton from '@mui/material/IconButton';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import Input from '@mui/material/Input';
 
 import React from 'react';
 import singInFunction from '@/pages/api/SingInFunction';
-import ShowOrHidePasswordIcon from '../ShowOrHidePasswordIcon/ShowOrHidePasswordIcon';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+
 
 
 function SingIn({ props }) {
@@ -54,13 +43,7 @@ function SingIn({ props }) {
     };
 
 
-    // useEffect(() => {
-    //     console.log(userEmail);
-    //     console.log(userPassword);
-    //     // const token = Cookies.get('jwtToken')
-    //     // console.log(token)
-    //     // console.log(body)
-    // }, [userEmail, userPassword]);
+
 
     return (
         <>
@@ -79,35 +62,6 @@ function SingIn({ props }) {
                         pattern='^[^\s@]+@[a-zA-Z]+(?:\.[a-zA-Z]{2,})+$'
                         value={userEmail}
                         required />
-
-                    {/* <FormControl className='user-email-test' variant="outlined">
-                        <InputLabel className='label-test' htmlFor="outlined-adornment-password"
-                            // sx={{ visibility: isPlaceholderVisible ? 'visible' : 'hidden' }} style={{ fontSize: '16px', }} label={'margin="dense"'} id="margin-dense" margin="dense"
-                            sx={{ fontSize: '16px', transform: 'translate(14px, 10px) scale(1)', visibility: isPlaceholderVisible ? 'visible' : 'hidden' }}
-                        >
-                            Введіть свій пароль
-                        </InputLabel>
-                        <OutlinedInput
-                            className='input-test'
-                            id="outlined-adornment-password"
-                            type={showPassword ? 'text' : 'password'}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                    >
-                                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                            label="Password"
-                            onFocus={() => setPlaceholderVisibility(false)}
-                            onBlur={(e) => setPlaceholderVisibility(e.target.value === '')}
-                        />
-                    </FormControl> */}
 
                     <label htmlFor="userPassword" className='label-title'>Пароль</label>
 
@@ -145,5 +99,3 @@ function SingIn({ props }) {
 }
 
 export default React.memo(SingIn);
-
-

@@ -11,13 +11,13 @@
     "dependencies": {
         "@emotion/react": "^11.11.3",
         "@emotion/styled": "^11.11.0",
-        "@mui/icons-material": "^5.15.4",
         "@mui/material": "^5.15.4",
         "@next/font": "^14.0.4",
         "@reduxjs/toolkit": "^2.0.1",
         "axios": "^1.6.5",
         "cookie": "^0.6.0",
         "focus-visible-polyfill": "^1.0.0",
+        "formik": "^2.4.5",
         "js-cookie": "^3.0.5",
         "jsonwebtoken": "^9.0.2",
         "next": "14.0.4",
@@ -26,7 +26,8 @@
         "react-dom": "^18",
         "react-hook-form": "^7.49.3",
         "sass": "^1.69.5",
-        "typeface-ubuntu": "^1.1.13"
+        "typeface-ubuntu": "^1.1.13",
+        "yup": "^1.3.3"
     },
     "devDependencies": {
         "autoprefixer": "^10.0.1",
