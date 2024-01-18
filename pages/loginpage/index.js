@@ -5,7 +5,6 @@ import SingIn from '@/components/SingIn/SingIn';
 import Registration from '@/components/Registration/Registration';
 import Head from 'next/head';
 import backgroundImageg from "@/public/Back.png"
-import bgupsidedown from "@/public/vectorupsidedown.svg"
 import Spinner from '@/components/Spinner/Spinner';
 
 

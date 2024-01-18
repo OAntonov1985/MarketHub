@@ -1,11 +1,12 @@
+import React from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import singInFunction from '@/pages/api/SingInFunction';
 import Image from "next/image";
 
 
-export default function SingInForm({ props }) {
-    const { loading, setLoading } = props;
+function SingInForm({ props }) {
+    const { setLoading } = props;
     const router = useRouter();
 
     const [userEmail, setUserEmail] = useState('');
@@ -16,7 +17,7 @@ export default function SingInForm({ props }) {
     const [inputPasswordClass, setInputPasswordClass] = useState("user-password");
     const [showErrorPassword, setShowErrorPassword] = useState(false);
 
-    const [pass, setPass] = useState("/nopass.png");
+    const [pass, setPass] = useState("/eyeclosed.png");
     const [typeInput, setTypeInput] = useState("password");
 
 
@@ -62,7 +63,7 @@ export default function SingInForm({ props }) {
     }
 
     const togglePass = () => {
-        setPass(pass => (pass === "/nopass.png" ? "/pass.png" : "/nopass.png"));
+        setPass(pass => (pass === "/eyeclosed.png" ? "/eyeopen.png" : "/eyeclosed.png"));
         setTypeInput(typeInput =>
             typeInput === "password" ? "text" : "password",
         );
@@ -78,7 +79,7 @@ export default function SingInForm({ props }) {
                 <div className='container-to-field'>
                     <input
                         id="userEmail"
-                        type="email"
+                        type="text"
                         className={inputEmailClass}
                         placeholder='Введіть свою пошту'
                         onChange={(e) => setUserEmail(e.target.value)}
@@ -106,8 +107,8 @@ export default function SingInForm({ props }) {
                         className='icon-show-password'
                         alt='pass logo'
                         src={pass}
-                        width={28}
-                        height={28}
+                        width={24}
+                        height={18}
                         onClick={togglePass}
                     />
                     {showErrorPassword !== false ? <p className='paragraf-buttom'>Довжина паролю має бути 6 символів мінімум</p> : null}
@@ -120,5 +121,7 @@ export default function SingInForm({ props }) {
                 </div>
             </form>
         </>
-    )
-}
+    );
+};
+
+export default React.memo(SingInForm)

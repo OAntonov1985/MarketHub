@@ -185,6 +185,7 @@ body {
 }
 
 .user-email, .user-password, .user-name, .user-surname, .user-tel, .user-password, .user-passwordAgain {
+  max-width: 30rem;
   width: 100%;
   min-width: 21rem;
   padding: 0.9rem 0.9rem 1rem 1.6rem;
@@ -205,8 +206,8 @@ body {
 
 .icon-show-password {
   position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
+  top: 1.2rem;
+  right: 1rem;
 }
 
 .politcik-registration {
@@ -235,6 +236,12 @@ body {
 .border-green {
   border-color: #76CA66;
   outline: 1px solid #76CA66;
+}
+
+.user-tel::-webkit-outer-spin-button,
+.user-tel::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .spinner {

@@ -1,55 +1,17 @@
 import React from 'react';
-import { useState } from 'react';
-// import Spinner from '../Spinner/Spinner';
-import RegistrationFunction from '@/pages/api/RegistrationFunction';
-import { useRouter } from 'next/router';
+import RegistrationForm from './RegistrationForm';
 
 
 function Registration({ props }) {
     const { loading, setLoading, toggleMode } = props;
-    const [showPassword, setShowPassword] = useState('password');
-    const router = useRouter();
-
-    const [userName, setUserName] = useState('');
-    const [userSurname, setUserSurname] = useState('');
-    const [userPhone, setUserPfone] = useState('');
-    const [userEmail, setUserEmail] = useState('');
-    const [userPassword, setPassword] = useState('');
-    const [userConfirmPassword, setUserConfirmPassword] = useState('');
-
-
-    async function handleclick(event) {
-        event.preventDefault();
-        if (userPassword !== userConfirmPassword) {
-            alert("Значення поля Пароль та поля Підтвердження паролю не співпадають!")
-        }
-        else {
-            setLoading(true)
-            const body = {
-                "firstname": userName,
-                "lastname": userSurname,
-                "email": userEmail,
-                "phone": userPhone,
-                "password": userPassword
-            };
-
-            const { JWTToken, Errormasage } = await RegistrationFunction(body);
-            if (Errormasage) {
-                setLoading(false);
-            }
-            else if (JWTToken) {
-                setLoading(false);
-                router.push('/userpage');
-            };
-        };
-    };
+    const obj = { setLoading };
 
 
     return (
         <>
             <div className="sing-in-left-column">
                 <h4 className='right-column-paragraph'>Реєстрація</h4>
-                <form action="" className='registration-form' onSubmit={handleclick}>
+                {/* <form action="" className='registration-form' onSubmit={handleclick}>
                     <label htmlFor="userName" className='label-title'>Ім`я</label>
                     <input
                         id="userName"
@@ -94,7 +56,6 @@ function Registration({ props }) {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    {/* <ShowOrHidePasswordIcon props={propsForPass} /> */}
                     <label htmlFor="userPasswordAgain" className='label-title label-title-last'>Підтвердження паролю</label>
                     <input
                         id="userPasswordAgain"
@@ -104,14 +65,14 @@ function Registration({ props }) {
                         onChange={(e) => setUserConfirmPassword(e.target.value)}
                         required
                     />
-                    {/* <ShowOrHidePasswordIcon props={propsForPass} /> */}
                     <div className='button-singin'>
                         <button className='button-singin-push btn-login-page'>Зареєструватися</button>
                     </div>
                     <p className='politcik-registration'>Створюючи обліковий запис, ви погоджуєтеся з нашими
                         <a href="#" className='politcik-registration-link'>  Умовами обслуговування</a> та
                         <a href="#" className='politcik-registration-link'>  Політикою конфіденційності</a></p>
-                </form>
+                </form> */}
+                <RegistrationForm props={obj} />
             </div>
             <div className='sing-in-right-column'>
                 <p className='singin-paragraph login-page-text'>Привіт!</p>

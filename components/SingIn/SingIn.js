@@ -1,16 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import SingInForm from './SingInForm';
-
 import React from 'react';
 
 
 
 
 function SingIn({ props }) {
-    const router = useRouter();
     const { loading, setLoading, toggleMode } = props;
-    const obj = { loading, setLoading };
+    const obj = { setLoading };
 
     return (
         <>
