@@ -171,6 +171,7 @@ body {
 }
 
 .container-to-field {
+  position: relative;
   height: 5.8rem;
   max-width: 30rem;
 }
@@ -184,7 +185,8 @@ body {
 }
 
 .user-email, .user-password, .user-name, .user-surname, .user-tel, .user-password, .user-passwordAgain {
-  width: 30rem;
+  width: 100%;
+  min-width: 21rem;
   padding: 0.9rem 0.9rem 1rem 1.6rem;
   border-radius: 1rem;
   border: 1px solid #9CA3AF;
@@ -201,9 +203,10 @@ body {
   outline: 1px solid #116ACC;
 }
 
-.user-email:focus {
-  background: #b3cee2;
-  background-border: none;
+.icon-show-password {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
 }
 
 .politcik-registration {
@@ -218,33 +221,6 @@ body {
 .politcik-registration-link {
   color: #116ACC;
   font-family: Montserrat;
-}
-
-.input-test {
-  font-size: 1.6rem !important;
-  font-style: normal !important;
-  font-weight: 400 !important;
-  line-height: 2rem !important;
-  letter-spacing: -0.16px !important;
-  font-family: Ubuntu !important;
-  color: #6B7280 !important;
-  height: 4rem !important;
-  border: 1px solid #116ACC !important;
-  text-align: center;
-  display: flex !important;
-  align-content: center !important;
-  justify-content: center !important;
-  height: 100vh;
-}
-
-.label-test {
-  font-size: 1.6rem;
-  font-style: normal;
-  font-weight: 400;
-  font-family: Ubuntu;
-  display: flex;
-  align-content: center;
-  justify-content: center;
 }
 
 .paragraf-buttom {

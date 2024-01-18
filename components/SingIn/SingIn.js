@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import FormDouble from './FormDouble';
+import SingInForm from './SingInForm';
 
 import React from 'react';
 
@@ -16,7 +16,7 @@ function SingIn({ props }) {
         <>
             <div className='sing-in-left-column'>
                 <h4 className='right-column-paragraph'>Вхід</h4>
-                <FormDouble props={obj} />
+                <SingInForm props={obj} />
             </div>
             <div className='sing-in-right-column'>
                 <p className='singin-paragraph login-page-text'>Привіт!</p>

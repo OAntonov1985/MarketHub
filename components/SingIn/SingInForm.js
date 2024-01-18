@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import singInFunction from '@/pages/api/SingInFunction';
+import Image from "next/image";
 
 
-export default function FormDouble({ props }) {
+export default function SingInForm({ props }) {
     const { loading, setLoading } = props;
     const router = useRouter();
 
@@ -14,6 +15,9 @@ export default function FormDouble({ props }) {
     const [userPassword, setUserPassword] = useState('');
     const [inputPasswordClass, setInputPasswordClass] = useState("user-password");
     const [showErrorPassword, setShowErrorPassword] = useState(false);
+
+    const [pass, setPass] = useState("/nopass.png");
+    const [typeInput, setTypeInput] = useState("password");
 
 
     async function handleclick(event) {
@@ -57,6 +61,13 @@ export default function FormDouble({ props }) {
         }
     }
 
+    const togglePass = () => {
+        setPass(pass => (pass === "/nopass.png" ? "/pass.png" : "/nopass.png"));
+        setTypeInput(typeInput =>
+            typeInput === "password" ? "text" : "password",
+        );
+    };
+
 
     return (
         <>
@@ -69,7 +80,7 @@ export default function FormDouble({ props }) {
                         id="userEmail"
                         type="email"
                         className={inputEmailClass}
-                        placeholder='Введіть свою електронну пошту'
+                        placeholder='Введіть свою пошту'
                         onChange={(e) => setUserEmail(e.target.value)}
                         value={userEmail}
                         onBlur={validateEmail}
@@ -81,7 +92,7 @@ export default function FormDouble({ props }) {
                 <div className='container-to-field'>
                     <input
                         id="userPassword"
-                        type='password'
+                        type={typeInput}
                         className={inputPasswordClass}
                         placeholder='Введіть свій пароль'
                         onInput={(e) => setUserPassword(e.target.value)}
@@ -89,6 +100,15 @@ export default function FormDouble({ props }) {
                         value={userPassword}
                         onBlur={validatePassword}
                         required
+                    />
+                    <div className='icon-show-password'></div>
+                    <Image
+                        className='icon-show-password'
+                        alt='pass logo'
+                        src={pass}
+                        width={28}
+                        height={28}
+                        onClick={togglePass}
                     />
                     {showErrorPassword !== false ? <p className='paragraf-buttom'>Довжина паролю має бути 6 символів мінімум</p> : null}
                 </div>
