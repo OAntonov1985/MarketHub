@@ -100,6 +100,9 @@
     display: flex
     flex-direction: column
     position: relative
+.container-to-field
+    height: 5.8rem
+    max-width: 30rem
     
 
 .label-title
@@ -109,8 +112,8 @@
     color: $color-white
     margin-bottom: .8rem
 
-.user-email, .user-passwor, .user-name, .user-surname, .user-tel, .user-password, .user-passwordAgain    
-    max-width: 30rem
+.user-email, .user-password, .user-name, .user-surname, .user-tel, .user-password, .user-passwordAgain    
+    width: 30rem
     padding: .9rem .9rem 1rem 1.6rem
     border-radius: 1rem
     border: 1px solid #9CA3AF
@@ -118,7 +121,13 @@
     font-size: 1.6rem
     line-height: 2rem
     color: $color-text-gray
-    margin-bottom: 1.6rem 
+    margin-bottom: .5rem
+
+.user-email:focus, .user-password:focus, .user-name:focus, .user-surname:focus, .user-tel:focus, .user-password:focus, .user-passwordAgain:focus 
+    background-color: #b3cee2
+    border-color: #116ACC
+    outline: 1px solid  #116ACC
+
 
 .user-email:focus
   background: $color-light-blue
@@ -141,16 +150,7 @@
     font-family: Montserrat
 
 
-// .user-email-test
-//     max-width: 30rem
-//     background-color: $color-white 
-//     border-radius: 0.5rem
-//     font-size: 1.6rem
-//     height: 4rem !important
-//     margin-bottom: 2rem
-//     display: flex !important
-//     justify-content: center !important
-//     align-content: center !important
+
    
 
  
@@ -180,26 +180,20 @@
     justify-content: center 
     
 
-.user-email-test
-    max-width: 30rem
-    padding: .9rem .9rem 1rem 1.6rem
-    border-radius: 1rem
-    border: 1px solid #9CA3AF
-    font-weight: 400
-    font-size: 1.6rem
-    line-height: 2rem
-    color: $color-text-gray
-    margin-bottom: 0.2rem 
+
 
 .paragraf-buttom
     color: white
 
-.user-email-test:focus
-    background-color: #116ACC
-// .border-red
-//     border-color: #ba0000
-//     outline: 1px solid  #ba0000
+// .user-email:focus
+//     background-color: #b3cee2
+//     border-color: #116ACC
+//     outline: 1px solid  #116ACC
 
-// .border-green
-//     border-color: #76CA66
-//     outline: 1px solid  #76CA66
+.border-red
+    border-color: #ba0000
+    outline: 1px solid  #ba0000
+
+.border-green
+    border-color: #76CA66
+    outline: 1px solid  #76CA66

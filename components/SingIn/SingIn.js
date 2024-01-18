@@ -1,95 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import FormSingIn from './FormSingIn';
 import FormDouble from './FormDouble';
 
 import React from 'react';
-import singInFunction from '@/pages/api/SingInFunction';
+
 
 
 
 function SingIn({ props }) {
     const router = useRouter();
     const { loading, setLoading, toggleMode } = props;
-    const [isPlaceholderVisible, setPlaceholderVisibility] = useState(true);
-
-
-
-    const [userEmail, setUserEmail] = useState('');
-    const [userPassword, setUserPassword] = useState('');
-
-    const [showPassword, setShowPassword] = useState('password');
-    const propsForPass = { showPassword, setShowPassword }
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-
-    async function handleclick(event) {
-        event.preventDefault();
-        console.log(777)
-        setLoading(true);
-        const body = {
-            "email": userEmail,
-            "password": userPassword
-        };
-
-        const { JWTToken, Errorflag } = await singInFunction(body);
-        if (Errorflag) {
-            setLoading(false);
-        }
-        else if (JWTToken) {
-            setLoading(false)
-            router.push('/userpage');
-        };
-    };
-
-
-
+    const obj = { loading, setLoading };
 
     return (
         <>
             <div className='sing-in-left-column'>
                 <h4 className='right-column-paragraph'>Вхід</h4>
-                {/* <form
-                    onSubmit={handleclick}
-                    className='singin-form'>
-                    <label htmlFor="userEmail" className='label-title' >Електронна пошта</label>
-                    <input
-                        id="userEmail"
-                        type="email"
-                        className='user-email'
-                        placeholder='Введіть свою електронну пошту'
-                        onChange={(e) => setUserEmail(e.target.value)}
-                        pattern='^[^\s@]+@[a-zA-Z]+(?:\.[a-zA-Z]{2,})+$'
-                        value={userEmail}
-                        required />
-
-                    <label htmlFor="userPassword" className='label-title'>Пароль</label>
-
-                    <input
-                        id="userPassword"
-                        type={showPassword}
-                        className='user-password'
-                        placeholder='Введіть свій пароль'
-                        onInput={(e) => setUserPassword(e.target.value)}
-                        min={8}
-                        pattern='^[^\-+=\s]{2,}$'
-                        title="Некоректні символи: -, +, =, або пробіл"
-                        value={userPassword}
-                        required
-                    />
-                    {/* <ShowOrHidePasswordIcon props={propsForPass} /> */}
-
-                {/* <div className='button-singin'>
-                    <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
-                </div>
-                <div className='forgot-password-link'>
-                    <a className='forgot-link' href='#'>Забули пароль</a>
-                </div> */}
-                {/* </form> */}
-
-                <FormDouble />
+                <FormDouble props={obj} />
             </div>
             <div className='sing-in-right-column'>
                 <p className='singin-paragraph login-page-text'>Привіт!</p>
