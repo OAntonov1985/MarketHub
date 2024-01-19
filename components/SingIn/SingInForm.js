@@ -23,20 +23,23 @@ function SingInForm({ props }) {
 
     async function handleclick(event) {
         event.preventDefault();
-        setLoading(true);
-        const body = {
-            "email": userEmail,
-            "password": userPassword
-        };
+        if (showErrorEmail === false && showErrorPassword === false) {
+            setLoading(true);
+            const body = {
+                "email": userEmail,
+                "password": userPassword
+            };
 
-        const { JWTToken, Errorflag } = await singInFunction(body);
-        if (Errorflag) {
-            setLoading(false);
+            const { JWTToken, Errorflag } = await singInFunction(body);
+            if (Errorflag) {
+                setLoading(false);
+            }
+            else if (JWTToken) {
+                setLoading(false)
+                router.push('/userpage');
+            };
         }
-        else if (JWTToken) {
-            setLoading(false)
-            router.push('/userpage');
-        };
+        else alert('Помилка заповнення одного з полів');
     };
 
 

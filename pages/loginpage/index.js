@@ -24,6 +24,7 @@ function LogInPage() {
             <Head>
                 <title>Сторінка автентифікації/реєстрації клієнта</title>
                 <link rel="icon" href="/frame3810.png" sizes="any" />
+                <meta name='MarketHub' content="width=device-width, initial-scale=1.0"></meta>
             </Head>
             <main className='login-page'>
                 {/* <Spinner /> */}
@@ -43,7 +44,6 @@ function LogInPage() {
                 />
 
                 <div className="content">
-
                     {isRegistration ?
                         <SingIn props={obj} /> :
                         <Registration props={obj} />}
@@ -54,7 +54,6 @@ function LogInPage() {
                         width={146}
                         height={75}
                         className='logo-image'
-                        // placeholder="blur"
                         priority
                         style={{
                             position: 'absolute',
@@ -65,6 +64,7 @@ function LogInPage() {
                     />
                 </div>
             </main>
+
         </>
     );
 }

@@ -46,13 +46,14 @@ function RegistrationForm({ props }) {
     const [showErrorPhone, setShowErrorPhone] = useState(false);
 
     function validateUserTel() {
-        if (userPhone.length === 11) {
-            setInputPhoneClass("user-tel border-red");
-            setShowErrorPhone(true);
-        }
-        else if (userPhone.length !== 11) {
+        console.log(userPhone.length)
+        if (userPhone.length === 12) {
             setInputPhoneClass("user-tel border-green");
-            setShowErrorPhone(false)
+            setShowErrorPhone(false);
+        }
+        else if (userPhone.length !== 12) {
+            setInputPhoneClass("user-tel border-red");
+            setShowErrorPhone(true)
         }
     };
     //////////   userEmail    //////////
@@ -122,7 +123,8 @@ function RegistrationForm({ props }) {
         if (userPassword !== userConfirmPassword) {
             alert("Значення поля Пароль та поля Підтвердження паролю не співпадають!")
         }
-        else {
+
+        else if (showErrorName === false && showErrorSurname === false && showErrorEmail === false && showErrorPhone === false && showErrorPassword === false && showErrorConfirmPassword === false) {
             setLoading(true)
             const body = {
                 "firstname": userName,
@@ -140,7 +142,8 @@ function RegistrationForm({ props }) {
                 setLoading(false);
                 router.push('/userpage');
             };
-        };
+        }
+        else alert('Помилка заповнення одного з полів');
     };
 
 
@@ -256,11 +259,12 @@ function RegistrationForm({ props }) {
 
 
                 <div className='button-singin'>
-                    <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
+                    <button type='submit' className='button-singin-push btn-login-page'>Зареєструватися</button>
                 </div>
-                <div className='forgot-password-link'>
-                    <a className='forgot-link' href='#'>Забули пароль</a>
-                </div>
+                <p className='politcik-registration'>Створюючи обліковий запис, ви погоджуєтеся з нашими
+                    <a href="#" className='politcik-registration-link'>  Умовами обслуговування</a> та
+                    <a href="#" className='politcik-registration-link'>  Політикою конфіденційності</a>
+                </p>
             </form>
         </>
     )
