@@ -27,38 +27,79 @@ body {
   overflow-x: hidden;
 }
 
-#__next {
-  min-height: 100vh;
+.header-component {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 9.6rem;
+  font-size: 2rem;
+  padding: 0 9rem 0 6.2rem;
+  color: white;
+  border-bottom: 1px solid #FFF;
 }
 
-.header {
-  height: 2rem;
+.header-search-field {
+  width: 40.4rem;
+  position: relative;
+}
+
+.header-input-field {
+  width: 100%;
+  height: 4rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #F8FAFC;
   font-size: 2rem;
+  color: #6B7280;
+  padding: 0 4rem 0 1rem;
+  outline: 1px solid #116ACC;
+}
+
+.search-input-field {
+  position: absolute;
+  top: 1.2rem;
+  right: 0.8rem;
+}
+
+.logo-image-client {
+  margin-right: 3.7rem;
 }
 
 .main {
-  height: calc(100vh - 2rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  max-width: 192rem;
+  margin: 0 auto;
 }
 
-.main-content {
-  margin-top: 2rem;
-  flex: 1 1 auto;
+.header-in-main {
+  width: 100%;
+  max-width: 1920px;
+  height: 77rem;
+  margin: 0 auto;
+  z-index: -1;
+  overflow: hidden;
+}
+
+h1 {
+  margin-top: 11.6rem;
+  font-size: 14rem;
+  font-weight: 500;
+  line-height: 150%;
+  background: linear-gradient(180deg, #DBDBDB 0%, #FFF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-align: center;
-  font-size: 2rem;
-  gap: 1rem;
+  text-transform: uppercase;
 }
 
-.header-title, .main-link, .button-main {
-  margin: 1rem;
-}
-
-.button-main {
-  font-size: 2rem;
+h2 {
+  color: #EBEBEC;
+  text-align: center;
+  font-family: Ubuntu;
+  font-size: 4.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .footer {
@@ -314,29 +355,4 @@ body {
   100% {
     background-position: 0 0;
   }
-}
-.div-input {
-  display: flex;
-  flex-direction: column;
-}
-
-.input-login-page:focus {
-  border: 1px solid #116ACC;
-  outline: 1px solid #116ACC;
-}
-
-.input-login-page:invalid {
-  border-color: #ba0000;
-  outline: 1px solid #ba0000;
-}
-
-.error {
-  color: #ba0000;
-  margin-top: 4px;
-}
-
-.error {
-  color: green;
-  font-size: 14px;
-  margin-top: 5px;
 }/*# sourceMappingURL=globals.css.map */

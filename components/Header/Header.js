@@ -1,19 +1,18 @@
+"use client";
 
 import Cookies from 'js-cookie'
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import Image from 'next/image';
+// import { useState, useEffect } from 'react';
+// import Link from 'next/link';
 import { useRouter } from 'next/router';
-// import { useSession } from 'next-auth/react'
 
 export default function Header() {
-    // const [token, setToket] = useState(null);
-    const getToken = Cookies.get('jwtToken');
-    const userName = Cookies.get('userName');
-    // console.log(getToken)
-    // setToket(getToken);
-    // const session = useSession();
     const router = useRouter();
-    // console.log(getToken)
+
+    // const getToken = Cookies.get('jwtToken');
+    // const userName = Cookies.get('userName');
+
+
     const deleteToken = () => {
         Cookies.remove('jwtToken');
         Cookies.remove('userName');
@@ -24,29 +23,58 @@ export default function Header() {
     }
 
 
-    useEffect(() => {
-        // console.log(getToken)
-        // console.log(userName)
-    }, [getToken]);
+    // useEffect(() => {
+    //     // console.log(getToken)
+    //     // console.log(userName)
+    // }, [getToken]);
 
 
     return (
-        <>
-            <div className="header">
-                <p>  {userName === undefined ? 'Компонент Хедер.' : `Привіт, ${userName}`}</p>
+        <div className='header-component'>
+            <Image
+                alt="logo image in header component"
+                src='/logoheaderinmainpage.svg'
+                quality={100}
+                width={110}
+                height={56}
+                className='logo-image'
+                priority
+            />
+            <div className='header-search-field'>
+                <input
+                    type="text"
+                    className='header-input-field'
+                />
+                <Image
+                    alt="logo image search in input field"
+                    src='/iconserach.svg'
+                    quality={100}
+                    width={18}
+                    height={18}
+                    className='search-input-field'
+                    priority
+                />
             </div>
-            <div> {getToken === undefined ?
-
-                <button className='main-link' onClick={redirectToLoginPage}>Push to log in</button>
-
-                // <button className='main-link' onClick={redirectToLoginPage}>Log out</button>
-                // console.log('no toket must login')
-                :
-
-                // <button className='main-link' onClick={deleteToken}>Log in</button>
-                <button className='main-link' onClick={deleteToken}>Push to log out</button>
-
-            }</div>
-        </>
+            <div className='header-icons'>
+                <Image
+                    alt="logo image client"
+                    src='/clienticon.svg'
+                    quality={100}
+                    width={24}
+                    height={24}
+                    className='logo-image-client'
+                    priority
+                />
+                <Image
+                    alt="logo image search in input field"
+                    src='/basket.svg'
+                    quality={100}
+                    width={24}
+                    height={24}
+                    className='logo-image-basket'
+                    priority
+                />
+            </div>
+        </div>
     );
 }

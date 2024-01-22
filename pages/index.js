@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Head from "next/head";
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import Image from 'next/image';
 
 
 
@@ -12,19 +13,35 @@ export default function Home() {
             <Head>
                 <title>MarketHub - знайденться все!</title>
                 <link rel="icon" href="/frame380.png" sizes="any" />
-                {/* <link rel='preconnect' href='https://fonts.googleapis.com' />
-                <link
-                    rel='preconnect'
-                    href='https://fonts.gstatic.com'
-                    crossOrigin
-                /> */}
                 <meta name='MarketHub' content='MarketHub' />
             </Head>
 
             <main className='main'>
-                <Header />
+                <div className="header-in-main">
+                    <Header />
+                    <Image
+                        alt="background image in header"
+                        src='/bgimagemain.jpg'
+                        quality={100}
+                        width={1440}
+                        height={770}
+                        // className='logo-image'
+                        priority
+                        style={{
+                            position: 'absolute',
+                            top: "-24px",
+                            zIndex: -1,
+                            marginTop: "2.4rem",
+                            width: '100vw',
+                            maxWidth: '192rem'
+                        }}
+                    />
+                    <h1>Market hub</h1>
+                    <h2>Обирай найкраще, не виходячи з дому</h2>
+                </div>
+
                 <div className="main-content">
-                    <h1 className='header-title'>Домашня сторінка</h1>
+                    <div className='header-title'>Домашня сторінка</div>
                     <Link legacyBehavior href='/loginpage/' className='main-link'>
                         <button className='button-main'>Сторінка авторизації</button>
                     </Link>
