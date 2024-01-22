@@ -21,7 +21,7 @@ export default function Home() {
                     <Header />
                     <Image
                         alt="background image in header"
-                        src='/bgimagemain.jpg'
+                        src='/bgimagemain.png'
                         quality={100}
                         width={1440}
                         height={770}
