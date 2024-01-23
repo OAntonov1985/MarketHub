@@ -1,32 +1,26 @@
 "use client";
 
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 import Image from 'next/image';
-// import { useState, useEffect } from 'react';
-// import Link from 'next/link';
+import { useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 export default function Header() {
     const router = useRouter();
-
-    // const getToken = Cookies.get('jwtToken');
-    // const userName = Cookies.get('userName');
-
-
-    const deleteToken = () => {
-        Cookies.remove('jwtToken');
-        Cookies.remove('userName');
-        router.push('/');
-    }
-    const redirectToLoginPage = () => {
-        router.push('/loginpage/');
-    }
+    const [headerName, setHeaderName] = useState('');
+    const userName = Cookies.get('userName');
 
 
-    // useEffect(() => {
-    //     // console.log(getToken)
-    //     // console.log(userName)
-    // }, [getToken]);
+    useEffect(() => {
+        if (userName) {
+            setHeaderName(<div className='header-user-name'>Привіт, {userName}!</div>);
+        }
+        else if (userName === undefined) {
+            setHeaderName(null);
+        }
+    }, [userName]);
 
 
     return (
@@ -56,15 +50,19 @@ export default function Header() {
                 />
             </div>
             <div className='header-icons'>
-                <Image
-                    alt="logo image client"
-                    src='/clienticon.svg'
-                    quality={100}
-                    width={24}
-                    height={24}
-                    className='logo-image-client'
-                    priority
-                />
+                {headerName}
+                <Link href='/userpage/'>
+                    <Image
+                        alt="logo image client"
+                        src='/clienticon.svg'
+                        quality={100}
+                        width={24}
+                        height={24}
+                        title='Перейти в особистий кабінет'
+                        className='logo-image-client'
+                        priority
+                    />
+                </Link>
                 <Image
                     alt="logo image search in input field"
                     src='/basket.svg'

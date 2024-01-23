@@ -1,14 +1,24 @@
 import { useEffect } from 'react';
-// import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Header from '@/components/Header/Header';
 
 
 export default function UserPage() {
+    const userName = Cookies.get('userName');
+    const router = useRouter();
+
+    const deleteToken = () => {
+        Cookies.remove('jwtToken');
+        Cookies.remove('userName');
+        router.push('/');
+    }
     return (
         <>
-            <Header />
-            <h1>Your Profile</h1>
+            {/* <Header /> */}
+            <p>Your Profile</p>
+            <div>привіт {userName}</div>
             {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
             <Link href='/mainpage/' className='main-link'>
                 <p className='main-link'>Головна сторінка з категоріями і пошуком</p>
@@ -16,45 +26,12 @@ export default function UserPage() {
             <Link href='/' className='main-link'>
                 <p className='main-link'>Головна сторінка</p>
             </Link>
-
+            <button onClick={deleteToken}>Вийти з акаунту</button>
         </>
     )
 }
 
-// "use client"
-// import Cookies from 'js-cookie'
-// import { useRouter } from 'next/router'
 
-// const Profile = () => {
-//     const JWT = Cookies.get('jwtToken');
-//     const router = useRouter()
-//     // console.log(JWT)
-
-//     useEffect(() => {
-//         if (!JWT) {
-//             router.push('/loginpage/')
-//         }
-//     },);
-
-//     // if (!JWT) {
-//     //     router.push('/loginpage/')
-//     // }
-//     return (
-//         <>
-//             <Header />
-//             <h1>Your Profile</h1>
-//             {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-//             <Link href='/mainpage/' className='main-link'>
-//                 <p className='main-link'>Головна сторінка з категоріями і пошуком</p>
-//             </Link>
-//             <Link href='/' className='main-link'>
-//                 <p className='main-link'>Головна сторінка</p>
-//             </Link>
-//         </>
-//     )
-// }
-
-// export default Profile
 
 
 

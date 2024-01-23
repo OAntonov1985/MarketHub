@@ -1,48 +1,145 @@
+@import "_variables.sass"
 .main    
     max-width: 192rem
     margin: 0 auto
 
+.main-content
+    margin: 4rem 9rem 14rem
+    background-color: #FBFBFB
 
-.header-in-main    
-    width: 100%
-    max-width: 1920px
-    height: 77rem
+
+////////////////// Categories  //////////////////
+.first-row
+    display: flex
+    gap: 2.4rem
+    margin-bottom: 2.4rem
+    max-width: 1920rem
+
+
+.comp, .phones  
+    padding-top: 4rem  
+    // width: 61.8rem
+    width: calc(50% - 2.4rem)
+    height: 40rem    
+    border-radius: 3.2rem
+    border: .2rem solid $border-color-main
+    background-color: $background-color-items
+    flex: 1 1 auto
+
+.comp img, .phones img
+    display: block
     margin: 0 auto
-    z-index: -1
-    overflow: hidden
+    
 
-h1
-    margin-top: 11.6rem
-    font-size: 14rem
-    font-weight: 500
-    line-height: 150%   
-    background: linear-gradient(180deg, #DBDBDB 0%, #FFF 100%)
-    background-clip: text
-    -webkit-background-clip: text
-    -webkit-text-fill-color: transparent
+.main-item-title
+    color: $color-text-main
     text-align: center
-    text-transform: uppercase
-
-h2
-    color: #EBEBEC
-    text-align: center
-    font-family: Ubuntu
-    font-size: 4.8rem
+    text-shadow: 0rem .4rem .4rem rgba(0, 0, 0, 0.25)    
+    font-size: 3.2rem
     font-style: normal
     font-weight: 400
     line-height: normal
 
+.second-row
+    display: flex
+    gap: 2.4rem
+    max-width: 1920rem
+    margin-bottom: 14rem
+
+.refs, .games, .headphones   
+    text-align: center
+    width: calc(33% - 48px) 
+    padding-top: 6.6rem
+    flex: 1 1 auto
+    height: 40rem
+    border-radius: 3.2rem
+    border: .2rem solid $border-color-main
+    background-color: $background-color-items  
 
 
-// .main-content
-//     margin-top: 2rem
-//     flex: 1 1 auto
-//     text-align: center
-//     font-size: 2rem
-//     gap: 1rem
 
-// .header-title, .main-link, .button-main
-//     margin: 1rem
 
-// .button-main
-//     font-size: 2rem
+////////////////// Top Sellers  //////////////////
+
+.top-sellers-title
+    color: $color-background-loginpage   
+    font-size: 4rem
+    font-style: normal
+    font-weight: 400
+    line-height: 150%
+    margin-bottom: 4rem
+
+.top-sellers-row
+    display: flex
+    gap: .9rem
+    margin-bottom: 14rem
+
+.top-sellers-item
+    display: flex
+    flex-direction: column
+    align-content: center
+    justify-content: center
+    height: 48.8rem
+    padding: 1.6rem .8rem 
+    width: calc(25% - 0.4rem)
+    // background-color: gray
+    background-color: $background-color-items
+    border-radius: 3.2rem
+    border: 1px solid $border-color-secondary
+
+
+.image-container-top-sellers img
+    display: block
+    
+.image-container-top-sellers
+    width: 100%
+    flex-wrap: wrap
+    height: 35rem
+    display: flex
+    align-content: center
+    justify-content: center
+    margin-bottom: 1.6rem
+
+.top-sellers-item-title
+    height: 4.2rem
+    color: $color-text-main
+    text-align: center    
+    font-size: 1.8rem
+    font-style: normal
+    font-weight: 400
+    line-height: normal
+    padding-bottom: 2.1rem
+    border-bottom: 1px solid $border-color-secondary
+    margin-bottom: 1.6rem
+
+.top-sellers-prise-and-availability
+    height: 2.8rem
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+.top-sellers-price
+    color: $color-text-main
+    // text-align: center;
+    // font-family: Ubuntu;
+    font-size: 2.4rem
+    font-style: normal
+    font-weight: 700
+    line-height: normal
+
+.top-sellers-availability
+    color: $invalid-field-border
+    font-size: 1.6rem
+    font-style: normal
+    font-weight: 400
+    line-height: normal
+
+.noavailability
+    padding: .4rem
+    color: $red-color-first
+    border-radius: .4rem
+    background: #FFDEDE
+
+.sail-prise
+    color: $red-color-first
+   

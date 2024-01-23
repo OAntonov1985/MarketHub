@@ -3,6 +3,9 @@ import Head from "next/head";
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import Image from 'next/image';
+import Categories from '@/components/CategoriesInMain/Categories';
+import TopSellers from '@/components/TopSellersMain/TopSellers';
+import PromotionsOnMain from '@/components/PromotionsInMain/PromosionsOnMain';
 
 
 
@@ -41,7 +44,10 @@ export default function Home() {
                 </div>
 
                 <div className="main-content">
-                    <div className='header-title'>Домашня сторінка</div>
+                    <Categories />
+                    <TopSellers />
+                    <PromotionsOnMain />
+                    {/* <div className='header-title'>Домашня сторінка</div>
                     <Link legacyBehavior href='/loginpage/' className='main-link'>
                         <button className='button-main'>Сторінка авторизації</button>
                     </Link>
@@ -55,7 +61,7 @@ export default function Home() {
                     </Link>
                     <Link href='/userpage/' className='main-link'>
                         <p className='main-link'>Сторінка з інфо про клієнта</p>
-                    </Link>
+                    </Link> */}
                 </div>
                 <Footer />
             </main>
