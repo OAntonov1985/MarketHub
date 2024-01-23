@@ -2,12 +2,18 @@
 .main    
     max-width: 192rem
     margin: 0 auto
+   
+    
 
 .main-content
     margin: 4rem 9rem 14rem
     background-color: #FBFBFB
 
-
+.image-container
+    margin: 0 auto
+    min-width: 52%
+    height: 80%
+    position: relative
 ////////////////// Categories  //////////////////
 .first-row
     display: flex
@@ -17,14 +23,15 @@
 
 
 .comp, .phones  
-    padding-top: 4rem  
-    // width: 61.8rem
-    width: calc(50% - 2.4rem)
-    height: 40rem    
+    padding-top: 4rem      
+    width: calc(50% - 1.2rem)
+    max-width: 50%
+    min-height: 400px    
     border-radius: 3.2rem
     border: .2rem solid $border-color-main
     background-color: $background-color-items
     flex: 1 1 auto
+    padding-bottom: 1.6rem
 
 .comp img, .phones img
     display: block
@@ -38,7 +45,8 @@
     font-size: 3.2rem
     font-style: normal
     font-weight: 400
-    line-height: normal
+    line-height: normal 
+    padding: 0 1rem  
 
 .second-row
     display: flex
@@ -51,10 +59,11 @@
     width: calc(33% - 48px) 
     padding-top: 6.6rem
     flex: 1 1 auto
-    height: 40rem
+    min-height: 40rem
     border-radius: 3.2rem
     border: .2rem solid $border-color-main
     background-color: $background-color-items  
+    padding-bottom: 1.6rem
 
 
 
@@ -83,13 +92,22 @@
     padding: 1.6rem .8rem 
     width: calc(25% - 0.4rem)
     // background-color: gray
-    background-color: $background-color-items
+    // background-color: $background-color-items
     border-radius: 3.2rem
     border: 1px solid $border-color-secondary
 
+.image-container-top-sellers    
+    background-color: $background-color-items
+    border-radius: 3.2rem
+    width: 94.8%
+
+.container-for-imafe-top-sellers
+    position: relative
+    width: 92%
+    height: 18rem
 
 .image-container-top-sellers img
-    display: block
+    display: block    
     
 .image-container-top-sellers
     width: 100%

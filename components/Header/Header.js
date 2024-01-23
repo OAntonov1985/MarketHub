@@ -38,6 +38,7 @@ export default function Header() {
                 <input
                     type="text"
                     className='header-input-field'
+                    placeholder='Я шукаю ...'
                 />
                 <Image
                     alt="logo image search in input field"

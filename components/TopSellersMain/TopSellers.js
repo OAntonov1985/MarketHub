@@ -7,13 +7,19 @@ export default function TopSellers() {
             <div className="top-sellers-row">
                 <div className="top-sellers-item">
                     <div className="image-container-top-sellers">
-                        <Image
-                            alt="image of computer"
-                            src='/topSellersImage/comp.png'
-                            quality={100}
-                            width={269}
-                            height={176}
-                        />
+                        <div className="container-for-imafe-top-sellers">
+                            <Image
+                                alt="image of computer"
+                                src='/topSellersImage/comp.png'
+                                quality={100}
+                                fill
+                                style={{
+                                    objectFit: 'contain',
+                                    width: '100%'
+
+                                }}
+                            />
+                        </div>
                     </div>
                     <p className='top-sellers-item-title'>Ноутбук LENOVO IdeaPad 3</p>
                     <div className='top-sellers-prise-and-availability'>
