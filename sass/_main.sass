@@ -43,14 +43,14 @@
 
 .comp .main-item-title, .phones .main-item-title, .refs .main-item-title, .games .main-item-title, .headphones .main-item-title
     color: $color-text-main
-    text-align: center
-    text-shadow: 0rem .4rem .4rem rgba(0, 0, 0, 0.25)    
+    text-align: center       
     font-size: 3.2rem
     font-style: normal
     font-weight: 400
     line-height: normal 
     padding: 0 1rem      
     transition: font-size 0.3s, font-weight 0.3s
+    text-shadow: 0rem .4rem .4rem rgba(0, 0, 0, 0.25) 
 
 .comp:hover .main-item-title, .phones:hover .main-item-title, .refs:hover .main-item-title, .games:hover .main-item-title, .headphones:hover .main-item-title        
     font-size: 3.4rem
@@ -115,6 +115,11 @@
     // max-width: 30%
     border-radius: 3.2rem
     border: 1px solid $border-color-secondary
+    transition: box-shadow 0.3s ease
+
+.top-sellers-item:hover
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
+    
 
 .image-container-top-sellers    
     background-color: $background-color-items
