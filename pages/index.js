@@ -47,6 +47,7 @@ export default function Home() {
                     <Categories />
                     <TopSellers />
                     <PromotionsOnMain />
+
                     {/* <div className='header-title'>Домашня сторінка</div>
                     <Link legacyBehavior href='/loginpage/' className='main-link'>
                         <button className='button-main'>Сторінка авторизації</button>

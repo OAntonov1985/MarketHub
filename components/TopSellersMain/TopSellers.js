@@ -29,29 +29,41 @@ export default function TopSellers() {
                 </div>
                 <div className="top-sellers-item">
                     <div className="image-container-top-sellers">
-                        <Image
-                            alt="image of computer"
-                            src='/topSellersImage/comp2.png'
-                            quality={100}
-                            width={269}
-                            height={176}
-                        />
+                        <div className="container-for-imafe-top-sellers">
+                            <Image
+                                alt="image of computer"
+                                src='/topSellersImage/comp2.png'
+                                quality={100}
+                                fill
+                                style={{
+                                    objectFit: 'contain',
+                                    width: '100%'
+
+                                }}
+                            />
+                        </div>
                     </div>
                     <p className='top-sellers-item-title'>Ноутбук Asus Vivobook 15</p>
                     <div className='top-sellers-prise-and-availability'>
-                        <p className='top-sellers-price'>17 499 грн</p>
-                        <p className='top-sellers-availability noavailability'>Немає в наявності</p>
+                        <div className='top-sellers-price'>17 499 грн</div>
+                        <div className='top-sellers-availability noavailability'>Немає в наявності</div>
                     </div>
                 </div>
                 <div className="top-sellers-item">
                     <div className="image-container-top-sellers">
-                        <Image
-                            alt="image of computer"
-                            src='/topSellersImage/game.png'
-                            quality={100}
-                            width={269}
-                            height={176}
-                        />
+                        <div className="container-for-imafe-top-sellers">
+                            <Image
+                                alt="image of computer"
+                                src='/topSellersImage/game.png'
+                                quality={100}
+                                fill
+                                style={{
+                                    objectFit: 'contain',
+                                    width: '100%'
+
+                                }}
+                            />
+                        </div>
                     </div>
                     <p className='top-sellers-item-title'>Ігрова приставка Play Station 5</p>
                     <div className='top-sellers-prise-and-availability'>
@@ -61,13 +73,19 @@ export default function TopSellers() {
                 </div>
                 <div className="top-sellers-item">
                     <div className="image-container-top-sellers">
-                        <Image
-                            alt="image of computer"
-                            src='/topSellersImage/ref.png'
-                            quality={100}
-                            width={269}
-                            height={176}
-                        />
+                        <div className="container-for-imafe-top-sellers">
+                            <Image
+                                alt="image of computer"
+                                src='/topSellersImage/ref.png'
+                                quality={100}
+                                fill
+                                style={{
+                                    objectFit: 'contain',
+                                    width: '100%'
+
+                                }}
+                            />
+                        </div>
                     </div>
                     <p className='top-sellers-item-title'>Холодильник Samsung RB34C675DSA</p>
                     <div className='top-sellers-prise-and-availability'>

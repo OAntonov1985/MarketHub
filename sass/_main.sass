@@ -17,6 +17,7 @@
 ////////////////// Categories  //////////////////
 .first-row
     display: flex
+    flex-wrap: wrap
     gap: 2.4rem
     margin-bottom: 2.4rem
     max-width: 1920rem
@@ -25,20 +26,22 @@
 .comp, .phones  
     padding-top: 4rem      
     width: calc(50% - 1.2rem)
-    max-width: 50%
+    // max-width: 50%
+    min-width: 27.2rem
     min-height: 400px    
     border-radius: 3.2rem
     border: .2rem solid $border-color-main
     background-color: $background-color-items
     flex: 1 1 auto
     padding-bottom: 1.6rem
+    transition: box-shadow 0.3s ease
 
-.comp img, .phones img
-    display: block
-    margin: 0 auto
-    
 
-.main-item-title
+.comp:hover, .phones:hover
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) 
+
+
+.comp .main-item-title, .phones .main-item-title, .refs .main-item-title, .games .main-item-title, .headphones .main-item-title
     color: $color-text-main
     text-align: center
     text-shadow: 0rem .4rem .4rem rgba(0, 0, 0, 0.25)    
@@ -46,10 +49,16 @@
     font-style: normal
     font-weight: 400
     line-height: normal 
-    padding: 0 1rem  
+    padding: 0 1rem      
+    transition: font-size 0.3s, font-weight 0.3s
+
+.comp:hover .main-item-title, .phones:hover .main-item-title, .refs:hover .main-item-title, .games:hover .main-item-title, .headphones:hover .main-item-title        
+    font-size: 3.4rem
+    font-weight: 500
 
 .second-row
     display: flex
+    flex-wrap: wrap
     gap: 2.4rem
     max-width: 1920rem
     margin-bottom: 14rem
@@ -57,14 +66,19 @@
 .refs, .games, .headphones   
     text-align: center
     width: calc(33% - 48px) 
+    // max-width: 41rem
     padding-top: 6.6rem
     flex: 1 1 auto
     min-height: 40rem
+    min-width: 25.2rem
     border-radius: 3.2rem
     border: .2rem solid $border-color-main
     background-color: $background-color-items  
     padding-bottom: 1.6rem
+    transition: box-shadow 0.3s ease
 
+.refs:hover, .games:hover, .headphones:hover
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) 
 
 
 
@@ -80,19 +94,25 @@
 
 .top-sellers-row
     display: flex
+    // flex-direction: column
+    flex-wrap: wrap
+    // align-items: center
+    // justify-content: space-between
     gap: .9rem
     margin-bottom: 14rem
 
-.top-sellers-item
+.top-sellers-item    
     display: flex
     flex-direction: column
     align-content: center
-    justify-content: center
-    height: 48.8rem
+    flex:  1 1 auto
+    // justify-content: center
+    min-height: 48.8rem
     padding: 1.6rem .8rem 
-    width: calc(25% - 0.4rem)
-    // background-color: gray
-    // background-color: $background-color-items
+    // width: calc(24% - 4px)    
+    width: 22.4%    
+    min-width: 22rem
+    // max-width: 30%
     border-radius: 3.2rem
     border: 1px solid $border-color-secondary
 
@@ -103,7 +123,7 @@
 
 .container-for-imafe-top-sellers
     position: relative
-    width: 92%
+    width: 89%
     height: 18rem
 
 .image-container-top-sellers img
@@ -120,6 +140,7 @@
 
 .top-sellers-item-title
     height: 4.2rem
+    // min-height: 4.2rem
     color: $color-text-main
     text-align: center    
     font-size: 1.8rem
@@ -131,19 +152,21 @@
     margin-bottom: 1.6rem
 
 .top-sellers-prise-and-availability
-    height: 2.8rem
+    min-height: 2.8rem
     display: flex
+    gap: 2rem    
     justify-content: space-between
     align-items: center
 
 .top-sellers-price
     color: $color-text-main
-    // text-align: center;
-    // font-family: Ubuntu;
+    text-align: center
+    
     font-size: 2.4rem
     font-style: normal
     font-weight: 700
     line-height: normal
+    width: 13.4rem
 
 .top-sellers-availability
     color: $invalid-field-border
@@ -151,12 +174,17 @@
     font-style: normal
     font-weight: 400
     line-height: normal
+    // max-width: 134px
+    text-align: center
 
 .noavailability
+    display: block
     padding: .4rem
+    text-align: center
     color: $red-color-first
     border-radius: .4rem
     background: #FFDEDE
+    max-width: 138px
 
 .sail-prise
     color: $red-color-first
