@@ -26,8 +26,9 @@ export default function ForgetPassword() {
 
     async function handleclick(event) {
         event.preventDefault();
-        setLoading(true)
+
         if (showErrorEmail === false) {
+            setLoading(true);
             const body = {
                 "email": userEmail
             };
