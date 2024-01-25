@@ -27,7 +27,6 @@ function LogInPage() {
                 <meta name='MarketHub' content="width=device-width, initial-scale=1.0"></meta>
             </Head>
             <main className='login-page'>
-                {/* <Spinner /> */}
                 {loading === true ? <Spinner /> : null}
                 <Image
                     alt="background image"

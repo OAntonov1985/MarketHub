@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import singInFunction from '@/pages/api/SingInFunction';
 import Image from "next/image";
+import Link from 'next/link';
 
 
 function SingInForm({ props }) {
@@ -105,7 +106,6 @@ function SingInForm({ props }) {
                         onBlur={validatePassword}
                         required
                     />
-                    <div className='icon-show-password'></div>
                     <Image
                         className='icon-show-password'
                         alt='pass logo'
@@ -119,9 +119,11 @@ function SingInForm({ props }) {
                 <div className='button-singin'>
                     <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
                 </div>
-                <div className='forgot-password-link'>
-                    <a className='forgot-link' href='#'>Забули пароль</a>
-                </div>
+                <Link href='/forgetpassword/' className='forgot-link'>
+                    <div className='forgot-password-link'>
+                        <p className='forgot-link'>Забули пароль</p>
+                    </div>
+                </Link>
             </form>
         </>
     );

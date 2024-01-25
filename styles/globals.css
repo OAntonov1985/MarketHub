@@ -599,28 +599,31 @@ h2 {
   }
 }
 .error-page {
+  max-width: 192rem;
   padding-top: 17.9rem;
   background-color: #FFF;
   display: flex;
 }
 
 .error-page-left-column {
+  position: relative;
   width: 60.2%;
   height: 68rem;
-  background-color: gray;
+  margin-top: 50px;
 }
 
 .error-page-image-container {
   position: relative;
-  width: 100%;
-  height: 500px;
-  background-color: red;
+  width: 93.4%;
+  height: 58rem;
+  margin: 0 auto;
 }
 
 .error-page-right-column {
-  width: 37.8%;
+  position: relative;
+  width: 39.8%;
   margin-top: 2.7rem;
-  background-color: gray;
+  z-index: 1;
 }
 
 .error-page-404 {
@@ -633,9 +636,12 @@ h2 {
 }
 
 .error-page-text-alert {
+  top: -4rem;
+  position: relative;
   max-width: 43.7rem;
   color: #012767;
   font-size: 2.8rem;
+  letter-spacing: -0.56px;
   font-style: normal;
   font-weight: 300;
   line-height: 150%;
@@ -664,5 +670,69 @@ h2 {
   font-style: normal;
   font-weight: 500;
   line-height: 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.error-page-button-tomain:hover {
+  background-color: #00E6F4;
+}
+
+.error-page-link-tomain {
   text-decoration: none;
+}
+
+.forget-password {
+  position: relative;
+  margin: 0 auto;
+  min-height: 100vh;
+  max-width: 192rem;
+  padding: 17.1rem 0 17.2rem;
+}
+
+.forget-password-container {
+  text-align: center;
+  position: relative;
+  margin: 0 auto;
+  width: 47.2%;
+  height: 66.5%;
+  background-color: #012767;
+  border-radius: 3.2rem;
+}
+
+.forget-password-content {
+  margin: 0 auto;
+  margin-top: 14rem;
+  width: 76.4%;
+}
+
+.forret-passord-title {
+  color: #F8FAFC;
+  font-size: 2.8rem;
+  font-weight: 500;
+  line-height: 110%;
+  margin-bottom: 0.8rem;
+}
+
+.forret-passord-text {
+  color: #F8FAFC;
+  text-align: left;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 140%;
+  margin-bottom: 4rem;
+}
+
+.modify-title {
+  text-align: left;
+}
+
+.modify-button-singin {
+  margin-top: 0.6rem;
+  text-align: left;
+}
+
+.modify-button-singin-push {
+  margin: 0;
+  width: 20rem;
+  margin-bottom: 17.3rem;
 }/*# sourceMappingURL=globals.css.map */

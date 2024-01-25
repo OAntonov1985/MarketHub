@@ -1,16 +1,11 @@
-// import Header from "@/components/Header";
-// import Footer from "@/components/Footer";
-// import { Providers } from "@/components/Providers";
+// import Spinner from '../Spinner/Spinner';
 
-// export default function Layout({ children, hideHeaderFooter }) {
+// export default function Layout({ children }) {
 //     return (
 //         <html lang="en">
 //             <body>
-//                 <Providers>
-//                     <Header />
-//                     <main className="container">{children}</main>
-//                     <Footer />
-//                 </Providers>
+//                 <Spinner />
+//                 <main className="container">{children}</main>
 //             </body>
 //         </html>
 //     );

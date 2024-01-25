@@ -28,7 +28,7 @@ export default function Home() {
                         quality={100}
                         width={1440}
                         height={770}
-                        // className='logo-image'
+                        className='logo-image'
                         priority
                         style={{
                             position: 'absolute',

@@ -26,7 +26,7 @@ export default function Error404() {
             <div className="error-page-right-column">
                 <p className='error-page-404'>404</p>
                 <p className='error-page-text-alert'>Ой! Схоже, ви загубилися в цифровому просторі. Сторінку, яку ви шукали, не знайдено</p>
-                <Link href='/'>
+                <Link href='/' className='error-page-link-tomain'>
                     <div className='error-page-div-for-button'>
                         <button className='error-page-button-tomain'>Головна сторінка</button>
                     </div>
