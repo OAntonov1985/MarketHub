@@ -1,16 +1,18 @@
-import Link from 'next/link';
+import { URLADRESS } from '@/components/Constants';
 import Head from "next/head";
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import Image from 'next/image';
-import Categories from '@/components/CategoriesInMain/Categories';
+import Categories from '@/components/CategoriesInMainPage/Categories';
 import TopSellers from '@/components/TopSellersMain/TopSellers';
 import PromotionsOnMain from '@/components/PromotionsInMain/PromosionsOnMain';
+import { useState, useEffect } from 'react';
 
 
 
 
-export default function Home() {
+function Home({ categories, topSellers, promotionGoods }) {
+
     return (
         <>
             <Head>
@@ -44,29 +46,35 @@ export default function Home() {
                 </div>
 
                 <div className="main-content">
-                    <Categories />
-                    <TopSellers />
-                    <PromotionsOnMain />
-
-                    {/* <div className='header-title'>Домашня сторінка</div>
-                    <Link legacyBehavior href='/loginpage/' className='main-link'>
-                        <button className='button-main'>Сторінка авторизації</button>
-                    </Link>
-
-                    <Link href='/mainpage/' className='main-link'>
-                        <p className='main-link'>Головна сторінка з категоріями і пошуком</p>
-                    </Link>
-
-                    <Link href='/producstpage/' className='main-link'>
-                        <p className='main-link'>Сторінка з результатами пошуку</p>
-                    </Link>
-                    <Link href='/userpage/' className='main-link'>
-                        <p className='main-link'>Сторінка з інфо про клієнта</p>
-                    </Link> */}
+                    <Categories categories={categories} />
+                    <TopSellers topSellers={topSellers} />
+                    <PromotionsOnMain promotionGoods={promotionGoods} />
                 </div>
                 <Footer />
-            </main>
-
+            </main >
         </>
     );
+
+
+
 }
+export async function getServerSideProps() {
+    const resCategories = await fetch(URLADRESS + 'categories');
+    const categories = await resCategories.json();
+
+    const resTopSellers = await fetch(URLADRESS + 'goods/top-seller');
+    const topSellers = await resTopSellers.json();
+
+    const resPromotionGoods = await fetch(URLADRESS + 'goods/shares');
+    const promotionGoods = await resPromotionGoods.json();
+    return {
+        props: {
+            categories,
+            topSellers,
+            promotionGoods
+        }
+    };
+};
+
+
+export default Home;

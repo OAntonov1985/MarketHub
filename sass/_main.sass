@@ -23,7 +23,7 @@
     max-width: 1920rem
 
 
-.comp, .phones  
+.main-categories-row-one
     padding-top: 4rem      
     width: calc(50% - 1.2rem)
     // max-width: 50%
@@ -35,13 +35,14 @@
     flex: 1 1 auto
     padding-bottom: 1.6rem
     transition: box-shadow 0.3s ease
+    text-decoration: none
 
 
-.comp:hover, .phones:hover
+.main-categories-row-one:hover
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) 
 
 
-.comp .main-item-title, .phones .main-item-title, .refs .main-item-title, .games .main-item-title, .headphones .main-item-title
+.main-categories-row-one .main-item-title, .main-categories-row-two .main-item-title
     color: $color-text-main
     text-align: center       
     font-size: 3.2rem
@@ -52,7 +53,7 @@
     transition: font-size 0.3s, font-weight 0.3s
     text-shadow: 0rem .4rem .4rem rgba(0, 0, 0, 0.25) 
 
-.comp:hover .main-item-title, .phones:hover .main-item-title, .refs:hover .main-item-title, .games:hover .main-item-title, .headphones:hover .main-item-title        
+.main-categories-row-one:hover .main-item-title, .main-categories-row-two:hover .main-item-title
     font-size: 3.4rem
     font-weight: 500
 
@@ -63,7 +64,7 @@
     max-width: 1920rem
     margin-bottom: 14rem
 
-.refs, .games, .headphones   
+.main-categories-row-two  
     text-align: center
     width: calc(33% - 48px) 
     // max-width: 41rem
@@ -76,8 +77,9 @@
     background-color: $background-color-items  
     padding-bottom: 1.6rem
     transition: box-shadow 0.3s ease
+    text-decoration: none
 
-.refs:hover, .games:hover, .headphones:hover
+.main-categories-row-two:hover
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) 
 
 
@@ -116,6 +118,7 @@
     border-radius: 3.2rem
     border: 1px solid $border-color-secondary
     transition: box-shadow 0.3s ease
+    text-decoration: none
 
 .top-sellers-item:hover
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
