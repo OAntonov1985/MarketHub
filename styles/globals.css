@@ -8,6 +8,7 @@
 
 html {
   font-size: 62.5%;
+  max-width: 192rem;
 }
 
 input {
@@ -743,6 +744,8 @@ h2 {
 
 .category-page {
   min-height: 100vh;
+  max-width: 192rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }

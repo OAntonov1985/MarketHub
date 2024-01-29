@@ -7,13 +7,15 @@ export default function GoodCardSmall({ props }) {
     return (
         <>
             <Link
-                href="/[name]/[id]" as={`/${sub_category_id}/${id}`}
+                href="/[category]/[subcategory]/[id]" as={`/${category_id}/${sub_category_id}/${id}`}
+                // href="/[name]/[id]"
                 key={id} className="top-sellers-item">
                 <div className="image-container-top-sellers">
                     <div className="container-for-imafe-top-sellers">
                         <Image
                             alt="image of good"
                             src={photo_preview}
+                            // src={images[0]}
                             quality={100}
                             fill
                             style={{
@@ -25,6 +27,7 @@ export default function GoodCardSmall({ props }) {
                     </div>
                 </div>
                 <p className='top-sellers-item-title'>{name}</p>
+                {/* <p className='top-sellers-item-title'>{title}</p> */}
                 <div className='top-sellers-prise-and-availability'>
                     <p className='top-sellers-price'>{price}</p>
                     <p className={`top-sellers-availability ${available ? '' : 'noavailability'}`}>

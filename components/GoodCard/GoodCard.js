@@ -1,24 +1,15 @@
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Image from 'next/image';
+import BreadCrumps from '../Breadcrumps/Breadcrumps';
 
 export default function GoodCard() {
     return (
         <div className="good-card">
             <Header />
             <div className="good-card-main-content">
-                <div className='theWay'>
-                    <div className="logo-bread-crum">
-                        <Image
-                            alt="logo home"
-                            src='/breadcrum/home-outline.svg'
-                            quality={100}
-                            width={16}
-                            height={16}
-                        />
-                    </div>
-                    <p className='bread-crum-text-way'>/Каталог</p>
-                </div>
+
+                <BreadCrumps />
 
                 <div className="good-card-container">
                     <div className="good-card-left-column">dsgdhg</div>
