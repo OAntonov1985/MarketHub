@@ -17,18 +17,18 @@ export default function UserPage() {
     }
     return (
         <>
-            <GoodCard />
-            {/* <Header /> */}
-            {/* <p>Your Profile</p>
-            <div>привіт {userName}</div> */}
-            {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-            {/* <Link href='/mainpage/' className='main-link'>
+            {/* <GoodCard /> */}
+            <Header />
+            <p>Your Profile</p>
+            <div>привіт {userName}</div>
+            <pre>{JSON.stringify(user, null, 2)}</pre>
+            <Link href='/mainpage/' className='main-link'>
                 <p className='main-link'>Головна сторінка з категоріями і пошуком</p>
             </Link>
             <Link href='/' className='main-link'>
                 <p className='main-link'>Головна сторінка</p>
             </Link>
-            <button onClick={deleteToken}>Вийти з акаунту</button> */}
+            <button onClick={deleteToken}>Вийти з акаунту</button>
         </>
     )
 }
