@@ -9,7 +9,7 @@ export default function PromotionsOnMain({ promotionGoods }) {
             <div className="top-sellers-row">
                 {!!promotionGoods.length && promotionGoods.map(promotionGoods => {
                     return (
-                        <GoodCardSmall props={promotionGoods} />
+                        <GoodCardSmall key={promotionGoods.id} props={promotionGoods} />
                     );
                 })};
             </div>
