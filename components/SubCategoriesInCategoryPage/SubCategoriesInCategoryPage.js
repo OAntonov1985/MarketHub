@@ -5,7 +5,7 @@ import SubCategotyCard from '../SubcategoryCard/SubCategoryCard';
 export default function SubcategoriesInCatPage({ subCategories }) {
     // console.log(subCategories)
     return (
-        <div className='second-row'>
+        <div className='second-row second-row-modify'>
             {!!subCategories.length && subCategories.map(subCategories => {
                 return (
                     <SubCategotyCard key={subCategories.id} subCategories={subCategories} />

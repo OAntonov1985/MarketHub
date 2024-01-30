@@ -188,6 +188,10 @@ h2 {
   margin-bottom: 14rem;
 }
 
+.second-row-modify {
+  margin-bottom: 0;
+}
+
 .main-categories-row-two {
   text-align: center;
   width: calc(33% - 48px);
@@ -751,8 +755,12 @@ h2 {
 }
 
 .category-main-content {
-  margin: 4rem 9rem;
+  margin: 4.1rem 9rem 0;
   flex: 1 1 auto;
+}
+
+.subcategories-row {
+  margin-bottom: 4rem;
 }
 
 .theWay {
@@ -795,4 +803,34 @@ h2 {
 .good-card-right-column {
   background-color: gray;
   width: 40.6%;
+}
+
+.selector-filter {
+  margin-bottom: 4rem;
+  padding: 0.8rem 1.2rem;
+  width: 26rem;
+  height: 4rem;
+  border-radius: 0.8rem;
+  border: 1px solid #00E6F4;
+  outline: none;
+}
+
+.goods-list-render {
+  display: flex;
+  width: 100%;
+  gap: 2%;
+  height: 50rem;
+  margin-bottom: 21.3rem;
+}
+
+.goods-list-filter-column {
+  width: 20.9%;
+  height: 40rem;
+  background-color: gray;
+}
+
+.goods-list-goods-items {
+  width: 77.1%;
+  height: 50rem;
+  background-color: gray;
 }/*# sourceMappingURL=globals.css.map */

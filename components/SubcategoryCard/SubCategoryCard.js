@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 
 export default function SubCategotyCard({ subCategories }) {
-    // console.log(subCategories)
-    const category = subCategories.parent_id; // Замените на фактическую категорию
-    const subcategory = 'yourSubcategory'
+    // console.log(subCategories.name)
+    const category = subCategories.parent;
+    const subcategory = subCategories.name;
     return (
         <div key={subCategories.id} className="main-categories-row-two">
             <Link
