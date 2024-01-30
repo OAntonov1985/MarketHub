@@ -48,7 +48,7 @@ function Home({ categories, topSellers, promotionGoods }) {
                 <div className="main-content">
                     <Categories categories={categories} />
                     <TopSellers topSellers={topSellers} />
-                    {/* <PromotionsOnMain promotionGoods={promotionGoods} /> */}
+                    <PromotionsOnMain promotionGoods={promotionGoods} />
                 </div>
                 <Footer />
             </main >
@@ -67,13 +67,13 @@ export async function getServerSideProps() {
     // const resTopSellers = await fetch("https://api.escuelajs.co/api/v1/products");
     const topSellers = await resTopSellers.json();
 
-    // const resPromotionGoods = await fetch(URLADRESS + 'goods/shares');
-    // const promotionGoods = await resPromotionGoods.json();
+    const resPromotionGoods = await fetch(URLADRESS + 'goods/shares');
+    const promotionGoods = await resPromotionGoods.json();
     return {
         props: {
             categories,
             topSellers,
-            // promotionGoods
+            promotionGoods
         }
     };
 };

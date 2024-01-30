@@ -235,7 +235,7 @@ h2 {
   min-height: 48.8rem;
   padding: 1.6rem 0.8rem;
   width: 22.4%;
-  min-width: 22rem;
+  min-width: 23rem;
   border-radius: 3.2rem;
   border: 1px solid #00E6F4;
   transition: box-shadow 0.3s ease;
@@ -747,7 +747,6 @@ h2 {
 }
 
 .category-page {
-  min-height: 100vh;
   max-width: 192rem;
   margin: 0 auto;
   display: flex;
@@ -819,7 +818,6 @@ h2 {
   display: flex;
   width: 100%;
   gap: 2%;
-  height: 50rem;
   margin-bottom: 21.3rem;
 }
 
@@ -830,7 +828,9 @@ h2 {
 }
 
 .goods-list-goods-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.4rem;
   width: 77.1%;
-  height: 50rem;
-  background-color: gray;
+  height: auto;
 }/*# sourceMappingURL=globals.css.map */

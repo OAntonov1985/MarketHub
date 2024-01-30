@@ -24,8 +24,8 @@ function CategoryPage({ subCategories, goods }) {
     );
 }
 export async function getServerSideProps(context) {
-    // console.log(context.query.c)
-    let id
+
+    let id;
     if (context.query.category === "Комп’ютерна техніка") id = 100;
     else if (context.query.category === "Мобільні телефони") id = 175;
     else if (context.query.category === "Побутова техніка") id = 250;
