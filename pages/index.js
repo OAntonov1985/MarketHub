@@ -7,6 +7,7 @@ import Categories from '@/components/CategoriesOnMainPage/CategoriesOnMain';
 import TopSellers from '@/components/TopSellersMain/TopSellers';
 import PromotionsOnMain from '@/components/PromotionsInMain/PromosionsOnMain';
 import { useState, useEffect } from 'react';
+import HeaderSelectorToFilter from '@/components/SelectorInHeadInGoodPage/SelectorInHeadInGoodPage';
 
 
 
@@ -46,9 +47,10 @@ function Home({ categories, topSellers, promotionGoods }) {
                 </div>
 
                 <div className="main-content">
-                    <Categories categories={categories} />
+                    {/* <HeaderSelectorToFilter /> */}
+                    {/* <Categories categories={categories} />
                     <TopSellers props={topSellers} />
-                    <PromotionsOnMain promotionGoods={promotionGoods} />
+                    <PromotionsOnMain promotionGoods={promotionGoods} /> */}
                 </div>
                 <Footer />
             </main >
@@ -58,25 +60,25 @@ function Home({ categories, topSellers, promotionGoods }) {
 
 
 }
-export async function getServerSideProps() {
-    const resCategories = await fetch(URLADRESS + 'categories');
-    // const resCategories = await fetch("https://api.escuelajs.co/api/v1/categories");
-    const categories = await resCategories.json();
+// export async function getServerSideProps() {
+//     const resCategories = await fetch(URLADRESS + 'categories');
+//     // const resCategories = await fetch("https://api.escuelajs.co/api/v1/categories");
+//     const categories = await resCategories.json();
 
-    const resTopSellers = await fetch(URLADRESS + 'goods/top-seller');
-    // const resTopSellers = await fetch("https://api.escuelajs.co/api/v1/products");
-    const topSellers = await resTopSellers.json();
+//     const resTopSellers = await fetch(URLADRESS + 'goods/top-seller');
+//     // const resTopSellers = await fetch("https://api.escuelajs.co/api/v1/products");
+//     const topSellers = await resTopSellers.json();
 
-    const resPromotionGoods = await fetch(URLADRESS + 'goods/shares');
-    const promotionGoods = await resPromotionGoods.json();
-    return {
-        props: {
-            categories,
-            topSellers,
-            promotionGoods
-        }
-    };
-};
+//     const resPromotionGoods = await fetch(URLADRESS + 'goods/shares');
+//     const promotionGoods = await resPromotionGoods.json();
+//     return {
+//         props: {
+//             categories,
+//             topSellers,
+//             promotionGoods
+//         }
+//     };
+// };
 
 
 export default Home;

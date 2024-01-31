@@ -1,26 +1,15 @@
 @import _variables.sass
 
 .selector-filter-container
+    height: 12rem
     display: flex
     flex-direction: column
     margin-bottom: 4rem
     align-items: flex-end
+    // justify-content: center
     
-.selected-option  
-    padding: .8rem 1.2rem
-    font-size: 1.8rem
-    width: 26rem
-    height: 4rem
-    border-radius: .8rem    
-    border: 1px solid $border-color-secondary
-    display: flex
-    align-items: center
-    justify-content: space-between
-    color: $color-background-loginpage
-    transition: all 0.3s ease-in-out
-    transition: max-height 0.3s ease-out
 
-.filter-arrow-buttol
+.filter-arrow-button
     position: relative
     width: 2.4rem
     height: 2.4rem
@@ -107,16 +96,50 @@
     background-color: $valid-field-border
     border: none
 
+
 .options-list
+    list-style-type: none    
+    font-size: 1.8rem
+    // width: 26rem
+    width: 30rem
+    height: 4rem    
+    border-radius: .8rem    
+    border: 1px solid $border-color-secondary
+    transition: height 0.5s ease
+    color: $color-background-loginpage
+    transition: all 0.3s ease-in-out
+    transition: height 0.3s ease-out
+
+.options-list li
+    padding: .8rem 1.2rem
+
+.options-list-first, .options-list-another
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+.expanded 
+    height: 12rem
+
+.filter-checked-container
+    opacity: 0
+    // transition: opacity 0.5s ease
+
+.active
+    opacity: 1
+    // transition: opacity 0.5s ease
+
+.options-list-another
     list-style: none
-    padding: 0
-    margin: 0
-    max-height: 0
-    overflow: hidden
-    transition: max-height 0.3s ease-in-out
+    padding: 10px
+    position: relative
 
-    &.open
-        max-height: 200px
+    .animation-container
+        visibility: hidden
+        transition: visibility 0.5s ease
+        position: absolute
+        top: 50%
+        left: 100%
 
-    .options-list-first
-        display: block !important
+    &:hover .animation-container
+        visibility: visible
