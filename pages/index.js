@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react';
 
 
 function Home({ categories, topSellers, promotionGoods }) {
-
+    // console.log(topSellers)
     return (
         <>
             <Head>
@@ -47,7 +47,7 @@ function Home({ categories, topSellers, promotionGoods }) {
 
                 <div className="main-content">
                     <Categories categories={categories} />
-                    <TopSellers topSellers={topSellers} />
+                    <TopSellers props={topSellers} />
                     <PromotionsOnMain promotionGoods={promotionGoods} />
                 </div>
                 <Footer />

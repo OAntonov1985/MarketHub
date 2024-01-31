@@ -1,15 +1,15 @@
 import GoodCardSmall from '../GoodCardSmall/GoodCardSmall';
 
 
-export default function TopSellers({ topSellers }) {
-    // console.log(topSellers)
+export default function TopSellers({ props }) {
+    // console.log(props)
     return (
         <>
             <h4 className='top-sellers-title title'>Топ продажів</h4>
             <div className="top-sellers-row">
-                {!!topSellers.length && topSellers.slice(0, 4).map(topSellers => {
+                {!!props.length && props.slice(0, 4).map(topSellers => {
                     return (
-                        <GoodCardSmall key={topSellers.id} props={topSellers} />
+                        <GoodCardSmall key={props.id} props={topSellers} />
                     );
                 })};
             </div>

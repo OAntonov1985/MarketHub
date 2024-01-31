@@ -1,23 +1,25 @@
 import HeaderSelectorToFilter from '../SelectorInHeadInGoodPage/SelectorInHeadInGoodPage';
 import GoodCardSmall from '../GoodCardSmall/GoodCardSmall';
+import AsideFilter from '../AsideFilter/AsideFilter';
 
 
-function GoodsList({ goods }) {
-    // console.log(goods);
+function GoodsList({ props }) {
+    // console.log(props);
 
     return (
         <div className='goods-list'>
             <HeaderSelectorToFilter />
             <div className="goods-list-render">
-                <div className="goods-list-filter-column">Тут може бути ваша реклама</div>
+                <AsideFilter />
                 <div className="goods-list-goods-items">
-                    {!!goods.length && goods.slice(0, 12).map(goods => {
+                    {!!props.length && props.slice(0, 12).map(props => {
                         return (
-                            <GoodCardSmall key={goods.id} props={goods} />
+                            <GoodCardSmall key={props.id} props={props} />
                         );
                     })};
                 </div>
             </div>
+            <div className='page-selector'>numbers</div>
         </div>
     )
 };

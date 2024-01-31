@@ -6,7 +6,7 @@ import BreadCrumps from '@/components/Breadcrumps/Breadcrumps';
 import GoodsList from '@/components/GoodsList/GoodsList';
 
 function CategoryPage({ subCategories, goods }) {
-
+    // console.log(goods)
     return (
         <>
             <div className='category-page'>
@@ -16,7 +16,7 @@ function CategoryPage({ subCategories, goods }) {
                     <div className="subcategories-row">
                         <SubcategoriesInCatPage subCategories={subCategories} />
                     </div>
-                    <GoodsList goods={goods} />
+                    <GoodsList props={goods} />
                 </div>
                 <Footer />
             </div>

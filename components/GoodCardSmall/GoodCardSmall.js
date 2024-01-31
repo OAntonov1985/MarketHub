@@ -3,8 +3,9 @@ import Link from 'next/link';
 
 
 export default function GoodCardSmall({ props }) {
+    // console.log(props)
     const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images } = props;
-    // console.log(props.images[0])
+
 
     function formattedPrice(price) {
         let newPrice
@@ -31,8 +32,9 @@ export default function GoodCardSmall({ props }) {
                     <div className="container-for-imafe-top-sellers">
                         <Image
                             alt="image of good"
-                            src={photo_preview ? photo_preview : props.images[0]}
-                            // src={props.images[0]}
+                            // src={photo_preview ? photo_preview : props.images[0]}
+                            // src={goods.images[1]}
+                            src="/promotionsImage/headphones.png"
                             quality={100}
                             fill
                             style={{
@@ -46,10 +48,10 @@ export default function GoodCardSmall({ props }) {
                 {/* <p className='top-sellers-item-title'>{name}</p> */}
                 <p className='top-sellers-item-title'>{title}</p>
                 <div className='top-sellers-prise-and-availability'>
-                    {/* <p className='top-sellers-price'>{formattedPrice(price)} грн</p> */}
-                    <p className='top-sellers-price'>{price} грн</p>
+                    <p className='top-sellers-price'>{formattedPrice(price)} грн</p>
+                    {/* <p className='top-sellers-price'>{price} грн</p> */}
                     {/* <p className={`top-sellers-availability ${available ? '' : 'noavailability'}`}> */}
-                    <p className={`top-sellers-availability ${id ? '' : 'noavailability'}`}>
+                    <p className={`top-sellers-availability ${id !== undefined ? '' : 'noavailability'}`}>
                         {/* {available === true ? "Є в наявності" : "Немає в наявності"} */}
                         {id !== undefined ? "Є в наявності" : "Немає в наявності"}
                     </p>
@@ -58,3 +60,4 @@ export default function GoodCardSmall({ props }) {
         </>
     );
 };
+

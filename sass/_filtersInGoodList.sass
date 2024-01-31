@@ -1,0 +1,122 @@
+@import _variables.sass
+
+.selector-filter-container
+    display: flex
+    flex-direction: column
+    margin-bottom: 4rem
+    align-items: flex-end
+    
+.selected-option  
+    padding: .8rem 1.2rem
+    font-size: 1.8rem
+    width: 26rem
+    height: 4rem
+    border-radius: .8rem    
+    border: 1px solid $border-color-secondary
+    display: flex
+    align-items: center
+    justify-content: space-between
+    color: $color-background-loginpage
+    transition: all 0.3s ease-in-out
+    transition: max-height 0.3s ease-out
+
+.filter-arrow-buttol
+    position: relative
+    width: 2.4rem
+    height: 2.4rem
+    border: none
+    background: #FBFBFB
+
+.filter-range
+    display: flex
+
+
+.filter-price-start, .filter-price-end
+    width: 6rem    
+    height: 2.4rem
+    border-radius: .8rem
+    border: 1px solid #D9D9D9
+    background-color: #F5F6F7
+    color: $color-background-loginpage
+    font-size: 1.8rem
+    font-style: normal
+    font-weight: 400
+    line-height: normal
+    text-align: center
+
+.filter-price-start::placeholder, .filter-price-end::placeholder
+    color: $color-background-loginpage
+
+
+.filter-price-start
+    margin-right: .4rem
+
+.filter-price-end
+    margin-left: .4rem
+
+
+.goods-list-filter-column
+    border-radius: 1.6rem
+    width: 20.9%
+    height: 40.3rem
+    background-color: $background-color-filter
+    border: 1px solid $border-color-secondary
+    padding: 2.4rem
+    display: flex
+    flex-direction: column
+    color: $color-text-main
+    font-size: 1.8rem
+    font-style: normal
+    font-weight: 400
+    line-height: normal
+
+.aside-filter-price, .goods-producer-title
+    margin-bottom: 1.6rem
+
+.filter-range
+    margin-bottom: 2.5rem
+
+.goods-producer-list
+    list-style-type: none
+    margin-bottom: 2.5rem
+
+.goods-producer-list li
+    margin-bottom: .8rem
+
+.goods-producer-list input[type='checkbox']    
+    margin-right: .8rem
+    border: 1px solid #D9D9D9     
+    width: 1.6rem
+    height: 1.6rem
+    border-radius: 3px
+    
+.filter-availability
+    margin-right: .8rem
+    margin-bottom: 2.4rem
+
+.aside-filter-button
+    display: block
+    margin: 0 auto
+    padding: .8rem 2.3rem
+    color: $color-white  
+    font-size: 1.8rem
+    font-style: normal
+    font-weight: 400
+    line-height: normal
+    border-radius: .8rem
+    background-color: $valid-field-border
+    border: none
+
+.options-list
+    list-style: none
+    padding: 0
+    margin: 0
+    max-height: 0
+    overflow: hidden
+    transition: max-height 0.3s ease-in-out
+
+    &.open
+        max-height: 200px
+
+    .options-list-first
+        display: block !important
