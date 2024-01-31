@@ -3,7 +3,7 @@ import GoodCardSmall from '../GoodCardSmall/GoodCardSmall';
 
 
 function GoodsList({ goods }) {
-    console.log(goods);
+    // console.log(goods);
 
     return (
         <div className='goods-list'>

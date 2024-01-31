@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function GoodCardSmall({ props }) {
     const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images } = props;
-    // console.log(props)
+    // console.log(props.images[0])
 
     function formattedPrice(price) {
         let newPrice
@@ -31,8 +31,8 @@ export default function GoodCardSmall({ props }) {
                     <div className="container-for-imafe-top-sellers">
                         <Image
                             alt="image of good"
-                            // src={photo_preview}
-                            src={images[0]}
+                            src={photo_preview ? photo_preview : props.images[0]}
+                            // src={props.images[0]}
                             quality={100}
                             fill
                             style={{
