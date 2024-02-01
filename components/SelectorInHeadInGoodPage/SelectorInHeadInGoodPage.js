@@ -3,62 +3,58 @@ import Image from 'next/image';
 
 
 export default function HeaderSelectorToFilter() {
-    const [isVisibleChecked, setIsVisibleChecked] = useState(false);
-    const [classNames, setClassNames] = useState(['filter-checked-container', 'filter-checked-container', 'filter-checked-container'])
-    const [isVisibleArrow, setIsVisibleArrow] = useState(true);
     const [selectedOption, setSelectedOption] = useState("Новинки");
+
+    const liClassname = "filter-li-options";
+    const [classNames, setClassNames] = useState(liClassname);
+
+    const [isVisibleChecked, setIsVisibleChecked] = useState(false);
+    // const buttonClassname = "filter-arrow-button";
+
+    const [isVisibleArrow, setIsVisibleArrow] = useState(true);
     const [isToggled, setIsToggled] = useState(false);
 
-    const handleMouseEnter = (index) => {
-        const updatedClassNames = [...classNames];
-        updatedClassNames[index] = 'filter-checked-container active';
-        setClassNames(updatedClassNames);
 
-    };
-
-    const handleMouseLeave = (index) => {
-        const updatedClassNames = [...classNames];
-        updatedClassNames[index] = 'filter-checked-container';
-        setClassNames(updatedClassNames);
-        console.log(777)
-    };
-
-    const handleToggle = (index) => {
+    const handleToggle = () => {
         setIsToggled((prevIsToggled) => !prevIsToggled);
+        setClassNames("filter-arrow-button display-none");
         setIsVisibleArrow((previsVisibleArrow) => !previsVisibleArrow);
     };
 
-    const hoverAction = (event) => {
-        console.log(777)
+    const setLiValue = (event) => {
+        setSelectedOption(event.target.innerText);
+        setClassNames(liClassname);
+        setIsToggled((prevIsToggled) => !prevIsToggled);
     }
 
-    const hoverActionNo = (event) => {
-        console.log(event.currentTarge)
-    }
 
     return (
         <div className="selector-filter-container">
-            <ul className={`options-list ${isToggled ? 'expanded' : ''}`}>
-                <li value="new goods"
-
-                    className="options-list-first">{selectedOption}
-                    <button className='filter-arrow-button' onClick={handleToggle}>
-                        {isVisibleArrow && (
-                            <Image
-                                alt="logo home"
-                                src='/selector-arrow-down.svg'
-                                quality={100}
-                                width={20}
-                                height={20}
-                            />
-                        )}
-                    </button>
-                </li>
-                <li value="from cheap to expensive" className='options-list-another'
-                    onMouseEnter={() => handleMouseEnter(1)}
-                    onMouseLeave={() => handleMouseLeave(1)}
-                >Від дешевих до дорогих
-                    <div className={classNames[1]}>
+            <p className='selected-sort-option'>{selectedOption}
+                <button className="filter-arrow-button" onClick={handleToggle}>
+                    {/* {isVisibleArrow && (
+                        <Image className='arrow'
+                            alt="logo home"
+                            src='/selector-arrow-down.svg'
+                            quality={100}
+                            width={20}
+                            height={20}
+                        />
+                    )} */}
+                    <Image className='arrow'
+                        alt="logo home"
+                        src='/selector-arrow-down.svg'
+                        quality={100}
+                        width={20}
+                        height={20}
+                    />
+                </button>
+            </p>
+            <ul className={`options-list ${isToggled ? 'display-option-list' : ''}`}>
+                <li value="Новинки" className={`${liClassname} ${isToggled ? 'display-li-options' : ''}`}
+                    onClick={setLiValue}
+                >Новинки
+                    <div className="filter-checked-container">
                         <Image
                             alt="logo home"
                             src='/checkmark-outline.svg'
@@ -67,11 +63,22 @@ export default function HeaderSelectorToFilter() {
                             height={24} />
                     </div>
                 </li>
-                <li value="from cheap to expensive" className='options-list-another'
-                    onMouseEnter={() => handleMouseEnter(2)}
-                    onMouseLeave={() => handleMouseLeave(2)}
+                <li value="Від дешевих до дорогих" className={`${liClassname} ${isToggled ? 'display-li-options' : ''}`}
+                    onClick={setLiValue}
+                >Від дешевих до дорогих
+                    <div className="filter-checked-container">
+                        <Image
+                            alt="logo home"
+                            src='/checkmark-outline.svg'
+                            quality={100}
+                            width={24}
+                            height={24} />
+                    </div>
+                </li>
+                <li value="Від дорогих до дешевих" className={`${liClassname} ${isToggled ? 'display-li-options' : ''}`}
+                    onClick={setLiValue}
                 >Від дорогих до дешевих
-                    <div className={classNames[2]}>
+                    <div className="filter-checked-container">
                         <Image
                             alt="logo home"
                             src='/checkmark-outline.svg'
@@ -81,15 +88,7 @@ export default function HeaderSelectorToFilter() {
                     </div>
                 </li>
             </ul>
-
         </div>
     );
 }
 
-// <div className="selector-filter-container">
-//     <select className='selector-filter'>
-//         <option value="Новинки" defaultValue>Новинки</option>
-//         <option value="From cheap to expensive" >Від дешевих до дорогих</option>
-//         <option value="From expensive to cheap" >Від дорогих до дешевих</option>
-//     </select>
-// </div>

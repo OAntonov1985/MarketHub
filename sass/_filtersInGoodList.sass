@@ -1,47 +1,77 @@
 @import _variables.sass
 
 .selector-filter-container
-    height: 12rem
+    // height: 12rem
     display: flex
     flex-direction: column
     margin-bottom: 4rem
-    align-items: flex-end
-    // justify-content: center
+    align-items: flex-end    
     
+.selected-sort-option    
+    font-size: 1.8rem    
+    width: 30rem
+    height: 4rem
+    padding: .8rem 1.2rem    
+    border-radius: .8rem    
+    border: 1px solid $border-color-secondary    
+    color: $color-background-loginpage
+    display: flex
+    align-items: center
+    justify-content: space-between  
+    margin-bottom: .8rem 
 
-.filter-arrow-button
-    position: relative
+
+.filter-arrow-button    
     width: 2.4rem
     height: 2.4rem
     border: none
     background: #FBFBFB
 
-.filter-range
+.options-list    
+    font-size: 1.8rem  
+    width: 30rem
+    height: 0    
+    border: none  
+    transition: all 0.3s ease-in-out
+    transition: height 0.3s ease-out
+    background-color: $background-color
+    
+    
+.display-option-list
+    height: 12.8rem 
+    border-radius: .8rem    
+    border: 1px solid $border-color-secondary    
+    color: $color-background-loginpage
+    // transition: all 0.5s ease-in-out
+    transition: height 0.5s ease-out
+    z-index: 999
+
+.filter-li-options
+    padding: .8rem 1.2rem  
     display: flex
+    align-items: center
+    justify-content: space-between
+    opacity: 0
+    // transition: opacity 0.5s ease
+
+.display-li-options
+    opacity: 1
+    transition: opacity 0.5s ease
+
+.filter-checked-container
+    opacity: 0
+    transition: opacity 0.5s ease
+
+.filter-li-options:hover
+    .filter-checked-container
+        transition: opacity 0.5s ease
+        opacity: 1
 
 
-.filter-price-start, .filter-price-end
-    width: 6rem    
-    height: 2.4rem
-    border-radius: .8rem
-    border: 1px solid #D9D9D9
-    background-color: #F5F6F7
-    color: $color-background-loginpage
-    font-size: 1.8rem
-    font-style: normal
-    font-weight: 400
-    line-height: normal
-    text-align: center
-
-.filter-price-start::placeholder, .filter-price-end::placeholder
-    color: $color-background-loginpage
 
 
-.filter-price-start
-    margin-right: .4rem
 
-.filter-price-end
-    margin-left: .4rem
+////////////////////////////////// ASIDE  ////////////////////////////////// 
 
 
 .goods-list-filter-column
@@ -64,6 +94,31 @@
 
 .filter-range
     margin-bottom: 2.5rem
+    display: flex
+
+
+.filter-price-start, .filter-price-end
+    width: 6rem    
+    height: 2.4rem
+    border-radius: .8rem
+    border: 1px solid #D9D9D9
+    background-color: #F5F6F7
+    color: $color-background-loginpage
+    font-size: 1.8rem
+    font-style: normal
+    font-weight: 400
+    line-height: normal
+    text-align: center
+
+.filter-price-start
+    margin-right: .4rem
+
+.filter-price-end
+    margin-left: .4rem
+
+
+.filter-price-start::placeholder, .filter-price-end::placeholder
+    color: $color-background-loginpage
 
 .goods-producer-list
     list-style-type: none
@@ -97,49 +152,8 @@
     border: none
 
 
-.options-list
-    list-style-type: none    
-    font-size: 1.8rem
-    // width: 26rem
-    width: 30rem
-    height: 4rem    
-    border-radius: .8rem    
-    border: 1px solid $border-color-secondary
-    transition: height 0.5s ease
-    color: $color-background-loginpage
-    transition: all 0.3s ease-in-out
-    transition: height 0.3s ease-out
 
-.options-list li
-    padding: .8rem 1.2rem
+   
 
-.options-list-first, .options-list-another
-    display: flex
-    align-items: center
-    justify-content: space-between
 
-.expanded 
-    height: 12rem
-
-.filter-checked-container
-    opacity: 0
-    // transition: opacity 0.5s ease
-
-.active
-    opacity: 1
-    // transition: opacity 0.5s ease
-
-.options-list-another
-    list-style: none
-    padding: 10px
-    position: relative
-
-    .animation-container
-        visibility: hidden
-        transition: visibility 0.5s ease
-        position: absolute
-        top: 50%
-        left: 100%
-
-    &:hover .animation-container
-        visibility: visible
+    

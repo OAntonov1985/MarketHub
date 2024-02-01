@@ -27,7 +27,7 @@ function CategoriesOnMain({ categories }) {
                             <p className='main-item-title'>{categories.name}</p>
                         </Link>
                     );
-                })};
+                })}
             </div>
             <div className='second-row'>
                 {!!categories.length && categories.slice(2, 5).map(categories => {
@@ -50,7 +50,7 @@ function CategoriesOnMain({ categories }) {
                             <p className='main-item-title'>{categories.name}</p>
                         </Link>
                     );
-                })};
+                })}
             </div>
         </>
     );

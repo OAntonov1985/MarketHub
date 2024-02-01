@@ -11,7 +11,7 @@ export default function PromotionsOnMain({ promotionGoods }) {
                     return (
                         <GoodCardSmall key={promotionGoods.id} props={promotionGoods} />
                     );
-                })};
+                })}
             </div>
         </>
     )

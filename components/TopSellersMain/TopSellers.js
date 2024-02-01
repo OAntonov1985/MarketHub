@@ -11,7 +11,7 @@ export default function TopSellers({ props }) {
                     return (
                         <GoodCardSmall key={props.id} props={topSellers} />
                     );
-                })};
+                })}
             </div>
         </>
     )

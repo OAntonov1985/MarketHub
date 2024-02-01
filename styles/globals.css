@@ -812,49 +812,73 @@ h2 {
 }
 
 .selector-filter-container {
-  height: 12rem;
   display: flex;
   flex-direction: column;
   margin-bottom: 4rem;
   align-items: flex-end;
 }
 
+.selected-sort-option {
+  font-size: 1.8rem;
+  width: 30rem;
+  height: 4rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.8rem;
+  border: 1px solid #00E6F4;
+  color: #012767;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
 .filter-arrow-button {
-  position: relative;
   width: 2.4rem;
   height: 2.4rem;
   border: none;
   background: #FBFBFB;
 }
 
-.filter-range {
-  display: flex;
-}
-
-.filter-price-start, .filter-price-end {
-  width: 6rem;
-  height: 2.4rem;
-  border-radius: 0.8rem;
-  border: 1px solid #D9D9D9;
-  background-color: #F5F6F7;
-  color: #012767;
+.options-list {
   font-size: 1.8rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-align: center;
+  width: 30rem;
+  height: 0;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  transition: height 0.3s ease-out;
+  background-color: #FBFBFB;
 }
 
-.filter-price-start::placeholder, .filter-price-end::placeholder {
+.display-option-list {
+  height: 12.8rem;
+  border-radius: 0.8rem;
+  border: 1px solid #00E6F4;
   color: #012767;
+  transition: height 0.5s ease-out;
+  z-index: 999;
 }
 
-.filter-price-start {
-  margin-right: 0.4rem;
+.filter-li-options {
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
 }
 
-.filter-price-end {
-  margin-left: 0.4rem;
+.display-li-options {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.filter-checked-container {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.filter-li-options:hover .filter-checked-container {
+  transition: opacity 0.5s ease;
+  opacity: 1;
 }
 
 .goods-list-filter-column {
@@ -879,6 +903,33 @@ h2 {
 
 .filter-range {
   margin-bottom: 2.5rem;
+  display: flex;
+}
+
+.filter-price-start, .filter-price-end {
+  width: 6rem;
+  height: 2.4rem;
+  border-radius: 0.8rem;
+  border: 1px solid #D9D9D9;
+  background-color: #F5F6F7;
+  color: #012767;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+
+.filter-price-start {
+  margin-right: 0.4rem;
+}
+
+.filter-price-end {
+  margin-left: 0.4rem;
+}
+
+.filter-price-start::placeholder, .filter-price-end::placeholder {
+  color: #012767;
 }
 
 .goods-producer-list {
@@ -915,57 +966,6 @@ h2 {
   border-radius: 0.8rem;
   background-color: #76CA66;
   border: none;
-}
-
-.options-list {
-  list-style-type: none;
-  font-size: 1.8rem;
-  width: 30rem;
-  height: 4rem;
-  border-radius: 0.8rem;
-  border: 1px solid #00E6F4;
-  transition: height 0.5s ease;
-  color: #012767;
-  transition: all 0.3s ease-in-out;
-  transition: height 0.3s ease-out;
-}
-
-.options-list li {
-  padding: 0.8rem 1.2rem;
-}
-
-.options-list-first, .options-list-another {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.expanded {
-  height: 12rem;
-}
-
-.filter-checked-container {
-  opacity: 0;
-}
-
-.active {
-  opacity: 1;
-}
-
-.options-list-another {
-  list-style: none;
-  padding: 10px;
-  position: relative;
-}
-.options-list-another .animation-container {
-  visibility: hidden;
-  transition: visibility 0.5s ease;
-  position: absolute;
-  top: 50%;
-  left: 100%;
-}
-.options-list-another:hover .animation-container {
-  visibility: visible;
 }
 
 .goods-list-render {

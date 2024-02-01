@@ -12,37 +12,37 @@ function CategoryPage({ subCategories, goods }) {
             <div className='category-page'>
                 <Header />
                 <div className="category-main-content">
-                    {/* <BreadCrumps /> */}
+                    <BreadCrumps />
                     <div className="subcategories-row">
-                        {/* <SubcategoriesInCatPage subCategories={subCategories} /> */}
+                        <SubcategoriesInCatPage subCategories={subCategories} />
                     </div>
-                    {/* <GoodsList props={goods} /> */}
+                    <GoodsList props={goods} />
                 </div>
                 <Footer />
             </div>
         </>
     );
 }
-// export async function getServerSideProps(context) {
+export async function getServerSideProps(context) {
 
-//     let id;
-//     if (context.query.category === "Комп’ютерна техніка") id = 100;
-//     else if (context.query.category === "Мобільні телефони") id = 175;
-//     else if (context.query.category === "Побутова техніка") id = 250;
-//     else if (context.query.category === "Ігрові приставки") id = 325;
-//     else if (context.query.category === "Аудіотехніка") id = 400;
+    let id;
+    if (context.query.category === "Комп’ютерна техніка") id = 100;
+    else if (context.query.category === "Мобільні телефони") id = 175;
+    else if (context.query.category === "Побутова техніка") id = 250;
+    else if (context.query.category === "Ігрові приставки") id = 325;
+    else if (context.query.category === "Аудіотехніка") id = 400;
 
-//     const res = await fetch(URLADRESS + `categories/${id}/sub-categories`);
-//     const subCategories = await res.json();
+    const res = await fetch(URLADRESS + `categories/${id}/sub-categories`);
+    const subCategories = await res.json();
 
-//     const resGoods = await fetch(`https://api.escuelajs.co/api/v1/products`);
-//     const goods = await resGoods.json();
+    const resGoods = await fetch(`https://api.escuelajs.co/api/v1/products`);
+    const goods = await resGoods.json();
 
-//     return {
-//         props: {
-//             subCategories,
-//             goods
-//         }
-//     };
-// };
+    return {
+        props: {
+            subCategories,
+            goods
+        }
+    };
+};
 export default CategoryPage;
