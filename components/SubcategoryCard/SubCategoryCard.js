@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 
 export default function SubCategotyCard({ subCategories }) {
-    // console.log(subCategories.name)
+    // console.log(subCategories)
     const category = subCategories.parent;
     const subcategory = subCategories.name;
     return (

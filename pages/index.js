@@ -6,9 +6,6 @@ import Image from 'next/image';
 import Categories from '@/components/CategoriesOnMainPage/CategoriesOnMain';
 import TopSellers from '@/components/TopSellersMain/TopSellers';
 import PromotionsOnMain from '@/components/PromotionsInMain/PromosionsOnMain';
-import { useState, useEffect } from 'react';
-import HeaderSelectorToFilter from '@/components/SelectorInHeadInGoodPage/SelectorInHeadInGoodPage';
-
 
 
 
@@ -19,7 +16,7 @@ function Home({ categories, topSellers, promotionGoods }) {
             <Head>
                 <title>MarketHub - знайденться все!</title>
                 <link rel="icon" href="/frame380.png" sizes="any" />
-                <meta name='MarketHub' content='MarketHub' />
+                <meta name='MarketHub' content='MarketHub - тут може бути Ваша реклама' />
             </Head>
 
             <main className='main'>
@@ -47,7 +44,6 @@ function Home({ categories, topSellers, promotionGoods }) {
                 </div>
 
                 <div className="main-content">
-                    {/* <HeaderSelectorToFilter /> */}
                     <Categories categories={categories} />
                     <TopSellers props={topSellers} />
                     <PromotionsOnMain promotionGoods={promotionGoods} />

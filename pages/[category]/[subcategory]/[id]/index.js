@@ -4,17 +4,18 @@ import GoodCard from '@/components/GoodCard/GoodCard';
 
 export default function ProductPage() {
     return (
-        <div className='wrapper'>
+        <>
             <Head>
-                <title>Опис продукту</title>
-                <meta
-                    name='description675688'
-                    content='Описание вашего товара здесь'
-                />
+                <title>MarketHub - знайденться все!</title>
+                <link rel="icon" href="/frame380.png" sizes="any" />
+                <meta name='MarketHub' content='MarketHub - тут може бути Ваша реклама' />
             </Head>
-            <main>
-                <GoodCard />
-            </main>
-        </div>
+            <div className='wrapper'>
+                <main>
+                    <GoodCard />
+                </main>
+            </div>
+        </>
+
     );
 }

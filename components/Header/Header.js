@@ -24,7 +24,7 @@ export default function Header() {
 
 
     return (
-        <div className='header-component'>
+        <Link className='header-component' href={"/"}>
             <Image
                 alt="logo image in header component"
                 src='/logoheaderinmainpage.svg'
@@ -74,6 +74,6 @@ export default function Header() {
                     priority
                 />
             </div>
-        </div>
+        </Link>
     );
 }

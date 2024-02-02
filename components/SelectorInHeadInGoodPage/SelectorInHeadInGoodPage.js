@@ -30,8 +30,10 @@ export default function HeaderSelectorToFilter() {
 
     return (
         <div className="selector-filter-container">
-            <p className='selected-sort-option'>{selectedOption}
-                <button className="filter-arrow-button" onClick={handleToggle}>
+            <p className='selected-sort-option' onClick={handleToggle}>{selectedOption}
+                <button className="filter-arrow-button"
+                // onClick={handleToggle}
+                >
                     {/* {isVisibleArrow && (
                         <Image className='arrow'
                             alt="logo home"

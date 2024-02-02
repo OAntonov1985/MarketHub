@@ -1,3 +1,4 @@
+"use client"
 import { useState } from 'react'
 
 export default function AsideFilter() {
@@ -26,15 +27,48 @@ export default function AsideFilter() {
             <div className="goods-producer">
                 <p className='goods-producer-title'>Виробник:</p>
                 <ul className='goods-producer-list'>
-                    <li><input type='checkbox' id='lenovo' /><label for='lenovo'>Lenovo</label></li>
-                    <li><input type='checkbox' id='samsung' /><label for='samsung'>Samsung</label></li>
-                    <li><input type='checkbox' id='apple' /><label for='apple'>Apple</label></li>
-                    <li><input type='checkbox' id='dell' /><label for='dell'>Dell</label></li>
-                    <li><input type='checkbox' id='asus' /><label for='asus'>Asus</label></li>
+                    <li key="lenovo">
+                        <label className='input-label'>
+                            <input type='checkbox' id='lenovo' className='checkbox' />
+                            <span className='span-input'></span>
+                            Lenovo
+                        </label>
+                    </li>
+                    <li key="samsung">
+                        <label className='input-label'>
+                            <input type='checkbox' id='samsung' className='checkbox' />
+                            <span className='span-input'></span>
+                            Samsing
+                        </label>
+                    </li>
+                    <li key="apple">
+                        <label className='input-label'>
+                            <input type='checkbox' id='apple' className='checkbox' />
+                            <span className='span-input'></span>
+                            Apple
+                        </label>
+                    </li>
+                    <li key="dell">
+                        <label className='input-label'>
+                            <input type='checkbox' id='dell' className='checkbox' />
+                            <span className='span-input'></span>
+                            Dell
+                        </label>
+                    </li>
+                    <li key="asus">
+                        <label className='input-label' >
+                            <input type='checkbox' id='asus' className='checkbox' />
+                            <span className='span-input'></span>
+                            Asus
+                        </label>
+                    </li>
                 </ul>
                 <div>
-                    <input type="checkbox" id="isAvailable" name="scales" className='filter-availability' />
-                    <label for="isAvailable">Є в наявності</label>
+                    <label className='input-label mb-label' >
+                        <input type="checkbox" id="isAvailable" name="scales" className='checkbox' />
+                        <span className='span-input'></span>
+                        Є в наявності
+                    </label>
                 </div>
                 <button className='aside-filter-button'>Застосувати</button>
             </div>

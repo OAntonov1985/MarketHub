@@ -1,7 +1,7 @@
 @import _variables.sass
 
 .selector-filter-container
-    // height: 12rem
+    height: 4rem
     display: flex
     flex-direction: column
     margin-bottom: 4rem
@@ -31,28 +31,26 @@
     font-size: 1.8rem  
     width: 30rem
     height: 0    
-    border: none  
-    transition: all 0.3s ease-in-out
-    transition: height 0.3s ease-out
+    border: none
+    transition: height 0.3s ease-in-out
     background-color: $background-color
     
     
 .display-option-list
-    height: 12.8rem 
+    height: 12.8rem
     border-radius: .8rem    
     border: 1px solid $border-color-secondary    
-    color: $color-background-loginpage
-    // transition: all 0.5s ease-in-out
-    transition: height 0.5s ease-out
+    color: $color-background-loginpage    
+    transition: height 0.3s ease-out
     z-index: 999
+
 
 .filter-li-options
     padding: .8rem 1.2rem  
     display: flex
     align-items: center
     justify-content: space-between
-    opacity: 0
-    // transition: opacity 0.5s ease
+    opacity: 0   
 
 .display-li-options
     opacity: 1
@@ -63,8 +61,7 @@
     transition: opacity 0.5s ease
 
 .filter-li-options:hover
-    .filter-checked-container
-        transition: opacity 0.5s ease
+    .filter-checked-container        
         opacity: 1
 
 
@@ -95,6 +92,7 @@
 .filter-range
     margin-bottom: 2.5rem
     display: flex
+    color: $color-text-search !important
 
 
 .filter-price-start, .filter-price-end
@@ -102,13 +100,17 @@
     height: 2.4rem
     border-radius: .8rem
     border: 1px solid #D9D9D9
-    background-color: #F5F6F7
-    color: $color-background-loginpage
+    background-color: #F5F6F7     
+    color: $color-text-main   
     font-size: 1.8rem
     font-style: normal
     font-weight: 400
     line-height: normal
     text-align: center
+
+.filter-price-start::placeholder, .filter-price-end::placeholder
+    color: $color-text-search !important
+
 
 .filter-price-start
     margin-right: .4rem
@@ -127,7 +129,11 @@
 .goods-producer-list li
     margin-bottom: .8rem
 
-.goods-producer-list input[type='checkbox']    
+.input-label
+    display: flex
+    align-items: center
+
+.span-input  
     margin-right: .8rem
     border: 1px solid #D9D9D9     
     width: 1.6rem
@@ -151,9 +157,36 @@
     background-color: $valid-field-border
     border: none
 
-
-
    
+.checkbox
+    display: none 
+
+.span-input
+    height: 1.6rem
+    width: 1.6rem
+    border: 1px solid #D9D9D9
+    display: block
+    position: relative
+    border-radius: 2px
+    // padding: 3px
+
+.checkbox:checked
+    & + .span-input
+        width: 16px
+        height: 16px        
+        border: 1px solid $valid-field-border
 
 
-    
+.checkbox:checked + .span-input:before 
+    background-image: url("/Vector (Stroke).png")
+    background-size: cover 
+    position: absolute
+    width: 12px
+    height: 11px
+    top: 1px
+    left: 1px    
+    content: ''
+ 
+
+.mb-label
+    margin-bottom: 2.4rem
