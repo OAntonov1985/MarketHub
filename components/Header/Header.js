@@ -24,16 +24,19 @@ export default function Header() {
 
 
     return (
-        <Link className='header-component' href={"/"}>
-            <Image
-                alt="logo image in header component"
-                src='/logoheaderinmainpage.svg'
-                quality={100}
-                width={110}
-                height={56}
-                className='logo-image'
-                priority
-            />
+        <div className='header-component' href={"/"}>
+            <Link href={"/"}>
+                <Image
+                    alt="logo image in header component"
+                    src='/logoheaderinmainpage.svg'
+                    quality={100}
+                    width={110}
+                    height={56}
+                    className='logo-image'
+                    priority
+                />
+            </Link>
+
             <div className='header-search-field'>
                 <input
                     type="text"
@@ -74,6 +77,6 @@ export default function Header() {
                     priority
                 />
             </div>
-        </Link>
+        </div>
     );
 }

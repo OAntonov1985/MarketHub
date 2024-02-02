@@ -1,10 +1,13 @@
 import HeaderSelectorToFilter from '../SelectorInHeadInGoodPage/SelectorInHeadInGoodPage';
 import GoodCardSmall from '../GoodCardSmall/GoodCardSmall';
 import AsideFilter from '../AsideFilter/AsideFilter';
+import PageIndexer from '../PageIndexer/PageIndexer';
 
 
 function GoodsList({ props }) {
-    // console.log(props);
+    // console.log(props.length);
+
+
 
     return (
         <div className='goods-list'>
@@ -17,9 +20,10 @@ function GoodsList({ props }) {
                             <GoodCardSmall key={props.id} props={props} />
                         );
                     })};
+
                 </div>
             </div>
-            <div className='page-selector'>numbers</div>
+            <PageIndexer props={props.length} />
         </div>
     )
 };

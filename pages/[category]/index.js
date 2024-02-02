@@ -6,8 +6,10 @@ import BreadCrumps from '@/components/Breadcrumps/Breadcrumps';
 import GoodsList from '@/components/GoodsList/GoodsList';
 import Head from 'next/head';
 
+
 function CategoryPage({ subCategories, goods }) {
-    // console.log(goods)
+
+    console.log(goods.length)
     return (
         <>
             <Head>

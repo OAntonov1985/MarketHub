@@ -18,8 +18,8 @@ export default function SubCategotyCard({ subCategories }) {
                 <div className="image-container">
                     <Image
                         alt="image of computer"
-                        // src={subCategories.photo_preview}
-                        src="/ItemImage/pfones.png"
+                        src={subCategories.photo_preview}
+                        // src="/ItemImage/pfones.png"
                         quality={100}
                         fill
                         style={{

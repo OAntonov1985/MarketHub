@@ -4,31 +4,33 @@ import {
     createAsyncThunk,
 } from "@reduxjs/toolkit";
 
-const userInfo = createSlice({
+const MarketHub = createSlice({
     name: "markethub__store",
     initialState: {
-        userID: null,
-        userName: null,
+        currentPage: 1,
+        prePage: 5,
+        totalNumberGoods: null,
     },
     reducers: {
-        addUser: {
+        currentPage: {
             reducer: (state, action) => {
                 state.userInfo = action.payload;
             },
         },
 
-        addUserMoney: {
+        totalNumberGoods: {
             reducer: (state, action) => {
+                console.log(action.payload);
                 state.userMoney = action.payload;
             },
         },
     },
 });
 
-export const { addUser, addUserMoney } = userInfo.actions;
+export const { currentPage, totalNumberGoods } = MarketHub.actions;
 
 export const store = configureStore({
-    reducer: userInfo.reducer,
+    reducer: MarketHub.reducer,
     devTools: true,
 });
 // store.dispatch(fetchActualCourse());

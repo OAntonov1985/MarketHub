@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import { Ubuntu, Poppins } from 'next/font/google';
 
 
+
 const ubuntu = Ubuntu({
     subsets: ['cyrillic'],
     weight: ["300", "400", "500", '700'],
@@ -13,9 +14,12 @@ const poppins = Poppins({
 });
 export default function MyApp({ Component, pageProps }) {
     return (
-        <div className={ubuntu.className}>
-            <Component {...pageProps} />
-        </div>
+        <>
+            <div className={ubuntu.className}>
+                <Component {...pageProps} />
+            </div>
+        </>
+
     )
 
 }
