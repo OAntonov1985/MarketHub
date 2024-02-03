@@ -5,11 +5,12 @@ import SubcategoriesInCatPage from '@/components/SubCategoriesInCategoryPage/Sub
 import BreadCrumps from '@/components/Breadcrumps/Breadcrumps';
 import GoodsList from '@/components/GoodsList/GoodsList';
 import Head from 'next/head';
+import PageIndexer from '@/components/PageIndexer/PageIndexer';
+import { useEffect } from 'react';
 
 
 function CategoryPage({ subCategories, goods }) {
 
-    console.log(goods.length)
     return (
         <>
             <Head>
@@ -25,6 +26,7 @@ function CategoryPage({ subCategories, goods }) {
                         <SubcategoriesInCatPage subCategories={subCategories} />
                     </div>
                     <GoodsList props={goods} />
+                    <PageIndexer />
                 </div>
                 <Footer />
             </div>
@@ -43,7 +45,7 @@ export async function getServerSideProps(context) {
     const res = await fetch(URLADRESS + `categories/${id}/sub-categories`);
     const subCategories = await res.json();
 
-    const resGoods = await fetch(`https://api.escuelajs.co/api/v1/products`);
+    const resGoods = await fetch(`https://fakestoreapi.com/products`);
     const goods = await resGoods.json();
 
     return {

@@ -14,7 +14,7 @@ function CategoriesOnMain({ categories }) {
                                 <Image
                                     alt={`image of ${categories.name}`}
                                     src={categories.photo_preview}
-                                    // src={categories.image}
+                                    sizes="(max-width: 100%)"
                                     quality={100}
                                     fill
                                     style={{
@@ -39,6 +39,7 @@ function CategoriesOnMain({ categories }) {
                                     src={categories.photo_preview}
                                     // src={categories.image}
                                     quality={100}
+                                    sizes="(max-width: 100%)"
                                     fill
                                     style={{
                                         objectFit: 'contain',

@@ -20,10 +20,8 @@ function GoodsList({ props }) {
                             <GoodCardSmall key={props.id} props={props} />
                         );
                     })};
-
                 </div>
             </div>
-            <PageIndexer props={props.length} />
         </div>
     )
 };

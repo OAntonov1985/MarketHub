@@ -29,6 +29,7 @@ export default function Header() {
                 <Image
                     alt="logo image in header component"
                     src='/logoheaderinmainpage.svg'
+                    sizes="(max-width: 100%)"
                     quality={100}
                     width={110}
                     height={56}
@@ -46,6 +47,7 @@ export default function Header() {
                 <Image
                     alt="logo image search in input field"
                     src='/iconserach.svg'
+                    sizes="(max-width: 100%)"
                     quality={100}
                     width={18}
                     height={18}
@@ -62,6 +64,7 @@ export default function Header() {
                         quality={100}
                         width={24}
                         height={24}
+                        sizes="(max-width: 100%)"
                         title='Перейти в особистий кабінет'
                         className='logo-image-client'
                         priority
@@ -70,6 +73,7 @@ export default function Header() {
                 <Image
                     alt="logo image search in input field"
                     src='/basket.svg'
+                    sizes="(max-width: 100%)"
                     quality={100}
                     width={24}
                     height={24}

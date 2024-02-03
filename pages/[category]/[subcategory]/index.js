@@ -3,6 +3,7 @@ import GoodsList from '@/components/GoodsList/GoodsList';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import Head from 'next/head';
+import PageIndexer from '@/components/PageIndexer/PageIndexer';
 
 export default function SubCategoryPage({ goods }) {
     // console.log(goods)
@@ -18,6 +19,7 @@ export default function SubCategoryPage({ goods }) {
                 <div className="subcategory-main-content">
                     <BreadCrumps />
                     <GoodsList props={goods} />
+                    <PageIndexer />
                 </div>
                 <Footer />
             </div>

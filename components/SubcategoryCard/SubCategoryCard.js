@@ -19,7 +19,7 @@ export default function SubCategotyCard({ subCategories }) {
                     <Image
                         alt="image of computer"
                         src={subCategories.photo_preview}
-                        // src="/ItemImage/pfones.png"
+                        sizes="(max-width: 100%)"
                         quality={100}
                         fill
                         style={{

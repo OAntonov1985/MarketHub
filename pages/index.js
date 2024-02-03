@@ -25,6 +25,7 @@ function Home({ categories, topSellers, promotionGoods }) {
                     <Image
                         alt="background image in header"
                         src='/bgimagemain.png'
+                        // sizes="(max-width: 100%)"
                         quality={100}
                         width={1440}
                         height={770}

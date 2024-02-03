@@ -4,43 +4,51 @@ import Link from 'next/link';
 
 export default function GoodCardSmall({ props }) {
 
-    const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images } = props;
-    // console.log(props.id)
+    const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images, image } = props;
+    // console.log(images[0])
 
     function formattedPrice(price) {
-        let newPrice
-        if (price.toString().length === 4) {
-            newPrice = price.toString().split('');
-            newPrice.splice(1, 0, ' ');
+        const priceString = price.toString();
+
+        if (priceString.includes('.') || priceString.includes(',')) {
+            return priceString;
         }
-        else if (price.toString().length === 5) {
-            newPrice = price.toString().split('');
-            newPrice.splice(2, 0, ' ');
+
+        let newPrice;
+
+        if (priceString.length > 3) {
+            newPrice = priceString.split('');
+            newPrice.splice(-3, 0, ' ');
+        } else {
+            return priceString;
         }
-        return newPrice
-    };
+
+        return newPrice.join('');
+    }
 
 
     return (
         <Link key={props.id}
             // href="/[category]/[subcategory]/[id]" as={`/${category_id}/${sub_category_id}/${id}`}
             href="/[category]/[subcategory]/[id]" as={`/${id}/${title}/${id}`}
-            // href="/[name]/[id]"
             className="top-sellers-item">
             <div className="image-container-top-sellers">
                 <div className="container-for-imafe-top-sellers">
                     <Image
                         alt="image of good"
-                        // src={photo_preview ? photo_preview : props.images[0]}
+                        // src={photo_preview ? photo_preview : (props.images[1] ? props.images[1] : "/promotionsImage/headphones.png")}
+                        src={photo_preview ? photo_preview : (props.images && props.images.length > 1 ? images[0] : props.image)}
+
                         // src={goods.images[1]}
-                        src="/promotionsImage/headphones.png"
+                        // src="/promotionsImage/headphones.png"
                         quality={100}
                         fill
+                        sizes="(max-width: 100%)"
                         style={{
                             objectFit: 'contain',
                             width: '100%'
-
                         }}
+
                     />
                 </div>
             </div>

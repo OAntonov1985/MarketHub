@@ -1050,6 +1050,7 @@ h2 {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  cursor: pointer;
 }
 
 .arrow-container {
@@ -1068,6 +1069,7 @@ h2 {
   color: #FBFBFB;
   border-radius: 0.4rem;
   font-size: 2.2rem;
+  cursor: pointer;
 }
 
 .unactive-page {
