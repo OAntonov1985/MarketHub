@@ -1,7 +1,8 @@
 "use client"
-import { useState } from 'react'
+import { useState } from 'react';
+import React from 'react';
 
-export default function AsideFilter() {
+function AsideFilter() {
     const [prciseStart, setPriceStart] = useState('');
     const [prciseEnd, setPriceEnd] = useState('');
 
@@ -74,4 +75,6 @@ export default function AsideFilter() {
             </div>
         </div>
     )
-}
+};
+
+export default React.memo(AsideFilter);

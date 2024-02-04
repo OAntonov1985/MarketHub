@@ -267,7 +267,7 @@ function RegistrationForm({ props }) {
                 </p>
             </form>
         </>
-    )
-}
+    );
+};
 
-export default React.memo(RegistrationForm)
+export default React.memo(RegistrationForm);

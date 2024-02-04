@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 
 
-export default function SubCategotyCard({ subCategories }) {
+function SubCategotyCard({ subCategories }) {
     // console.log(subCategories)
     const category = subCategories.parent;
     const subcategory = subCategories.name;
@@ -36,5 +37,5 @@ export default function SubCategotyCard({ subCategories }) {
     )
 };
 
-// 
+export default React.memo(SubCategotyCard);
 

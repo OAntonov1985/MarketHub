@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
+import React from 'react';
 
 
-export default function ShowOrHidePasswordIcon({ props }) {
+function ShowOrHidePasswordIcon({ props }) {
     const { showPassword, setShowPassword } = props;
     const [wayToIcon, setWayToIcon] = useState('/pass.png');
 
@@ -22,6 +23,8 @@ export default function ShowOrHidePasswordIcon({ props }) {
                 onClick={showOrHidePassword}
             />
         </div>
-    )
+    );
 };
+
+export default React.memo(ShowOrHidePasswordIcon);
 

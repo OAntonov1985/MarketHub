@@ -1,7 +1,8 @@
 import GoodCardSmall from '../GoodCardSmall/GoodCardSmall';
+import React from 'react';
 
 
-export default function TopSellers({ props }) {
+function TopSellers({ props }) {
     // console.log(props.id)
     return (
         <>
@@ -14,5 +15,7 @@ export default function TopSellers({ props }) {
                 })}
             </div>
         </>
-    )
-}
+    );
+};
+
+export default React.memo(TopSellers);

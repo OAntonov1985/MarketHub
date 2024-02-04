@@ -129,4 +129,4 @@ function SingInForm({ props }) {
     );
 };
 
-export default React.memo(SingInForm)
+export default React.memo(SingInForm);

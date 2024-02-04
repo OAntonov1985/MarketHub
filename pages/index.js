@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Categories from '@/components/CategoriesOnMainPage/CategoriesOnMain';
 import TopSellers from '@/components/TopSellersMain/TopSellers';
 import PromotionsOnMain from '@/components/PromotionsInMain/PromosionsOnMain';
+import React from 'react';
 
 
 
@@ -53,10 +54,8 @@ function Home({ categories, topSellers, promotionGoods }) {
             </main >
         </>
     );
-
-
-
 }
+
 export async function getServerSideProps() {
     const resCategories = await fetch(URLADRESS + 'categories');
     // const resCategories = await fetch("https://api.escuelajs.co/api/v1/categories");
@@ -79,4 +78,4 @@ export async function getServerSideProps() {
 };
 
 
-export default Home;
+export default React.memo(Home);

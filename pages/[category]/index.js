@@ -6,11 +6,11 @@ import BreadCrumps from '@/components/Breadcrumps/Breadcrumps';
 import GoodsList from '@/components/GoodsList/GoodsList';
 import Head from 'next/head';
 import PageIndexer from '@/components/PageIndexer/PageIndexer';
-import { useEffect } from 'react';
+import React from 'react';
 
 
 function CategoryPage({ subCategories, goods }) {
-
+    // console.log(goods)
     return (
         <>
             <Head>
@@ -45,7 +45,8 @@ export async function getServerSideProps(context) {
     const res = await fetch(URLADRESS + `categories/${id}/sub-categories`);
     const subCategories = await res.json();
 
-    const resGoods = await fetch(`https://fakestoreapi.com/products`);
+    // const resGoods = await fetch(`https://fakestoreapi.com/products`);
+    const resGoods = await fetch(`https://dummyjson.com/products`);
     const goods = await resGoods.json();
 
     return {
@@ -55,4 +56,4 @@ export async function getServerSideProps(context) {
         }
     };
 };
-export default CategoryPage;
+export default React.memo(CategoryPage);

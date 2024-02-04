@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import React from 'react';
 
 
-export default function BreadCrumps() {
+function BreadCrumps() {
     const router = useRouter();
     // console.log(router.query)
     // const categoryName = router.query.category;
@@ -38,3 +38,5 @@ export default function BreadCrumps() {
         </div>
     )
 };
+
+export default React.memo(BreadCrumps);

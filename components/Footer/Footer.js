@@ -1,6 +1,7 @@
 import Image from 'next/image';
+import React from 'react';
 
-export default function Footer() {
+function Footer() {
     return (
         <div className='footer'>
             <div className="footer-lert-column">
@@ -10,10 +11,10 @@ export default function Footer() {
                         src='/logo.png'
                         quality={100}
                         fill
+                        sizes="(max-width: 100%)"
                         style={{
                             objectFit: 'contain',
                             width: '100%'
-
                         }}
                     />
                 </div>
@@ -34,4 +35,6 @@ export default function Footer() {
             </div>
         </div>
     );
-}
+};
+
+export default React.memo(Footer);

@@ -1,11 +1,13 @@
 import HeaderSelectorToFilter from '../SelectorInHeadInGoodPage/SelectorInHeadInGoodPage';
 import GoodCardSmall from '../GoodCardSmall/GoodCardSmall';
 import AsideFilter from '../AsideFilter/AsideFilter';
-import PageIndexer from '../PageIndexer/PageIndexer';
+import React from 'react';
 
 
 function GoodsList({ props }) {
-    // console.log(props.length);
+    // console.log(props.products);
+    // const good = props.products.slise
+    // const props = props.products
 
 
 
@@ -15,7 +17,7 @@ function GoodsList({ props }) {
             <div className="goods-list-render">
                 <AsideFilter />
                 <div className="goods-list-goods-items">
-                    {!!props.length && props.slice(0, 12).map(props => {
+                    {!!props.products.length && props.products.slice(0, 12).map(props => {
                         return (
                             <GoodCardSmall key={props.id} props={props} />
                         );
@@ -27,4 +29,4 @@ function GoodsList({ props }) {
 };
 
 
-export default GoodsList;
+export default React.memo(GoodsList);

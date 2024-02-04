@@ -1,9 +1,10 @@
 "use client"
-import Link from 'next/link';
+// import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import React from 'react';
 
-export default function PageIndexer() {
+function PageIndexer() {
     const [activePage, setActivePage] = useState(1);
     const [startNumberToArray, setStartNumberToArray] = useState(1)
     const maxPageRenderInString = 5; // встановлення кількості айтемів для відображення
@@ -92,5 +93,7 @@ export default function PageIndexer() {
             ))}
             <ArrowDivRotate />
         </div>
-    )
-}
+    );
+};
+
+export default React.memo(PageIndexer);

@@ -28,5 +28,5 @@ function Registration({ props }) {
             </div>
         </>
     );
-}
-export default React.memo(Registration)
+};
+export default React.memo(Registration);

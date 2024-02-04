@@ -4,8 +4,9 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import Head from 'next/head';
 import PageIndexer from '@/components/PageIndexer/PageIndexer';
+import React from 'react';
 
-export default function SubCategoryPage({ goods }) {
+function SubCategoryPage({ goods }) {
     // console.log(goods)
     return (
         <>
@@ -37,3 +38,5 @@ export async function getServerSideProps(context) {
         }
     };
 };
+
+export default React.memo(SubCategoryPage);

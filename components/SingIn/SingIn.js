@@ -22,6 +22,6 @@ function SingIn({ props }) {
             </div>
         </>
     );
-}
+};
 
 export default React.memo(SingIn);

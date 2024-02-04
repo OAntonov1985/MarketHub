@@ -3,36 +3,21 @@ import Footer from '../Footer/Footer';
 import Image from 'next/image';
 import BreadCrumps from '../Breadcrumps/Breadcrumps';
 import formattedPrice from '../FormattedPrice/FormattedPrice';
+import GoodCardSlider from '../GoodCardSlider/GoodCardSlider';
+import React from 'react';
+
 
 export default function GoodCard({ props }) {
-    const { id, title, price, description, category, image } = props
-    // console.log(image)
+    const { title, price, description } = props
+
+
     return (
         <div className="good-card">
             <Header />
             <div className="good-card-main-content">
                 <BreadCrumps />
                 <div className="good-card-container">
-                    <div className="good-card-left-column">
-                        <div className='good-card-medium-pfoto-column'></div>
-                        <div className='good-card-big-pfoto-column'>
-                            <div className='good-card-big-pfoto-container'>
-                                <Image
-                                    alt="image of good"
-                                    src={image}
-                                    quality={100}
-                                    fill
-                                    sizes="(max-width: 100%)"
-                                    style={{
-                                        objectFit: 'contain',
-                                        width: '100%'
-                                    }}
-                                />
-
-                            </div>
-                        </div>
-                    </div>
-
+                    <GoodCardSlider props={props} />
 
 
 
@@ -86,4 +71,6 @@ export default function GoodCard({ props }) {
             <Footer />
         </div>
     )
-}
+};
+
+// export default React.memo(GoodCard);

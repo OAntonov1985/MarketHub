@@ -1,8 +1,9 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
+import React from 'react';
 
 
-export default function HeaderSelectorToFilter() {
+function HeaderSelectorToFilter() {
     const [selectedOption, setSelectedOption] = useState("Новинки");
 
     const liClassname = "filter-li-options";
@@ -92,5 +93,7 @@ export default function HeaderSelectorToFilter() {
             </ul>
         </div>
     );
-}
+};
+
+export default React.memo(HeaderSelectorToFilter);
 

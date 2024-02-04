@@ -1,7 +1,8 @@
 import GoodCardSmall from '../GoodCardSmall/GoodCardSmall';
+import React from 'react';
 
 
-export default function PromotionsOnMain({ promotionGoods }) {
+function PromotionsOnMain({ promotionGoods }) {
     // console.log(promotionGoods)
     return (
         <>
@@ -14,5 +15,7 @@ export default function PromotionsOnMain({ promotionGoods }) {
                 })}
             </div>
         </>
-    )
-}
+    );
+};
+
+export default React.memo(PromotionsOnMain);

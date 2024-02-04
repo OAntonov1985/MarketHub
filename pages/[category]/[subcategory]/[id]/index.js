@@ -1,8 +1,9 @@
-import Link from "next/link";
+// import Link from "next/link";
 import Head from "next/head";
 import GoodCard from '@/components/GoodCard/GoodCard';
+import React from 'react';
 
-export default function ProductPage({ good }) {
+function ProductPage({ good }) {
     // console.log(good)
     return (
         <>
@@ -12,9 +13,9 @@ export default function ProductPage({ good }) {
                 <meta name='MarketHub' content='MarketHub - тут може бути Ваша реклама' />
             </Head>
             <div className='wrapper'>
-                <main>
+                <div>
                     <GoodCard props={good} />
-                </main>
+                </div>
             </div>
         </>
 
@@ -24,7 +25,8 @@ export default function ProductPage({ good }) {
 export async function getServerSideProps(context) {
     // console.log(context.query.id)
     let id = context.query.id
-    const resGoods = await fetch(`https://fakestoreapi.com/products/${id}`);
+    // const resGoods = await fetch(`https://fakestoreapi.com/products/${id}`);
+    const resGoods = await fetch(`https://dummyjson.com/products/${id}`);
     // const resGoods = await fetch(`https://fakestoreapi.com/products/1`);
     const good = await resGoods.json();
 
@@ -34,3 +36,5 @@ export async function getServerSideProps(context) {
         }
     };
 };
+
+export default React.memo(ProductPage);

@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import formattedPrice from '../FormattedPrice/FormattedPrice';
+import React from 'react';
 
 
-export default function GoodCardSmall({ props }) {
-
-    const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images, image } = props;
+function GoodCardSmall({ props }) {
     // console.log(props)
+    const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images, image } = props;
+
 
 
     return (
@@ -18,7 +19,7 @@ export default function GoodCardSmall({ props }) {
                     <Image
                         alt="image of good"
                         // src={photo_preview ? photo_preview : (props.images[1] ? props.images[1] : "/promotionsImage/headphones.png")}
-                        src={photo_preview ? photo_preview : (props.images && props.images.length > 1 ? images[0] : props.image)}
+                        src={photo_preview ? photo_preview : (props.images && props.images.length > 1 ? images[0] : (props.image ? props.image : '/defaultPhoto.png'))}
                         quality={100}
                         fill
                         sizes="(max-width: 100%)"
@@ -44,3 +45,4 @@ export default function GoodCardSmall({ props }) {
     );
 };
 
+export default React.memo(GoodCardSmall);

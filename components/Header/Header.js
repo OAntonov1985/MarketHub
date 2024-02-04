@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
 import { useEffect } from 'react';
@@ -7,7 +8,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-export default function Header() {
+function Header() {
     const router = useRouter();
     const [headerName, setHeaderName] = useState('');
     const userName = Cookies.get('userName');
@@ -83,4 +84,6 @@ export default function Header() {
             </div>
         </div>
     );
-}
+};
+
+export default React.memo(Header)

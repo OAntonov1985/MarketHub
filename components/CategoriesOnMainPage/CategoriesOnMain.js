@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 
 function CategoriesOnMain({ categories }) {
     // console.log(categories)
@@ -56,4 +57,4 @@ function CategoriesOnMain({ categories }) {
         </>
     );
 };
-export default CategoriesOnMain;
+export default React.memo(CategoriesOnMain);
