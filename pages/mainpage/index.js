@@ -7,7 +7,7 @@ export default function MainPage() {
     return (
         <>
             <Header />
-            <GoodCard />
+            {/* <GoodCard /> */}
             <Footer />
         </>
     );

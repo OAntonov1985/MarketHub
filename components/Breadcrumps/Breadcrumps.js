@@ -10,6 +10,7 @@ export default function BreadCrumps() {
     // const categoryName = router.query.category;
     const categoryName = router.query.category;
     const subCategoryName = router.query.subcategory;
+    const id = router.query.id;
 
 
     return (
@@ -26,7 +27,10 @@ export default function BreadCrumps() {
                 <Link href={`/${categoryName}`}>
                     {categoryName}
                 </Link>
-                /{subCategoryName}
+                /<Link href={`/${subCategoryName}`}>
+                    {subCategoryName}
+                </Link>
+                {id ? `/${id}` : null}
                 {/* <Link href={`/${categoryName}/${subCategoryName}`}>
                     {subCategoryName}
                 </Link> */}

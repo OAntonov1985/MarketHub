@@ -7,7 +7,7 @@ export default function PromotionsOnMain({ promotionGoods }) {
         <>
             <h4 className='top-sellers-title title'>Акції</h4>
             <div className="top-sellers-row">
-                {!!promotionGoods.length && promotionGoods.map(promotionGoods => {
+                {!!promotionGoods.length && promotionGoods.slice(10, 14).map(promotionGoods => {
                     return (
                         <GoodCardSmall key={promotionGoods.id} props={promotionGoods} />
                     );

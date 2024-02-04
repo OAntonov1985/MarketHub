@@ -25,6 +25,7 @@ export async function getServerSideProps(context) {
     // console.log(context.query.id)
     let id = context.query.id
     const resGoods = await fetch(`https://fakestoreapi.com/products/${id}`);
+    // const resGoods = await fetch(`https://fakestoreapi.com/products/1`);
     const good = await resGoods.json();
 
     return {

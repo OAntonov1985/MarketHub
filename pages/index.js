@@ -62,11 +62,12 @@ export async function getServerSideProps() {
     // const resCategories = await fetch("https://api.escuelajs.co/api/v1/categories");
     const categories = await resCategories.json();
 
-    const resTopSellers = await fetch(URLADRESS + 'goods/top-seller');
-    // const resTopSellers = await fetch("https://api.escuelajs.co/api/v1/products");
+    // const resTopSellers = await fetch(URLADRESS + 'goods/top-seller');
+    const resTopSellers = await fetch("https://fakestoreapi.com/products");
     const topSellers = await resTopSellers.json();
 
-    const resPromotionGoods = await fetch(URLADRESS + 'goods/shares');
+    // const resPromotionGoods = await fetch(URLADRESS + 'goods/shares');
+    const resPromotionGoods = await fetch("https://fakestoreapi.com/products");
     const promotionGoods = await resPromotionGoods.json();
     return {
         props: {
