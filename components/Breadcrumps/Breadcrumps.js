@@ -6,7 +6,8 @@ import { useEffect } from 'react';
 
 export default function BreadCrumps() {
     const router = useRouter();
-
+    // console.log(router.query)
+    // const categoryName = router.query.category;
     const categoryName = router.query.category;
     const subCategoryName = router.query.subcategory;
 

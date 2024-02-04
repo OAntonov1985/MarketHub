@@ -1,35 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import formattedPrice from '../FormattedPrice/FormattedPrice';
 
 
 export default function GoodCardSmall({ props }) {
 
     const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images, image } = props;
-    // console.log(images[0])
-
-    function formattedPrice(price) {
-        const priceString = price.toString();
-
-        if (priceString.includes('.') || priceString.includes(',')) {
-            return priceString;
-        }
-
-        let newPrice;
-
-        if (priceString.length > 3) {
-            newPrice = priceString.split('');
-            newPrice.splice(-3, 0, ' ');
-        } else {
-            return priceString;
-        }
-
-        return newPrice.join('');
-    }
+    // console.log(props)
 
 
     return (
         <Link key={props.id}
-            // href="/[category]/[subcategory]/[id]" as={`/${category_id}/${sub_category_id}/${id}`}
             href="/[category]/[subcategory]/[id]" as={`/${id}/${title}/${id}`}
             className="top-sellers-item">
             <div className="image-container-top-sellers">
@@ -38,9 +19,6 @@ export default function GoodCardSmall({ props }) {
                         alt="image of good"
                         // src={photo_preview ? photo_preview : (props.images[1] ? props.images[1] : "/promotionsImage/headphones.png")}
                         src={photo_preview ? photo_preview : (props.images && props.images.length > 1 ? images[0] : props.image)}
-
-                        // src={goods.images[1]}
-                        // src="/promotionsImage/headphones.png"
                         quality={100}
                         fill
                         sizes="(max-width: 100%)"
@@ -48,7 +26,6 @@ export default function GoodCardSmall({ props }) {
                             objectFit: 'contain',
                             width: '100%'
                         }}
-
                     />
                 </div>
             </div>

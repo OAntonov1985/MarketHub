@@ -2,7 +2,8 @@ import Link from "next/link";
 import Head from "next/head";
 import GoodCard from '@/components/GoodCard/GoodCard';
 
-export default function ProductPage() {
+export default function ProductPage({ good }) {
+    // console.log(good)
     return (
         <>
             <Head>
@@ -12,10 +13,23 @@ export default function ProductPage() {
             </Head>
             <div className='wrapper'>
                 <main>
-                    <GoodCard />
+                    <GoodCard props={good} />
                 </main>
             </div>
         </>
 
     );
-}
+};
+
+export async function getServerSideProps(context) {
+    // console.log(context.query.id)
+    let id = context.query.id
+    const resGoods = await fetch(`https://fakestoreapi.com/products/${id}`);
+    const good = await resGoods.json();
+
+    return {
+        props: {
+            good
+        }
+    };
+};
