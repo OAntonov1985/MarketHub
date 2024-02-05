@@ -5,12 +5,13 @@ import SubcategoriesInCatPage from '@/components/SubCategoriesInCategoryPage/Sub
 import BreadCrumps from '@/components/Breadcrumps/Breadcrumps';
 import GoodsList from '@/components/GoodsList/GoodsList';
 import Head from 'next/head';
-import PageIndexer from '@/components/PageIndexer/PageIndexer';
 import React from 'react';
+import { useState } from 'react';
 
 
 function CategoryPage({ subCategories, goods }) {
-    // console.log(goods)
+
+
     return (
         <>
             <Head>
@@ -26,7 +27,6 @@ function CategoryPage({ subCategories, goods }) {
                         <SubcategoriesInCatPage subCategories={subCategories} />
                     </div>
                     <GoodsList props={goods} />
-                    <PageIndexer />
                 </div>
                 <Footer />
             </div>
@@ -46,7 +46,7 @@ export async function getServerSideProps(context) {
     const subCategories = await res.json();
 
     // const resGoods = await fetch(`https://fakestoreapi.com/products`);
-    const resGoods = await fetch(`https://dummyjson.com/products`);
+    const resGoods = await fetch(`https://dummyjson.com/products?limit=12`);
     const goods = await resGoods.json();
 
     return {

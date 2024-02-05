@@ -2,13 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import formattedPrice from '../FormattedPrice/FormattedPrice';
 import React from 'react';
+import { useEffect } from 'react';
 
 
 function GoodCardSmall({ props }) {
-    // console.log(props)
+
     const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images, image } = props;
-
-
 
     return (
         <Link key={props.id}
