@@ -7,17 +7,28 @@ function GoodCardSlider({ props }) {
 
 
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [biggerPfoto, setBiggerPfoto] = useState(false)
 
-    const nextSlide = () => {
+    const nextSlide = (event) => {
+        event.stopPropagation();
         setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     };
 
-    const prevSlide = () => {
+    const prevSlide = (event) => {
+        event.stopPropagation();
         setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
     };
 
     const prevIndex = (currentIndex - 1 + images.length) % images.length;
     const nextIndex = (currentIndex + 1) % images.length;
+
+
+    // console.log(biggerPfoto)
+    const enlargeThePhoto = (event) => {
+        event.stopPropagation();
+        setBiggerPfoto(!biggerPfoto)
+    }
+
 
     return (
         <div className="good-card-left-column">
@@ -25,8 +36,7 @@ function GoodCardSlider({ props }) {
                 {[prevIndex, currentIndex, nextIndex].map((index) => {
                     return (
                         <div key={index}
-                            className={`good-card-medium-pfoto-item ${index === 0 ? "one" : ''}`}>
-                            {/* className="good-card-medium-pfoto-item"> */}
+                            className="good-card-medium-pfoto-item">
                             <div className="medium-pfoto-container">
                                 <Image
                                     alt="image of good"
@@ -45,7 +55,42 @@ function GoodCardSlider({ props }) {
                     );
                 })}
             </div>
-            <div className='good-card-big-pfoto-column'>
+            <div className={`good-card-big-pfoto-column ${biggerPfoto ? ' ' : "bigger-ptoto"}  `}
+
+
+                onClick={enlargeThePhoto}>
+                <div className="good-card-prev-button" onClick={nextSlide}>
+                    <div className="image-container-arrow">
+                        <Image
+                            alt="image of good"
+                            // src={images[0]}
+                            src="/arrow1.svg"
+                            quality={100}
+                            fill
+                            sizes="(max-width: 100%)"
+                            style={{
+                                objectFit: 'contain',
+                                width: '100%'
+                            }}
+                        />
+                    </div>
+                </div>
+                <div className="good-card-next-button" onClick={prevSlide}>
+                    <div className="image-container-arrow">
+                        <Image
+                            alt="image of good"
+                            // src={images[0]}
+                            src="/arrow2.svg"
+                            quality={100}
+                            fill
+                            sizes="(max-width: 100%)"
+                            style={{
+                                objectFit: 'contain',
+                                width: '100%'
+                            }}
+                        />
+                    </div>
+                </div>
                 <div className='good-card-big-pfoto-container'>
                     <Image
                         alt="image of good"
@@ -62,8 +107,6 @@ function GoodCardSlider({ props }) {
                     />
                 </div>
             </div>
-            <button onClick={nextSlide}>Prev</button>
-            <button onClick={prevSlide}>NEXT</button>
         </div>
     );
 };

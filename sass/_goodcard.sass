@@ -23,8 +23,9 @@
     display: flex
     // flex-direction: column
     gap: 3.6%
-    // background-color: gray
+    position: relative
     width: 52.4%
+    // width: 66rem
     min-height: 48.6rem
 
 .good-card-big-pfoto-column
@@ -33,6 +34,7 @@
 
 .good-card-medium-pfoto-column
     width: 22.7%
+    // width: 15rem
     display: flex
     flex-direction: column
     gap: 3.9%
@@ -44,8 +46,49 @@
     display: flex
     align-items: center
     justify-content: center
-    width: 73.7%
-    border-radius: 3.2rem
+    width: 73.7%    
+    border-radius: 3.2rem 
+    transition: all 0.5s ease-in-out    
+    position: absolute
+    // left: 17.4rem
+    left: 26.4%
+    top: 0px
+
+.bigger-ptoto
+    position: absolute
+    width: 91%
+    // width: 60rem
+    height: 60rem
+    left: 26.4%
+    // left: 17.4rem
+    top: 0px
+    z-index: 2
+  
+
+
+.good-card-prev-button ,.good-card-next-button
+    width: 4.6rem
+    height: 4.6rem
+    border-radius: 50%
+    position: absolute
+    top: 50%    
+    right: 1px
+    transform: translateY(-50%)   
+    background-color: #E5E7EA
+    z-index: 777
+    display: flex
+    align-items: center
+    justify-content: center
+
+.image-container-arrow  
+    width: 3.4rem
+    height: 3.4rem
+    opacity: 1
+    position: relative
+    
+
+.good-card-prev-button 
+    left: 0px
 
 .good-card-medium-pfoto-item
     display: flex
@@ -53,6 +96,7 @@
     justify-content: center
     border-radius: .8rem
     width: 100%
+    // width: 15rem
     height: 30.8%
     background-color: $background-color-items
 
@@ -60,6 +104,7 @@
     position: relative    
     width: 92%
     height: 63.8%
+    transition: 0.5s ease-in-out
 
 
 ///////   SLIDER    ///////
@@ -156,11 +201,19 @@
     background-color: $color-blue
     color: $background-color
     margin-right: 1.2rem
+    transition: 0.2s ease-in-out
+
+.good-card-buy-good:hover, .good-card-add-to-favorite:hover
+    background-color: $border-color-secondary
+
+.good-card-add-to-favorite:hover
+    border: .1rem solid $border-color-secondary
 
 .good-card-add-to-favorite
     background-color: $background-color
     color: $color-blue
     border: .1rem solid $color-blue
+    transition: 0.2s ease-in-out
 
 .good-card-logo-container
     position: relative

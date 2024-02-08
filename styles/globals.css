@@ -807,6 +807,7 @@ h2 {
 .good-card-left-column {
   display: flex;
   gap: 3.6%;
+  position: relative;
   width: 52.4%;
   min-height: 48.6rem;
 }
@@ -829,6 +830,45 @@ h2 {
   justify-content: center;
   width: 73.7%;
   border-radius: 3.2rem;
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+  left: 26.4%;
+  top: 0px;
+}
+
+.bigger-ptoto {
+  position: absolute;
+  width: 91%;
+  height: 60rem;
+  left: 26.4%;
+  top: 0px;
+  z-index: 2;
+}
+
+.good-card-prev-button, .good-card-next-button {
+  width: 4.6rem;
+  height: 4.6rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  right: 1px;
+  transform: translateY(-50%);
+  background-color: #E5E7EA;
+  z-index: 777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container-arrow {
+  width: 3.4rem;
+  height: 3.4rem;
+  opacity: 1;
+  position: relative;
+}
+
+.good-card-prev-button {
+  left: 0px;
 }
 
 .good-card-medium-pfoto-item {
@@ -845,6 +885,7 @@ h2 {
   position: relative;
   width: 92%;
   height: 63.8%;
+  transition: 0.5s ease-in-out;
 }
 
 .medium-pfoto-container {
@@ -949,12 +990,22 @@ h2 {
   background-color: #116ACC;
   color: #FBFBFB;
   margin-right: 1.2rem;
+  transition: 0.2s ease-in-out;
+}
+
+.good-card-buy-good:hover, .good-card-add-to-favorite:hover {
+  background-color: #00E6F4;
+}
+
+.good-card-add-to-favorite:hover {
+  border: 0.1rem solid #00E6F4;
 }
 
 .good-card-add-to-favorite {
   background-color: #FBFBFB;
   color: #116ACC;
   border: 0.1rem solid #116ACC;
+  transition: 0.2s ease-in-out;
 }
 
 .good-card-logo-container {
