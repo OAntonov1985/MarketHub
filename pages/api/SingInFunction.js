@@ -4,6 +4,9 @@ import { URLADRESS } from '@/components/Constants';
 export default async function singInFunction(body) {
     let JWTToken
     let Errorflag
+
+    const currentDate = new Date();
+    currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
     try {
         const response = await fetch(URLADRESS + 'login', {
             method: 'POST',
@@ -17,10 +20,8 @@ export default async function singInFunction(body) {
         if (response.ok) {
             const data = await response.json()
                 .then(data => {
-                    Cookies.set('jwtToken', data.token);
-                    Cookies.set('userName', data.username);
-                    // console.log('userID', data.id);
-                    // console.log(data);
+                    Cookies.set('jwtToken', data.token, { expires: currentDate });
+                    Cookies.set('userName', data.username, { expires: currentDate });
                     JWTToken = data.token;
                 })
 

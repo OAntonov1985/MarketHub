@@ -71,16 +71,19 @@ function Header() {
                         priority
                     />
                 </Link>
-                <Image
-                    alt="logo image search in input field"
-                    src='/basket.svg'
-                    sizes="(max-width: 100%)"
-                    quality={100}
-                    width={24}
-                    height={24}
-                    className='logo-image-basket'
-                    priority
-                />
+                <Link href="/basket/">
+                    <Image
+                        alt="logo image search in input field"
+                        src='/basket.svg'
+                        sizes="(max-width: 100%)"
+                        quality={100}
+                        width={24}
+                        height={24}
+                        className='logo-image-basket'
+                        priority
+                    />
+                </Link>
+
             </div>
         </div>
     );

@@ -5,6 +5,9 @@ import { URLADRESS } from '@/components/Constants';
 export default async function RegistrationFunction(body) {
     let JWTToken
     let Errormasage
+
+    const currentDate = new Date();
+    currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
     try {
         const response = await fetch(URLADRESS + 'authorization', {
             method: 'POST',
@@ -17,8 +20,8 @@ export default async function RegistrationFunction(body) {
         if (response.ok) {
             const data = await response.json()
                 .then(data => {
-                    Cookies.set('jwtToken', data.token);
-                    Cookies.set('userName', data.username);
+                    Cookies.set('jwtToken', data.token, { expires: currentDate });
+                    Cookies.set('userName', data.username, { expires: currentDate });
                     JWTToken = data.token;
                 })
 

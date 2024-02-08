@@ -23,7 +23,7 @@ function GoodCardSlider({ props }) {
     const nextIndex = (currentIndex + 1) % images.length;
 
 
-    // console.log(biggerPfoto)
+
     const enlargeThePhoto = (event) => {
         event.stopPropagation();
         setBiggerPfoto(!biggerPfoto)
@@ -55,7 +55,7 @@ function GoodCardSlider({ props }) {
                     );
                 })}
             </div>
-            <div className={`good-card-big-pfoto-column ${biggerPfoto ? ' ' : "bigger-ptoto"}  `}
+            <div className={`good-card-big-pfoto-column ${!biggerPfoto ? ' ' : "bigger-ptoto"}  `}
 
 
                 onClick={enlargeThePhoto}>
