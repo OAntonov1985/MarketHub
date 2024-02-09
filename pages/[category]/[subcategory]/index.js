@@ -28,7 +28,7 @@ function SubCategoryPage({ goods }) {
     )
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
     const resGoods = await fetch(`https://dummyjson.com/products?limit=12&skip=12`);
     const goods = await resGoods.json();
 

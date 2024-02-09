@@ -65,6 +65,7 @@
     display: flex
     flex-direction: column
     gap: 4rem
+    margin-bottom: 5rem
 
 
 //////////////////////////////////  GOOD ITEM LEFT COLUMN  //////////////////////////////////
@@ -85,7 +86,6 @@
     justify-content: space-between
     gap: 3.2rem
 
-.good-item-left-column
 
 .good-item-image
     height: 100%
@@ -125,13 +125,25 @@
     
    
 .good-item-description-selsector-number
+    display: flex
+    align-items: center
+    justify-content: center
+
+
+.good-item-description-selsector-number
     width: 8.2rem
     height: 3.2rem
     border: 1px solid $color-text-gray
     border-radius: .8rem
+    gap: .4rem
 
+.selsector-number-minus, .selsector-number-plus
+    position: relative
+    width: 2.4rem
+    height: 2.4rem
 
-.good-item-description-total-price
+.selsector-number-number
+    font-size: 1.6rem
 
 
     
@@ -153,3 +165,175 @@
 
 .good-item-total-price
     font-weight: bold
+
+
+//////////////////////////////////  GOOD PLACING OF ORDER  //////////////////////////////////
+
+
+.basket-with-goods-subtitle
+    font-size: 1.8rem
+    line-height: 150%
+    color: $color-text-main
+    margin-bottom: 4rem
+
+.basket-with-goods-buttons-row
+    display: flex
+    gap: 4rem
+    margin-bottom: 4rem
+
+.basket-with-goods-new-customer, .basket-with-goods-regular-customer
+    display: block
+    font-size: 1.8rem
+    line-height: 150%
+    padding: .8rem 1.6rem
+    color: $color-text-main
+    border: none
+    background-color: $background-color
+    border-radius: .5rem
+
+.active-button
+    border: 1px solid $valid-field-border
+
+.unactive-button
+    border: 1px solid #D9D9D9
+
+
+
+//////////////////////////////////  GOOD PLASING OF ORDER  //////////////////////////////////
+
+
+.basket-with-goods-columns
+    display: flex
+    gap: 27.4%  
+
+.basket-with-goods-left-column, .basket-with-goods-right-column
+    display: flex
+    flex-direction: column
+    width: 23.8%
+
+    
+
+//////////////////////////////////  BASKET FORM  //////////////////////////////////
+
+.basket-user-form
+    width: 100%
+    margin-bottom: 4rem
+
+.basket-label-title
+    font-size: 1.8rem
+    font-weight: 300
+    line-height: 150%
+    color: $color-text-main
+    margin-bottom: .4rem
+
+.basket-input
+    width: 100%
+    margin-bottom: 1.6rem
+    padding: 1rem 0 1rem 1.6rem
+    border-radius: .5rem
+    font-size: 1.6rem
+    line-height: 150%
+    color: $color-text-main
+
+.basket-input::placeholder
+    font-size: 1.6rem
+    line-height: 150%
+    color: $color-text-gray
+
+.basket-input:focus
+    border-color: $color-text-main
+    outline: 1px solid  $color-text-main
+
+
+.active-field
+    border: 1px solid $color-text-main
+
+.unactive-field
+    border: 1px solid  #D9D9D9
+
+
+//////////////////////////////////  BASKET DELIVERY INFO  //////////////////////////////////
+
+.basket-with-good-container
+    margin-bottom: 4rem
+    width: 100%
+
+.basket-with-goods-content
+    display: flex
+    gap: 27.4%
+ 
+.basket-with-good-left-column, .basket-with-good-right-column
+    width: 23.8%
+   
+.basket-with-good-left-column
+    padding-top: 2.4rem
+
+.basket-with-goods-item
+    display: flex
+    justify-content: space-between    
+    align-items: center
+    // width: 33.2rem
+    width: 100%
+    padding: .8rem 1.6rem
+    border: 1px solid $background-color
+    border-radius: .5rem
+    transition: all 0.2s ease-in-out
+    margin-bottom: 2.4rem
+
+.basket-with-goods-item:hover
+    border: 1px solid $valid-field-border
+
+.goods-item-active
+    border: 1px solid $valid-field-border
+
+
+
+.basket-with-goods-item div
+    font-size: 2.4rem
+    line-height: 115%
+    color: $color-text-main
+
+.good-item-chekbox
+    position: relative
+    width: 1.6rem
+    height: 1.6rem    
+
+
+
+//////////////////////////////////  BASKET TOTAL ROW  //////////////////////////////////
+
+.basket-total-row
+    width: 100%
+    min-height: 19rem
+    background-color: #F4FFF2
+    border: 1px solid $valid-field-border
+    border-radius: 3.2rem
+    padding: 2.4rem
+    display: flex
+    justify-content: space-between
+
+.modify-title
+    margin-bottom: 0
+
+.basket-total-left-column
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 2.4rem
+
+.basket-with-goods-row
+    font-size: 2rem
+
+.basket-with-goods-row
+    span
+        font-weight: bold
+
+
+.basket-total-right-column
+    width: 15rem
+    display: flex
+    flex-direction: columns
+    align-items: flex-end
+
+.basket-total-button
+    padding: .8rem 1.7rem

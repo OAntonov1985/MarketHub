@@ -7,11 +7,14 @@ import Categories from '@/components/CategoriesOnMainPage/CategoriesOnMain';
 import TopSellers from '@/components/TopSellersMain/TopSellers';
 import PromotionsOnMain from '@/components/PromotionsInMain/PromosionsOnMain';
 import React from 'react';
+import { useRouter } from 'next/router';
 
 
 
 function Home({ categories, topSellers, promotionGoods }) {
-    // console.log(topSellers)
+    const router = useRouter();
+    const isHomePage = router.pathname === '/';
+
     return (
         <>
             <Head>
@@ -22,7 +25,9 @@ function Home({ categories, topSellers, promotionGoods }) {
 
             <main className='main'>
                 <div className="header-in-main">
-                    <Header />
+                    {/* <Header style={{ backgroundColor: 'transparent' }} /> */}
+                    {/* <Header style={{ backgroundColor: 'transparent' }} /> */}
+                    {isHomePage ? <Header transparentBackground /> : <Header coloredBackground />}
                     <Image
                         alt="background image in header"
                         src='/bgimagemain.png'

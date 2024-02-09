@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-function Header() {
+function Header({ transparentBackground }) {
     const router = useRouter();
     const [headerName, setHeaderName] = useState('');
     const userName = Cookies.get('userName');
@@ -25,7 +25,7 @@ function Header() {
 
 
     return (
-        <div className='header-component' href={"/"}>
+        <div className='header-component' style={{ backgroundColor: transparentBackground ? 'transparent' : '#010101' }}>
             <Link href={"/"}>
                 <Image
                     alt="logo image in header component"
