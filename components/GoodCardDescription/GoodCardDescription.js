@@ -2,16 +2,15 @@ import Image from 'next/image';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
 import React from 'react';
 import Cookies from 'js-cookie';
-import { useCookies } from 'react-cookie';
-import { addGood } from '@/actions/action';
+
 
 function GoodCardDescription({ props }) {
     const { title, description, price, thumbnail, id } = props;
-    // const [number, setNumber] = useState(0);
-    const [cookies, setCookie, removeCookie] = useCookies();
+
+
     const number = 0;
 
-    console.log(cookies)
+    // console.log(cookies)
 
     const addGoodToBasket = () => {
         // const BASKET = cookies("BASKET")
