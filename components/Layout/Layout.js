@@ -1,18 +1,12 @@
-// import Spinner from '../Spinner/Spinner';
+// import React from 'react';
+// import { CookiesProvider } from 'react-cookie';
 
 // export default function Layout({ children }) {
 //     return (
-//         <html lang="en">
-//             <body>
-//                 <Spinner />
-//                 <main className="container">{children}</main>
-//             </body>
-//         </html>
-//     );
+//         <>
+//             <CookiesProvider defaultSetOptions={{ path: '/' }}>
+//                 <main>{children}</main>
+//             </CookiesProvider>
+//         </>
+//     )
 // }
-
-{/* <Header /> */ }
-{/* {showHeader && <Header />} */ }
-{/* <>{children}</> */ }
-{/* <Footer /> */ }
-// {showFooter && <Footer />}

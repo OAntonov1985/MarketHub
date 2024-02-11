@@ -1326,6 +1326,10 @@ h2 {
   border-radius: 0.8rem;
 }
 
+.good-item-title {
+  z-index: -5;
+}
+
 .basket-with-goods {
   padding: 4rem 9rem 10rem;
   display: flex;
@@ -1479,13 +1483,17 @@ h2 {
 
 .basket-with-goods-columns {
   display: flex;
-  gap: 27.4%;
+  width: 100%;
 }
 
 .basket-with-goods-left-column, .basket-with-goods-right-column {
   display: flex;
   flex-direction: column;
-  width: 23.8%;
+  width: 50%;
+}
+
+.basket-recepient-info, .basket-placing-order, .basket-first-row {
+  width: 100%;
 }
 
 .basket-user-form {
@@ -1502,7 +1510,7 @@ h2 {
 }
 
 .basket-input {
-  width: 100%;
+  max-width: 30rem;
   margin-bottom: 1.6rem;
   padding: 1rem 0 1rem 1.6rem;
   border-radius: 0.5rem;
@@ -1537,15 +1545,16 @@ h2 {
 
 .basket-with-goods-content {
   display: flex;
-  gap: 27.4%;
 }
 
 .basket-with-good-left-column, .basket-with-good-right-column {
-  width: 23.8%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
 }
 
 .basket-with-good-left-column {
-  padding-top: 2.4rem;
+  padding-top: 24px;
 }
 
 .basket-with-goods-item {
@@ -1558,6 +1567,7 @@ h2 {
   border-radius: 0.5rem;
   transition: all 0.2s ease-in-out;
   margin-bottom: 2.4rem;
+  max-width: 30rem;
 }
 
 .basket-with-goods-item:hover {
@@ -1578,6 +1588,7 @@ h2 {
   position: relative;
   width: 1.6rem;
   height: 1.6rem;
+  z-index: -5;
 }
 
 .basket-total-row {

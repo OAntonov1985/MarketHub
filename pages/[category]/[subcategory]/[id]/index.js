@@ -2,6 +2,7 @@
 import Head from "next/head";
 import GoodCard from '@/components/GoodCard/GoodCard';
 import React from 'react';
+// import { cookies } from 'next/headers';
 
 function ProductPage({ good }) {
     // console.log(good)

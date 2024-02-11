@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import formattedPrice from '../FormattedPrice/FormattedPrice';
+import formattedPrice from '../HelperFunctions/FormattedPrice';
 import React from 'react';
 import { useEffect } from 'react';
 

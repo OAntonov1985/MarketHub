@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import { Ubuntu, Poppins } from 'next/font/google';
+// import Layout from '@/components/Layout/Layout';
 
 
 
@@ -15,9 +16,11 @@ const poppins = Poppins({
 export default function MyApp({ Component, pageProps }) {
     return (
         <>
+            {/* <Layout> */}
             <div className={ubuntu.className}>
                 <Component {...pageProps} />
             </div>
+            {/* </Layout> */}
         </>
 
     )

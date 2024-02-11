@@ -41,7 +41,8 @@
     padding: 1.1rem 2.7rem
     border-radius: .8rem
 
-
+.good-item-title
+    z-index: -5
 //////////////////////////////////  BASKET  WITH GOODS  //////////////////////////////////
 
 .basket-with-goods
@@ -199,24 +200,27 @@
 
 
 
-//////////////////////////////////  GOOD PLASING OF ORDER  //////////////////////////////////
+//////////////////////////////////  GOOD PLACING OF ORDER  //////////////////////////////////
 
 
 .basket-with-goods-columns
     display: flex
-    gap: 27.4%  
+    width: 100%
+    // gap: 27.4%  
 
 .basket-with-goods-left-column, .basket-with-goods-right-column
     display: flex
     flex-direction: column
-    width: 23.8%
+    width: 50%
 
-    
+.basket-recepient-info, .basket-placing-order, .basket-first-row
+    width: 100%
 
 //////////////////////////////////  BASKET FORM  //////////////////////////////////
 
 .basket-user-form
     width: 100%
+    // width: 47.6%
     margin-bottom: 4rem
 
 .basket-label-title
@@ -227,7 +231,8 @@
     margin-bottom: .4rem
 
 .basket-input
-    width: 100%
+    // width: 100%
+    max-width: 30rem
     margin-bottom: 1.6rem
     padding: 1rem 0 1rem 1.6rem
     border-radius: .5rem
@@ -260,13 +265,15 @@
 
 .basket-with-goods-content
     display: flex
-    gap: 27.4%
+    // gap: 27.4%
  
 .basket-with-good-left-column, .basket-with-good-right-column
-    width: 23.8%
+    width: 50%
+    display: flex
+    flex-direction: column
    
 .basket-with-good-left-column
-    padding-top: 2.4rem
+    padding-top: 24px
 
 .basket-with-goods-item
     display: flex
@@ -279,12 +286,14 @@
     border-radius: .5rem
     transition: all 0.2s ease-in-out
     margin-bottom: 2.4rem
+    max-width: 30rem
 
 .basket-with-goods-item:hover
     border: 1px solid $valid-field-border
 
 .goods-item-active
     border: 1px solid $valid-field-border
+    
 
 
 
@@ -297,6 +306,7 @@
     position: relative
     width: 1.6rem
     height: 1.6rem    
+    z-index: -5
 
 
 

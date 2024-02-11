@@ -37,7 +37,7 @@ function BasketForm() {
                 <div className='basket-with-goods-left-column'>
                     <label htmlFor="userName"
                         className='basket-label-title'
-                    >І`я</label>
+                    >Ім`я</label>
                     <input
                         id="userName"
                         type="text"

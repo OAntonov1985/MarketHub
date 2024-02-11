@@ -1,24 +1,30 @@
 import React from 'react';
 import Image from 'next/image';
+import { useState } from 'react';
 
 
 
 function BasketDeliveryInfo() {
+    const [cargoCarrier, setCargoCarier] = useState("nova");
 
-
+    const changeCagroCarier = (event) => {
+        setCargoCarier(event.target.id);
+    }
 
     return (
         <div className='basket-with-good-container'>
-
             <h4 className='basket-with-goods-title'>Доставка</h4>
             <div className="basket-with-goods-content">
                 <div className="basket-with-good-left-column">
-                    <div className='basket-with-goods-item nova goods-item-active'>
-                        <div className=''>Нова пошта</div>
+                    <div
+                        className={`basket-with-goods-item ${cargoCarrier === 'nova' ? "goods-item-active" : ''} `}
+                        id="nova"
+                        onClick={changeCagroCarier}>
+                        <div className='good-item-title'>Нова пошта</div>
                         <div className='good-item-chekbox'>
                             <Image
                                 alt="image of good"
-                                src="/checkbox-outline-green.svg"
+                                src={cargoCarrier === 'nova' ? "/checkbox-outline-green.svg" : "/checkbox-outline.svg"}
                                 quality={100}
                                 fill
                                 sizes="(max-width: 100%)"
@@ -29,12 +35,15 @@ function BasketDeliveryInfo() {
                             />
                         </div>
                     </div>
-                    <div className='basket-with-goods-item ukrposhta'>
-                        <div className=''>Укрпошта</div>
+                    <div
+                        className={`basket-with-goods-item ${cargoCarrier === 'ukrposhta' ? "goods-item-active" : ''} `}
+                        id="ukrposhta"
+                        onClick={changeCagroCarier}>
+                        <div className='good-item-title'>Укрпошта</div>
                         <div className='good-item-chekbox'>
                             <Image
                                 alt="image of good"
-                                src="/checkbox-outline.svg"
+                                src={cargoCarrier === 'ukrposhta' ? "/checkbox-outline-green.svg" : "/checkbox-outline.svg"}
                                 quality={100}
                                 fill
                                 sizes="(max-width: 100%)"
@@ -45,12 +54,15 @@ function BasketDeliveryInfo() {
                             />
                         </div>
                     </div>
-                    <div className='basket-with-goods-item meest'>
-                        <div className=''>Міст Експрес</div>
+                    <div
+                        className={`basket-with-goods-item ${cargoCarrier === 'meest' ? "goods-item-active" : ''} `}
+                        id="meest"
+                        onClick={changeCagroCarier}>
+                        <div className='good-item-title'>Міст Експрес</div>
                         <div className='good-item-chekbox'>
                             <Image
                                 alt="image of good"
-                                src="/checkbox-outline.svg"
+                                src={cargoCarrier === 'meest' ? "/checkbox-outline-green.svg" : "/checkbox-outline.svg"}
                                 quality={100}
                                 fill
                                 sizes="(max-width: 100%)"
