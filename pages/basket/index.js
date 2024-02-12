@@ -12,6 +12,7 @@ import BasketWithGoods from '@/components/BasketWithGoods/BasketWithGoods';
 
 
 export default function Basket() {
+
     return (
         <>
             <Head>
@@ -34,16 +35,13 @@ export default function Basket() {
 }
 
 // export async function getServerSideProps() {
-//     const resCategories = await fetch(URLADRESS + 'categories');
-//     // const resCategories = await fetch("https://api.escuelajs.co/api/v1/categories");
-//     const categories = await resCategories.json();
+//     const BASKET = localStorage.getItem("BASKET");
+//     const basketArr = JSON.parse(BASKET);
 
 
 //     return {
 //         props: {
-//             categories,
-//             topSellers,
-//             promotionGoods
+//             basketArr
 //         }
 //     };
 // };

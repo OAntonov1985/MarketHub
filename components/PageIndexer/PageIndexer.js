@@ -16,7 +16,6 @@ function PageIndexer({ props, handlePageChange }) {
 
     const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
     const lastPage = Math.ceil(totalGoods / 12);
-    // console.log(lastPage)
 
     useEffect(() => {
         handlePageChange(activePage)
