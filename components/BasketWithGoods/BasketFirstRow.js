@@ -28,9 +28,12 @@ export default function BasketFirstRow({ setTotalGoods, setTotalQuantityOfGoods,
             <div className="basket-with-goods-list">
                 {basket.length ?
                     basket.map((item, index) => (
-                        <BaskerGoodRow key={index} props={item} setBasket={setBasket} basket={basket} setTotalQuantityOfGoods={setTotalQuantityOfGoods} setTotalGoods={setTotalGoods} setBasketLength={setBasketLength} />
+                        <BaskerGoodRow key={index} props={item}
+                            setBasket={setBasket} basket={basket}
+                            setTotalQuantityOfGoods={setTotalQuantityOfGoods} setTotalGoods={setTotalGoods} setBasketLength={setBasketLength}
+                        />
                     ))
-                    : <h4 className='basket-with-goods-title'>"Кошик порожнiй... Повернутись до покупок?"</h4>
+                    : <h4 className='basket-with-goods-title'>Кошик порожній... Повернутись до покупок?</h4>
                 }
             </div>
         </div>
