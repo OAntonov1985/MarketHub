@@ -21,6 +21,7 @@ export default async function singInFunction(body) {
             const data = await response.json()
                 .then(data => {
                     Cookies.set('jwtToken', data.token, { expires: currentDate });
+                    // console.log(data)
                     Cookies.set('userName', data.username, { expires: currentDate });
                     JWTToken = data.token;
                 })

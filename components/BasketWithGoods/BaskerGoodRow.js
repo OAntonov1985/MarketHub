@@ -4,7 +4,8 @@ import { useState } from 'react';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
 
 
-export default function BaskerGoodRow({ props, setBasket, basket }) {
+
+function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuantityOfGoods, setBasketLength }) {
 
     const { id, title, thumbnail, number, price } = props
     const [count, setCount] = useState(number);
@@ -16,22 +17,55 @@ export default function BaskerGoodRow({ props, setBasket, basket }) {
     const increaceGoodQuantity = (e) => {
         setCount(count + 1);
         setTotal((count + 1) * price);
-
         const index = basket.findIndex(item => item.id == e.target.id);
-        // console.log(index)
         basket[index].number = count + 1;
-        console.log(basket)
-        setBasket(basket)
 
+        setBasket(basket);
 
+        const newlength = basket.length;
+        setBasketLength(newlength);
+
+        localStorage.setItem('BASKET', JSON.stringify(basket));
+
+        setTotalGoods(basket.reduce((accum, item) => accum = accum + item.number, 0));
+        setTotalQuantityOfGoods(basket.reduce((acc, product) => {
+            return acc + (product.price * product.number);
+        }, 0));
     }
 
-    const reduseGoodQuantity = () => {
+    const reduseGoodQuantity = (e) => {
         if (count > 1) {
             setCount(count - 1);
             setTotal((count - 1) * price);
+            const index = basket.findIndex(item => item.id == e.target.id);
+            basket[index].number = count - 1;
+
+            setBasket(basket);
+
+            const newlength = basket.length;
+            setBasketLength(newlength);
+
+            localStorage.setItem('BASKET', JSON.stringify(basket));
+
+            setTotalGoods(basket.reduce((accum, item) => accum = accum + item.number, 0));
+            setTotalQuantityOfGoods(basket.reduce((acc, product) => {
+                return acc + (product.price * product.number);
+            }, 0));
         }
-        else alert("Видалити товар з кошика?");
+        else return;
+    }
+
+
+
+    const deleteGood = (e) => {
+        const result = confirm(`Ви точно бажаєте видалити ${title}?`);
+        if (result === true) {
+            const updatedBasket = basket.filter(item => item.id != e.target.id);
+            localStorage.setItem('BASKET', JSON.stringify(updatedBasket));
+            setBasket(updatedBasket);
+            setBasketLength(updatedBasket.length);
+        }
+        else return;
     }
 
 
@@ -89,7 +123,7 @@ export default function BaskerGoodRow({ props, setBasket, basket }) {
                             </div>
                         </div>
                     </div>
-                    <div className='good-item-description-total-price'>{price} грн х {count} шт</div>
+                    <div className='good-item-description-total-price'>{formattedPrice(price)} грн х {count} шт</div>
                 </div>
             </div>
 
@@ -97,7 +131,8 @@ export default function BaskerGoodRow({ props, setBasket, basket }) {
             <div className='good-item-right-column'>
                 <div className='good-item-total-cross'>
                     <div className='good-item-total-cross-image-container'>
-                        <Image
+                        <Image onClick={deleteGood}
+                            id={id}
                             alt="image of good"
                             src="/close-outline.png"
                             quality={100}
@@ -116,4 +151,4 @@ export default function BaskerGoodRow({ props, setBasket, basket }) {
     )
 }
 
-// export default React.memo(BaskerGoodRow);
+export default React.memo(BaskerGoodRow);

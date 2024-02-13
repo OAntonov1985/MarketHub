@@ -6,7 +6,7 @@ import React from 'react';
 
 function GoodCardDescription({ props }) {
     const { title, description, price, thumbnail, id } = props;
-
+    const number = 0;
 
     const addGoodToBasket = () => {
         const BASKET = localStorage.getItem("BASKET");
@@ -53,11 +53,11 @@ function GoodCardDescription({ props }) {
         }
     };
 
+
     function basket() {
         console.log(localStorage.getItem("BASKET"))
 
     }
-
 
     return (
         <div className="good-card-right-column">

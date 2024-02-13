@@ -6,22 +6,14 @@ import BasketRecepientInfo from './BasketRecepientInfo';
 import BasketTotalRow from './BasketTotalRow';
 import { useState } from 'react';
 
-function BasketWithGoods() {
-    // const [total, setTotal] = useState(
-    //     {
-    //         totalCount: 0,
-    //         totalPrice: 0
-    //     }
-    // )
-    const [totalGoods, setTotalGoods] = useState(0)
-    const [totalQuantityOfGoods, setTotalQuantityOfGoods] = useState(0)
-    // console.log(total.totalCount)
-    // const 
+function BasketWithGoods({ setBasketLength }) {
 
+    const [totalGoods, setTotalGoods] = useState(0);
+    const [totalQuantityOfGoods, setTotalQuantityOfGoods] = useState(0);
 
     return (
         <div className='basket-with-goods'>
-            <BasketFirstRow setTotalGoods={setTotalGoods} setTotalQuantityOfGoods={setTotalQuantityOfGoods} totalGoods={totalGoods} />
+            <BasketFirstRow setTotalGoods={setTotalGoods} setTotalQuantityOfGoods={setTotalQuantityOfGoods} totalGoods={totalGoods} setBasketLength={setBasketLength} />
             <BasketPlacingOrder />
             <BasketDeliveryInfo />
             <BasketRecepientInfo />
