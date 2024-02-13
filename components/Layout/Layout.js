@@ -1,12 +1,14 @@
-// import React from 'react';
-// import { CookiesProvider } from 'react-cookie';
+import { store } from "../../store/store";
+import { Provider } from 'react-redux';
 
-// export default function Layout({ children }) {
-//     return (
-//         <>
-//             <CookiesProvider defaultSetOptions={{ path: '/' }}>
-//                 <main>{children}</main>
-//             </CookiesProvider>
-//         </>
-//     )
-// }
+
+
+export default function Layout({ children }) {
+    return (
+        <>
+            <Provider store={store}>
+                <main>{children}</main>
+            </Provider>
+        </>
+    )
+}

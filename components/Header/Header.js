@@ -3,10 +3,10 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+
 
 function Header({ transparentBackground }) {
     const router = useRouter();
@@ -22,6 +22,14 @@ function Header({ transparentBackground }) {
             setHeaderName(null);
         }
     }, [userName]);
+
+    // useEffect(() => {
+    //     const BASKET = localStorage.getItem("BASKET");
+    //     const arr = JSON.parse(BASKET);
+    //     console.log(arr.length)
+
+
+    // }, [basketLength])
 
 
     return (
