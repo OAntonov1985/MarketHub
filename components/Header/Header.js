@@ -6,13 +6,23 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 
 function Header({ transparentBackground }) {
     const router = useRouter();
+    const [totalGoods, setTotalGoods] = useState('')
     const [headerName, setHeaderName] = useState('');
     const userName = Cookies.get('userName');
+    const [imagePath, setimagePath] = useState("/basket.svg");
+    const [isVisible, setIsVisible] = useState("quantityOfGoods");
+    // const totalGoods = localStorage.getItem("totalGoods");
 
+    // console.log(quantityOfGoods)
+    // const dispatch = useDispatch();
+    const { quantityOfGoods } = useSelector((state) => state.user);
+    console.log(quantityOfGoods)
 
     useEffect(() => {
         if (userName) {
@@ -23,13 +33,18 @@ function Header({ transparentBackground }) {
         }
     }, [userName]);
 
-    // useEffect(() => {
-    //     const BASKET = localStorage.getItem("BASKET");
-    //     const arr = JSON.parse(BASKET);
-    //     console.log(arr.length)
 
-
-    // }, [basketLength])
+    useEffect(() => {
+        // totalGoods = localStorage.getItem("totalGoods");
+        if (quantityOfGoods === 0 || quantityOfGoods === undefined) {
+            setimagePath('/basket.svg');
+            setIsVisible("quantityOfGoods  is-wisible");
+        }
+        else if (totalGoods !== 0) {
+            setimagePath('/basket_green.svg');
+            setIsVisible("quantityOfGoods")
+        }
+    }, [quantityOfGoods])
 
 
     return (
@@ -79,10 +94,10 @@ function Header({ transparentBackground }) {
                         priority
                     />
                 </Link>
-                <Link href="/basket/">
+                <Link href="/basket/" className="logo-image-basket">
                     <Image
-                        alt="logo image search in input field"
-                        src='/basket.svg'
+                        alt="logo image basket"
+                        src={imagePath}
                         sizes="(max-width: 100%)"
                         quality={100}
                         width={24}
@@ -90,8 +105,9 @@ function Header({ transparentBackground }) {
                         className='logo-image-basket'
                         priority
                     />
+                    {/* <div className={isVisible}>{quantityOfGoods}</div> */}
                 </Link>
-
+                <div className={isVisible}>{quantityOfGoods}</div>
             </div>
         </div>
     );

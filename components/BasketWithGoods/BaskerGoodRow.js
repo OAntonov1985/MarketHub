@@ -2,6 +2,8 @@ import Image from 'next/image';
 import React from 'react';
 import { useState } from 'react';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
+import { increaseGood, reduceGood, totalGoods } from '@/slices/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
@@ -12,7 +14,7 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
     const [total, setTotal] = useState(count * price);
 
 
-
+    const dispatch = useDispatch();
 
     const increaceGoodQuantity = (e) => {
         setCount(count + 1);
@@ -61,6 +63,7 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
         const result = confirm(`Ви точно бажаєте видалити ${title}?`);
         if (result === true) {
             const updatedBasket = basket.filter(item => item.id != e.target.id);
+            dispatch(totalGoods(updatedBasket.reduce((accum, item) => accum = accum + item.number, 0)))
             localStorage.setItem('BASKET', JSON.stringify(updatedBasket));
             setBasket(updatedBasket);
             setBasketLength(updatedBasket.length);
@@ -93,7 +96,8 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
                     <div className='good-item-description-number'>
                         <div className='good-item-description-selsector-number'>
                             <div className="selsector-number-minus">
-                                <Image onClick={reduseGoodQuantity}
+                                <Image
+                                    onClick={(e) => { reduseGoodQuantity(e); dispatch(reduceGood()) }}
                                     id={id}
                                     alt="image of good"
                                     src="/minus1.svg"
@@ -107,8 +111,9 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
                                 />
                             </div>
                             <div className="selsector-number-number">{count}</div>
-                            <div className="selsector-number-plus" onClick={increaceGoodQuantity}>
-                                <Image onClick={increaceGoodQuantity}
+                            <div className="selsector-number-plus"
+                                onClick={(e) => { increaceGoodQuantity(e); dispatch(increaseGood()) }}                            >
+                                <Image
                                     id={id}
                                     alt="image of good"
                                     src="/plus1.svg"

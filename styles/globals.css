@@ -130,6 +130,33 @@ h2 {
   line-height: normal;
 }
 
+.logo-image-basket {
+  color: #76CA66;
+}
+
+.header-icons {
+  position: relative;
+}
+
+.quantityOfGoods {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -6px;
+  right: -6px;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  position: absolute;
+  background-color: #116ACC;
+  color: #F8FAFC;
+}
+
+.is-wisible {
+  display: none;
+}
+
 .main {
   max-width: 192rem;
   margin: 0 auto;

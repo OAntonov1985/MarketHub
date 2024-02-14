@@ -1,12 +1,16 @@
 import Image from 'next/image';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { increaseGood } from '@/slices/userSlice';
+
 
 
 
 function GoodCardDescription({ props }) {
     const { title, description, price, thumbnail, id } = props;
     const number = 0;
+    const dispatch = useDispatch();
 
     const addGoodToBasket = () => {
         const BASKET = localStorage.getItem("BASKET");
@@ -22,7 +26,10 @@ function GoodCardDescription({ props }) {
                 number: number + 1
             }];
             const basketJSON = JSON.stringify(basketObject);
-            localStorage.setItem("BASKET", basketJSON)
+            localStorage.setItem("BASKET", basketJSON);
+            // const res = basketObject.reduce((accum, item) => accum = accum + item.number, 0)
+            // console.log(res)
+            localStorage.setItem("totalGoods", basketObject.reduce((accum, item) => accum = accum + item.number, 0))
             return
         }
 
@@ -37,6 +44,7 @@ function GoodCardDescription({ props }) {
                 basketArr[arrayIndex].number += 1;
                 const updatedBasketJSON = JSON.stringify(basketArr);
                 localStorage.setItem('BASKET', updatedBasketJSON);
+                localStorage.setItem("totalGoods", basketArr.reduce((accum, item) => accum = accum + item.number, 0))
             }
             else {
                 const basketObject = {
@@ -73,7 +81,9 @@ function GoodCardDescription({ props }) {
             </div>
             <p className='good-card-price'>{formattedPrice(price)} грн</p>
             <div className='godd-card-added'>
-                <button className='good-card-buy-good' onClick={addGoodToBasket}>Додати до кошика
+                <button className='good-card-buy-good'
+                    onClick={() => { addGoodToBasket(); dispatch(increaseGood()); }}
+                >Додати до кошика
                     <div className='good-card-logo-container'>
                         <Image
                             alt="image of basket logo"
@@ -107,48 +117,5 @@ function GoodCardDescription({ props }) {
         </div>
     )
 };
-
-// export const addGoodToBasket = (title, description, price, thumbnail, id, number) => {
-//     const BASKET = Cookies.get('BASKET');
-//     // const number = 0;
-//     if (BASKET === undefined) {
-//         const basketObject = [{
-//             id: id,
-//             title: title,
-//             thumbnail: thumbnail,
-//             price: price,
-//             number: number + 1
-//         }];
-//         const jsonString = JSON.stringify(basketObject);
-//         Cookies.set('BASKET', jsonString);
-//         return
-//     }
-
-//     if (BASKET !== undefined) {
-//         const basketArr = JSON.parse(BASKET);
-//         const arrayIndex = basketArr.findIndex(item => {
-//             return item.id === id
-//         })
-
-
-//         if (arrayIndex >= 0) {
-//             basketArr[arrayIndex].number = basketArr[arrayIndex].number + 1;
-//             const jsonString = JSON.stringify(basketArr);
-//             Cookies.set('BASKET', jsonString);
-//         }
-//         else {
-//             const basketObject = {
-//                 id: id,
-//                 title: title,
-//                 thumbnail: thumbnail,
-//                 price: price,
-//                 number: number + 1
-//             };
-//             basketArr.push(basketObject);
-//             const jsonString = JSON.stringify(basketArr);
-//             Cookies.set('BASKET', jsonString);
-//         }
-//     }
-// };
 
 export default React.memo(GoodCardDescription);

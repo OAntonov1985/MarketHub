@@ -1,43 +1,49 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+"use client"
+import { createSlice } from "@reduxjs/toolkit";
 
-export const fetchUsers = createAsyncThunk(
-    "users/getAllUsers",
-    async (thunkApi) => {
-        const response = await fetch(
-            "https://jsonplaceholder.typicode.com/users?_limit=5"
-        );
-        const data = await response.json();
-        return data;
+
+let basketArr
+let quantityOfGoods
+if (typeof window !== 'undefined') {
+    const BASKET = localStorage.getItem("BASKET");
+    basketArr = JSON.parse(BASKET);
+    if (basketArr) {
+        quantityOfGoods = basketArr.reduce((accum, item) => accum = accum + item.number, 0)
     }
-);
+}
+
 
 const initialState = {
     name: "MarketHub",
     entities: [],
     loading: false,
     value: 10,
+    quantityOfGoods: quantityOfGoods === undefined ? 0 : quantityOfGoods
+    // quantityOfGoods: 0
 };
 
 const userSlice = createSlice({
-    name: "users",
+    name: "MarketHub",
     initialState,
     reducers: {
-        increment: (state) => {
-            state.value++;
+        increaseGood: (state) => {
+            state.quantityOfGoods++;
         },
-    },
-    extraReducers: (builder) => {
-        builder.addCase(fetchUsers.fulfilled, (state, action) => {
-            state.loading = false;
-            state.entities.push(...action.payload);
-        });
+        totalGoods: (state, action) => {
+            // console.log(action.payload)
+            state.quantityOfGoods = action.payload;
+        },
+        reduceGood: (state) => {
+            console.log(state.quantityOfGoods)
+            if (state.quantityOfGoods > 1) {
+                state.quantityOfGoods--;
+            }
 
-        builder.addCase(fetchUsers.pending, (state, action) => {
-            state.loading = true;
-        });
-    },
+        }
+    }
+
 });
 
-export const { increment } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood } = userSlice.actions;
 
 export default userSlice.reducer;
