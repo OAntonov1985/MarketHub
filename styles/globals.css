@@ -8,7 +8,6 @@
 
 html {
   font-size: 62.5%;
-  max-width: 192rem;
   margin: 0 auto;
   min-height: 100vh;
 }
@@ -37,6 +36,10 @@ a {
 a:visited {
   color: #012767;
   overflow-x: hidden;
+}
+
+#__next {
+  min-height: 100vh;
 }
 
 .header-component {
@@ -646,6 +649,8 @@ h2 {
 }
 .error-page {
   max-width: 192rem;
+  margin: 0 auto;
+  min-height: 100vh;
   padding-top: 17.9rem;
   background-color: #FFF;
   display: flex;
@@ -787,6 +792,7 @@ h2 {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  max-width: 192rem;
 }
 
 .category-main-content {
@@ -815,6 +821,7 @@ h2 {
 
 .good-card {
   min-height: 100vh;
+  max-width: 192rem;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -1314,6 +1321,8 @@ h2 {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  max-width: 192rem;
+  margin: 0 auto;
 }
 
 .basket-page-content {

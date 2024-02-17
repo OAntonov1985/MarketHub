@@ -15,7 +15,7 @@ if (typeof window !== 'undefined') {
 
 const initialState = {
     name: "MarketHub",
-    entities: [],
+    usserInfo: {},
     loading: false,
     value: 10,
     quantityOfGoods: quantityOfGoods === undefined ? 0 : quantityOfGoods
@@ -39,11 +39,15 @@ const userSlice = createSlice({
                 state.quantityOfGoods--;
             }
 
+        },
+        setUserInfo: (state, action) => {
+            console.log(action.payload)
+            state.usserInfo = action.payload
         }
     }
 
 });
 
-export const { increaseGood, totalGoods, reduceGood } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood, setUserInfo } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -1,7 +1,47 @@
+"use client"
 import React from 'react';
+import Cookies from 'js-cookie';
+import { useState, useEffect } from 'react';
+import { URLADRESS } from '../Constants';
 
 
 function BasketForm() {
+    const userInfo = Cookies.get('userName');
+
+    const [userName, setUserName] = useState('');
+    const [userSurName, setUserSurName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [userPhone, setUserPhone] = useState('');
+
+
+    useEffect(() => {
+        if (userInfo) {
+            const userID = Cookies.get('userID');
+            const userToken = Cookies.get('jwtToken');
+            async function getUserInfo() {
+                try {
+                    const requestOptions = {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${userToken}`
+                        }
+                    };
+
+                    const response = await fetch(`https://markethub-mfbw.onrender.com/markethub/users/${userID}`, requestOptions);
+                    const data = await response.json();
+                    // console.log(data); 
+                    setUserName(data.firstname);
+                    setUserSurName(data.lastname)
+                    setUserEmail(data.email)
+                    setUserPhone(data.phone)
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                }
+            }
+
+            getUserInfo();
+        }
+    }, []);
 
 
     const handleChange = async (event) => {
@@ -46,6 +86,7 @@ function BasketForm() {
                         className="basket-input active-field"
                         placeholder="Введіть своє ім’я"
                         onChange={handleChange}
+                        value={userName}
                     // value={userEmail}
                     // onBlur={validateEmail}
                     // required 
@@ -61,7 +102,8 @@ function BasketForm() {
                         type="text"
                         className="basket-input active-field"
                         placeholder="Введіть своє прізвище"
-                    // onChange={(e) => setUserEmail(e.target.value)}
+                        value={userSurName}
+                        onChange={handleChange}
                     // value={userEmail}
                     // onBlur={validateEmail}
                     // required 
@@ -77,7 +119,8 @@ function BasketForm() {
                         type="text"
                         className="basket-input active-field"
                         placeholder="Введіть свій номер телефону"
-                    // onChange={(e) => setUserEmail(e.target.value)}
+                        value={userPhone}
+                        onChange={handleChange}
                     // value={userEmail}
                     // onBlur={validateEmail}
                     // required
@@ -91,7 +134,8 @@ function BasketForm() {
                         type="text"
                         className="basket-input active-field"
                         placeholder="Введіть свою пошту"
-                    // onChange={(e) => setUserEmail(e.target.value)}
+                        value={userEmail}
+                        onChange={handleChange}
                     // value={userEmail}
                     // onBlur={validateEmail}
                     // required 

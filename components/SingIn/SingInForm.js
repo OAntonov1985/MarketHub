@@ -4,12 +4,15 @@ import { useRouter } from 'next/router';
 import singInFunction from '@/pages/api/SingInFunction';
 import Image from "next/image";
 import Link from 'next/link';
+import { setUserInfo } from '@/slices/userSlice';
+import { useDispatch } from 'react-redux';
 
 
 
 function SingInForm({ props }) {
     const { setLoading } = props;
     const router = useRouter();
+    const dispatch = useDispatch();
 
     const [userEmail, setUserEmail] = useState('');
     const [inputEmailClass, setInputEmailClass] = useState("user-email");
@@ -32,12 +35,13 @@ function SingInForm({ props }) {
                 "password": userPassword
             };
 
-            const { JWTToken, Errorflag } = await singInFunction(body);
+            const { JWTToken, Errorflag, UserInfo } = await singInFunction(body);
             if (Errorflag) {
                 setLoading(false);
             }
             else if (JWTToken) {
-                setLoading(false)
+                setLoading(false);
+                dispatch(setUserInfo(UserInfo));
                 router.push('/userpage');
             };
         }

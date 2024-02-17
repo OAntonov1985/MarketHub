@@ -17,6 +17,7 @@ export default function UserPage() {
     const deleteToken = () => {
         Cookies.remove('jwtToken');
         Cookies.remove('userName');
+        Cookies.remove('userID');
         router.push('/');
     }
     return (

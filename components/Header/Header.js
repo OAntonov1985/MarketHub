@@ -22,7 +22,7 @@ function Header({ transparentBackground }) {
     // console.log(quantityOfGoods)
     // const dispatch = useDispatch();
     const { quantityOfGoods } = useSelector((state) => state.user);
-    console.log(quantityOfGoods)
+
 
     useEffect(() => {
         if (userName) {
