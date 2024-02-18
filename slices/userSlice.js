@@ -2,24 +2,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-let basketArr
-let quantityOfGoods
-if (typeof window !== 'undefined') {
-    const BASKET = localStorage.getItem("BASKET");
-    basketArr = JSON.parse(BASKET);
-    if (basketArr) {
-        quantityOfGoods = basketArr.reduce((accum, item) => accum = accum + item.number, 0)
-    }
-}
+
+let userNameInCookies
+
 
 
 const initialState = {
     name: "MarketHub",
-    usserInfo: {},
+    userInfo: {},
+    userName: userNameInCookies === undefined ? 0 : userNameInCookies,
     loading: false,
     value: 10,
-    quantityOfGoods: quantityOfGoods === undefined ? 0 : quantityOfGoods
-    // quantityOfGoods: 0
+    quantityOfGoods: 0
 };
 
 const userSlice = createSlice({
@@ -30,24 +24,23 @@ const userSlice = createSlice({
             state.quantityOfGoods++;
         },
         totalGoods: (state, action) => {
-            // console.log(action.payload)
             state.quantityOfGoods = action.payload;
         },
         reduceGood: (state) => {
-            console.log(state.quantityOfGoods)
             if (state.quantityOfGoods > 1) {
                 state.quantityOfGoods--;
             }
-
         },
         setUserInfo: (state, action) => {
-            console.log(action.payload)
-            state.usserInfo = action.payload
-        }
+            state.userInfo = action.payload
+        },
+        setUserName: (state, action) => {
+            state.userName = action.payload
+        },
     }
 
 });
 
-export const { increaseGood, totalGoods, reduceGood, setUserInfo } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName } = userSlice.actions;
 
 export default userSlice.reducer;

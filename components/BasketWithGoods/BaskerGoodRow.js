@@ -12,17 +12,19 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
     const { id, title, thumbnail, number, price } = props
     const [count, setCount] = useState(number);
     const [total, setTotal] = useState(count * price);
-
-
     const dispatch = useDispatch();
 
     const increaceGoodQuantity = (e) => {
         setCount(count + 1);
+        dispatch(totalGoods(count + 1));
+
         setTotal((count + 1) * price);
         const index = basket.findIndex(item => item.id == e.target.id);
         basket[index].number = count + 1;
 
         setBasket(basket);
+        const newTotalGoods = basket.reduce((accum, item) => accum = accum + item.number, 0);
+        localStorage.setItem('totalGoods', newTotalGoods);
 
         const newlength = basket.length;
         setBasketLength(newlength);
@@ -38,6 +40,7 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
     const reduseGoodQuantity = (e) => {
         if (count > 1) {
             setCount(count - 1);
+            dispatch(totalGoods(count - 1));
             setTotal((count - 1) * price);
             const index = basket.findIndex(item => item.id == e.target.id);
             basket[index].number = count - 1;
@@ -47,6 +50,8 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
             const newlength = basket.length;
             setBasketLength(newlength);
 
+            const newTotalGoods = basket.reduce((accum, item) => accum = accum + item.number, 0);
+            localStorage.setItem('totalGoods', newTotalGoods);
             localStorage.setItem('BASKET', JSON.stringify(basket));
 
             setTotalGoods(basket.reduce((accum, item) => accum = accum + item.number, 0));
@@ -63,7 +68,10 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
         const result = confirm(`Ви точно бажаєте видалити ${title}?`);
         if (result === true) {
             const updatedBasket = basket.filter(item => item.id != e.target.id);
-            dispatch(totalGoods(updatedBasket.reduce((accum, item) => accum = accum + item.number, 0)))
+
+            const newTotalGoods = updatedBasket.reduce((accum, item) => accum = accum + item.number, 0);
+            localStorage.setItem('totalGoods', newTotalGoods);
+            dispatch(totalGoods(newTotalGoods))
             localStorage.setItem('BASKET', JSON.stringify(updatedBasket));
             setBasket(updatedBasket);
             setBasketLength(updatedBasket.length);

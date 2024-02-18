@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BasketForm from './BasketForm';
-import { useState } from 'react';
 import Cookies from 'js-cookie';
 
 function BasketPlacingOrder() {
     const [isNewUser, setIsNewUser] = useState("active-button");
-    const [userInfo, setUserInfo] = useState([]);
+    const userNameInCookies = Cookies.get('userName');
 
-    const newArr = Cookies.get('userName');
-    console.log(newArr)
 
-    const toggleUser = (e) => {
-        if (e.target.id === "newСustomer") {
-            setIsNewUser("active-button")
-        }
-        else if (e.target.id === "regularСustomer") {
+    useEffect(() => {
+        if (userNameInCookies) {
             setIsNewUser("unactive-button")
         }
+        else setIsNewUser("active-button")
+    }, [userNameInCookies])
+
+    const toggleUser = (e) => {
+        if (!userNameInCookies) {
+            if (e.target.id === "newСustomer") {
+                setIsNewUser("active-button")
+            }
+            else if (e.target.id === "regularСustomer") {
+                setIsNewUser("unactive-button")
+            }
+        }
+
     }
 
     return (

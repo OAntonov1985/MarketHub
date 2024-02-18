@@ -5,7 +5,6 @@ import { URLADRESS } from '@/components/Constants';
 export default async function singInFunction(body) {
     let JWTToken
     let Errorflag
-    let UserInfo
 
 
     const currentDate = new Date();
@@ -24,9 +23,11 @@ export default async function singInFunction(body) {
             const data = await response.json()
                 .then(data => {
                     Cookies.set('jwtToken', data.token, { expires: currentDate });
-                    // console.log(data)     
-                    UserInfo = data
+                    // console.log(data)                         
                     Cookies.set('userName', data.firstname, { expires: currentDate });
+                    Cookies.set('userSurname', data.lastname, { expires: currentDate });
+                    Cookies.set('userPhone', data.phone, { expires: currentDate });
+                    Cookies.set('userEmail', data.email, { expires: currentDate });
                     Cookies.set('userID', data.id, { expires: currentDate });
                     JWTToken = data.token;
                 })
@@ -39,5 +40,5 @@ export default async function singInFunction(body) {
         alert('Упс.... Щось пішло не так');
         Errorflag = true;
     };
-    return { JWTToken, Errorflag, UserInfo }
+    return { JWTToken, Errorflag }
 }

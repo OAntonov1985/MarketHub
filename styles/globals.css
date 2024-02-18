@@ -1575,6 +1575,10 @@ h2 {
   border: 1px solid #D9D9D9;
 }
 
+.basket-form-massage {
+  color: red;
+}
+
 .basket-with-good-container {
   margin-bottom: 4rem;
   width: 100%;

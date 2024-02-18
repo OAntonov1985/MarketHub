@@ -46,7 +46,6 @@ function RegistrationForm({ props }) {
     const [showErrorPhone, setShowErrorPhone] = useState(false);
 
     function validateUserTel() {
-        console.log(userPhone.length)
         if (userPhone.length === 12) {
             setInputPhoneClass("user-tel border-green");
             setShowErrorPhone(false);

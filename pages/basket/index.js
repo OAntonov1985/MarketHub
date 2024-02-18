@@ -10,6 +10,7 @@ import BasketWithGoods from '@/components/BasketWithGoods/BasketWithGoods';
 import { useEffect, useState } from 'react';
 
 
+
 function Basket() {
     const [basketLength, setBasketLength] = useState(0);
 
@@ -40,6 +41,9 @@ function Basket() {
 
     )
 };
+
+
+
 
 export default React.memo(Basket);
 

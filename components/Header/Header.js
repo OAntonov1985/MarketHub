@@ -7,21 +7,40 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+import { totalGoods } from '@/slices/userSlice';
 
 
 
 function Header({ transparentBackground }) {
     const router = useRouter();
-    const [totalGoods, setTotalGoods] = useState('')
+    // const [totalGoods, setTotalGoods] = useState('')
     const [headerName, setHeaderName] = useState('');
-    const userName = Cookies.get('userName');
     const [imagePath, setimagePath] = useState("/basket.svg");
-    const [isVisible, setIsVisible] = useState("quantityOfGoods");
-    // const totalGoods = localStorage.getItem("totalGoods");
+    const [isVisible, setIsVisible] = useState("quantityOfGoods is-wisible");
+    const dispatch = useDispatch();
 
-    // console.log(quantityOfGoods)
-    // const dispatch = useDispatch();
+    let totalGoodsInLocalStorage;
+    let userName
+
+    useEffect(() => {
+        const totalGoodsInLocal = localStorage.getItem("totalGoods")
+        totalGoodsInLocalStorage = JSON.parse(totalGoodsInLocal);
+        userName = Cookies.get('userName');
+        dispatch(totalGoods(totalGoodsInLocalStorage))
+        // setTotalGoods(totalGoodsInLocalStorage)
+
+    });
+
     const { quantityOfGoods } = useSelector((state) => state.user);
+
+    // if (typeof window !== 'undefined') {
+    //     const totalGoodsInLocal = localStorage.getItem("totalGoods")
+    //     totalGoodsInLocalStorage = JSON.parse(totalGoodsInLocal);
+    //     userName = Cookies.get('userName');
+    // };
+
+    // const { quantityOfGoods } = useSelector((state) => state.user);
+
 
 
     useEffect(() => {
@@ -31,18 +50,20 @@ function Header({ transparentBackground }) {
         else if (userName === undefined) {
             setHeaderName(null);
         }
+
     }, [userName]);
 
 
+
+
     useEffect(() => {
-        // totalGoods = localStorage.getItem("totalGoods");
-        if (quantityOfGoods === 0 || quantityOfGoods === undefined) {
+        if (quantityOfGoods === 0 || quantityOfGoods === null) {
             setimagePath('/basket.svg');
             setIsVisible("quantityOfGoods  is-wisible");
         }
-        else if (totalGoods !== 0) {
+        else {
             setimagePath('/basket_green.svg');
-            setIsVisible("quantityOfGoods")
+            setIsVisible("quantityOfGoods");
         }
     }, [quantityOfGoods])
 
@@ -105,7 +126,6 @@ function Header({ transparentBackground }) {
                         className='logo-image-basket'
                         priority
                     />
-                    {/* <div className={isVisible}>{quantityOfGoods}</div> */}
                 </Link>
                 <div className={isVisible}>{quantityOfGoods}</div>
             </div>

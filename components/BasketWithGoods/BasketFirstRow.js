@@ -3,7 +3,7 @@ import React from 'react';
 import BaskerGoodRow from './BaskerGoodRow';
 import EmptyBasket from '../EmptyBasket/EmptyBasket';
 
-export default function BasketFirstRow({ setTotalGoods, setTotalQuantityOfGoods, setBasketLength }) {
+function BasketFirstRow({ setTotalGoods, setTotalQuantityOfGoods, setBasketLength }) {
     const [basket, setBasket] = useState([]);
 
 
@@ -41,5 +41,5 @@ export default function BasketFirstRow({ setTotalGoods, setTotalQuantityOfGoods,
 };
 
 
-// export default React.memo(BasketFirstRow);
+export default React.memo(BasketFirstRow);
 

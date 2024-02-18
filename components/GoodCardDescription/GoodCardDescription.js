@@ -17,7 +17,7 @@ function GoodCardDescription({ props }) {
         const basketArr = JSON.parse(BASKET);
 
 
-        if (!basketArr) {
+        if (basketArr === null || !basketArr) {
             const basketObject = [{
                 id: id,
                 title: title,
@@ -27,9 +27,8 @@ function GoodCardDescription({ props }) {
             }];
             const basketJSON = JSON.stringify(basketObject);
             localStorage.setItem("BASKET", basketJSON);
-            // const res = basketObject.reduce((accum, item) => accum = accum + item.number, 0)
-            // console.log(res)
-            localStorage.setItem("totalGoods", basketObject.reduce((accum, item) => accum = accum + item.number, 0))
+            const totalGoodsInLocalStorage = JSON.stringify(1)
+            localStorage.setItem("totalGoods", totalGoodsInLocalStorage);
             return
         }
 
@@ -38,13 +37,13 @@ function GoodCardDescription({ props }) {
                 return item.id === id
             })
 
-
-
             if (arrayIndex >= 0) {
                 basketArr[arrayIndex].number += 1;
                 const updatedBasketJSON = JSON.stringify(basketArr);
                 localStorage.setItem('BASKET', updatedBasketJSON);
-                localStorage.setItem("totalGoods", basketArr.reduce((accum, item) => accum = accum + item.number, 0))
+
+                const newTotalGoods = basketArr.reduce((accum, item) => accum = accum + item.number, 0);
+                localStorage.setItem('totalGoods', newTotalGoods);
             }
             else {
                 const basketObject = {
@@ -56,7 +55,10 @@ function GoodCardDescription({ props }) {
                 };
                 basketArr.push(basketObject);
                 const jsonString = JSON.stringify(basketArr);
-                localStorage.setItem("BASKET", jsonString)
+                localStorage.setItem("BASKET", jsonString);
+
+                const newTotalGoods = basketArr.reduce((accum, item) => accum = accum + item.number, 0);
+                localStorage.setItem('totalGoods', newTotalGoods);
             }
         }
     };

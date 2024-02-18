@@ -4,15 +4,15 @@ import { useRouter } from 'next/router';
 import singInFunction from '@/pages/api/SingInFunction';
 import Image from "next/image";
 import Link from 'next/link';
-import { setUserInfo } from '@/slices/userSlice';
-import { useDispatch } from 'react-redux';
+// import { setUserInfo, setUserName } from '@/slices/userSlice';
+// import { useDispatch } from 'react-redux';
 
 
 
 function SingInForm({ props }) {
     const { setLoading } = props;
     const router = useRouter();
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const [userEmail, setUserEmail] = useState('');
     const [inputEmailClass, setInputEmailClass] = useState("user-email");
@@ -35,13 +35,21 @@ function SingInForm({ props }) {
                 "password": userPassword
             };
 
-            const { JWTToken, Errorflag, UserInfo } = await singInFunction(body);
+            const { JWTToken, Errorflag } = await singInFunction(body);
             if (Errorflag) {
                 setLoading(false);
             }
             else if (JWTToken) {
                 setLoading(false);
-                dispatch(setUserInfo(UserInfo));
+                // console.log(UserInfo)
+                // const newUserInfo = {
+                //     name: UserInfo.firstname,
+                //     surname: UserInfo.lastname,
+                //     phone: UserInfo.phone,
+                //     email: UserInfo.email
+                // }
+                // dispatch(setUserName(UserInfo.firstname));
+                // dispatch(setUserInfo(newUserInfo));
                 router.push('/userpage');
             };
         }

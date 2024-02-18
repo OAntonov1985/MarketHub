@@ -2,49 +2,100 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
-import { URLADRESS } from '../Constants';
+import { useSelector } from 'react-redux';
 
 
 function BasketForm() {
-    const userInfo = Cookies.get('userName');
+    const { userInfo } = useSelector((state) => state.user);
 
     const [userName, setUserName] = useState('');
-    const [userSurName, setUserSurName] = useState('');
+    const [inputNameClass, setInputNameClass] = useState("user-name");
+    const [showErrorName, setShowErrorName] = useState(false);
+
+    function validateUserName() {
+        if (userName.length <= 2) {
+            setShowErrorName(true);
+            setInputNameClass("user-name border-red");
+        }
+        else {
+            setInputNameClass("user-name border-green");
+            setShowErrorName(false);
+        };
+    };
+
+    //////////   userSurname    //////////
+    const [userSurname, setUserSurname] = useState('');
+    const [inputSurnameClass, setInputSurnameClass] = useState("user-surname");
+    const [showErrorSurname, setShowErrorSurname] = useState(false);
+
+    function validateUserSurname() {
+        if (userSurname.length <= 2) {
+            setShowErrorSurname(true);
+            setInputSurnameClass("user-name border-red");
+        }
+        else {
+            setInputSurnameClass("user-name border-green");
+            setShowErrorSurname(false);
+        };
+    };
+
+    //////////   userPhone    //////////
+    const [userPhone, setUserPfone] = useState('');
+    const [inputPhoneClass, setInputPhoneClass] = useState("user-tel");
+    const [showErrorPhone, setShowErrorPhone] = useState(false);
+
+    function validateUserTel() {
+        if (userPhone.length === 12) {
+            setInputPhoneClass("user-tel border-green");
+            setShowErrorPhone(false);
+        }
+        else if (userPhone.length !== 12) {
+            setInputPhoneClass("user-tel border-red");
+            setShowErrorPhone(true)
+        }
+    };
+    //////////   userEmail    //////////
     const [userEmail, setUserEmail] = useState('');
-    const [userPhone, setUserPhone] = useState('');
+    const [inputEmailClass, setInputEmailClass] = useState("user-email");
+    const [showErrorEmail, setShowErrorEmail] = useState(false);
+
+    function validateEmail() {
+        if (/^[a-zA-Z0-9]{3,}@[a-zA-Z0-9]{3,}\.[a-zA-Z0-9]{2,}$/.test(userEmail)) {
+            setShowErrorEmail(false);
+            setInputEmailClass("user-email border-green")
+        }
+        else {
+            setShowErrorEmail(true);
+            setInputEmailClass("user-email border-red")
+        }
+    }
+
+    const userNameInCookies = Cookies.get('userName');
+    const userSurnameInCookies = Cookies.get('userSurname');
+    const userPhoneInCookies = Cookies.get('userPhone');
+    const userEmailInCookies = Cookies.get('userEmail');
+
 
 
     useEffect(() => {
-        if (userInfo) {
-            const userID = Cookies.get('userID');
-            const userToken = Cookies.get('jwtToken');
-            async function getUserInfo() {
-                try {
-                    const requestOptions = {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': `Bearer ${userToken}`
-                        }
-                    };
-
-                    const response = await fetch(`https://markethub-mfbw.onrender.com/markethub/users/${userID}`, requestOptions);
-                    const data = await response.json();
-                    // console.log(data); 
-                    setUserName(data.firstname);
-                    setUserSurName(data.lastname)
-                    setUserEmail(data.email)
-                    setUserPhone(data.phone)
-                } catch (error) {
-                    console.error('Ошибка:', error);
-                }
-            }
-
-            getUserInfo();
+        if (userNameInCookies) {
+            setUserName(userNameInCookies);
+            setUserSurname(userSurnameInCookies);
+            setUserEmail(userEmailInCookies);
+            setUserPfone(userPhoneInCookies);
         }
-    }, []);
+        else {
+            setUserName("");
+            setUserSurname("");
+            setUserEmail("");
+            setUserPfone("");
+        }
+    }, [userNameInCookies]);
 
 
     const handleChange = async (event) => {
+        console.log(event.target.value)
+        setUserName(event.target.value);
         // const cityName = event.target.value;
         // console.log(event.target.value)
 
@@ -83,14 +134,14 @@ function BasketForm() {
                     <input
                         id="userName"
                         type="text"
-                        className="basket-input active-field"
+                        className={inputNameClass}
                         placeholder="Введіть своє ім’я"
-                        onChange={handleChange}
                         value={userName}
-                    // value={userEmail}
-                    // onBlur={validateEmail}
-                    // required 
+                        onChange={(e) => setUserName(e.target.value)}
+                        onBlur={validateUserName}
+                        required
                     />
+                    {showErrorName !== false ? <p className='paragraf-buttom basket-form-massage'>Мінімальна кількість символів має 3</p> : null}
 
 
 
@@ -100,16 +151,16 @@ function BasketForm() {
                     <input
                         id="userSurname"
                         type="text"
-                        className="basket-input active-field"
+                        className={inputSurnameClass}
                         placeholder="Введіть своє прізвище"
-                        value={userSurName}
-                        onChange={handleChange}
-                    // value={userEmail}
-                    // onBlur={validateEmail}
-                    // required 
+                        value={userSurname}
+                        onChange={(e) => setUserSurname(e.target.value)}
+                        onBlur={validateUserSurname}
+                        required
                     />
-
+                    {showErrorSurname !== false ? <p className='paragraf-buttom basket-form-massage'>Мінімальна кількість символів має 3</p> : null}
                 </div>
+
                 <div className='basket-with-goods-right-column'>
                     <label htmlFor="userPhone"
                         className='basket-label-title'
@@ -117,14 +168,14 @@ function BasketForm() {
                     <input
                         id="userPhone"
                         type="text"
-                        className="basket-input active-field"
+                        className={inputPhoneClass}
                         placeholder="Введіть свій номер телефону"
                         value={userPhone}
-                        onChange={handleChange}
-                    // value={userEmail}
-                    // onBlur={validateEmail}
-                    // required
+                        onChange={(e) => setUserPfone(e.target.value)}
+                        onBlur={validateUserTel}
+                        required
                     />
+                    {showErrorPhone !== false ? <p className='paragraf-buttom basket-form-massage'>В номері телефону має бути 12 символів</p> : null}
 
                     <label htmlFor="userEmail"
                         className='basket-label-title'
@@ -132,14 +183,13 @@ function BasketForm() {
                     <input
                         id="userEmail"
                         type="text"
-                        className="basket-input active-field"
+                        className={inputEmailClass}
                         placeholder="Введіть свою пошту"
                         value={userEmail}
-                        onChange={handleChange}
-                    // value={userEmail}
-                    // onBlur={validateEmail}
-                    // required 
-                    />
+                        onChange={(e) => setUserEmail(e.target.value)}
+                        onBlur={validateEmail}
+                        required />
+                    {showErrorEmail !== false ? <p className='paragraf-buttom basket-form-massage'>Невірний формат пошти. example123@gmail.com</p> : null}
                 </div>
             </div>
 
