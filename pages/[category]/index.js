@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 
 function CategoryPage({ subCategories, goods }) {
-
+    // console.log(goods)
 
     return (
         <>
@@ -48,6 +48,7 @@ export async function getServerSideProps(context) {
 
     // const resGoods = await fetch(`https://fakestoreapi.com/products`);
     const resGoods = await fetch(`https://dummyjson.com/products?limit=12`);
+    // const resGoods = await fetch(`https://markethub-mfbw.onrender.com/markethub/goods/categories/100`);
     const goods = await resGoods.json();
 
     return {

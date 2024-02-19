@@ -7,16 +7,17 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
-import GoodCard from '@/components/GoodCard/GoodCard';
 
 
 export default function UserPage() {
-    const userName = Cookies.get('userName');
     const router = useRouter();
 
-    const deleteToken = () => {
+    const deleteUserInfo = () => {
         Cookies.remove('jwtToken');
         Cookies.remove('userName');
+        Cookies.remove('userPhone');
+        Cookies.remove('userSurname');
+        Cookies.remove('userEmail');
         Cookies.remove('userID');
         router.push('/');
     }
@@ -33,7 +34,7 @@ export default function UserPage() {
             <Link href='/' className='main-link'>
                 <p className='main-link'>Головна сторінка</p>
             </Link>
-            <button onClick={deleteToken}>Вийти з акаунту</button>
+            <button onClick={deleteUserInfo}>Вийти з акаунту</button>
             <Footer />
         </>
     )

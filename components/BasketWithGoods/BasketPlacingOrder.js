@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import BasketForm from './BasketForm';
 import Cookies from 'js-cookie';
 
@@ -6,21 +7,27 @@ function BasketPlacingOrder() {
     const [isNewUser, setIsNewUser] = useState("active-button");
     const userNameInCookies = Cookies.get('userName');
 
+    const router = useRouter();
+
 
     useEffect(() => {
+
         if (userNameInCookies) {
             setIsNewUser("unactive-button")
         }
         else setIsNewUser("active-button")
     }, [userNameInCookies])
 
+
     const toggleUser = (e) => {
         if (!userNameInCookies) {
             if (e.target.id === "newСustomer") {
-                setIsNewUser("active-button")
+                setIsNewUser("active-button");
             }
             else if (e.target.id === "regularСustomer") {
-                setIsNewUser("unactive-button")
+                setIsNewUser("unactive-button");
+                router.push("http://localhost:3000/loginpage");
+
             }
         }
 

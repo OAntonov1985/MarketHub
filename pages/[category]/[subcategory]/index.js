@@ -29,7 +29,8 @@ function SubCategoryPage({ goods }) {
 };
 
 export async function getServerSideProps() {
-    const resGoods = await fetch(`https://dummyjson.com/products?limit=12&skip=12`);
+    // const resGoods = await fetch(`https://dummyjson.com/products?limit=12&skip=12`);
+    const resGoods = await fetch(`https://markethub-mfbw.onrender.com/markethub/goods/categories/100`);
     const goods = await resGoods.json();
 
     return {

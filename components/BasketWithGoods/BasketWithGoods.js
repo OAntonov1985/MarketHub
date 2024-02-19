@@ -2,7 +2,6 @@ import React from 'react';
 import BasketFirstRow from './BasketFirstRow';
 import BasketPlacingOrder from './BasketPlacingOrder';
 import BasketDeliveryInfo from './BasketDeliveryInfo';
-import BasketRecepientInfo from './BasketRecepientInfo';
 import BasketTotalRow from './BasketTotalRow';
 import { useState } from 'react';
 
@@ -16,7 +15,6 @@ function BasketWithGoods({ setBasketLength }) {
             <BasketFirstRow setTotalGoods={setTotalGoods} setTotalQuantityOfGoods={setTotalQuantityOfGoods} totalGoods={totalGoods} setBasketLength={setBasketLength} />
             <BasketPlacingOrder />
             <BasketDeliveryInfo />
-            <BasketRecepientInfo />
             <BasketTotalRow totalGoods={totalGoods} totalQuantityOfGoods={totalQuantityOfGoods} />
         </div>
     )

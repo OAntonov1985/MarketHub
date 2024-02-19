@@ -82,6 +82,10 @@ a:visited {
   right: 0.8rem;
 }
 
+.search-input-field {
+  cursor: pointer;
+}
+
 .logo-image-client {
   margin-right: 3.7rem;
 }
@@ -898,6 +902,7 @@ h2 {
   height: 3.4rem;
   opacity: 1;
   position: relative;
+  cursor: pointer;
 }
 
 .good-card-prev-button {
@@ -1415,6 +1420,7 @@ h2 {
   width: 12.5rem;
   border-radius: 1.4rem;
   background-color: #F3F4F6;
+  cursor: pointer;
 }
 
 .good-item-image-container {
@@ -1436,6 +1442,10 @@ h2 {
   font-size: 2.4rem;
   font-weight: normal;
   color: #000000;
+}
+
+.good-item-description-title {
+  cursor: pointer;
 }
 
 .good-item-description-number {
@@ -1463,6 +1473,7 @@ h2 {
   position: relative;
   width: 2.4rem;
   height: 2.4rem;
+  cursor: pointer;
 }
 
 .selsector-number-number {
@@ -1480,6 +1491,7 @@ h2 {
   position: relative;
   width: 2.4rem;
   height: 2.4rem;
+  cursor: pointer;
 }
 
 .good-item-total-price {
@@ -1512,6 +1524,7 @@ h2 {
 
 .active-button {
   border: 1px solid #76CA66;
+  cursor: pointer;
 }
 
 .unactive-button {
@@ -1613,6 +1626,7 @@ h2 {
 
 .basket-with-goods-item:hover {
   border: 1px solid #76CA66;
+  cursor: pointer;
 }
 
 .goods-item-active {
@@ -1671,4 +1685,5 @@ h2 {
 
 .basket-total-button {
   padding: 0.8rem 1.7rem;
+  cursor: pointer;
 }/*# sourceMappingURL=globals.css.map */

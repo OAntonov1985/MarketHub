@@ -32,8 +32,7 @@ function BasketFirstRow({ setTotalGoods, setTotalQuantityOfGoods, setBasketLengt
                             setBasket={setBasket} basket={basket}
                             setTotalQuantityOfGoods={setTotalQuantityOfGoods} setTotalGoods={setTotalGoods} setBasketLength={setBasketLength}
                         />
-                    ))
-                    : <h4 className='basket-with-goods-title'>Кошик порожній... Повернутись до покупок?</h4>
+                    )) : <EmptyBasket />
                 }
             </div>
         </div>

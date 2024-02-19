@@ -8,7 +8,7 @@ import { useState } from 'react';
 function GoodsList({ props }) {
     // console.log(props);
 
-    const [listGoods, setListGoods] = useState([]);
+    const [listGoods, setListGoods] = useState(props);
 
     const fetchData = async (num) => {
         try {
@@ -39,7 +39,7 @@ function GoodsList({ props }) {
             <div className="goods-list-render">
                 <AsideFilter />
                 <div className="goods-list-goods-items">
-                    {!!(listGoods ? listGoods : props).length && (listGoods ? listGoods : props).map(props => {
+                    {!!(listGoods ? listGoods : props).length && (listGoods ? listGoods : props.items).map(props => {
                         return (
                             <GoodCardSmall key={props.id} props={props} listGoods={listGoods} />
                         );

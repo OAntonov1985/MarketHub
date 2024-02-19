@@ -9,10 +9,13 @@ import Link from 'next/link';
 
 
 
+
 function SingInForm({ props }) {
     const { setLoading } = props;
     const router = useRouter();
+
     // const dispatch = useDispatch();
+    // console.log(router)
 
     const [userEmail, setUserEmail] = useState('');
     const [inputEmailClass, setInputEmailClass] = useState("user-email");
@@ -41,16 +44,8 @@ function SingInForm({ props }) {
             }
             else if (JWTToken) {
                 setLoading(false);
-                // console.log(UserInfo)
-                // const newUserInfo = {
-                //     name: UserInfo.firstname,
-                //     surname: UserInfo.lastname,
-                //     phone: UserInfo.phone,
-                //     email: UserInfo.email
-                // }
-                // dispatch(setUserName(UserInfo.firstname));
-                // dispatch(setUserInfo(newUserInfo));
-                router.push('/userpage');
+                // router.push('/userpage');
+                router.back();
             };
         }
         else alert('Помилка заповнення одного з полів');

@@ -3,7 +3,8 @@ import React from 'react';
 import { useState } from 'react';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
 import { increaseGood, reduceGood, totalGoods } from '@/slices/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import Link from 'next/link';
 
 
 
@@ -83,7 +84,7 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
     return (
         <div className="basket-with-good-item">
             <div className='good-item-left-column'>
-                <div className="good-item-image">
+                <Link className="good-item-image" href={`http://localhost:3000/${id}/${title}/${id}`}>
                     <div className='good-item-image-container'>
                         <Image
                             alt="image of good"
@@ -97,10 +98,10 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
                             }}
                         />
                     </div>
-                </div>
+                </Link>
 
                 <div className='good-item-description-column'>
-                    <div className='good-item-description-title'>{title}</div>
+                    <Link className='good-item-description-title' href={`http://localhost:3000/${id}/${title}/${id}`}>{title}</Link>
                     <div className='good-item-description-number'>
                         <div className='good-item-description-selsector-number'>
                             <div className="selsector-number-minus">
