@@ -24,7 +24,7 @@ function BasketFirstRow() {
             <div className="basket-with-goods-list">
                 {basket.length ?
                     basket.map((item, index) => (
-                        <BaskerGoodRow key={index} props={item} setBasket={setBasket} />
+                        <BaskerGoodRow key={index} props={item} setBasket={setBasket} basket={basket} />
                     )) : <EmptyBasket />
                 }
             </div>

@@ -10,23 +10,28 @@ import Link from 'next/link';
 
 function BaskerGoodRow({ props, setBasket }) {
 
-
     const { id, title, thumbnail, number, price } = props;
 
     const [count, setCount] = useState(number);
     const [total, setTotal] = useState(number * price);
+    const [flag, setFlag] = useState(0);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        const BASKET = localStorage.getItem("BASKET");
+        let basketArr = JSON.parse(BASKET);
+        const index = basketArr.findIndex(item => item.id == id);
+
+        setCount(basketArr[index].number);
+        setTotal(basketArr[index].totalPrice);
+    }, [flag]);
 
     const increaceGoodQuantity = (e) => {
         setCount(count + 1);
         setTotal((count + 1) * price);
         dispatch(increaseGood());
         updateData("plus", e.target.id);
-    }
-
-
-
+    };
 
     const reduseGoodQuantity = (e) => {
         if (count > 1) {
@@ -36,16 +41,15 @@ function BaskerGoodRow({ props, setBasket }) {
             updateData("minus", e.target.id);
         }
         else return;
-    }
-
+    };
 
     const deleteGood = (e) => {
         const result = confirm(`Ви точно бажаєте видалити ${title}?`);
         if (result === true) {
-            updateData("delete", e.target.id)
+            updateData("delete", e.target.id);
         }
         else return;
-    }
+    };
 
     function updateData(event, num) {
         const BASKET = localStorage.getItem("BASKET");
@@ -58,20 +62,16 @@ function BaskerGoodRow({ props, setBasket }) {
                 basketArr[index].totalPrice = price * basketArr[index].number;
             }
 
-            else if (event === "minus" && basketArr[index].numbe > 1) {
-                basketArr[index].number = count - 1;
+            else if (event === "minus" && basketArr[index].number > 1) {
+                basketArr[index].number = basketArr[index].number - 1;
                 basketArr[index].totalPrice = price * basketArr[index].number;
             }
             else if (event === "delete") {
-                console.log(basketArr[index])
                 const reduseGood = basketArr[index].number
                 dispatch(reduceGood(reduseGood));
                 basketArr.splice(index, 1);
-                console.log(basketArr)
-                const newIndex = basketArr.findIndex(item => item.id == num);
-                // setCount(basketArr[newIndex].number);
-                // setTotal(basketArr[newIndex].number * price)
                 setBasket(basketArr);
+                setFlag(flag + 1);
             }
 
             const updatedBasketJSON = JSON.stringify(basketArr);

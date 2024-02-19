@@ -5,21 +5,22 @@ import Cookies from 'js-cookie';
 
 function BasketPlacingOrder() {
     const [isNewUser, setIsNewUser] = useState("active-button");
+
     const userNameInCookies = Cookies.get('userName');
-
     const router = useRouter();
-
 
     useEffect(() => {
 
         if (userNameInCookies) {
             setIsNewUser("unactive-button")
         }
-        else setIsNewUser("active-button")
+        else setIsNewUser("active-button");
+
     }, [userNameInCookies])
 
 
     const toggleUser = (e) => {
+
         if (!userNameInCookies) {
             if (e.target.id === "newСustomer") {
                 setIsNewUser("active-button");
@@ -28,9 +29,8 @@ function BasketPlacingOrder() {
                 setIsNewUser("unactive-button");
                 router.push("http://localhost:3000/loginpage");
 
-            }
-        }
-
+            };
+        };
     }
 
     return (

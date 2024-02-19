@@ -1,15 +1,61 @@
 import React from 'react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import jsonData from "../../public/data.json"
 
 
 
 function BasketDeliveryInfo() {
     const [cargoCarrier, setCargoCarier] = useState("nova");
+    const [data, setData] = useState([])
 
     const changeCagroCarier = (event) => {
         setCargoCarier(event.target.id);
-    }
+    };
+
+    console.log(jsonData.data[0].Description)
+    const searchResults = jsonData.data.filter(item =>
+        item.Description.toLowerCase().includes(jsonData.data[0].Description.toLowerCase())
+    );
+    console.log(searchResults)
+
+    const handleChange = async (event) => {
+
+        const searchResults = jsonData.data.filter(item =>
+            item.Description.toLowerCase().includes(event.target.value.toLowerCase())
+        );
+        console.log(searchResults)
+        //     const cityName = event.target.value;
+        //     console.log(event.target.value)
+
+        //     const requestOptions = {
+        //         method: 'POST',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify({
+        //             apiKey: 'e89bd5854276bb600236d063f5e2c119',
+        //             modelName: 'Address',
+        //             calledMethod: 'searchSettlements',
+        //             methodProperties: {
+        //                 CityName: cityName,
+        //                 Limit: '50',
+        //                 Page: '2'
+        //             }
+        //         })
+        //     };
+        //     // console.log(777)
+        //     try {
+        //         const response = await fetch('https://api.novaposhta.ua/v2.0/json/', requestOptions);
+        //         const data = await response.json();
+        //         console.log(data.data[0].Addresses); // Вывод результата в консоль
+
+        //     } catch (error) {
+        //         console.error('Error:', error);
+        //     }
+    };
+
+
+
 
     return (
         <div className='basket-with-good-container'>
@@ -85,7 +131,7 @@ function BasketDeliveryInfo() {
                         type="text"
                         className="basket-input active-field"
                         placeholder="Введіть місто"
-                    // onChange={handleChange}
+                        onChange={handleChange}
                     // value={userEmail}
                     // onBlur={validateEmail}
                     // required 
@@ -112,3 +158,6 @@ function BasketDeliveryInfo() {
 }
 
 export default React.memo(BasketDeliveryInfo);
+
+
+
