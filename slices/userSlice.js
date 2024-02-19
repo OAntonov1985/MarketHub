@@ -12,7 +12,7 @@ const initialState = {
     userInfo: {},
     userName: userNameInCookies === undefined ? 0 : userNameInCookies,
     loading: false,
-    value: 10,
+    totalPriseInAllBasket: 0,
     quantityOfGoods: 0
 };
 
@@ -26,9 +26,9 @@ const userSlice = createSlice({
         totalGoods: (state, action) => {
             state.quantityOfGoods = action.payload;
         },
-        reduceGood: (state) => {
+        reduceGood: (state, action) => {
             if (state.quantityOfGoods > 1) {
-                state.quantityOfGoods--;
+                state.quantityOfGoods = state.quantityOfGoods - action.payload;
             }
         },
         setUserInfo: (state, action) => {
@@ -37,10 +37,13 @@ const userSlice = createSlice({
         setUserName: (state, action) => {
             state.userName = action.payload
         },
+        setTotalPriseInAllBasket: (state, action) => {
+            state.totalPriseInAllBasket = action.payload
+        },
     }
 
 });
 
-export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket } = userSlice.actions;
 
 export default userSlice.reducer;

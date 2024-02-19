@@ -7,39 +7,32 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalGoods } from '@/slices/userSlice';
+import { totalGoods, setTotalPriseInAllBasket } from '@/slices/userSlice';
 
 
 
 function Header({ transparentBackground }) {
-    const router = useRouter();
-    // const [totalGoods, setTotalGoods] = useState('')
+
     const [headerName, setHeaderName] = useState('');
     const [imagePath, setimagePath] = useState("/basket.svg");
     const [isVisible, setIsVisible] = useState("quantityOfGoods is-wisible");
+
     const dispatch = useDispatch();
-
-    let totalGoodsInLocalStorage;
-    let userName
-
-    useEffect(() => {
-        const totalGoodsInLocal = localStorage.getItem("totalGoods")
-        totalGoodsInLocalStorage = JSON.parse(totalGoodsInLocal);
-        userName = Cookies.get('userName');
-        dispatch(totalGoods(totalGoodsInLocalStorage))
-        // setTotalGoods(totalGoodsInLocalStorage)
-
-    });
-
     const { quantityOfGoods } = useSelector((state) => state.user);
 
-    // if (typeof window !== 'undefined') {
-    //     const totalGoodsInLocal = localStorage.getItem("totalGoods")
-    //     totalGoodsInLocalStorage = JSON.parse(totalGoodsInLocal);
-    //     userName = Cookies.get('userName');
-    // };
+    let userName;
 
-    // const { quantityOfGoods } = useSelector((state) => state.user);
+    useEffect(() => {
+        const totalGoodsInLocal = localStorage.getItem("totalGoods");
+        const totalGoodsInLocalStorage = JSON.parse(totalGoodsInLocal);
+        dispatch(totalGoods(totalGoodsInLocalStorage));
+
+        const totalPriceInlocal = localStorage.getItem("totalPriseInAllBasket");
+        const totalPriceInLocalStorafe = JSON.parse(totalPriceInlocal);
+        dispatch(setTotalPriseInAllBasket(totalPriceInLocalStorafe));
+
+        userName = Cookies.get('userName');
+    }, []);
 
 
 
@@ -52,8 +45,6 @@ function Header({ transparentBackground }) {
         }
 
     }, [userName]);
-
-
 
 
     useEffect(() => {

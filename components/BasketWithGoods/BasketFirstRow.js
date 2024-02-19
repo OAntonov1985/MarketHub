@@ -3,7 +3,7 @@ import React from 'react';
 import BaskerGoodRow from './BaskerGoodRow';
 import EmptyBasket from '../EmptyBasket/EmptyBasket';
 
-function BasketFirstRow({ setTotalGoods, setTotalQuantityOfGoods, setBasketLength }) {
+function BasketFirstRow() {
     const [basket, setBasket] = useState([]);
 
 
@@ -12,13 +12,9 @@ function BasketFirstRow({ setTotalGoods, setTotalQuantityOfGoods, setBasketLengt
         const basketArr = JSON.parse(BASKET);
         if (basketArr) {
             setBasket(basketArr);
-            setTotalGoods(basketArr.reduce((accum, item) => accum = accum + item.number, 0));
-            setTotalQuantityOfGoods(basketArr.reduce((acc, product) => {
-                return acc + (product.price * product.number);
-            }, 0));
-        }
-
+        };
     }, []);
+
 
 
 
@@ -28,10 +24,7 @@ function BasketFirstRow({ setTotalGoods, setTotalQuantityOfGoods, setBasketLengt
             <div className="basket-with-goods-list">
                 {basket.length ?
                     basket.map((item, index) => (
-                        <BaskerGoodRow key={index} props={item}
-                            setBasket={setBasket} basket={basket}
-                            setTotalQuantityOfGoods={setTotalQuantityOfGoods} setTotalGoods={setTotalGoods} setBasketLength={setBasketLength}
-                        />
+                        <BaskerGoodRow key={index} props={item} setBasket={setBasket} />
                     )) : <EmptyBasket />
                 }
             </div>

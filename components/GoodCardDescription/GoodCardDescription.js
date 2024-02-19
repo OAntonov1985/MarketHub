@@ -2,7 +2,7 @@ import Image from 'next/image';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { increaseGood } from '@/slices/userSlice';
+import { increaseGood, setTotalPriseInAllBasket } from '@/slices/userSlice';
 
 
 
@@ -16,42 +16,58 @@ function GoodCardDescription({ props }) {
         const BASKET = localStorage.getItem("BASKET");
         const basketArr = JSON.parse(BASKET);
 
+        ///// якщо кошик порожній  або його немає /////
+        if (basketArr === null || !basketArr || basketArr.length === 0) {
 
-        if (basketArr === null || !basketArr) {
             const basketObject = [{
                 id: id,
                 title: title,
                 thumbnail: thumbnail,
                 price: price,
-                number: number + 1
+                number: number + 1,
+                totalPrice: price
             }];
+
             const basketJSON = JSON.stringify(basketObject);
             localStorage.setItem("BASKET", basketJSON);
+
             const totalGoodsInLocalStorage = JSON.stringify(1)
             localStorage.setItem("totalGoods", totalGoodsInLocalStorage);
+
+            dispatch(setTotalPriseInAllBasket(price));
             return
         }
-
+        ///// якщо кошик не порожній  або його немає /////
         if (basketArr !== null) {
             const arrayIndex = basketArr.findIndex(item => {
                 return item.id === id
             })
-
+            ///// якщо даний товар вже є в кошику/////
             if (arrayIndex >= 0) {
+
                 basketArr[arrayIndex].number += 1;
+                basketArr[arrayIndex].totalPrice = price * basketArr[arrayIndex].number;
+
                 const updatedBasketJSON = JSON.stringify(basketArr);
                 localStorage.setItem('BASKET', updatedBasketJSON);
 
                 const newTotalGoods = basketArr.reduce((accum, item) => accum = accum + item.number, 0);
                 localStorage.setItem('totalGoods', newTotalGoods);
+
+                const newTotalPriseInAllBasket = basketArr.reduce((accum, item) => accum = accum + (item.price * item.number), 0);
+                localStorage.setItem('totalPriseInAllBasket', newTotalPriseInAllBasket);
+
+                dispatch(setTotalPriseInAllBasket(newTotalPriseInAllBasket));
             }
+            ///// якщо додаємо товар, якого немає в кошику але в кошику вже є товари/////
             else {
                 const basketObject = {
                     id: id,
                     title: title,
                     thumbnail: thumbnail,
                     price: price,
-                    number: number + 1
+                    number: number + 1,
+                    totalPrice: price
                 };
                 basketArr.push(basketObject);
                 const jsonString = JSON.stringify(basketArr);
@@ -59,6 +75,11 @@ function GoodCardDescription({ props }) {
 
                 const newTotalGoods = basketArr.reduce((accum, item) => accum = accum + item.number, 0);
                 localStorage.setItem('totalGoods', newTotalGoods);
+
+                const newTotalPriseInAllBasket = basketArr.reduce((accum, item) => accum = accum + item.totalPrice, 0);
+                localStorage.setItem('totalPriseInAllBasket', newTotalPriseInAllBasket);
+
+                dispatch(setTotalPriseInAllBasket(newTotalPriseInAllBasket));
             }
         }
     };

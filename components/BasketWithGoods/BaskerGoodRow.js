@@ -1,84 +1,92 @@
 import Image from 'next/image';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
-import { increaseGood, reduceGood, totalGoods } from '@/slices/userSlice';
+import { increaseGood, reduceGood, totalGoods, setTotalPriseInAllBasket } from '@/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
 
 
 
-function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuantityOfGoods, setBasketLength }) {
+function BaskerGoodRow({ props, setBasket }) {
 
-    const { id, title, thumbnail, number, price } = props
+
+    const { id, title, thumbnail, number, price } = props;
+
     const [count, setCount] = useState(number);
-    const [total, setTotal] = useState(count * price);
+    const [total, setTotal] = useState(number * price);
     const dispatch = useDispatch();
+
 
     const increaceGoodQuantity = (e) => {
         setCount(count + 1);
-        dispatch(totalGoods(count + 1));
-
         setTotal((count + 1) * price);
-        const index = basket.findIndex(item => item.id == e.target.id);
-        basket[index].number = count + 1;
-
-        setBasket(basket);
-        const newTotalGoods = basket.reduce((accum, item) => accum = accum + item.number, 0);
-        localStorage.setItem('totalGoods', newTotalGoods);
-
-        const newlength = basket.length;
-        setBasketLength(newlength);
-
-        localStorage.setItem('BASKET', JSON.stringify(basket));
-
-        setTotalGoods(basket.reduce((accum, item) => accum = accum + item.number, 0));
-        setTotalQuantityOfGoods(basket.reduce((acc, product) => {
-            return acc + (product.price * product.number);
-        }, 0));
+        dispatch(increaseGood());
+        updateData("plus", e.target.id);
     }
+
+
+
 
     const reduseGoodQuantity = (e) => {
         if (count > 1) {
             setCount(count - 1);
-            dispatch(totalGoods(count - 1));
             setTotal((count - 1) * price);
-            const index = basket.findIndex(item => item.id == e.target.id);
-            basket[index].number = count - 1;
-
-            setBasket(basket);
-
-            const newlength = basket.length;
-            setBasketLength(newlength);
-
-            const newTotalGoods = basket.reduce((accum, item) => accum = accum + item.number, 0);
-            localStorage.setItem('totalGoods', newTotalGoods);
-            localStorage.setItem('BASKET', JSON.stringify(basket));
-
-            setTotalGoods(basket.reduce((accum, item) => accum = accum + item.number, 0));
-            setTotalQuantityOfGoods(basket.reduce((acc, product) => {
-                return acc + (product.price * product.number);
-            }, 0));
+            dispatch(reduceGood(1));
+            updateData("minus", e.target.id);
         }
         else return;
     }
-
 
 
     const deleteGood = (e) => {
         const result = confirm(`Ви точно бажаєте видалити ${title}?`);
         if (result === true) {
-            const updatedBasket = basket.filter(item => item.id != e.target.id);
-
-            const newTotalGoods = updatedBasket.reduce((accum, item) => accum = accum + item.number, 0);
-            localStorage.setItem('totalGoods', newTotalGoods);
-            dispatch(totalGoods(newTotalGoods))
-            localStorage.setItem('BASKET', JSON.stringify(updatedBasket));
-            setBasket(updatedBasket);
-            setBasketLength(updatedBasket.length);
+            updateData("delete", e.target.id)
         }
         else return;
     }
+
+    function updateData(event, num) {
+        const BASKET = localStorage.getItem("BASKET");
+        let basketArr = JSON.parse(BASKET);
+        const index = basketArr.findIndex(item => item.id == num);
+
+        if (basketArr) {
+            if (event === "plus") {
+                basketArr[index].number = count + 1;
+                basketArr[index].totalPrice = price * basketArr[index].number;
+            }
+
+            else if (event === "minus" && basketArr[index].numbe > 1) {
+                basketArr[index].number = count - 1;
+                basketArr[index].totalPrice = price * basketArr[index].number;
+            }
+            else if (event === "delete") {
+                console.log(basketArr[index])
+                const reduseGood = basketArr[index].number
+                dispatch(reduceGood(reduseGood));
+                basketArr.splice(index, 1);
+                console.log(basketArr)
+                const newIndex = basketArr.findIndex(item => item.id == num);
+                // setCount(basketArr[newIndex].number);
+                // setTotal(basketArr[newIndex].number * price)
+                setBasket(basketArr);
+            }
+
+            const updatedBasketJSON = JSON.stringify(basketArr);
+            localStorage.setItem('BASKET', updatedBasketJSON);
+
+            const newTotalGoods = basketArr.reduce((accum, item) => accum = accum + item.number, 0);
+            localStorage.setItem('totalGoods', newTotalGoods);
+
+            const newTotalPriseInAllBasket = basketArr.reduce((accum, item) => accum = accum + (item.price * item.number), 0);
+            localStorage.setItem('totalPriseInAllBasket', newTotalPriseInAllBasket);
+
+            dispatch(setTotalPriseInAllBasket(newTotalPriseInAllBasket));
+        };
+    }
+
 
 
     return (
@@ -106,7 +114,7 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
                         <div className='good-item-description-selsector-number'>
                             <div className="selsector-number-minus">
                                 <Image
-                                    onClick={(e) => { reduseGoodQuantity(e); dispatch(reduceGood()) }}
+                                    onClick={reduseGoodQuantity}
                                     id={id}
                                     alt="image of good"
                                     src="/minus1.svg"
@@ -121,7 +129,7 @@ function BaskerGoodRow({ props, setBasket, basket, setTotalGoods, setTotalQuanti
                             </div>
                             <div className="selsector-number-number">{count}</div>
                             <div className="selsector-number-plus"
-                                onClick={(e) => { increaceGoodQuantity(e); dispatch(increaseGood()) }}                            >
+                                onClick={increaceGoodQuantity}>
                                 <Image
                                     id={id}
                                     alt="image of good"
