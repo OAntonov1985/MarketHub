@@ -1,6 +1,5 @@
 "use client"
 
-
 import React from 'react';
 import Head from 'next/head';
 import Header from '@/components/Header/Header';
@@ -8,20 +7,12 @@ import Footer from '@/components/Footer/Footer';
 import EmptyBasket from '@/components/EmptyBasket/EmptyBasket';
 import BasketWithGoods from '@/components/BasketWithGoods/BasketWithGoods';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 
 
 function Basket() {
-    const [basketLength, setBasketLength] = useState(0);
-
-
-    useEffect(() => {
-        const BASKET = localStorage.getItem("BASKET");
-        const arr = JSON.parse(BASKET);
-        if (arr !== null) setBasketLength(arr.length);
-
-    }, [basketLength])
-
+    const quantityOfGoods = useSelector(state => state.user.quantityOfGoods);
 
     return (
         <>
@@ -33,7 +24,7 @@ function Basket() {
             <div className='basket-page'>
                 <Header />
                 <div className="basket-page-content">
-                    {basketLength == 0 ? <EmptyBasket /> : <BasketWithGoods setBasketLength={setBasketLength} />}
+                    {quantityOfGoods == 0 ? <EmptyBasket /> : <BasketWithGoods />}
                 </div>
                 <Footer />
             </div>

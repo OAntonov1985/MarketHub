@@ -22,11 +22,9 @@ function BasketFirstRow() {
         <div className='basket-first-row'>
             <h4 className='basket-with-goods-title'>Кошик</h4>
             <div className="basket-with-goods-list">
-                {basket.length ?
-                    basket.map((item, index) => (
-                        <BaskerGoodRow key={index} props={item} setBasket={setBasket} basket={basket} />
-                    )) : <EmptyBasket />
-                }
+                {basket.map((item, index) => (
+                    <BaskerGoodRow key={index} props={item} setBasket={setBasket} />
+                ))}
             </div>
         </div>
     )

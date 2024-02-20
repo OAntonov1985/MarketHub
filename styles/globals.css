@@ -1560,9 +1560,9 @@ h2 {
 }
 
 .basket-input {
-  max-width: 30rem;
+  max-width: 40rem;
   margin-bottom: 1.6rem;
-  padding: 1rem 0 1rem 1.6rem;
+  padding: 1rem 1rem 1rem 1.6rem;
   border-radius: 0.5rem;
   font-size: 1.6rem;
   line-height: 150%;
@@ -1592,6 +1592,46 @@ h2 {
   color: red;
 }
 
+.search-results {
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  width: 50rem;
+  height: 10rem;
+  max-height: 10rem;
+  overflow-y: auto;
+  transition: 0.3s ease-in-out;
+}
+
+.search-result-item {
+  font-size: 1.6rem;
+  padding: 0.5rem;
+  transition: 0.2s ease-in-out;
+}
+
+.search-result-item:hover {
+  background-color: #cacccf;
+  cursor: pointer;
+}
+
+.delivery-sity {
+  text-overflow: ellipsis;
+}
+
+.display-none {
+  bodred: none;
+  display: none;
+}
+
+.diplay-block {
+  display: block;
+  border: 1px solid #012767;
+  position: absolute;
+  top: 95px;
+  left: 1px;
+  z-index: 666;
+  background-color: #F8FAFC;
+}
+
 .basket-with-good-container {
   margin-bottom: 4rem;
   width: 100%;
@@ -1605,23 +1645,23 @@ h2 {
   width: 50%;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .basket-with-good-left-column {
-  padding-top: 24px;
+  padding-top: 3rem;
 }
 
 .basket-with-goods-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   padding: 0.8rem 1.6rem;
   border: 1px solid #FBFBFB;
   border-radius: 0.5rem;
   transition: all 0.2s ease-in-out;
   margin-bottom: 2.4rem;
-  max-width: 30rem;
+  max-width: 40rem;
 }
 
 .basket-with-goods-item:hover {

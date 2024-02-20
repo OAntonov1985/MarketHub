@@ -215,8 +215,7 @@
 
 .basket-with-goods-columns
     display: flex
-    width: 100%
-    // gap: 27.4%  
+    width: 100%     
 
 .basket-with-goods-left-column, .basket-with-goods-right-column
     display: flex
@@ -242,9 +241,9 @@
 
 .basket-input
     // width: 100%
-    max-width: 30rem
+    max-width: 40rem
     margin-bottom: 1.6rem
-    padding: 1rem 0 1rem 1.6rem
+    padding: 1rem 1rem 1rem 1.6rem
     border-radius: .5rem
     font-size: 1.6rem
     line-height: 150%
@@ -270,6 +269,46 @@
 .basket-form-massage
     color: red
 
+//////////////////////////////////  BASKET CITY SEARCH  //////////////////////////////////
+
+.search-results    
+    font-size: 1.6rem
+    // padding: 1rem
+    border-radius: .5rem
+    width: 50rem
+    height: 10rem
+    max-height: 10rem
+    overflow-y: auto
+    transition:  0.3s ease-in-out
+
+
+.search-result-item
+    font-size: 1.6rem
+    padding: .5rem
+    transition:  0.2s ease-in-out
+
+.search-result-item:hover
+    background-color: #cacccf
+    cursor: pointer
+
+.delivery-sity
+    text-overflow: ellipsis
+    
+
+.display-none
+    bodred: none
+    display: none
+
+.diplay-block
+    display: block
+    border: 1px solid  #012767
+    position: absolute
+    top: 95px
+    left: 1px
+    z-index: 666
+    background-color: $color-white
+  
+
 //////////////////////////////////  BASKET DELIVERY INFO  //////////////////////////////////
 
 .basket-with-good-container
@@ -284,22 +323,21 @@
     width: 50%
     display: flex
     flex-direction: column
+    position: relative
    
 .basket-with-good-left-column
-    padding-top: 24px
+    padding-top: 3rem
 
 .basket-with-goods-item
     display: flex
     justify-content: space-between    
-    align-items: center
-    // width: 33.2rem
-    width: 100%
+    align-items: center       
     padding: .8rem 1.6rem
     border: 1px solid $background-color
     border-radius: .5rem
     transition: all 0.2s ease-in-out
     margin-bottom: 2.4rem
-    max-width: 30rem
+    max-width: 40rem
 
 .basket-with-goods-item:hover
     border: 1px solid $valid-field-border

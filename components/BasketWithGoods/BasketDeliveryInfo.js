@@ -1,59 +1,59 @@
 import React from 'react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { API_KEY_NOVA } from '../Constants';
 
-import jsonData from "../../public/data.json"
+
 
 
 
 function BasketDeliveryInfo() {
     const [cargoCarrier, setCargoCarier] = useState("nova");
-    const [data, setData] = useState([])
+    const [isDisplaingSearchResult, setIsDisplaingSearchResult] = useState(false)
+    const [citydata, setSityData] = useState([]);
+    const [deliverySity, setDeliverySity] = useState("");
 
     const changeCagroCarier = (event) => {
         setCargoCarier(event.target.id);
     };
 
-    console.log(jsonData.data[0].Description)
-    const searchResults = jsonData.data.filter(item =>
-        item.Description.toLowerCase().includes(jsonData.data[0].Description.toLowerCase())
-    );
-    console.log(searchResults)
+    const updateDeliverySity = (event) => {
+        setDeliverySity(event.target.innerHTML);
+        setSityData([]);
+        setIsDisplaingSearchResult(false)
+    }
+
 
     const handleChange = async (event) => {
+        setIsDisplaingSearchResult(true)
+        const cityName = event.target.value;
+        setDeliverySity(cityName);
 
-        const searchResults = jsonData.data.filter(item =>
-            item.Description.toLowerCase().includes(event.target.value.toLowerCase())
-        );
-        console.log(searchResults)
-        //     const cityName = event.target.value;
-        //     console.log(event.target.value)
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                apiKey: API_KEY_NOVA,
+                modelName: 'Address',
+                calledMethod: 'searchSettlements',
+                methodProperties: {
+                    CityName: cityName,
+                    Limit: '10',
+                    Page: '1'
+                }
+            })
+        };
 
-        //     const requestOptions = {
-        //         method: 'POST',
-        //         headers: { 'Content-Type': 'application/json' },
-        //         body: JSON.stringify({
-        //             apiKey: 'e89bd5854276bb600236d063f5e2c119',
-        //             modelName: 'Address',
-        //             calledMethod: 'searchSettlements',
-        //             methodProperties: {
-        //                 CityName: cityName,
-        //                 Limit: '50',
-        //                 Page: '2'
-        //             }
-        //         })
-        //     };
-        //     // console.log(777)
-        //     try {
-        //         const response = await fetch('https://api.novaposhta.ua/v2.0/json/', requestOptions);
-        //         const data = await response.json();
-        //         console.log(data.data[0].Addresses); // Вывод результата в консоль
+        try {
+            const response = await fetch('https://api.novaposhta.ua/v2.0/json/', requestOptions);
+            const data = await response.json();
+            // console.log(data.data[0].Addresses);
+            setSityData(data.data[0].Addresses)
 
-        //     } catch (error) {
-        //         console.error('Error:', error);
-        //     }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
-
 
 
 
@@ -129,13 +129,18 @@ function BasketDeliveryInfo() {
                     <input
                         id="userCity"
                         type="text"
-                        className="basket-input active-field"
+                        className="basket-input active-field delivery-sity"
                         placeholder="Введіть місто"
+                        value={deliverySity}
                         onChange={handleChange}
-                    // value={userEmail}
-                    // onBlur={validateEmail}
-                    // required 
                     />
+                    <div className={`search-results ${(isDisplaingSearchResult === false || deliverySity.length == 0) ? "display-none" : "diplay-block"} `}>
+                        {citydata.map((item, index) => (
+                            <div key={index} className="search-result-item" onClick={updateDeliverySity}>
+                                {item.Present}
+                            </div>
+                        ))}
+                    </div>
 
                     <label htmlFor="userDepartment"
                         className='basket-label-title'

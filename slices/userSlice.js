@@ -27,7 +27,8 @@ const userSlice = createSlice({
             state.quantityOfGoods = action.payload;
         },
         reduceGood: (state, action) => {
-            if (state.quantityOfGoods > 1) {
+            console.log(action.payload)
+            if (state.quantityOfGoods >= 1) {
                 state.quantityOfGoods = state.quantityOfGoods - action.payload;
             }
         },

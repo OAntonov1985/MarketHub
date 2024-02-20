@@ -34,6 +34,9 @@ function GoodCardDescription({ props }) {
             const totalGoodsInLocalStorage = JSON.stringify(1)
             localStorage.setItem("totalGoods", totalGoodsInLocalStorage);
 
+            const totalPriseInAllBasket = JSON.stringify(price)
+            localStorage.setItem("totalPriseInAllBasket", totalPriseInAllBasket);
+
             dispatch(setTotalPriseInAllBasket(price));
             return
         }
