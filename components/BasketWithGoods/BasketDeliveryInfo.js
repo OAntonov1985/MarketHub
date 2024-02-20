@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { API_KEY_NOVA } from '../Constants';
+
 
 
 
@@ -12,12 +12,19 @@ function BasketDeliveryInfo() {
     const [isDisplaingSearchResult, setIsDisplaingSearchResult] = useState(false)
     const [citydata, setSityData] = useState([]);
     const [deliverySity, setDeliverySity] = useState("");
+    const [cityRef, setSityRef] = useState("")
+    const API_KEY_NOVA = process.env.NEXT_PUBLIC_API_KEY_NOVA;
+
 
     const changeCagroCarier = (event) => {
+        setSityData([]);
+        setDeliverySity("");
+        setDeliverySity("");
         setCargoCarier(event.target.id);
     };
 
     const updateDeliverySity = (event) => {
+        console.log(event.target.id)
         setDeliverySity(event.target.innerHTML);
         setSityData([]);
         setIsDisplaingSearchResult(false)
@@ -25,7 +32,8 @@ function BasketDeliveryInfo() {
 
 
     const handleChange = async (event) => {
-        setIsDisplaingSearchResult(true)
+
+
         const cityName = event.target.value;
         setDeliverySity(cityName);
 
@@ -47,8 +55,11 @@ function BasketDeliveryInfo() {
         try {
             const response = await fetch('https://api.novaposhta.ua/v2.0/json/', requestOptions);
             const data = await response.json();
-            // console.log(data.data[0].Addresses);
-            setSityData(data.data[0].Addresses)
+            console.log(data.data[0].Addresses);
+            setSityData(data.data[0].Addresses);
+            if (data.data[0].Addresses.length > 0) {
+                setIsDisplaingSearchResult(true);
+            }
 
         } catch (error) {
             console.error('Error:', error);
@@ -134,9 +145,9 @@ function BasketDeliveryInfo() {
                         value={deliverySity}
                         onChange={handleChange}
                     />
-                    <div className={`search-results ${(isDisplaingSearchResult === false || deliverySity.length == 0) ? "display-none" : "diplay-block"} `}>
+                    <div className={`search-results ${(isDisplaingSearchResult === false || citydata.length == 0) ? "display-none" : "diplay-block"} `}>
                         {citydata.map((item, index) => (
-                            <div key={index} className="search-result-item" onClick={updateDeliverySity}>
+                            <div key={index} className="search-result-item" onClick={updateDeliverySity} id={item.DeliveryCity}>
                                 {item.Present}
                             </div>
                         ))}
