@@ -1592,19 +1592,19 @@ h2 {
   color: red;
 }
 
-.search-results {
+.search-results, .search-results-delivery-offise {
   font-size: 1.6rem;
   border-radius: 0.5rem;
   width: 50rem;
-  height: 10rem;
-  max-height: 10rem;
+  height: 15rem;
+  max-height: 15rem;
   overflow-y: auto;
   transition: 0.3s ease-in-out;
 }
 
 .search-result-item {
   font-size: 1.6rem;
-  padding: 0.5rem;
+  padding: 1rem;
   transition: 0.2s ease-in-out;
 }
 
@@ -1613,7 +1613,7 @@ h2 {
   cursor: pointer;
 }
 
-.delivery-sity {
+.delivery-sity, .delivery-post-office {
   text-overflow: ellipsis;
 }
 
@@ -1622,14 +1622,18 @@ h2 {
   display: none;
 }
 
-.diplay-block {
+.diplay-block, .diplay-block-post-office {
   display: block;
   border: 1px solid #012767;
   position: absolute;
   top: 95px;
-  left: 1px;
+  left: 0px;
   z-index: 666;
   background-color: #F8FAFC;
+}
+
+.diplay-block-post-office {
+  top: 190px;
 }
 
 .basket-with-good-container {

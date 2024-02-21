@@ -247,7 +247,7 @@
     border-radius: .5rem
     font-size: 1.6rem
     line-height: 150%
-    color: $color-text-main
+    color: $color-text-main    
 
 .basket-input::placeholder
     font-size: 1.6rem
@@ -271,27 +271,28 @@
 
 //////////////////////////////////  BASKET CITY SEARCH  //////////////////////////////////
 
-.search-results    
+.search-results, .search-results-delivery-offise    
     font-size: 1.6rem
     // padding: 1rem
     border-radius: .5rem
     width: 50rem
-    height: 10rem
-    max-height: 10rem
+    height: 15rem
+    max-height: 15rem
     overflow-y: auto
     transition:  0.3s ease-in-out
+    
 
 
 .search-result-item
     font-size: 1.6rem
-    padding: .5rem
-    transition:  0.2s ease-in-out
+    padding: 1rem
+    transition:  0.2s ease-in-out    
 
 .search-result-item:hover
     background-color: #cacccf
     cursor: pointer
 
-.delivery-sity
+.delivery-sity, .delivery-post-office
     text-overflow: ellipsis
     
 
@@ -299,14 +300,18 @@
     bodred: none
     display: none
 
-.diplay-block
+.diplay-block, .diplay-block-post-office
     display: block
     border: 1px solid  #012767
     position: absolute
     top: 95px
-    left: 1px
+    left: 0px
     z-index: 666
     background-color: $color-white
+
+.diplay-block-post-office
+    top: 190px 
+    
   
 
 //////////////////////////////////  BASKET DELIVERY INFO  //////////////////////////////////

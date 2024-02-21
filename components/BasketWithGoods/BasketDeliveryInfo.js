@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import GetListDepartments from '@/pages/api/GetListDepartments';
+import GetListCities from '@/pages/api/GetListCities';
 
 
 
@@ -9,64 +11,63 @@ import { useState, useEffect } from 'react';
 
 function BasketDeliveryInfo() {
     const [cargoCarrier, setCargoCarier] = useState("nova");
-    const [isDisplaingSearchResult, setIsDisplaingSearchResult] = useState(false)
-    const [citydata, setSityData] = useState([]);
-    const [deliverySity, setDeliverySity] = useState("");
-    const [cityRef, setSityRef] = useState("")
-    const API_KEY_NOVA = process.env.NEXT_PUBLIC_API_KEY_NOVA;
+    const [isDisplaingSearchResult, setIsDisplaingSearchResult] = useState(false);
+
+    const [cityData, setCityData] = useState([]);
+    const [deliveryCity, setDeliveryCity] = useState("");
+
+    const [dataPostOffice, setDataPostOffice] = useState([]);
+    const [inpitValuedeliveryPostOffice, setInpitValuedeliveryPostOffice] = useState("");
+    const [searchResultPostOffice, setSearchResultPostOffice] = useState([])
+
 
 
     const changeCagroCarier = (event) => {
-        setSityData([]);
-        setDeliverySity("");
-        setDeliverySity("");
+        setIsDisplaingSearchResult(false);
+        setCityData([]);
+        setDeliveryCity("");
         setCargoCarier(event.target.id);
+        setDataPostOffice([]);
+        setInpitValuedeliveryPostOffice("");
     };
 
-    const updateDeliverySity = (event) => {
-        console.log(event.target.id)
-        setDeliverySity(event.target.innerHTML);
-        setSityData([]);
-        setIsDisplaingSearchResult(false)
+    async function updateDeliveryCity(event) {
+        const departamentID = event.target.id;
+        setDeliveryCity(event.target.innerHTML);
+        setCityData([]);
+        setIsDisplaingSearchResult(false);
+
+        const { dataDepartment } = await GetListDepartments(departamentID);
+        if (dataDepartment.data.length > 0) {
+            setDataPostOffice(dataDepartment.data);
+        };
     }
 
-
-    const handleChange = async (event) => {
-
-
+    async function citySelection(event) {
         const cityName = event.target.value;
-        setDeliverySity(cityName);
+        setDeliveryCity(event.target.value);
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                apiKey: API_KEY_NOVA,
-                modelName: 'Address',
-                calledMethod: 'searchSettlements',
-                methodProperties: {
-                    CityName: cityName,
-                    Limit: '10',
-                    Page: '1'
-                }
-            })
-        };
+        const { dataCities } = await GetListCities(cityName);
 
-        try {
-            const response = await fetch('https://api.novaposhta.ua/v2.0/json/', requestOptions);
-            const data = await response.json();
-            console.log(data.data[0].Addresses);
-            setSityData(data.data[0].Addresses);
-            if (data.data[0].Addresses.length > 0) {
-                setIsDisplaingSearchResult(true);
-            }
-
-        } catch (error) {
-            console.error('Error:', error);
+        if (dataCities.data[0].Addresses.length > 0) {
+            setCityData(dataCities.data[0].Addresses);
+            setIsDisplaingSearchResult(true);
         }
+
     };
 
+    const departmentSelection = (event) => {
+        setIsDisplaingSearchResult(true);
+        setInpitValuedeliveryPostOffice(event.target.value);
+        const searchQuery = event.target.value.toLowerCase();
+        const searchResults = dataPostOffice.filter(item => item.Description.toLowerCase().includes(searchQuery));
+        setSearchResultPostOffice(searchResults);
+    }
 
+    const updateDeliveryPostOffice = (event) => {
+        setIsDisplaingSearchResult(false);
+        setInpitValuedeliveryPostOffice(event.target.innerHTML);
+    }
 
     return (
         <div className='basket-with-good-container'>
@@ -142,12 +143,13 @@ function BasketDeliveryInfo() {
                         type="text"
                         className="basket-input active-field delivery-sity"
                         placeholder="Введіть місто"
-                        value={deliverySity}
-                        onChange={handleChange}
+                        value={deliveryCity}
+                        onChange={citySelection}
+                        required
                     />
-                    <div className={`search-results ${(isDisplaingSearchResult === false || citydata.length == 0) ? "display-none" : "diplay-block"} `}>
-                        {citydata.map((item, index) => (
-                            <div key={index} className="search-result-item" onClick={updateDeliverySity} id={item.DeliveryCity}>
+                    <div className={`search-results ${(isDisplaingSearchResult === false || cityData.length == 0) ? "display-none" : "diplay-block"} `}>
+                        {cityData.map((item, index) => (
+                            <div key={index} className="search-result-item" onClick={updateDeliveryCity} id={item.DeliveryCity}>
                                 {item.Present}
                             </div>
                         ))}
@@ -155,17 +157,26 @@ function BasketDeliveryInfo() {
 
                     <label htmlFor="userDepartment"
                         className='basket-label-title'
-                    >Номер відділення</label>
+                    >Номер відділення або поштомату</label>
                     <input
                         id="userDepartment"
                         type="text"
-                        className="basket-input active-field"
+                        className="basket-input active-field delivery-post-office"
                         placeholder="Введіть номер відділення"
-                    // onChange={handleChange}
-                    // value={userEmail}
-                    // onBlur={validateEmail}
-                    // required 
+                        onChange={departmentSelection}
+                        value={inpitValuedeliveryPostOffice}
+                        required
                     />
+                    <div
+                        className={`search-results-delivery-offise ${(isDisplaingSearchResult === false || inpitValuedeliveryPostOffice.length == 0 || searchResultPostOffice.length == 0) ? "display-none" : "diplay-block-post-office"} `}
+
+                    >
+                        {searchResultPostOffice.map((item, index) => (
+                            <div key={index} className="search-result-item" onClick={updateDeliveryPostOffice} id={item.DeliveryCity}>
+                                {item.Description}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
