@@ -1,17 +1,11 @@
 export default function formattedPrice(price) {
-    const priceString = price.toString();
+    const priceString = price.toFixed(2);
+    const parts = priceString.split('.');
+    const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
-    if (priceString.includes('.') || priceString.includes(',')) {
-        return priceString;
-    }
-
-    let newPrice;
-
-    if (priceString.length > 3) {
-        newPrice = priceString.split('');
-        newPrice.splice(-3, 0, ' ');
+    if (parts[1] === '00') {
+        return integerPart;
     } else {
-        return priceString;
+        return integerPart + '.' + parts[1];
     }
-    return newPrice.join('');
 };

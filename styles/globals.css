@@ -289,6 +289,9 @@ h2 {
 .top-sellers-item:hover {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+.top-sellers-item:hover .container-for-icon-favorite, .top-sellers-item:hover .container-for-icon-add-to-basket {
+  opacity: 1;
+}
 
 .image-container-top-sellers {
   background-color: #F3F4F6;
@@ -314,6 +317,26 @@ h2 {
   align-content: center;
   justify-content: center;
   margin-bottom: 1.6rem;
+  position: relative;
+}
+
+.container-for-icon-favorite, .container-for-icon-add-to-basket {
+  width: 8.3%;
+  height: 6.8%;
+  position: absolute;
+  right: 5.5%;
+  top: 4.6%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 99999;
+}
+
+.container-for-icon-favorite {
+  right: 16.4%;
+}
+
+.favorite-icon, .basket-icon {
+  z-index: 99999;
 }
 
 .top-sellers-item-title {
