@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import { Ubuntu, Poppins } from 'next/font/google';
 import Layout from '@/components/Layout/Layout';
-// import PersistWrapper from 'next-persist/lib/NextPersistWrapper';
+import React from 'react';
 
 
 // const npConfig = {

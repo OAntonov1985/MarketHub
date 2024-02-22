@@ -1,22 +1,45 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
-import React from 'react';
-import { addToBasketFrom } from '../GoodCardDescription/GoodCardDescription';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setTotalPriseInAllBasket } from '@/slices/userSlice';
+import { setTotalPriseInAllBasket, setUserBasket } from '@/slices/userSlice';
+
 
 
 
 function GoodCardSmall({ props }) {
-    const dispatch = useDispatch();
     const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images, image } = props;
-    // console.log(props)
 
+    const [isActiveLink, setIsActivelink] = useState(true)
+    const dispatch = useDispatch();
 
+    const { userBasket } = useSelector((state) => state.user);
+    console.log(userBasket)
 
+    function blockingTransition(e) {
+        e.preventDefault();
+    }
 
-    function addToBasket() {
+    function addToBasket(e) {
+        const number = 0;
+        if (isActiveLink === false) {
+            blockingTransition(e);
+
+        }
+        dispatch(setUserBasket(
+            {
+                id: id,
+                title: title,
+                price: price,
+                thumbnail: images[0],
+                number: 1,
+                totalPrice: number * price
+            }
+        ))
+        console.log("add")
+
         // const number = 0;
         // const BASKET = localStorage.getItem("BASKET");
         // const basketArr = JSON.parse(BASKET);
@@ -93,14 +116,16 @@ function GoodCardSmall({ props }) {
 
     // console.log(props.id)
     return (
-        <div key={props.id}
+        <Link key={props.id}
             href="/[category]/[subcategory]/[id]" as={`/${id}/${title}/${id}`}
-            className="top-sellers-item">
+            className="top-sellers-item" >
             <div className="image-container-top-sellers">
                 <div className='container-for-icon-favorite' id={id} onClick={addToBasket}>
                     <Image
                         id={props.id}
-                        onClick={addToBasket}
+                        // onClick={addToBasket}
+                        onMouseEnter={() => setIsActivelink(false)}
+                        onMouseLeave={() => setIsActivelink(true)}
                         className='favorite-icon'
                         alt="icon of favorite"
                         src="/heardincart.svg"
@@ -120,6 +145,8 @@ function GoodCardSmall({ props }) {
                         id={id}
                         className='basket-icon'
                         onClick={addToBasket}
+                        onMouseEnter={() => setIsActivelink(false)}
+                        onMouseLeave={() => setIsActivelink(true)}
                         alt="icon of basket"
                         src="/basketincard.svg"
                         quality={100}
@@ -159,7 +186,7 @@ function GoodCardSmall({ props }) {
                     {id !== undefined ? "Є в наявності" : "Немає в наявності"}
                 </p>
             </div>
-        </div>
+        </Link >
     );
 };
 

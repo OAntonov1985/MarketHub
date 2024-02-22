@@ -9,7 +9,7 @@ let userNameInCookies
 
 const initialState = {
     name: "MarketHub",
-    userInfo: {},
+    userBasket: [],
     userName: userNameInCookies === undefined ? 0 : userNameInCookies,
     loading: false,
     totalPriseInAllBasket: 0,
@@ -41,10 +41,28 @@ const userSlice = createSlice({
         setTotalPriseInAllBasket: (state, action) => {
             state.totalPriseInAllBasket = action.payload
         },
+        setUserBasket: (state, action) => {
+            const arrayIndex = state.userBasket.findIndex(item => {
+                return item.id === action.payload.id
+            })
+            if (arrayIndex === -1) {
+                state.userBasket.push(action.payload);
+            }
+            else {
+                state.userBasket[arrayIndex].number = state.userBasket[arrayIndex].number + 1;
+                state.userBasket[arrayIndex].totalPrice = state.userBasket[arrayIndex].number * state.userBasket[arrayIndex].price;
+            }
+
+
+
+            console.log(action.payload.id)
+            console.log(arrayIndex)
+            // console.log(state.userBasket)
+        }
     }
 
 });
 
-export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket } = userSlice.actions;
 
 export default userSlice.reducer;
