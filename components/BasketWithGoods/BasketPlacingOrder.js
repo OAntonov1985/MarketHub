@@ -27,8 +27,7 @@ function BasketPlacingOrder() {
             }
             else if (e.target.id === "regularСustomer") {
                 setIsNewUser("unactive-button");
-                router.push("http://localhost:3000/loginpage");
-
+                router.push("/loginpage");
             };
         };
     }

@@ -1753,4 +1753,45 @@ h2 {
 .basket-total-button {
   padding: 0.8rem 1.7rem;
   cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  height: 34rem;
+  width: 87.5%;
+  max-width: 168rem;
+  background-color: #F4FFF2;
+  border: 1px solid #76CA66;
+  border-radius: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-10%);
+}
+
+.modal-title {
+  font-size: 4rem;
+  color: #116ACC;
+  font-weight: normal;
+  margin-bottom: 6rem;
+}
+
+.modal-button {
+  background-color: #76CA66;
+  color: #F8FAFC;
+  padding: 1.2rem 4rem;
+  border: none;
+  border-radius: 8px;
 }/*# sourceMappingURL=globals.css.map */

@@ -1,0 +1,39 @@
+@import _variables.sass
+
+.modal-overlay
+    position: fixed
+    top: 0px
+    left: 0
+    width: 100vw
+    height: 100vh
+    background-color: rgba(0, 0, 0, 0.5)
+    display: flex
+    justify-content: center
+    align-items: center
+
+.modal-content
+    height: 34rem
+    width: 87.5%    
+    max-width: 168rem
+    background-color: $color-background-modal-window
+    border: 1px solid $valid-field-border
+    border-radius: 3.2rem
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    transform: translateY(-10%)
+
+.modal-title
+    font-size: 4rem
+    color: $color-blue
+    font-weight: normal
+    margin-bottom: 6rem
+
+.modal-button
+    background-color: $valid-field-border
+    color: $color-white
+    padding: 1.2rem 4rem 
+    border: none
+    border-radius: 8px
+    

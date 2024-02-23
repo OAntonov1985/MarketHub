@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalGoods, setTotalPriseInAllBasket, setInitialBasket } from '@/slices/userSlice';
+import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName } from '@/slices/userSlice';
 
 
 
@@ -20,8 +20,9 @@ function Header({ transparentBackground }) {
     const dispatch = useDispatch();
     const { quantityOfGoods } = useSelector((state) => state.user);
     const { userBasket } = useSelector((state) => state.user);
+    let { userName } = useSelector((state) => state.user);
 
-    let userName;
+
 
     useEffect(() => {
 
@@ -39,7 +40,7 @@ function Header({ transparentBackground }) {
             dispatch(setTotalPriseInAllBasket(newTotalPriseInAllBasket));
             localStorage.setItem('totalPriseInAllBasket', newTotalPriseInAllBasket);
 
-        }
+        };
 
         userName = Cookies.get('userName');
     }, []);
@@ -48,9 +49,11 @@ function Header({ transparentBackground }) {
 
     useEffect(() => {
         if (userName) {
+            dispatch(setUserName(userName));
             setHeaderName(<div className='header-user-name'>Привіт, {userName}!</div>);
         }
         else if (userName === undefined) {
+            dispatch(setUserName(''));
             setHeaderName(null);
         }
 

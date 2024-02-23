@@ -1,20 +1,14 @@
 "use client"
 import { createSlice } from "@reduxjs/toolkit";
 
-
-
-
-let userNameInCookies
-
 const initialState = {
     name: "MarketHub",
     userBasket: [],
-    userName: userNameInCookies === undefined ? 0 : userNameInCookies,
+    userName: "",
     loading: false,
     totalPriseInAllBasket: 0,
     quantityOfGoods: 0
 };
-
 
 
 const userSlice = createSlice({
