@@ -2,89 +2,37 @@ import Image from 'next/image';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
-import { increaseGood, reduceGood, totalGoods, setTotalPriseInAllBasket } from '@/slices/userSlice';
+import { deleteItemInBasket, reduceGood, totalGoods, setTotalPriseInAllBasket, setUserBasket } from '@/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
 
 
 
-function BaskerGoodRow({ props, setBasket }) {
+function BaskerGoodRow({ props }) {
 
-    const { id, title, thumbnail, number, price } = props;
-
-    const [count, setCount] = useState(number);
-    const [total, setTotal] = useState(number * price);
-    const [flag, setFlag] = useState(0);
+    const { id, title, thumbnail, number, price, totalPrice } = props;
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const BASKET = localStorage.getItem("BASKET");
-        let basketArr = JSON.parse(BASKET);
-        const index = basketArr.findIndex(item => item.id == id);
-
-        setCount(basketArr[index].number);
-        setTotal(basketArr[index].totalPrice);
-    }, [flag]);
-
-    const increaceGoodQuantity = (e) => {
-        setCount(count + 1);
-        setTotal((count + 1) * price);
-        dispatch(increaseGood());
-        updateData("plus", e.target.id);
-    };
 
     const reduseGoodQuantity = (e) => {
-        if (count > 1) {
-            setCount(count - 1);
-            setTotal((count - 1) * price);
-            dispatch(reduceGood(1));
-            updateData("minus", e.target.id);
-        }
-        else return;
+        dispatch(reduceGood(id));
     };
 
     const deleteGood = (e) => {
-        const result = confirm(`Ви точно бажаєте видалити ${title}?`);
-        if (result === true) {
-            updateData("delete", e.target.id);
-        }
-        else return;
+        dispatch(deleteItemInBasket(id))
     };
 
-    function updateData(event, num) {
-        const BASKET = localStorage.getItem("BASKET");
-        let basketArr = JSON.parse(BASKET);
-        const index = basketArr.findIndex(item => item.id == num);
-
-        if (basketArr) {
-            if (event === "plus") {
-                basketArr[index].number = count + 1;
-                basketArr[index].totalPrice = price * basketArr[index].number;
+    function updateData() {
+        dispatch(setUserBasket(
+            {
+                id: id,
+                title: title,
+                price: price,
+                thumbnail: thumbnail,
+                number: 1,
+                totalPrice: price
             }
-
-            else if (event === "minus" && basketArr[index].number > 1) {
-                basketArr[index].number = basketArr[index].number - 1;
-                basketArr[index].totalPrice = price * basketArr[index].number;
-            }
-            else if (event === "delete") {
-                const reduseGood = basketArr[index].number
-                dispatch(reduceGood(reduseGood));
-                basketArr.splice(index, 1);
-                setBasket(basketArr);
-                setFlag(flag + 1);
-            }
-
-            const updatedBasketJSON = JSON.stringify(basketArr);
-            localStorage.setItem('BASKET', updatedBasketJSON);
-
-            const newTotalGoods = basketArr.reduce((accum, item) => accum = accum + item.number, 0);
-            localStorage.setItem('totalGoods', newTotalGoods);
-
-            const newTotalPriseInAllBasket = basketArr.reduce((accum, item) => accum = accum + (item.price * item.number), 0);
-            localStorage.setItem('totalPriseInAllBasket', newTotalPriseInAllBasket);
-
-            dispatch(setTotalPriseInAllBasket(newTotalPriseInAllBasket));
-        };
+        ));
     }
 
 
@@ -127,9 +75,9 @@ function BaskerGoodRow({ props, setBasket }) {
                                     }}
                                 />
                             </div>
-                            <div className="selsector-number-number">{count}</div>
+                            <div className="selsector-number-number">{number}</div>
                             <div className="selsector-number-plus"
-                                onClick={increaceGoodQuantity}>
+                                onClick={updateData}>
                                 <Image
                                     id={id}
                                     alt="image of good"
@@ -145,7 +93,7 @@ function BaskerGoodRow({ props, setBasket }) {
                             </div>
                         </div>
                     </div>
-                    <div className='good-item-description-total-price'>{formattedPrice(price)} грн х {count} шт</div>
+                    <div className='good-item-description-total-price'>{formattedPrice(price)} грн х {number} шт</div>
                 </div>
             </div>
 
@@ -167,7 +115,7 @@ function BaskerGoodRow({ props, setBasket }) {
                         />
                     </div>
                 </div>
-                <div className='good-item-total-price'>{formattedPrice(total)} грн</div>
+                <div className='good-item-total-price'>{formattedPrice(totalPrice)} грн</div>
             </div>
         </div>
     )

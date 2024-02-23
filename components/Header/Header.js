@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalGoods, setTotalPriseInAllBasket } from '@/slices/userSlice';
+import { totalGoods, setTotalPriseInAllBasket, setInitialBasket } from '@/slices/userSlice';
 
 
 
@@ -19,17 +19,27 @@ function Header({ transparentBackground }) {
 
     const dispatch = useDispatch();
     const { quantityOfGoods } = useSelector((state) => state.user);
+    const { userBasket } = useSelector((state) => state.user);
 
     let userName;
 
     useEffect(() => {
-        const totalGoodsInLocal = localStorage.getItem("totalGoods");
-        const totalGoodsInLocalStorage = JSON.parse(totalGoodsInLocal);
-        dispatch(totalGoods(totalGoodsInLocalStorage));
 
-        const totalPriceInlocal = localStorage.getItem("totalPriseInAllBasket");
-        const totalPriceInLocalStorafe = JSON.parse(totalPriceInlocal);
-        dispatch(setTotalPriseInAllBasket(totalPriceInLocalStorafe));
+        const userBasketInLocal = localStorage.getItem("BASKET");
+
+        if (userBasketInLocal.length > 0 && userBasket.length === 0) {
+            const userBasket = JSON.parse(userBasketInLocal);
+            dispatch(setInitialBasket(userBasket));
+
+            const newTotalGoods = userBasket.reduce((accum, item) => accum = accum + item.number, 0);
+            dispatch(totalGoods(newTotalGoods));
+            localStorage.setItem('totalGoods', newTotalGoods);
+
+            const newTotalPriseInAllBasket = userBasket.reduce((accum, item) => accum = accum + (item.price * item.number), 0);
+            dispatch(setTotalPriseInAllBasket(newTotalPriseInAllBasket));
+            localStorage.setItem('totalPriseInAllBasket', newTotalPriseInAllBasket);
+
+        }
 
         userName = Cookies.get('userName');
     }, []);
@@ -124,4 +134,12 @@ function Header({ transparentBackground }) {
     );
 };
 
+
+
+Header.getInitialProps = ({ req }) => {
+    const localState = parseLocalStorage({ req })
+    return {
+
+    }
+}
 export default React.memo(Header)

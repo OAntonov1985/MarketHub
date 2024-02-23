@@ -1,13 +1,11 @@
 import "@/styles/globals.css";
 import { Ubuntu, Poppins } from 'next/font/google';
-import Layout from '@/components/Layout/Layout';
 import React from 'react';
+import { store } from "../store/store";
+import { Provider } from 'react-redux';
 
 
-// const npConfig = {
-//     method: 'localStorage'
 
-// };
 
 const ubuntu = Ubuntu({
     subsets: ['cyrillic'],
@@ -18,18 +16,18 @@ const poppins = Poppins({
     subsets: ['latin'],
     weight: ["300", "400", "500", '700'],
 });
-export default function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
     return (
         <>
-            <Layout>
-                {/* <PersistWrapper wrapperConfig={npConfig}> */}
+            <Provider store={store}>
                 <div className={ubuntu.className}>
                     <Component {...pageProps} />
                 </div>
-                {/* </PersistWrapper> */}
-            </Layout>
+            </Provider>
         </>
-
     )
-
 }
+
+
+
+export default MyApp;
