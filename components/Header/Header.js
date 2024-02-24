@@ -28,7 +28,7 @@ function Header({ transparentBackground }) {
 
         const userBasketInLocal = localStorage.getItem("BASKET");
 
-        if (userBasketInLocal.length > 0 && userBasket.length === 0) {
+        if (userBasketInLocal && userBasket.length === 0) {
             const userBasket = JSON.parse(userBasketInLocal);
             dispatch(setInitialBasket(userBasket));
 

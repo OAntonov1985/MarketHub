@@ -43,7 +43,7 @@ function GoodsList({ props }) {
                         return (
                             <GoodCardSmall key={props.id} props={props} listGoods={listGoods} />
                         );
-                    })};
+                    })}
                 </div>
 
             </div>
