@@ -3,14 +3,15 @@ import React from 'react';
 
 
 function TopSellers({ props }) {
-    // console.log(props.id)
+    // console.log(props)
     return (
         <>
             <h4 className='top-sellers-title title'>Топ продажів</h4>
             <div className="top-sellers-row">
-                {!!props.length && props.slice(15, 19).map(topSellers => {
+                {!!props.length && props.map(props => {
+                    console.log(props)
                     return (
-                        <GoodCardSmall key={topSellers.id} props={topSellers} />
+                        <GoodCardSmall key={props.id} props={props} />
                     );
                 })}
             </div>

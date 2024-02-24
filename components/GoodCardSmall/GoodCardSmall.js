@@ -4,13 +4,13 @@ import formattedPrice from '../HelperFunctions/FormattedPrice';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setTotalPriseInAllBasket, setUserBasket } from '@/slices/userSlice';
+import { setUserBasket } from '@/slices/userSlice';
 
 
 
 
 function GoodCardSmall({ props }) {
-    const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images, image } = props;
+    const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images, image, thumbnail } = props;
     const [isInBaslet, setIsInBasket] = useState(false);
     const dispatch = useDispatch();
 
@@ -81,8 +81,8 @@ function GoodCardSmall({ props }) {
                 <div className="container-for-imafe-top-sellers">
                     <Image
                         alt="image of good"
-                        // src={photo_preview ? photo_preview : (props.images[1] ? props.images[1] : "/promotionsImage/headphones.png")}
-                        src={photo_preview ? photo_preview : (props.images && props.images.length > 1 ? images[0] : (props.image ? props.image : '/defaultPhoto.png'))}
+                        src={thumbnail}
+                        // src={photo_preview ? photo_preview : (props.images && props.images.length > 1 ? images[0] : (props.image ? props.image : '/defaultPhoto.png'))}
                         quality={100}
                         fill
                         sizes="(max-width: 100%)"
@@ -99,9 +99,10 @@ function GoodCardSmall({ props }) {
                 <p className='top-sellers-price'>{formattedPrice(price)} грн</p>
                 {/* <p className='top-sellers-price'>{price} грн</p> */}
                 {/* <p className={`top-sellers-availability ${available ? '' : 'noavailability'}`}> */}
-                <p className={`top-sellers-availability ${id !== undefined ? '' : 'noavailability'}`}>
-                    {/* {available === true ? "Є в наявності" : "Немає в наявності"} */}
-                    {id !== undefined ? "Є в наявності" : "Немає в наявності"}
+
+                <p className={`top-sellers-availability ${available == true ? '' : 'noavailability'}`}>
+
+                    {available == true ? "Є в наявності" : "Немає в наявності"}
                 </p>
             </div>
         </Link >

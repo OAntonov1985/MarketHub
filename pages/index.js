@@ -65,11 +65,12 @@ export async function getServerSideProps() {
     const categories = await resCategories.json();
 
     // const resTopSellers = await fetch(URLADRESS + 'goods/top-seller');
-    const resTopSellers = await fetch("https://fakestoreapi.com/products");
+    // const resTopSellers = await fetch("https://fakestoreapi.com/products");
+    const resTopSellers = await fetch("https://market-hub-backend.vercel.app/goods/top-sellers");
     const topSellers = await resTopSellers.json();
 
     // const resPromotionGoods = await fetch(URLADRESS + 'goods/shares');
-    const resPromotionGoods = await fetch("https://fakestoreapi.com/products");
+    const resPromotionGoods = await fetch("https://market-hub-backend.vercel.app/goods/sales");
     const promotionGoods = await resPromotionGoods.json();
     return {
         props: {
