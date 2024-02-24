@@ -59,8 +59,9 @@ function Home({ categories, topSellers, promotionGoods }) {
 }
 
 export async function getServerSideProps() {
-    const resCategories = await fetch(URLADRESS + 'categories');
+    // const resCategories = await fetch(URLADRESS + 'categories');
     // const resCategories = await fetch("https://api.escuelajs.co/api/v1/categories");
+    const resCategories = await fetch("https://market-hub-backend.vercel.app/categories");
     const categories = await resCategories.json();
 
     // const resTopSellers = await fetch(URLADRESS + 'goods/top-seller');
