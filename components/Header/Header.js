@@ -27,8 +27,9 @@ function Header({ transparentBackground }) {
     useEffect(() => {
 
         const userBasketInLocal = localStorage.getItem("BASKET");
+        console.log(userBasketInLocal)
 
-        if (userBasketInLocal.length > 0 && userBasket.length === 0) {
+        if (userBasketInLocal && userBasket.length === 0) {
             const userBasket = JSON.parse(userBasketInLocal);
             dispatch(setInitialBasket(userBasket));
 
