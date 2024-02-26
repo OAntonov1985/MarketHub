@@ -59,18 +59,14 @@ function Home({ categories, topSellers, promotionGoods }) {
 }
 
 export async function getServerSideProps() {
-    // const resCategories = await fetch(URLADRESS + 'categories');
-    // const resCategories = await fetch("https://api.escuelajs.co/api/v1/categories");
-    const resCategories = await fetch("https://market-hub-backend.vercel.app/categories");
+
+    const resCategories = await fetch("https://market-hub-backend-dat4.vercel.app/categories");
     const categories = await resCategories.json();
 
-    // const resTopSellers = await fetch(URLADRESS + 'goods/top-seller');
-    // const resTopSellers = await fetch("https://fakestoreapi.com/products");
-    const resTopSellers = await fetch("https://market-hub-backend.vercel.app/goods/top-sellers");
+    const resTopSellers = await fetch("https://market-hub-backend-dat4.vercel.app/goods/top-sellers");
     const topSellers = await resTopSellers.json();
 
-    // const resPromotionGoods = await fetch(URLADRESS + 'goods/shares');
-    const resPromotionGoods = await fetch("https://market-hub-backend.vercel.app/goods/sales");
+    const resPromotionGoods = await fetch("https://market-hub-backend-dat4.vercel.app/sales");
     const promotionGoods = await resPromotionGoods.json();
     return {
         props: {

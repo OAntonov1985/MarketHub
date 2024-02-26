@@ -28,13 +28,14 @@ function GoodCardSmall({ props }) {
 
 
     function addToBasket(e) {
+        console.log(777)
         e.preventDefault();
         dispatch(setUserBasket(
             {
                 id: id,
                 title: title,
                 price: price,
-                thumbnail: images[0],
+                thumbnail: (thumbnail ? thumbnail : images[0]),
                 number: 1,
                 totalPrice: price
             }

@@ -38,15 +38,17 @@ export async function getServerSideProps(context) {
 
     let id;
     if (context.query.category === "Комп’ютерна техніка") id = 100;
-    else if (context.query.category === "Мобільні телефони") id = 175;
-    else if (context.query.category === "Побутова техніка") id = 250;
-    else if (context.query.category === "Ігрові приставки") id = 325;
-    else if (context.query.category === "Аудіотехніка") id = 400;
+    else if (context.query.category === "Мобільні телефони") id = 200;
+    else if (context.query.category === "Побутова техніка") id = 300;
+    else if (context.query.category === "Ігрові приставки") id = 400;
+    else if (context.query.category === "Аудіотехніка") id = 500;
 
-    const res = await fetch(URLADRESS + `categories/${id}/sub-categories`);
+
+    // const res = await fetch(URLADRESS + `categories/${id}/sub-categories`);
+    const res = await fetch(`https://market-hub-backend-dat4.vercel.app/categorie/${id}`);
     const subCategories = await res.json();
 
-    // const resGoods = await fetch(`https://fakestoreapi.com/products`);
+    // const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/categorie/${id}`);
     const resGoods = await fetch(`https://dummyjson.com/products?limit=12`);
     // const resGoods = await fetch(`https://markethub-mfbw.onrender.com/markethub/goods/categories/100`);
     const goods = await resGoods.json();

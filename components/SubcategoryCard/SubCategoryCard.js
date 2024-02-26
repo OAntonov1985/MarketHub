@@ -5,8 +5,8 @@ import React from 'react';
 
 function SubCategotyCard({ subCategories }) {
     // console.log(subCategories)
-    const category = subCategories.parent;
-    const subcategory = subCategories.name;
+    const category = subCategories.parent_category_name;
+    const subcategory = subCategories.sub_category_name;
     return (
         <div key={subCategories.id} className="main-categories-row-two">
             <Link
@@ -19,7 +19,7 @@ function SubCategotyCard({ subCategories }) {
                 <div className="image-container">
                     <Image
                         alt="image of computer"
-                        src={subCategories.photo_preview}
+                        src={subCategories.thumbnail}
                         sizes="(max-width: 100%)"
                         quality={100}
                         fill
@@ -32,7 +32,7 @@ function SubCategotyCard({ subCategories }) {
                 </div>
 
             </Link>
-            <p className='main-item-title'>{subCategories.name}</p>
+            <p className='main-item-title'>{subCategories.sub_category_name}</p>
         </div>
     )
 };

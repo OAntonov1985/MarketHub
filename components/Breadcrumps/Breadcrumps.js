@@ -6,7 +6,7 @@ import React from 'react';
 
 function BreadCrumps() {
     const router = useRouter();
-    // console.log(router.query)
+    // console.log(router.pathname)
     // const categoryName = router.query.category;
     const categoryName = router.query.category;
     const subCategoryName = router.query.subcategory;
