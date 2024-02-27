@@ -1,5 +1,6 @@
 export default function formattedPrice(price) {
-    const priceString = price.toFixed(2);
+    const num = parseInt(price)
+    const priceString = num.toFixed(2);
     const parts = priceString.split('.');
     const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 

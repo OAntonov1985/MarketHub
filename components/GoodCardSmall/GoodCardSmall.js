@@ -5,14 +5,20 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setUserBasket } from '@/slices/userSlice';
+import { useRouter } from 'next/router';
 
 
 
 
 function GoodCardSmall({ props }) {
-    const { id, photo_preview, name, price, available, category_id, sub_category_id, title, images, image, thumbnail } = props;
+    const { id, photo_preview, name, price, available, category_id, parent_caregory, title, images, image, thumbnail } = props;
     const [isInBaslet, setIsInBasket] = useState(false);
     const dispatch = useDispatch();
+
+    const router = useRouter();
+    const categoryName = router.query.category;
+    const subCategoryName = router.query.subcategory;
+
 
     const { userBasket } = useSelector((state) => state.user);
     // console.log(userBasket)
@@ -28,7 +34,6 @@ function GoodCardSmall({ props }) {
 
 
     function addToBasket(e) {
-        console.log(777)
         e.preventDefault();
         dispatch(setUserBasket(
             {
@@ -43,8 +48,8 @@ function GoodCardSmall({ props }) {
     };
 
     return (
-        <Link key={props.id}
-            href="/[category]/[subcategory]/[id]" as={`/${id}/${title}/${id}`}
+        <Link key={props.title}
+            href="/[category]/[subcategory]/[id]" as={`/${categoryName}/${subCategoryName}/${title}`}
             className="top-sellers-item" >
             <div className="image-container-top-sellers">
                 <div className='container-for-icon-favorite' id={id}

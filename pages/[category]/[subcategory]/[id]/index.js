@@ -2,10 +2,10 @@
 import Head from "next/head";
 import GoodCard from '@/components/GoodCard/GoodCard';
 import React from 'react';
-// import { cookies } from 'next/headers';
+import BreadCrumps from '@/components/Breadcrumps/Breadcrumps';
 
-function ProductPage({ good }) {
-    // console.log(good)
+
+function ProductPage({ good, breadCrumpData }) {
     return (
         <>
             <Head>
@@ -15,25 +15,34 @@ function ProductPage({ good }) {
             </Head>
             <div className='wrapper'>
                 <div>
-                    <GoodCard props={good} />
+                    <GoodCard props={good} breadCrumpData={breadCrumpData} />
                 </div>
             </div>
         </>
-
     );
 };
 
 export async function getServerSideProps(context) {
     // console.log(context.query.id)
     let id = context.query.id
-    // const resGoods = await fetch(`https://fakestoreapi.com/products/${id}`);
-    const resGoods = await fetch(`https://dummyjson.com/products/${id}`);
+    const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/goods/U0837652`);
+    // const resGoods = await fetch(`https://dummyjson.com/products/${id}`);
     // const resGoods = await fetch(`https://fakestoreapi.com/products/1`);
     const good = await resGoods.json();
 
+    const breadCrumpData = {
+        category: good.parent_caregory,
+        subcategory: good.paretn_subcategory,
+        title: good.title,
+        id: good.id
+    };
+
+    // console.log(breadCrumpData)
+
     return {
         props: {
-            good
+            good,
+            breadCrumpData
         }
     };
 };

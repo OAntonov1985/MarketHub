@@ -835,12 +835,12 @@ h2 {
   margin-bottom: 4rem;
   display: flex;
   gap: 0.4rem;
-  align-items: center;
 }
 
 .bread-crum-text-way {
   color: #012767;
   font-size: 1.6rem;
+  display: flex;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

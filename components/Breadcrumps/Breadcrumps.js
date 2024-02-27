@@ -4,13 +4,14 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 
-function BreadCrumps() {
+
+function BreadCrumps({ breadCrumpData }) {
     const router = useRouter();
-    // console.log(router.pathname)
-    // const categoryName = router.query.category;
-    const categoryName = router.query.category;
-    const subCategoryName = router.query.subcategory;
-    const id = router.query.id;
+
+    let categoryName = router.query.category;
+    let subCategoryName = router.query.subcategory;
+    let id = router.query.id;
+
 
 
     return (
@@ -23,20 +24,22 @@ function BreadCrumps() {
                     width={16}
                     height={16} />
             </Link>
+            {/* <p className='bread-crum-text-way'>/
+                <p href={`/${category}`}>
+                    {category}
+                </p>
+                {subcategory === undefined ? "" : `/${subcategory}`}{title ? `/${title}` : ""}
+            </p> */}
+
             <p className='bread-crum-text-way'>/
-                <Link href={`/${categoryName}`}>
+                <p href={`/${categoryName}`}>
                     {categoryName}
-                </Link>
-                /<Link href={`/${subCategoryName}`}>
-                    {subCategoryName}
-                </Link>
-                {id ? `/${id}` : null}
-                {/* <Link href={`/${categoryName}/${subCategoryName}`}>
-                    {subCategoryName}
-                </Link> */}
+                </p>
+                {subCategoryName === undefined ? "" : `/${subCategoryName}`}{id ? `/${id}` : ""}
             </p>
-        </div>
+        </div >
     )
 };
 
-export default React.memo(BreadCrumps);
+// export default React.memo(BreadCrumps);
+export default BreadCrumps;

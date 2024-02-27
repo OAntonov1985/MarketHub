@@ -3,9 +3,9 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 function GoodCardSlider({ props }) {
-    const { id, title, price, description, category, image, thumbnail, images } = props
+    const { id, title, price, description, category, image, thumbnail, images } = props;
 
-
+    console.log(images)
     const [currentIndex, setCurrentIndex] = useState(0);
     const [biggerPfoto, setBiggerPfoto] = useState(false)
 
@@ -40,7 +40,7 @@ function GoodCardSlider({ props }) {
                             <div className="medium-pfoto-container">
                                 <Image
                                     alt="image of good"
-                                    // src={images[0]}
+                                    // src="/defaultPhoto.png"
                                     src={images[index]}
                                     quality={100}
                                     fill

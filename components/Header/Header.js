@@ -5,7 +5,6 @@ import Cookies from 'js-cookie';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName } from '@/slices/userSlice';
 
@@ -14,7 +13,6 @@ import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName } f
 function Header({ transparentBackground }) {
 
     const [headerName, setHeaderName] = useState('');
-    const [imagePath, setimagePath] = useState("/basket.svg");
     const [isVisible, setIsVisible] = useState("quantityOfGoods is-wisible");
 
     const dispatch = useDispatch();
@@ -63,11 +61,9 @@ function Header({ transparentBackground }) {
 
     useEffect(() => {
         if (quantityOfGoods === 0 || quantityOfGoods === null) {
-            setimagePath('/basket.svg');
             setIsVisible("quantityOfGoods  is-wisible");
         }
         else {
-            setimagePath('/basket_green.svg');
             setIsVisible("quantityOfGoods");
         }
     }, [quantityOfGoods])
@@ -123,7 +119,7 @@ function Header({ transparentBackground }) {
                 <Link href="/basket/" className="logo-image-basket">
                     <Image
                         alt="logo image basket"
-                        src={imagePath}
+                        src="/basket.svg"
                         sizes="(max-width: 100%)"
                         quality={100}
                         width={24}
