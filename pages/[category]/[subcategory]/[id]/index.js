@@ -23,18 +23,16 @@ function ProductPage({ good, breadCrumpData }) {
 };
 
 export async function getServerSideProps(context) {
-    // console.log(context.query.id)
     let id = context.query.id
     const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/goods/U0837652`);
-    // const resGoods = await fetch(`https://dummyjson.com/products/${id}`);
-    // const resGoods = await fetch(`https://fakestoreapi.com/products/1`);
     const good = await resGoods.json();
 
     const breadCrumpData = {
         category: good.parent_caregory,
         subcategory: good.paretn_subcategory,
         title: good.title,
-        id: good.id
+        id: good.id,
+        available: good.available
     };
 
     // console.log(breadCrumpData)

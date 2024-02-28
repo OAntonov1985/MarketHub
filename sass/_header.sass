@@ -44,7 +44,7 @@
     cursor: pointer
 
 .logo-image-client
-    margin-right: 3.7rem
+    margin-right: 2.4rem
 
 .header-icons
     display: flex
@@ -96,17 +96,21 @@ h2
 
 
 .logo-image-basket
-    color: $valid-field-border
+    margin-right: 2.4rem
+
+.logo-image-favorite
+    width: 24px
+    height: 24px   
 
 .header-icons
     position: relative
 
-.quantityOfGoods
+.quantityOfGoods, .quantityOfFavorite
     display: flex
     align-items: center
     justify-content: center
     top:-6px
-    right:-6px
+    right: 40px
     width: 1.6rem
     height: 1.6rem
     border-radius: 50% 
@@ -114,6 +118,9 @@ h2
     position: absolute
     background-color: $color-blue
     color: $color-white
+
+.quantityOfFavorite
+    right: -6px
 
 .is-wisible
     display: none

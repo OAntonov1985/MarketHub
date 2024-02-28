@@ -4,10 +4,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     name: "MarketHub",
     userBasket: [],
+    userFavorite: [],
     userName: "",
     loading: false,
     totalPriseInAllBasket: 0,
-    quantityOfGoods: 0
+    quantityOfGoods: 0,
+    quantityOfFavorite: 0
 };
 
 
@@ -58,7 +60,6 @@ const userSlice = createSlice({
                 localStorage.setItem('totalPriseInAllBasket', newTotalPriseInAllBasket);
             }
         },
-
         setUserName: (state, action) => {
             state.userName = action.payload
         },
@@ -89,12 +90,49 @@ const userSlice = createSlice({
             const newTotalPriseInAllBasket = state.userBasket.reduce((accum, item) => accum = accum + (item.price * item.number), 0);
             state.totalPriseInAllBasket = newTotalPriseInAllBasket;
             localStorage.setItem('totalPriseInAllBasket', newTotalPriseInAllBasket);
+        },
+        setUserFavorite: (state, action) => {
+            const arrayIndex = state.userFavorite.findIndex(item => {
+                return item.id === action.payload.id
+            })
+            if (arrayIndex === -1) {
+                const newArrayFavorite = state.userFavorite;
+                newArrayFavorite.push(action.payload)
+                state.userFavorite = newArrayFavorite;
+
+                const updatedUserFavorite = JSON.stringify(state.userFavorite);
+                localStorage.setItem('FAVORITE', updatedUserFavorite);
+
+                state.quantityOfFavorite = state.quantityOfFavorite + 1;
+                const updatedUserTotalFavorite = JSON.stringify(state.quantityOfFavorite);
+                localStorage.setItem('totalFavorite', updatedUserTotalFavorite);
+            }
+            else if (arrayIndex !== -1) {
+                state.userFavorite.splice(arrayIndex, 1);
+
+                const updatedUserFavorite = JSON.stringify(state.userFavorite);
+                localStorage.setItem('FAVORITE', updatedUserFavorite);
+
+                state.quantityOfFavorite = state.quantityOfFavorite - 1;
+                const updatedUserTotalFavorite = JSON.stringify(state.quantityOfFavorite);
+                localStorage.setItem('totalFavorite', updatedUserTotalFavorite);
+            }
+
+        },
+        setinitialFavorite: (state, action) => {
+            state.userFavorite = action.payload;
+        },
+        setTotalFavorite: (state, action) => {
+            state.quantityOfFavorite = action.payload;
+
+            const updatedUserTotalFavorite = JSON.stringify(state.quantityOfFavorite);
+            localStorage.setItem('totalFavorite', updatedUserTotalFavorite);
         }
     }
 });
 
 
 
-export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite } = userSlice.actions;
 
 export default userSlice.reducer;

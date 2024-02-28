@@ -24,22 +24,15 @@ function BreadCrumps({ breadCrumpData }) {
                     width={16}
                     height={16} />
             </Link>
-            {/* <p className='bread-crum-text-way'>/
-                <p href={`/${category}`}>
-                    {category}
-                </p>
-                {subcategory === undefined ? "" : `/${subcategory}`}{title ? `/${title}` : ""}
-            </p> */}
 
-            <p className='bread-crum-text-way'>/
+            <Link href={"#"} className='bread-crum-text-way'>/
                 <p href={`/${categoryName}`}>
                     {categoryName}
                 </p>
                 {subCategoryName === undefined ? "" : `/${subCategoryName}`}{id ? `/${id}` : ""}
-            </p>
+            </Link>
         </div >
     )
 };
 
-// export default React.memo(BreadCrumps);
-export default BreadCrumps;
+export default React.memo(BreadCrumps);

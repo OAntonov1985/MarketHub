@@ -4,15 +4,16 @@ import formattedPrice from '../HelperFunctions/FormattedPrice';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setUserBasket } from '@/slices/userSlice';
+import { setUserBasket, setUserFavorite } from '@/slices/userSlice';
 import { useRouter } from 'next/router';
 
 
 
 
 function GoodCardSmall({ props }) {
-    const { id, photo_preview, name, price, available, category_id, parent_caregory, title, images, image, thumbnail } = props;
+    const { id, price, available, title, images, thumbnail } = props;
     const [isInBaslet, setIsInBasket] = useState(false);
+    const [isInFavorite, setIsInFavorite] = useState(false);
     const dispatch = useDispatch();
 
     const router = useRouter();
@@ -21,7 +22,7 @@ function GoodCardSmall({ props }) {
 
 
     const { userBasket } = useSelector((state) => state.user);
-    // console.log(userBasket)
+    const { userFavorite } = useSelector((state) => state.user);
 
     useEffect(() => {
         const arrayIndex = userBasket.findIndex(item => {
@@ -30,36 +31,57 @@ function GoodCardSmall({ props }) {
         if (arrayIndex !== -1) {
             setIsInBasket(true)
         }
-    }, [userBasket])
+
+        const arrayIndexFavorite = userFavorite.findIndex(item => {
+            return item.id === id
+        })
+        if (arrayIndexFavorite !== -1) setIsInFavorite(true);
+        else setIsInFavorite(false)
+    }, [userBasket, userFavorite])
 
 
     function addToBasket(e) {
         e.preventDefault();
-        dispatch(setUserBasket(
+        if (available === true) {
+            dispatch(setUserBasket(
+                {
+                    id: id,
+                    title: title,
+                    price: price,
+                    thumbnail: (thumbnail ? thumbnail : images[0]),
+                    number: 1,
+                    totalPrice: price
+                }
+            ))
+        }
+    };
+
+    function addToFavorite(e) {
+        e.preventDefault();
+        console.log
+        dispatch(setUserFavorite(
             {
                 id: id,
                 title: title,
                 price: price,
                 thumbnail: (thumbnail ? thumbnail : images[0]),
-                number: 1,
-                totalPrice: price
+                available: available
             }
         ))
-    };
+    }
 
     return (
         <Link key={props.title}
             href="/[category]/[subcategory]/[id]" as={`/${categoryName}/${subCategoryName}/${title}`}
             className="top-sellers-item" >
             <div className="image-container-top-sellers">
-                <div className='container-for-icon-favorite' id={id}
-                >
+                <div className='container-for-icon-favorite' id={id}>
                     <Image
                         id={props.id}
-                        onClick={addToBasket}
+                        onClick={addToFavorite}
                         className='favorite-icon'
                         alt="icon of favorite"
-                        src="/heardincart.svg"
+                        src={!isInFavorite ? "/heardincart.svg" : "addedtofavoriteicon.svg"}
                         quality={100}
                         fill
                         sizes="(max-width: 100%)"
@@ -69,12 +91,14 @@ function GoodCardSmall({ props }) {
                         }}>
                     </Image>
                 </div>
-                <div className='container-for-icon-add-to-basket' id={id} onClick={addToBasket}>
+                <div className='container-for-icon-add-to-basket' id={id} >
                     <Image
                         id={id}
+                        onClick={addToBasket}
                         className='basket-icon'
                         alt="icon of basket"
-                        src={isInBaslet === false ? "/basketincard.svg" : "/goodInBasket.svg"}
+                        src={available === false ? "/noavalablegoodicon.svg" : (isInBaslet === false ? "/basketincard.svg" : "/goodInBasket.svg")}
+                        // src={isInBaslet === false ? "/basketincard.svg" : "/goodInBasket.svg"} 
                         quality={100}
                         fill
                         sizes="(max-width: 100%)"
@@ -88,7 +112,6 @@ function GoodCardSmall({ props }) {
                     <Image
                         alt="image of good"
                         src={thumbnail}
-                        // src={photo_preview ? photo_preview : (props.images && props.images.length > 1 ? images[0] : (props.image ? props.image : '/defaultPhoto.png'))}
                         quality={100}
                         fill
                         sizes="(max-width: 100%)"

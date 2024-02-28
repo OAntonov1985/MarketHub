@@ -22,16 +22,16 @@ function GoodCard({ props, breadCrumpData }) {
                             width={16}
                             height={16} />
                     </Link>
-                    <p className='bread-crum-text-way'>/
+                    <Link href={"#"} className='bread-crum-text-way'>/
                         <p href={`/${category}`}>
                             {category}
                         </p>
                         {subcategory === undefined ? "" : `/${subcategory}`}{title ? `/${title}` : ""}
-                    </p>
+                    </Link>
                 </div>
                 <div className="good-card-container">
                     <GoodCardSlider props={props} />
-                    <GoodCardDescription props={props} />
+                    <GoodCardDescription props={props} breadCrumpData={breadCrumpData} />
                 </div>
             </div>
             <Footer />

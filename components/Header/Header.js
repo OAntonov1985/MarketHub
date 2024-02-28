@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName } from '@/slices/userSlice';
+import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName, setinitialFavorite, setTotalFavorite } from '@/slices/userSlice';
 
 
 
@@ -18,14 +18,16 @@ function Header({ transparentBackground }) {
     const dispatch = useDispatch();
     const { quantityOfGoods } = useSelector((state) => state.user);
     const { userBasket } = useSelector((state) => state.user);
+    const { userFavorite } = useSelector((state) => state.user);
+    const { quantityOfFavorite } = useSelector((state) => state.user);
     let { userName } = useSelector((state) => state.user);
+    // console.log(quantityOfFavorite)
 
 
 
     useEffect(() => {
 
         const userBasketInLocal = localStorage.getItem("BASKET");
-        console.log(userBasketInLocal)
 
         if (userBasketInLocal && userBasket.length === 0) {
             const userBasket = JSON.parse(userBasketInLocal);
@@ -40,6 +42,18 @@ function Header({ transparentBackground }) {
             localStorage.setItem('totalPriseInAllBasket', newTotalPriseInAllBasket);
 
         };
+
+        const userFavoriteInLocal = localStorage.getItem("FAVORITE");
+        if (userFavoriteInLocal && userFavorite.length === 0) {
+            const userFavorite = JSON.parse(userFavoriteInLocal);
+            dispatch(setinitialFavorite(userFavorite));
+        }
+
+        const userTotalFavoriteInLocal = localStorage.getItem("totalFavorite");
+        if (userTotalFavoriteInLocal) {
+            const userFavorite = JSON.parse(userFavoriteInLocal);
+            dispatch(setTotalFavorite(userFavorite.length));
+        }
 
         userName = Cookies.get('userName');
     }, []);
@@ -124,11 +138,25 @@ function Header({ transparentBackground }) {
                         quality={100}
                         width={24}
                         height={24}
-                        className='logo-image-basket'
+                        className='photo-image-basket'
                         priority
                     />
                 </Link>
                 <div className={isVisible}>{quantityOfGoods}</div>
+                <Link href="/favorite/" className="logo-image-favorite">
+                    <Image
+                        alt="logo image favorite"
+                        src="/heardinheader.png"
+                        sizes="(max-width: 100%)"
+                        quality={100}
+                        width={24}
+                        height={30}
+                        className='logo-image-favorite'
+                        priority
+                    />
+                </Link>
+                <div className="quantityOfFavorite">{quantityOfFavorite}</div>
+
             </div>
         </div>
     );

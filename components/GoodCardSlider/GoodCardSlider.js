@@ -5,7 +5,7 @@ import Image from 'next/image';
 function GoodCardSlider({ props }) {
     const { id, title, price, description, category, image, thumbnail, images } = props;
 
-    console.log(images)
+    // console.log(images)
     const [currentIndex, setCurrentIndex] = useState(0);
     const [biggerPfoto, setBiggerPfoto] = useState(false)
 
