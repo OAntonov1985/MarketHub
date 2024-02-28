@@ -302,6 +302,17 @@ h2 {
   opacity: 1;
 }
 
+.top-sellers-in-favorite {
+  max-width: 30.8rem;
+}
+.top-sellers-in-favorite .container-for-icon-favorite {
+  opacity: 1;
+}
+
+.icon-in-favorite {
+  right: 1.6rem !important;
+}
+
 .image-container-top-sellers {
   background-color: #F3F4F6;
   border-radius: 3.2rem;
@@ -1810,4 +1821,21 @@ h2 {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.favorite-conteiner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 192rem;
+  margin: auto;
+}
+
+.favorite-content {
+  flex: 1 1 100%;
+  margin: 4rem 9rem 12.4rem 9rem;
+}
+
+.item-favorite {
+  width: 100%;
 }/*# sourceMappingURL=globals.css.map */

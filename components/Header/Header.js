@@ -14,6 +14,7 @@ function Header({ transparentBackground }) {
 
     const [headerName, setHeaderName] = useState('');
     const [isVisible, setIsVisible] = useState("quantityOfGoods is-wisible");
+    const [isVisibleFavorite, setIsVisibleFavorite] = useState("quantityOfFavorite is-wisible");
 
     const dispatch = useDispatch();
     const { quantityOfGoods } = useSelector((state) => state.user);
@@ -80,7 +81,14 @@ function Header({ transparentBackground }) {
         else {
             setIsVisible("quantityOfGoods");
         }
-    }, [quantityOfGoods])
+
+        if (quantityOfFavorite === 0 || quantityOfFavorite === null) {
+            setIsVisibleFavorite("quantityOfFavorite  is-wisible");
+        }
+        else {
+            setIsVisibleFavorite("quantityOfFavorite");
+        }
+    }, [quantityOfGoods, quantityOfFavorite])
 
 
     return (
@@ -155,7 +163,7 @@ function Header({ transparentBackground }) {
                         priority
                     />
                 </Link>
-                <div className="quantityOfFavorite">{quantityOfFavorite}</div>
+                <div className={isVisibleFavorite}>{quantityOfFavorite}</div>
 
             </div>
         </div>
@@ -163,11 +171,4 @@ function Header({ transparentBackground }) {
 };
 
 
-
-Header.getInitialProps = ({ req }) => {
-    const localState = parseLocalStorage({ req })
-    return {
-
-    }
-}
 export default React.memo(Header)

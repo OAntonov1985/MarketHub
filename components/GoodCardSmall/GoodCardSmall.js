@@ -10,15 +10,18 @@ import { useRouter } from 'next/router';
 
 
 
-function GoodCardSmall({ props }) {
+function GoodCardSmall({ props, isFavorite }) {
     const { id, price, available, title, images, thumbnail } = props;
     const [isInBaslet, setIsInBasket] = useState(false);
     const [isInFavorite, setIsInFavorite] = useState(false);
+    const [className, setClassname] = useState(false)
     const dispatch = useDispatch();
+
 
     const router = useRouter();
     const categoryName = router.query.category;
     const subCategoryName = router.query.subcategory;
+
 
 
     const { userBasket } = useSelector((state) => state.user);
@@ -38,6 +41,13 @@ function GoodCardSmall({ props }) {
         if (arrayIndexFavorite !== -1) setIsInFavorite(true);
         else setIsInFavorite(false)
     }, [userBasket, userFavorite])
+
+    useEffect(() => {
+        if (isFavorite) setIsInFavorite(true);
+
+        if (isFavorite) setClassname(false);
+        else setClassname(true);
+    }, [isFavorite, className])
 
 
     function addToBasket(e) {
@@ -73,9 +83,9 @@ function GoodCardSmall({ props }) {
     return (
         <Link key={props.title}
             href="/[category]/[subcategory]/[id]" as={`/${categoryName}/${subCategoryName}/${title}`}
-            className="top-sellers-item" >
+            className={className ? "top-sellers-item" : "top-sellers-item top-sellers-in-favorite"} >
             <div className="image-container-top-sellers">
-                <div className='container-for-icon-favorite' id={id}>
+                <div className={`container-for-icon-favorite ${isFavorite ? 'icon-in-favorite' : ''}`} id={id}>
                     <Image
                         id={props.id}
                         onClick={addToFavorite}
@@ -91,23 +101,24 @@ function GoodCardSmall({ props }) {
                         }}>
                     </Image>
                 </div>
-                <div className='container-for-icon-add-to-basket' id={id} >
-                    <Image
-                        id={id}
-                        onClick={addToBasket}
-                        className='basket-icon'
-                        alt="icon of basket"
-                        src={available === false ? "/noavalablegoodicon.svg" : (isInBaslet === false ? "/basketincard.svg" : "/goodInBasket.svg")}
-                        // src={isInBaslet === false ? "/basketincard.svg" : "/goodInBasket.svg"} 
-                        quality={100}
-                        fill
-                        sizes="(max-width: 100%)"
-                        style={{
-                            objectFit: 'contain',
-                            width: '100%'
-                        }}>
-                    </Image>
-                </div>
+                {isFavorite === true ? null :
+                    <div className='container-for-icon-add-to-basket' id={id} >
+                        <Image
+                            id={id}
+                            onClick={addToBasket}
+                            className='basket-icon'
+                            alt="icon of basket"
+                            src={available === false ? "/noavalablegoodicon.svg" : (isInBaslet === false ? "/basketincard.svg" : "/goodInBasket.svg")}
+                            // src={isInBaslet === false ? "/basketincard.svg" : "/goodInBasket.svg"} 
+                            quality={100}
+                            fill
+                            sizes="(max-width: 100%)"
+                            style={{
+                                objectFit: 'contain',
+                                width: '100%'
+                            }}>
+                        </Image>
+                    </div>}
                 <div className="container-for-imafe-top-sellers">
                     <Image
                         alt="image of good"
