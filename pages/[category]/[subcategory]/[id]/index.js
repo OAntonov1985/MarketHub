@@ -3,6 +3,7 @@ import Head from "next/head";
 import GoodCard from '@/components/GoodCard/GoodCard';
 import React from 'react';
 import BreadCrumps from '@/components/Breadcrumps/Breadcrumps';
+import { MaketHubURL } from "../../../../components/Constants"
 
 
 function ProductPage({ good, breadCrumpData }) {
@@ -24,18 +25,19 @@ function ProductPage({ good, breadCrumpData }) {
 
 export async function getServerSideProps(context) {
     let id = context.query.id
-    const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/goods/U0837652`);
+    console.log(id)
+    const resGoods = await fetch(MaketHubURL + `goods/${id}`);
     const good = await resGoods.json();
 
     const breadCrumpData = {
-        category: good.parent_caregory,
-        subcategory: good.paretn_subcategory,
+        category: good.category_details.name,
+        subcategory: good.sub_category_detail.name,
         title: good.title,
         id: good.id,
         available: good.available
     };
 
-    // console.log(breadCrumpData)
+    console.log(good.category_details.name)
 
     return {
         props: {
