@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 
 
 function GoodCardSmall({ props, isFavorite }) {
-    const { id, price, available, title, images, thumbnail } = props;
+    const { id, price, available, title, images, thumbnail, category_details, sub_category_detail } = props;
     const [isInBaslet, setIsInBasket] = useState(false);
     const [isInFavorite, setIsInFavorite] = useState(false);
     const [className, setClassname] = useState(false)
@@ -81,8 +81,8 @@ function GoodCardSmall({ props, isFavorite }) {
     }
 
     return (
-        <Link key={props.id}
-            href="/[category]/[subcategory]/[id]" as={`/${categoryName}/${subCategoryName}/${id}`}
+        <Link key={id}
+            href="/[category]/[subcategory]/[id]" as={`/${categoryName ? categoryName : (category_details ? category_details.name : null)}/${subCategoryName ? subCategoryName : sub_category_detail?.name}/${id}`}
             className={className ? "top-sellers-item" : "top-sellers-item top-sellers-in-favorite"} >
             <div className="image-container-top-sellers">
                 <div className={`container-for-icon-favorite ${isFavorite ? 'icon-in-favorite' : ''}`} id={id}>

@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
     else if (context.query.subcategory === "Ноутбуки") id = 130;
     console.log(id)
 
-    const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/goods/categories/${id}/1/12`);
+    const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/goods/subcategories/${id}`);
     const goods = await resGoods.json();
 
     return {

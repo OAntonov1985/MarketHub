@@ -12,6 +12,7 @@ function GoodsList({ props, id, total }) {
     const [selectedOption, setSelectedOption] = useState("Новинки");
     const [activePage, setActivePage] = useState(1);
 
+
     const fetchData = async (num) => {
         try {
             const response = await fetch(MaketHubURL + `goods/categories/${id}/${num}/12`);
@@ -26,7 +27,7 @@ function GoodsList({ props, id, total }) {
     const handlePageChange = (event) => {
         let num
         if (event === 1) num = 0;
-        fetchData(event);
+        // fetchData(event);
     };
 
 
