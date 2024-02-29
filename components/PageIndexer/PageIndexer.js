@@ -4,18 +4,14 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import React from 'react';
 
-function PageIndexer({ props, handlePageChange }) {
-    const totalGoods = props;
-    // const func = handlePageChange;
-    // console.log(listGoods)
+function PageIndexer({ handlePageChange, total, activePage, setActivePage }) {
 
-
-    const [activePage, setActivePage] = useState(1);
+    // const [activePage, setActivePage] = useState(1);
     const [startNumberToArray, setStartNumberToArray] = useState(1);
-    const maxPageRenderInString = 5; // встановлення кількості айтемів для відображення
+    const maxPageRenderInString = Math.ceil(total / 12) - 1; // встановлення кількості айтемів для відображення
 
     const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
-    const lastPage = Math.ceil(totalGoods / 12);
+    const lastPage = Math.ceil(total / 12) - 1;
 
     useEffect(() => {
         handlePageChange(activePage)
@@ -37,7 +33,6 @@ function PageIndexer({ props, handlePageChange }) {
 
         else if (event.target.id === "plus-one") {
             if (activePage < lastPage) {
-                console.log(true)
                 if (activePage === startNumberToArray + maxPageRenderInString - 1) {
                     setStartNumberToArray(activePage - maxPageRenderInString + 2);
                     setActivePage(activePage + 1);
@@ -48,17 +43,11 @@ function PageIndexer({ props, handlePageChange }) {
     };
 
 
-
-
-
-
-
     const ArrowDiv = () => {
         return (
             <div className='arrow-container'
                 id='plus-one'
-                onClick={changeIndex}
-            >
+                onClick={changeIndex}>
                 <Image
                     alt="image of arrow logo"
                     src="/arrow1.svg"
@@ -77,8 +66,7 @@ function PageIndexer({ props, handlePageChange }) {
     const ArrowDivRotate = () => {
         return (
             <div className='arrow-container'
-                onClick={changeIndex}
-            >
+                onClick={changeIndex}>
                 <Image
                     alt="image of arrow logo"
                     src="/arrow2.svg"

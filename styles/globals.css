@@ -1121,6 +1121,7 @@ h2 {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.8rem;
+  cursor: pointer;
 }
 
 .filter-arrow-button {
@@ -1144,7 +1145,7 @@ h2 {
   border-radius: 0.8rem;
   border: 1px solid #00E6F4;
   color: #012767;
-  transition: height 0.3s ease-out;
+  transition: height 0.2s ease-out;
   z-index: 999;
 }
 
@@ -1159,6 +1160,7 @@ h2 {
 .display-li-options {
   opacity: 1;
   transition: opacity 0.5s ease;
+  cursor: pointer;
 }
 
 .filter-checked-container {

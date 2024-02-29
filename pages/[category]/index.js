@@ -10,8 +10,7 @@ import { useState } from 'react';
 
 
 
-function CategoryPage({ subCategories, goods }) {
-    // console.log(goods)
+function CategoryPage({ subCategories, goods, id, total }) {
 
     return (
         <>
@@ -27,7 +26,7 @@ function CategoryPage({ subCategories, goods }) {
                     <div className="subcategories-row">
                         <SubcategoriesInCatPage subCategories={subCategories} />
                     </div>
-                    <GoodsList props={goods} />
+                    <GoodsList props={goods} id={id} total={total} />
                 </div>
                 <Footer />
             </div>
@@ -44,19 +43,19 @@ export async function getServerSideProps(context) {
     else if (context.query.category === "Аудіотехніка") id = 500;
 
 
-    // const res = await fetch(URLADRESS + `categories/${id}/sub-categories`);
     const res = await fetch(`https://market-hub-backend-dat4.vercel.app/categorie/${id}`);
     const subCategories = await res.json();
 
-    // const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/categorie/${id}`);
-    const resGoods = await fetch(`https://dummyjson.com/products?limit=12`);
-    // const resGoods = await fetch(`https://markethub-mfbw.onrender.com/markethub/goods/categories/100`);
+    const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/goods/categories/${id}/1/12`);
     const goods = await resGoods.json();
+
 
     return {
         props: {
             subCategories,
-            goods
+            goods: goods.data,
+            id: id,
+            total: goods.total
         }
     };
 };

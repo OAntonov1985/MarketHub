@@ -16,7 +16,7 @@ export default async function GetListCities(cityName) {
             }
         })
     };
-    // console.log(requestOptions)
+
     try {
         const response = await fetch('https://api.novaposhta.ua/v2.0/json/', requestOptions);
         if (response.ok) {

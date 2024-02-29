@@ -3,47 +3,32 @@ import Image from 'next/image';
 import React from 'react';
 
 
-function HeaderSelectorToFilter() {
-    const [selectedOption, setSelectedOption] = useState("Новинки");
+
+function HeaderSelectorToFilter({ selectedOption, id, setSelectedOption }) {
 
     const liClassname = "filter-li-options";
     const [classNames, setClassNames] = useState(liClassname);
-
-    const [isVisibleChecked, setIsVisibleChecked] = useState(false);
-    // const buttonClassname = "filter-arrow-button";
-
-    const [isVisibleArrow, setIsVisibleArrow] = useState(true);
     const [isToggled, setIsToggled] = useState(false);
 
 
     const handleToggle = () => {
         setIsToggled((prevIsToggled) => !prevIsToggled);
         setClassNames("filter-arrow-button display-none");
-        setIsVisibleArrow((previsVisibleArrow) => !previsVisibleArrow);
     };
 
     const setLiValue = (event) => {
         setSelectedOption(event.target.innerText);
-        setClassNames(liClassname);
+        setClassNames(classNames);
         setIsToggled((prevIsToggled) => !prevIsToggled);
     }
+
+
 
 
     return (
         <div className="selector-filter-container">
             <p className='selected-sort-option' onClick={handleToggle}>{selectedOption}
-                <button className="filter-arrow-button"
-                // onClick={handleToggle}
-                >
-                    {/* {isVisibleArrow && (
-                        <Image className='arrow'
-                            alt="logo home"
-                            src='/selector-arrow-down.svg'
-                            quality={100}
-                            width={20}
-                            height={20}
-                        />
-                    )} */}
+                <button className="filter-arrow-button">
                     <Image className='arrow'
                         alt="logo home"
                         src='/selector-arrow-down.svg'
