@@ -19,18 +19,18 @@ function GoodsList({ props, id, total }) {
 
 
     // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const data = await GetFilteredData(selectedOption, id);
-    //             console.log(data);
-    //             setListGoods(data.data);
-    //             setActivePage(1);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-    //     fetchData();
-    // }, [selectedOption, id]);
+    //     // const fetchData = async () => {
+    //     //     try {
+    //     //         const data = await GetFilteredData(selectedOption, id);
+    //     //         console.log(data);
+    //     //         setListGoods(data.data);
+    //     //         setActivePage(1);
+    //     //     } catch (error) {
+    //     //         console.error(error);
+    //     //     }
+    //     // };
+    //     // fetchData();
+    // }, [listGoods]);
 
     return (
         <div className='goods-list'>

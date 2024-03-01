@@ -11,9 +11,9 @@ function PageIndexer({ handlePageChange, total, activePage, setActivePage }) {
     const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
     const lastPage = Math.ceil(total / 12);
 
-    useEffect(() => {
-        handlePageChange(activePage)
-    }, [activePage])
+    // useEffect(() => {
+    //     handlePageChange(activePage)
+    // }, [activePage])
 
 
     const changeIndex = (event) => {
@@ -22,21 +22,27 @@ function PageIndexer({ handlePageChange, total, activePage, setActivePage }) {
                 if (activePage === startNumberToArray) {
                     setStartNumberToArray(activePage - 1);
                     setActivePage(activePage - 1);
+                    handlePageChange(activePage - 1);
                 }
-                else setActivePage(activePage - 1);
-            } else setActivePage(activePage)
+                else {
+                    setActivePage(activePage - 1);
+                    handlePageChange(activePage - 1);
+                }
+            }
         }
-
 
         else if (event.target.id === "plus-one") {
             if (activePage < lastPage) {
                 if (activePage === startNumberToArray + maxPageRenderInString - 1) {
                     setStartNumberToArray(activePage - maxPageRenderInString + 2);
                     setActivePage(activePage + 1);
-                } else setActivePage(activePage + 1);
+                    handlePageChange(activePage + 1);
+                } else {
+                    setActivePage(activePage + 1);
+                    handlePageChange(activePage + 1);
+                }
             }
         };
-
     };
 
 
@@ -81,6 +87,7 @@ function PageIndexer({ handlePageChange, total, activePage, setActivePage }) {
 
     const handleClick = (event) => {
         setActivePage(parseFloat(event.target.id));
+        handlePageChange(parseFloat(event.target.id));
     };
 
 
