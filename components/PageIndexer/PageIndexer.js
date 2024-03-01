@@ -1,12 +1,10 @@
 "use client"
-// import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import React from 'react';
 
 function PageIndexer({ handlePageChange, total, activePage, setActivePage }) {
 
-    // const [activePage, setActivePage] = useState(1);
     const [startNumberToArray, setStartNumberToArray] = useState(1);
     const maxPageRenderInString = Math.ceil(total / 12); // встановлення кількості айтемів для відображення
 
@@ -24,7 +22,6 @@ function PageIndexer({ handlePageChange, total, activePage, setActivePage }) {
                 if (activePage === startNumberToArray) {
                     setStartNumberToArray(activePage - 1);
                     setActivePage(activePage - 1);
-
                 }
                 else setActivePage(activePage - 1);
             } else setActivePage(activePage)

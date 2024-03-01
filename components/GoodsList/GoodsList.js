@@ -4,7 +4,6 @@ import AsideFilter from '../AsideFilter/AsideFilter';
 import React from 'react';
 import PageIndexer from '../PageIndexer/PageIndexer';
 import { useState, useEffect } from 'react';
-import { MaketHubURL } from "../Constants";
 import GetFilteredData from '@/pages/api/GetFilteredData';
 import GetdData from '@/pages/api/GetData';
 
@@ -14,10 +13,8 @@ function GoodsList({ props, id, total }) {
     const [activePage, setActivePage] = useState(1);
 
     async function handlePageChange(event) {
-        if (event - 1 !== 0) {
-            const { result } = await GetdData(event - 1, id);
-            setListGoods(result.data);
-        }
+        const { result } = await GetdData(event - 1, id);
+        setListGoods(result.data);
     };
 
 
