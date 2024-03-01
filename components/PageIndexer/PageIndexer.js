@@ -8,10 +8,10 @@ function PageIndexer({ handlePageChange, total, activePage, setActivePage }) {
 
     // const [activePage, setActivePage] = useState(1);
     const [startNumberToArray, setStartNumberToArray] = useState(1);
-    const maxPageRenderInString = Math.ceil(total / 12) - 1; // встановлення кількості айтемів для відображення
+    const maxPageRenderInString = Math.ceil(total / 12); // встановлення кількості айтемів для відображення
 
     const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
-    const lastPage = Math.ceil(total / 12) - 1;
+    const lastPage = Math.ceil(total / 12);
 
     useEffect(() => {
         handlePageChange(activePage)

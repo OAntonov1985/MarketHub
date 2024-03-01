@@ -6,28 +6,18 @@ import PageIndexer from '../PageIndexer/PageIndexer';
 import { useState, useEffect } from 'react';
 import { MaketHubURL } from "../Constants";
 import GetFilteredData from '@/pages/api/GetFilteredData';
+import GetdData from '@/pages/api/GetData';
 
 function GoodsList({ props, id, total }) {
     const [listGoods, setListGoods] = useState(props);
     const [selectedOption, setSelectedOption] = useState("Новинки");
     const [activePage, setActivePage] = useState(1);
 
-
-    const fetchData = async (num) => {
-        try {
-            const response = await fetch(MaketHubURL + `goods/categories/${id}/${num}/12`);
-            const data = await response.json();
-            setListGoods(data.data)
-
-        } catch (error) {
-            console.error('Упс... Щось пішло не так!', error);
+    async function handlePageChange(event) {
+        if (event - 1 !== 0) {
+            const { result } = await GetdData(event - 1, id);
+            setListGoods(result.data);
         }
-    };
-
-    const handlePageChange = (event) => {
-        let num
-        if (event === 1) num = 0;
-        // fetchData(event);
     };
 
 

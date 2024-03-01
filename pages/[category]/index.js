@@ -46,7 +46,7 @@ export async function getServerSideProps(context) {
     const res = await fetch(`https://market-hub-backend-dat4.vercel.app/categorie/${id}`);
     const subCategories = await res.json();
 
-    const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/goods/categories/${id}/1/12`);
+    const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/goods/categories/${id}/0/12`);
     const goods = await resGoods.json();
 
 
