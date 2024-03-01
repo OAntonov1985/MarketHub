@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 
 function PageIndexer({ handlePageChange, total, activePage, setActivePage }) {
-
+    // console.log(total)
     const [startNumberToArray, setStartNumberToArray] = useState(1);
     const maxPageRenderInString = Math.ceil(total / 12); // встановлення кількості айтемів для відображення
 
