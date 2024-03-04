@@ -4,7 +4,7 @@ import React from 'react';
 
 
 
-function HeaderSelectorToFilter({ selectedOption, id, setSelectedOption }) {
+function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, setIsЕhereАilter, getFilteredDataMaxMin, getFilteredDataMinMax, getData, setActivePage }) {
 
     const liClassname = "filter-li-options";
     const [classNames, setClassNames] = useState(liClassname);
@@ -17,9 +17,20 @@ function HeaderSelectorToFilter({ selectedOption, id, setSelectedOption }) {
     };
 
     const setLiValue = (event) => {
-        setSelectedOption(event.target.innerText);
+        setSelectedFilterOption(event.target.innerText);
+        setIsЕhereАilter(event.target.innerText);
         setClassNames(classNames);
         setIsToggled((prevIsToggled) => !prevIsToggled);
+        if (event.target.innerText == "Від дешевих до дорогих") {
+            getFilteredDataMinMax(event.target.innerText)
+        }
+        else if (event.target.innerText == "Від дорогих до дешевих") {
+            getFilteredDataMaxMin(event.target.innerText);
+        }
+        else if (event.target.innerText == "Новинки") {
+            getData(event.target.innerText);
+        }
+        setActivePage(1);
     }
 
 
@@ -27,7 +38,7 @@ function HeaderSelectorToFilter({ selectedOption, id, setSelectedOption }) {
 
     return (
         <div className="selector-filter-container">
-            <p className='selected-sort-option' onClick={handleToggle}>{selectedOption}
+            <p className='selected-sort-option' onClick={handleToggle}>{selectedFilterOption}
                 <button className="filter-arrow-button">
                     <Image className='arrow'
                         alt="logo home"

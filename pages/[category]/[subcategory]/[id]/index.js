@@ -25,7 +25,7 @@ function ProductPage({ good, breadCrumpData }) {
 
 export async function getServerSideProps(context) {
     let id = context.query.id
-    console.log(id)
+    // console.log(id)
     const resGoods = await fetch(MaketHubURL + `goods/${id}`);
     const good = await resGoods.json();
 
@@ -37,7 +37,7 @@ export async function getServerSideProps(context) {
         available: good.available
     };
 
-    console.log(good.category_details.name)
+    // console.log(good.category_details.name)
 
     return {
         props: {

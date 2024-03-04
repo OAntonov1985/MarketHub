@@ -10,43 +10,55 @@ import { useRouter } from 'next/router';
 
 function GoodsList({ props, id, total }) {
     const [listGoods, setListGoods] = useState(props);
-    const [selectedOption, setSelectedOption] = useState("Новинки");
+    const [selectedFilterOption, setSelectedFilterOption] = useState("Новинки");
+    const [isЕhereАilter, setIsЕhereАilter] = useState("");
     const [activePage, setActivePage] = useState(1);
 
 
 
-    // console.log(total)
+    // console.log(isЕhereАilter)
     const router = useRouter();
     const subCategoryName = router.query.subcategory;
-    // console.log(subCategoryName)
 
-    async function handlePageChange(event) {
+
+    async function getData(event) {
         const { result } = await GetdData(event - 1, id, subCategoryName);
         setListGoods(result.data);
     };
 
+    async function getFilteredDataMinMax(event) {
+        const { result } = await GetFilteredData(event - 1, id, 1, subCategoryName);
+        setListGoods(result.data);
+    };
 
-    // useEffect(() => {
-    //     // const fetchData = async () => {
-    //     //     try {
-    //     //         const data = await GetFilteredData(selectedOption, id);
-    //     //         console.log(data);
-    //     //         setListGoods(data.data);
-    //     //         setActivePage(1);
-    //     //     } catch (error) {
-    //     //         console.error(error);
-    //     //     }
-    //     // };
-    //     // fetchData();
-    // }, [listGoods]);
+    async function getFilteredDataMaxMin(event) {
+        const { result } = await GetFilteredData(event - 1, id, -1, subCategoryName);
+        setListGoods(result.data);
+    };
+
+
+    async function handlePageChange(event) {
+        // console.log(event)
+        // console.log(isЕhereАilter)
+        if (isЕhereАilter.length === 0 || isЕhereАilter === "Новинки") {
+            getData(event);
+        }
+        else if (isЕhereАilter == "Від дешевих до дорогих") {
+            getFilteredDataMinMax(event);
+        }
+        else if (isЕhereАilter == "Від дорогих до дешевих") {
+            getFilteredDataMaxMin(event);
+        }
+    };
+
 
     return (
         <div className='goods-list'>
             {listGoods && listGoods.length ?
                 <>
-                    <HeaderSelectorToFilter setSelectedOption={setSelectedOption} selectedOption={selectedOption} id={id} />
+                    <HeaderSelectorToFilter setSelectedFilterOption={setSelectedFilterOption} selectedFilterOption={selectedFilterOption} setIsЕhereАilter={setIsЕhereАilter} getFilteredDataMinMax={getFilteredDataMinMax} getFilteredDataMaxMin={getFilteredDataMaxMin} getData={getData} setActivePage={setActivePage} />
                     <div className="goods-list-render">
-                        <AsideFilter />
+                        <AsideFilter id={id} />
                         <div className="goods-list-goods-items">
                             {listGoods.map(props => {
                                 return (

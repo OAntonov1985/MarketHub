@@ -1,11 +1,12 @@
 import { MaketHubURL } from "../../components/Constants";
 
-export default async function GetdData(event, id, subCategoryName) {
-
+export default async function GetdBrands(id, subCategoryName) {
+    console.log(id)
+    console.log(subCategoryName)
     let result;
 
     try {
-        const response = await fetch(MaketHubURL + `goods/${subCategoryName ? "subcategories" : "categories"}/${id}/${event}/12`, {
+        const response = await fetch(MaketHubURL + `goods/${subCategoryName ? "subcaregoriebrand" : "caregoriebrand"}/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

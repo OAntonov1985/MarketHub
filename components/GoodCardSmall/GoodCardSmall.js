@@ -123,7 +123,7 @@ function GoodCardSmall({ props, isFavorite }) {
                     <Image
                         alt="image of good"
                         src={thumbnail}
-                        quality={100}
+                        quality={30}
                         fill
                         sizes="(max-width: 100%)"
                         style={{
