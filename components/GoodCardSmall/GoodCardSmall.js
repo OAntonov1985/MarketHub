@@ -68,7 +68,6 @@ function GoodCardSmall({ props, isFavorite }) {
 
     function addToFavorite(e) {
         e.preventDefault();
-        console.log
         dispatch(setUserFavorite(
             {
                 id: id,
@@ -109,7 +108,6 @@ function GoodCardSmall({ props, isFavorite }) {
                             className='basket-icon'
                             alt="icon of basket"
                             src={available === false ? "/noavalablegoodicon.svg" : (isInBaslet === false ? "/basketincard.svg" : "/goodInBasket.svg")}
-                            // src={isInBaslet === false ? "/basketincard.svg" : "/goodInBasket.svg"} 
                             quality={100}
                             fill
                             sizes="(max-width: 100%)"
@@ -133,15 +131,10 @@ function GoodCardSmall({ props, isFavorite }) {
                     />
                 </div>
             </div>
-            {/* <p className='top-sellers-item-title'>{name}</p> */}
-            <p className='top-sellers-item-title'>{title}</p>
+            <p className='top-sellers-item-title'>{title.split(' ').length > 5 ? (title[5][0] == '(' || title[5][0] == '/' ? title.split(' ').slice(0, 4).join(' ') : title.split(' ').slice(0, 5).join(' ')) : title}</p>
             <div className='top-sellers-prise-and-availability'>
                 <p className='top-sellers-price'>{formattedPrice(price)} грн</p>
-                {/* <p className='top-sellers-price'>{price} грн</p> */}
-                {/* <p className={`top-sellers-availability ${available ? '' : 'noavailability'}`}> */}
-
                 <p className={`top-sellers-availability ${available == true ? '' : 'noavailability'}`}>
-
                     {available == true ? "Є в наявності" : "Немає в наявності"}
                 </p>
             </div>

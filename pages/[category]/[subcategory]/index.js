@@ -18,7 +18,7 @@ function SubCategoryPage({ goods, id, total }) {
             <div className='subcategory-page'>
                 <Header />
                 <div className="subcategory-main-content">
-                    <BreadCrumps />
+                    <BreadCrumps subID={id} />
                     <GoodsList props={goods} total={total} id={id} />
                 </div>
                 <Footer />

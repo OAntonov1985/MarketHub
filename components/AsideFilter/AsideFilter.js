@@ -8,6 +8,7 @@ function AsideFilter({ id }) {
     const [prciseStart, setPriceStart] = useState('');
     const [prciseEnd, setPriceEnd] = useState('');
     const [brandsArray, setBrandsArray] = useState([]);
+    const [brandsToFilter, setBrandsTofilter] = useState([]);
 
     const router = useRouter();
     const subCategoryName = router.query.subcategory;
@@ -36,11 +37,23 @@ function AsideFilter({ id }) {
     };
 
 
-    function check(event) {
-        console.log(event.target.checked)
-        console.log(event.target.id)
+    function checkBrandsFilter(event) {
+        if (event.target.checked === true) {
+            const newArray = [...brandsToFilter, event.target.id];
+            setBrandsTofilter(newArray);
+        }
+        else if (event.target.checked === false) {
+            const filteredArray = brandsToFilter.filter(item => item !== event.target.id);
+            setBrandsTofilter(filteredArray);
+        }
     }
 
+    function applyChanges() {
+        console.log(brandsToFilter)
+        console.log([prciseStart, prciseEnd])
+    }
+
+    // console.log(brandsToFilter)
     return (
         <div className="goods-list-filter-column">
             <p className='aside-filter-price'>Ціна:</p>
@@ -54,7 +67,7 @@ function AsideFilter({ id }) {
                     {brandsArray.map(item => {
                         return <li key={item}>
                             <label className='input-label'>
-                                <input type='checkbox' id={item} className='checkbox' onClick={check} />
+                                <input type='checkbox' id={item} className='checkbox' onChange={checkBrandsFilter} />
                                 <span className='span-input'></span>
                                 {item}
                             </label>
@@ -68,7 +81,7 @@ function AsideFilter({ id }) {
                         Є в наявності
                     </label>
                 </div>
-                <button className='aside-filter-button'>Застосувати</button>
+                <button className='aside-filter-button' onClick={applyChanges}>Застосувати</button>
             </div>
         </div>
     )

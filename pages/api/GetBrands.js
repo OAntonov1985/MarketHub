@@ -1,8 +1,8 @@
 import { MaketHubURL } from "../../components/Constants";
 
 export default async function GetdBrands(id, subCategoryName) {
-    console.log(id)
-    console.log(subCategoryName)
+    // console.log(id)
+    // console.log(subCategoryName)
     let result;
 
     try {

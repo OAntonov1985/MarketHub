@@ -5,13 +5,18 @@ import React from 'react';
 
 
 
-function BreadCrumps({ breadCrumpData }) {
+function BreadCrumps() {
     const router = useRouter();
+
+    // function redirectUser(event) {
+
+    // }
 
     let categoryName = router.query.category;
     let subCategoryName = router.query.subcategory;
     let id = router.query.id;
-
+    // console.log(id)
+    // console.log(subID)
 
 
     return (
