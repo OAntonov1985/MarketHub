@@ -4,11 +4,9 @@ import React from 'react';
 import GetdBrands from '@/pages/api/GetBrands';
 import { useRouter } from 'next/router';
 
-function AsideFilter({ id }) {
-    const [prciseStart, setPriceStart] = useState('');
-    const [prciseEnd, setPriceEnd] = useState('');
+function AsideFilter({ id, objToAsideFilter }) {
+    const { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale } = objToAsideFilter;
     const [brandsArray, setBrandsArray] = useState([]);
-    const [brandsToFilter, setBrandsTofilter] = useState([]);
 
     const router = useRouter();
     const subCategoryName = router.query.subcategory;
@@ -48,12 +46,8 @@ function AsideFilter({ id }) {
         }
     }
 
-    function applyChanges() {
-        console.log(brandsToFilter)
-        console.log([prciseStart, prciseEnd])
-    }
 
-    // console.log(brandsToFilter)
+
     return (
         <div className="goods-list-filter-column">
             <p className='aside-filter-price'>Ціна:</p>
@@ -76,12 +70,12 @@ function AsideFilter({ id }) {
                 </ul>
                 <div>
                     <label className='input-label mb-label' >
-                        <input type="checkbox" id="isAvailable" name="scales" className='checkbox' />
+                        <input type="checkbox" id="isAvailable" name="scales" className='checkbox' onChange={() => setIsAvailabale(!isAvailabale)} />
                         <span className='span-input'></span>
                         Є в наявності
                     </label>
                 </div>
-                <button className='aside-filter-button' onClick={applyChanges}>Застосувати</button>
+                <button className='aside-filter-button' onClick={applyChangesAsideFilter}>Застосувати</button>
             </div>
         </div>
     )

@@ -3,13 +3,13 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import React from 'react';
 
-function PageIndexer({ handlePageChange, total, activePage, setActivePage }) {
+function PageIndexer({ handlePageChange, total, activePage, setActivePage, totalItems }) {
     // console.log(total)
     const [startNumberToArray, setStartNumberToArray] = useState(1);
-    const maxPageRenderInString = Math.ceil(total / 12); // встановлення кількості айтемів для відображення
+    const maxPageRenderInString = Math.ceil(totalItems ? totalItems / 12 : total / 12); // встановлення кількості айтемів для відображення
 
     const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
-    const lastPage = Math.ceil(total / 12);
+    const lastPage = Math.ceil(totalItems ? totalItems / 12 : total / 12);
 
     // useEffect(() => {
     //     handlePageChange(activePage)

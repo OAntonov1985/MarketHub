@@ -4,7 +4,7 @@ import React from 'react';
 
 
 
-function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, setIsЕhereАilter, getFilteredDataMaxMin, getFilteredDataMinMax, getData, setActivePage }) {
+function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, getData, setActivePage, sortIndex }) {
 
     const liClassname = "filter-li-options";
     const [classNames, setClassNames] = useState(liClassname);
@@ -18,17 +18,21 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
 
     const setLiValue = (event) => {
         setSelectedFilterOption(event.target.innerText);
-        setIsЕhereАilter(event.target.innerText);
         setClassNames(classNames);
         setIsToggled((prevIsToggled) => !prevIsToggled);
         if (event.target.innerText == "Від дешевих до дорогих") {
-            getFilteredDataMinMax(event.target.innerText)
+            // getFilteredDataMinMax(event.target.innerText)
+            sortIndex(1);
         }
         else if (event.target.innerText == "Від дорогих до дешевих") {
-            getFilteredDataMaxMin(event.target.innerText);
+            // getFilteredDataMaxMin(event.target.innerText);
+            console.log(event.target.innerText)
+            sortIndex(-1);
         }
         else if (event.target.innerText == "Новинки") {
-            getData(event.target.innerText);
+            console.log(event.target.innerText)
+            // getData(event.target.innerText);
+            sortIndex(0);
         }
         setActivePage(1);
     }
