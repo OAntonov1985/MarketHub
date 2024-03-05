@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import React from 'react';
 
-function PageIndexer({ handlePageChange, total, activePage, setActivePage, totalItems }) {
+function PageIndexer({ total, activePage, setActivePage, totalItems }) {
     // console.log(total)
     const [startNumberToArray, setStartNumberToArray] = useState(1);
     const maxPageRenderInString = Math.ceil(totalItems ? totalItems / 12 : total / 12); // встановлення кількості айтемів для відображення
@@ -11,22 +11,15 @@ function PageIndexer({ handlePageChange, total, activePage, setActivePage, total
     const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
     const lastPage = Math.ceil(totalItems ? totalItems / 12 : total / 12);
 
-    // useEffect(() => {
-    //     handlePageChange(activePage)
-    // }, [activePage])
-
-
     const changeIndex = (event) => {
         if (event.target.id === "minus-one") {
             if (activePage > 1) {
                 if (activePage === startNumberToArray) {
                     setStartNumberToArray(activePage - 1);
                     setActivePage(activePage - 1);
-                    handlePageChange(activePage - 1);
                 }
                 else {
                     setActivePage(activePage - 1);
-                    handlePageChange(activePage - 1);
                 }
             }
         }
@@ -36,10 +29,8 @@ function PageIndexer({ handlePageChange, total, activePage, setActivePage, total
                 if (activePage === startNumberToArray + maxPageRenderInString - 1) {
                     setStartNumberToArray(activePage - maxPageRenderInString + 2);
                     setActivePage(activePage + 1);
-                    handlePageChange(activePage + 1);
                 } else {
                     setActivePage(activePage + 1);
-                    handlePageChange(activePage + 1);
                 }
             }
         };
@@ -87,7 +78,6 @@ function PageIndexer({ handlePageChange, total, activePage, setActivePage, total
 
     const handleClick = (event) => {
         setActivePage(parseFloat(event.target.id));
-        handlePageChange(parseFloat(event.target.id));
     };
 
 

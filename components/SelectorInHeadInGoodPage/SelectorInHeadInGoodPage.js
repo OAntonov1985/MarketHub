@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import React from 'react';
+// import 
 
 
 
-function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, getData, setActivePage, sortIndex }) {
+function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, setActivePage, setSortIndex, }) {
 
     const liClassname = "filter-li-options";
     const [classNames, setClassNames] = useState(liClassname);
@@ -21,21 +22,17 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
         setClassNames(classNames);
         setIsToggled((prevIsToggled) => !prevIsToggled);
         if (event.target.innerText == "Від дешевих до дорогих") {
-            // getFilteredDataMinMax(event.target.innerText)
-            sortIndex(1);
+            setSortIndex(1);
         }
         else if (event.target.innerText == "Від дорогих до дешевих") {
-            // getFilteredDataMaxMin(event.target.innerText);
-            console.log(event.target.innerText)
-            sortIndex(-1);
+            setSortIndex(-1);
         }
         else if (event.target.innerText == "Новинки") {
-            console.log(event.target.innerText)
-            // getData(event.target.innerText);
-            sortIndex(0);
+            setSortIndex(0);
         }
         setActivePage(1);
     }
+
 
 
 

@@ -32,39 +32,22 @@ function GoodsList({ props, id, total }) {
         setListGoods(result.data);
     };
 
-    async function getFilteredDataMinMax(event) {
-        console.log(event)
-        const { result } = await GetFilteredData(id, event, brandsToFilter);
-        console.log(result)
-        setListGoods(result.data);
-    };
-
-    async function getFilteredDataMaxMin(event) {
-        // const { result } = await GetFilteredData(event - 1, id, -1, subCategoryName);
-        // setListGoods(result.data);
-    };
-
-
-    async function handlePageChange(event) {
-        console.log(event)
-        // console.log(isЕhereАilter)
-        // if (selectedFilterOption === "Новинки") {
-        //     getData(event);
-        // }
-        // else if (selectedFilterOption == "Від дешевих до дорогих") {
-        //     getFilteredDataMinMax();
-        // }
-        // else if (selectedFilterOption == "Від дорогих до дешевих") {
-        //     // getFilteredDataMaxMin(event);
-        // }
-    };
-
-
-    async function applyChangesAsideFilter() {
-        const { result } = await GetFilteredData(id, 1, prciseStart, prciseEnd, brandsToFilter);
-        console.log(result)
+    // отримання даних виходячи з бічного фільтру//
+    async function getFilteredDataMinMax() {
+        const { result } = await GetFilteredData(id, sortIndex, activePage === 1 ? 0 : activePage - 1, prciseStart, prciseEnd, brandsToFilter);
         setTotalItems(result.total)
         setListGoods(result.data);
+    };
+
+
+    useEffect(() => {
+        getFilteredDataMinMax();
+    }, [sortIndex, activePage]);
+
+
+    function applyChangesAsideFilter() {
+        getFilteredDataMinMax()
+
     }
 
 
@@ -72,7 +55,7 @@ function GoodsList({ props, id, total }) {
         <div className='goods-list'>
             {listGoods && listGoods.length ?
                 <>
-                    <HeaderSelectorToFilter setSelectedFilterOption={setSelectedFilterOption} selectedFilterOption={selectedFilterOption} getData={getData} setActivePage={setActivePage} />
+                    <HeaderSelectorToFilter setSelectedFilterOption={setSelectedFilterOption} selectedFilterOption={selectedFilterOption} getData={getData} setActivePage={setActivePage} setSortIndex={setSortIndex} />
                     <div className="goods-list-render">
                         <AsideFilter id={id} objToAsideFilter={objToAsideFilter} />
                         <div className="goods-list-goods-items">
@@ -83,7 +66,7 @@ function GoodsList({ props, id, total }) {
                             })}
                         </div>
                     </div>
-                    <PageIndexer handlePageChange={handlePageChange} total={total} setActivePage={setActivePage} activePage={activePage} totalItems={totalItems} sortIndex={sortIndex} />
+                    <PageIndexer total={total} setActivePage={setActivePage} activePage={activePage} totalItems={totalItems} sortIndex={sortIndex} />
                 </> : null}
         </div>
     )
