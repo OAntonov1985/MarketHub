@@ -9,16 +9,17 @@ import GetdData from '@/pages/api/GetData';
 import { useRouter } from 'next/router';
 
 function GoodsList({ props, id, total }) {
-    const [listGoods, setListGoods] = useState(props);
-    const [selectedFilterOption, setSelectedFilterOption] = useState("Новинки");
-    const [activePage, setActivePage] = useState(1);
-    const [totalItems, setTotalItems] = useState();
+    const [listGoods, setListGoods] = useState(props);  /// Отримує список товарів з бекенду ///
+    const [selectedFilterOption, setSelectedFilterOption] = useState("Новинки"); /// Встановлює опцію сортування (Новинки Від Від) ///
+    const [activePage, setActivePage] = useState(1); /// Встановлює активну сторінку перегляду знизу ///
+    const [totalItems, setTotalItems] = useState(); /// Отримує загальну кількість одиниць товарів ///
 
-    const [prciseStart, setPriceStart] = useState('');
-    const [prciseEnd, setPriceEnd] = useState('');
-    const [brandsToFilter, setBrandsTofilter] = useState([]);
-    const [isAvailabale, setIsAvailabale] = useState(false);
-    const [sortIndex, setSortIndex] = useState(0);
+    const [prciseStart, setPriceStart] = useState(''); /// Встановлює значення в полі ВІД e aside фільтрі ///
+    const [prciseEnd, setPriceEnd] = useState('');  /// Встановлює значення в полі ДО e aside фільтрі ///
+    const [brandsToFilter, setBrandsTofilter] = useState([]); /// Отримує список брендів з бекенду ///
+    const [isAvailabale, setIsAvailabale] = useState(false); /// Встановлює опцію фільтрування "Є в наявності"///
+    const [sortIndex, setSortIndex] = useState(0); /// Встановлює сортування (-1, 1, 0)///
+    const [pageLoaded, setPageLoaded] = useState(false); /// Запобігає зайвому запуску функції ///
 
     const objToAsideFilter = { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, };
 
@@ -26,28 +27,36 @@ function GoodsList({ props, id, total }) {
     const router = useRouter();
     const subCategoryName = router.query.subcategory;
 
-    // отримання даних без фільтру//
-    async function getData(event) {
-        const { result } = await GetdData(event - 1, id, subCategoryName);
-        setListGoods(result.data);
-    };
+    // // отримання даних без фільтру//
+    // async function getData(event) {
+    //     const { result } = await GetdData(event - 1, id, subCategoryName);
+    //     setListGoods(result.data);
+    // };
 
     // отримання даних виходячи з бічного фільтру//
     async function getFilteredDataMinMax() {
-        const { result } = await GetFilteredData(id, sortIndex, activePage === 1 ? 0 : activePage - 1, prciseStart, prciseEnd, brandsToFilter);
+        const { result } = await GetFilteredData(id, sortIndex, activePage === 1 ? 0 : activePage - 1, prciseStart, prciseEnd, brandsToFilter, isAvailabale, subCategoryName);
+        // console.log(result.data)
         setTotalItems(result.total)
         setListGoods(result.data);
     };
 
+    function selectPageAndGetData() {
+        // console.log(activePage)
+        getFilteredDataMinMax();
+    }
 
     useEffect(() => {
-        getFilteredDataMinMax();
-    }, [sortIndex, activePage]);
+        if (pageLoaded) {
+            getFilteredDataMinMax();
+        } else {
+            setPageLoaded(true);
+        }
+    }, [selectedFilterOption, activePage]);
 
 
     function applyChangesAsideFilter() {
-        getFilteredDataMinMax()
-
+        getFilteredDataMinMax();
     }
 
 
@@ -55,7 +64,7 @@ function GoodsList({ props, id, total }) {
         <div className='goods-list'>
             {listGoods && listGoods.length ?
                 <>
-                    <HeaderSelectorToFilter setSelectedFilterOption={setSelectedFilterOption} selectedFilterOption={selectedFilterOption} getData={getData} setActivePage={setActivePage} setSortIndex={setSortIndex} />
+                    <HeaderSelectorToFilter setSelectedFilterOption={setSelectedFilterOption} selectedFilterOption={selectedFilterOption} setActivePage={setActivePage} setSortIndex={setSortIndex} />
                     <div className="goods-list-render">
                         <AsideFilter id={id} objToAsideFilter={objToAsideFilter} />
                         <div className="goods-list-goods-items">
@@ -66,7 +75,7 @@ function GoodsList({ props, id, total }) {
                             })}
                         </div>
                     </div>
-                    <PageIndexer total={total} setActivePage={setActivePage} activePage={activePage} totalItems={totalItems} sortIndex={sortIndex} />
+                    <PageIndexer total={total} setActivePage={setActivePage} activePage={activePage} totalItems={totalItems} sortIndex={sortIndex} selectPageAndGetData={selectPageAndGetData} />
                 </> : null}
         </div>
     )

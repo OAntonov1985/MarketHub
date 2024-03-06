@@ -5,7 +5,7 @@ import React from 'react';
 
 
 
-function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, setActivePage, setSortIndex, }) {
+function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, setActivePage, setSortIndex }) {
 
     const liClassname = "filter-li-options";
     const [classNames, setClassNames] = useState(liClassname);
@@ -32,10 +32,6 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
         }
         setActivePage(1);
     }
-
-
-
-
 
     return (
         <div className="selector-filter-container">

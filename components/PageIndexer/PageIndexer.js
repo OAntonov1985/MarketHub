@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import React from 'react';
 
-function PageIndexer({ total, activePage, setActivePage, totalItems }) {
+function PageIndexer({ total, activePage, setActivePage, totalItems, selectPageAndGetData }) {
     // console.log(total)
     const [startNumberToArray, setStartNumberToArray] = useState(1);
     const maxPageRenderInString = Math.ceil(totalItems ? totalItems / 12 : total / 12); // встановлення кількості айтемів для відображення
@@ -85,7 +85,7 @@ function PageIndexer({ total, activePage, setActivePage, totalItems }) {
         <div className='page-selector'>
             <ArrowDiv />
             {arrayPages.map((item) => (
-                <div key={item} onClick={handleClick} id={item}
+                <div key={item} onClick={(event) => { handleClick(event) }} id={item}
                     className={activePage === item ? 'active-page' : 'unactive-page'}
                 >{item}</div>
             ))}

@@ -49,7 +49,7 @@ export async function getServerSideProps(context) {
     const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/goods/categories/${id}/0/12`);
     const goods = await resGoods.json();
 
-    console.log(id)
+    // console.log(id)
     return {
         props: {
             subCategories,
