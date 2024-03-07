@@ -285,7 +285,7 @@ h2 {
   flex-direction: column;
   align-content: center;
   flex: 1 1 auto;
-  min-height: 48.8rem;
+  height: 48.8rem;
   padding: 1.6rem 0.8rem;
   width: 22.4%;
   min-width: 23rem;
@@ -1310,14 +1310,14 @@ h2 {
   display: flex;
   width: 100%;
   gap: 2%;
-  margin-bottom: 4rem;
+  margin-bottom: 1.9%;
 }
 
 .goods-list-goods-items {
   display: flex;
   flex-wrap: wrap;
   gap: 2.4rem;
-  width: 77.1%;
+  width: 77.2%;
   height: auto;
 }
 
@@ -1843,4 +1843,98 @@ h2 {
 
 .item-favorite {
   width: 100%;
+}
+
+.userPage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 192rem;
+  margin: 0 auto;
+}
+
+.userPage-content {
+  display: flex;
+  gap: 1.7%;
+  flex: 1 1 auto;
+  margin: 4rem 0 14rem;
+}
+
+.userPage-left-column {
+  width: 26.9%;
+  height: 67rem;
+  padding: 2.4rem;
+  color: #FBFBFB;
+  background-color: #012767;
+  z-index: 3;
+}
+
+.active-color {
+  color: #76CA66;
+}
+
+.left-column-title {
+  font-size: 3.2rem;
+  font-weight: normal;
+  margin-bottom: 2.4rem;
+}
+
+.left-column-item {
+  margin-bottom: 2.4rem;
+  font-size: 2.4rem;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.left-column-orders-list, .left-column-goods-list {
+  height: 0;
+  transition: 0.5s ease-out;
+  overflow: hidden;
+}
+.left-column-orders-list li:last-child, .left-column-goods-list li:last-child {
+  margin-bottom: 0;
+}
+.left-column-orders-list li:first-child, .left-column-goods-list li:first-child {
+  padding-top: 2.4rem;
+}
+
+.list-open-orders {
+  height: 31.2rem;
+}
+
+.list-open-goods {
+  height: 20.8rem;
+}
+
+.userPage-left-column-orders, .userPage-left-column-goods {
+  display: flex;
+  gap: 0.8rem;
+  height: 2.5rem;
+}
+
+.left-column-item-image-container {
+  width: 2.4rem;
+  height: 2.4rem;
+  position: relative;
+  margin-bottom: 2.4rem;
+}
+
+.left-column-orders-li, .left-column-goods-li {
+  margin-bottom: 2.4rem;
+  list-style: none;
+  display: flex;
+  gap: 0.8rem;
+}
+
+.orders-li-image-container, .goods-li-image-container {
+  width: 2.4rem;
+  height: 2.4rem;
+  position: relative;
+}
+
+.userPage-right-column {
+  width: 71.4%;
+  height: 67rem;
+  border: 1px solid #34C3DD;
+  padding: 2.4rem;
 }/*# sourceMappingURL=globals.css.map */

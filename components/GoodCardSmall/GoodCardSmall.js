@@ -120,7 +120,7 @@ function GoodCardSmall({ props, isFavorite }) {
                 <div className="container-for-imafe-top-sellers">
                     <Image
                         alt="image of good"
-                        src={thumbnail}
+                        src={thumbnail ? thumbnail : "defaultPhoto.png"}
                         quality={30}
                         fill
                         sizes="(max-width: 100%)"

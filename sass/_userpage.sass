@@ -1,0 +1,97 @@
+@import _variables.sass
+
+.userPage
+    display: flex
+    flex-direction: column
+    min-height: 100vh
+    max-width: 192rem    
+    margin: 0 auto
+
+.userPage-content
+    display: flex
+    gap: 1.7%
+    flex: 1 1 auto
+    margin: 4rem 0 14rem
+
+//////////////////   LEFT COLUMN   //////////////////
+.userPage-left-column
+    width: 26.9%
+    height: 67rem    
+    padding: 2.4rem
+    color: $background-color
+    background-color: $color-background-loginpage
+    z-index: 3
+
+.active-color
+    color: $valid-field-border
+
+
+.left-column-title
+    font-size: 3.2rem
+    font-weight: normal
+    margin-bottom: 2.4rem
+
+.left-column-item   
+    margin-bottom: 2.4rem
+    font-size: 2.4rem
+    font-weight: normal
+    cursor: pointer
+    // height: 20px
+    // z-index: 5
+
+.left-column-orders-list, .left-column-goods-list
+    height: 0   
+    transition:  .5s ease-out
+    overflow: hidden    
+    li:last-child 
+        margin-bottom: 0
+    li:first-child 
+        padding-top:2.4rem
+
+.list-open-orders    
+    height: 31.2rem
+
+.list-open-goods   
+    height: 20.8rem
+
+
+.userPage-left-column-orders, .userPage-left-column-goods
+    display: flex
+    gap: .8rem   
+    height: 2.5rem    
+
+.left-column-item-image-container
+    width: 2.4rem
+    height: 2.4rem
+    position: relative
+    margin-bottom: 2.4rem
+
+.left-column-orders-li, .left-column-goods-li
+    margin-bottom: 2.4rem
+    list-style: none
+    display: flex
+    gap: .8rem
+    // z-index: -5
+
+.orders-li-image-container, .goods-li-image-container
+    width: 2.4rem
+    height: 2.4rem
+    position: relative
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////   RIFHT COLUMN   //////////////////
+.userPage-right-column
+    width: 71.4%
+    height: 67rem
+    border: 1px solid $color-hover-button
+    padding: 2.4rem

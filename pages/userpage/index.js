@@ -1,49 +1,53 @@
 "use client";
-
-
-import { useEffect } from 'react';
+import Head from "next/head";
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import UserPageLeftColumn from '@/components/UserPage/UserPageLeftColumn';
+import UserPageRightColumn from '@/components/UserPage/UserPageRightColumn';
 
 
 export default function UserPage() {
     const router = useRouter();
 
-    const deleteUserInfo = () => {
-        Cookies.remove('jwtToken');
-        Cookies.remove('userName');
-        Cookies.remove('userPhone');
-        Cookies.remove('userSurname');
-        Cookies.remove('userEmail');
-        Cookies.remove('userID');
-        router.push('/');
-    }
+
+    // const deleteUserInfo = () => {
+    //     Cookies.remove('jwtToken');
+    //     Cookies.remove('userName');
+    //     Cookies.remove('userPhone');
+    //     Cookies.remove('userSurname');
+    //     Cookies.remove('userEmail');
+    //     Cookies.remove('userID');
+    //     router.push('/');
+    // }
     return (
-        <>
-            {/* <GoodCard /> */}
+        <div className='userPage'>
+            <Head>
+                <title>MarketHub - знайденться все!</title>
+                <link rel="icon" href="/frame380.png" sizes="any" />
+                <meta name='MarketHub' content='MarketHub - тут може бути Ваша реклама' />
+            </Head>
             <Header />
-            <p>Your Profile</p>
-            {/* <div>привіт {userName}</div>
-            <pre>{JSON.stringify(user, null, 2)}</pre> */}
-            <Link href='/mainpage/' className='main-link'>
-                <p className='main-link'>Головна сторінка з категоріями і пошуком</p>
-            </Link>
-            <Link href='/' className='main-link'>
-                <p className='main-link'>Головна сторінка</p>
-            </Link>
-            <button onClick={deleteUserInfo}>Вийти з акаунту</button>
+            <div className='userPage-content'>
+                <UserPageLeftColumn />
+                <UserPageRightColumn />
+            </div>
             <Footer />
-        </>
+        </div>
     )
 }
 
 
 
 
-
+{/* <Link href='/mainpage/' className='main-link'>
+<p className='main-link'>Головна сторінка з категоріями і пошуком</p>
+</Link>
+<Link href='/' className='main-link'>
+<p className='main-link'>Головна сторінка</p>
+</Link>
+<button onClick={deleteUserInfo}>Вийти з акаунту</button> */}
 
 
 
