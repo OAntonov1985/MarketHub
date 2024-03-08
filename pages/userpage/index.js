@@ -9,18 +9,9 @@ import UserPageRightColumn from '@/components/UserPage/UserPageRightColumn';
 
 
 export default function UserPage() {
-    const router = useRouter();
 
 
-    // const deleteUserInfo = () => {
-    //     Cookies.remove('jwtToken');
-    //     Cookies.remove('userName');
-    //     Cookies.remove('userPhone');
-    //     Cookies.remove('userSurname');
-    //     Cookies.remove('userEmail');
-    //     Cookies.remove('userID');
-    //     router.push('/');
-    // }
+
     return (
         <div className='userPage'>
             <Head>

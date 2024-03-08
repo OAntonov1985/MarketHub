@@ -44,8 +44,8 @@ function SingInForm({ props }) {
             }
             else if (JWTToken) {
                 setLoading(false);
-                // router.push('/userpage');
-                router.back();
+                router.push('/userpage');
+                // router.back();
             };
         }
         else alert('Помилка заповнення одного з полів');

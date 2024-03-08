@@ -16,7 +16,7 @@
 //////////////////   LEFT COLUMN   //////////////////
 .userPage-left-column
     width: 26.9%
-    height: 67rem    
+    height: 69.4rem   
     padding: 2.4rem
     color: $background-color
     background-color: $color-background-loginpage
@@ -36,8 +36,7 @@
     font-size: 2.4rem
     font-weight: normal
     cursor: pointer
-    // height: 20px
-    // z-index: 5
+   
 
 .left-column-orders-list, .left-column-goods-list
     height: 0   
@@ -65,6 +64,11 @@
     height: 2.4rem
     position: relative
     margin-bottom: 2.4rem
+    transform: rotate(-90deg)
+    transition: transform 0.5s ease
+
+.image-container-transform
+    transform: rotate(0deg)
 
 .left-column-orders-li, .left-column-goods-li
     margin-bottom: 2.4rem
@@ -92,6 +96,68 @@
 //////////////////   RIFHT COLUMN   //////////////////
 .userPage-right-column
     width: 71.4%
-    height: 67rem
+    height: 69.4rem
     border: 1px solid $color-hover-button
     padding: 2.4rem
+
+
+//////////////////   RIFHT COLUMN  USER INFO  //////////////////
+
+.user-info-form
+    display: flex
+    flex-direction: column
+
+.user-info-form-label
+    margin-left: 1.6rem
+    font-size: 2.2rem
+    color: $color-text-main
+    margin-bottom: 1rem
+
+.user-info-form-input
+    max-width: 49.8rem
+    height: 6rem
+    margin-bottom: 2.4rem
+    padding: 1.6rem
+    font-size: 2.4rem
+    color: $color-text-main
+    border: 1px solid $color-text-main
+    border-radius: .8rem
+    outline: 1px solid $color-text-main
+
+.form-input-unactive
+    color: #6B7280    
+    outline: 1px solid  #6B7280
+    border: 1px solid  #6B7280
+
+.form-input-unactive-text
+    color: #6B7280 
+.user-info-buttons-container
+    display: flex
+    justify-content: space-between
+    padding: 0 1.6rem 
+
+.user-info-button    
+    border: none
+    color: $color-text-main
+    background-color: $background-color
+    cursor: pointer
+    font-size: 2.2rem   
+    
+
+.button-display-none
+    opacity: 0
+    cursor: auto
+
+.button-edit::after    
+    content: ""    
+    display: block
+    border-bottom: 2px solid $color-text-main
+    width: 17rem
+    height: 0px
+
+.button-save
+    border: 1px solid $valid-field-border
+    padding: .8rem 3.6rem
+    border-radius: .4rem
+    
+   

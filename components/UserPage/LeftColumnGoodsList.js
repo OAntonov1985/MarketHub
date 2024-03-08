@@ -3,13 +3,14 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 function LeftColumnGoodsList({ objToSend }) {
-    const { isOpenOrders, setIsOpenOrders, setIsOpenGoods, isOpenGoods, setIsActiveCatogorie } = objToSend;
+    const { isOpenOrders, setIsOpenOrders, setIsOpenGoods, isOpenGoods, setIsActiveCatogorie, setActiveItem } = objToSend;
     const [activeItemGoods, setActiveItemGoods] = useState("Всі товари");
     return (
         <div className='left-column-item'>
-            <div className='userPage-left-column-goods' onClick={() => { setIsOpenGoods(!isOpenGoods), setIsOpenOrders(isOpenOrders ? isOpenOrders : !isOpenOrders); setIsActiveCatogorie("") }}>
+            <div className='userPage-left-column-goods' id="Товари"
+                onClick={(event) => { setIsOpenGoods(!isOpenGoods), setIsOpenOrders(isOpenOrders ? isOpenOrders : !isOpenOrders); setIsActiveCatogorie(""); setActiveItem(event) }}>
                 Товари
-                <div className='left-column-item-image-container'>
+                <div className={`left-column-item-image-container ${isOpenGoods ? "" : "image-container-transform"}`}>
                     <Image
                         alt="image of good"
                         src="/useritem.svg"

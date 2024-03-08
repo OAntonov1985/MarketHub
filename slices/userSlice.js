@@ -9,7 +9,8 @@ const initialState = {
     loading: false,
     totalPriseInAllBasket: 0,
     quantityOfGoods: 0,
-    quantityOfFavorite: 0
+    quantityOfFavorite: 0,
+    categoryToRender: "Особисті дані"
 };
 
 
@@ -127,12 +128,15 @@ const userSlice = createSlice({
 
             const updatedUserTotalFavorite = JSON.stringify(state.quantityOfFavorite);
             localStorage.setItem('totalFavorite', updatedUserTotalFavorite);
+        },
+        setCategorieToRender: (state, action) => {
+            state.categoryToRender = action.payload;
         }
     }
 });
 
 
 
-export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite, setCategorieToRender } = userSlice.actions;
 
 export default userSlice.reducer;
