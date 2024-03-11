@@ -3,14 +3,15 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 function LeftColumnGoodsList({ objToSend }) {
-    const { isOpenOrders, setIsOpenOrders, setIsOpenGoods, isOpenGoods, setIsActiveCatogorie, setActiveItem } = objToSend;
+    const { isOpenGoods, setIsActiveCatogorie, setActiveItem, isActiveCategorie } = objToSend;
     const [activeItemGoods, setActiveItemGoods] = useState("Всі товари");
+
     return (
         <div className='left-column-item'>
             <div className='userPage-left-column-goods' id="Товари"
-                onClick={(event) => { setIsOpenGoods(!isOpenGoods), setIsOpenOrders(isOpenOrders ? isOpenOrders : !isOpenOrders); setIsActiveCatogorie(""); setActiveItem(event) }}>
+                onClick={(event) => { setIsActiveCatogorie(""); setActiveItem(event.target.id); }}>
                 Товари
-                <div className={`left-column-item-image-container ${isOpenGoods ? "" : "image-container-transform"}`}>
+                <div className={`left-column-item-image-container ${isActiveCategorie === "Товари" ? "image-container-transform" : ""}`}>
                     <Image
                         alt="image of good"
                         src="/useritem.svg"
@@ -24,7 +25,7 @@ function LeftColumnGoodsList({ objToSend }) {
                     />
                 </div>
             </div>
-            <ul className={isOpenGoods ? 'left-column-goods-list' : 'left-column-goods-list list-open-goods'}>
+            <ul className={`left-column-goods-list ${isActiveCategorie === "Товари" ? "list-open-goods" : ""}`}>
                 <li className={`left-column-goods-li ${activeItemGoods === "Всі товари" ? "active-color" : ""}`} id="Всі товари"
                     onClick={(event) => setActiveItemGoods(event.target.id)}>
                     <div className='goods-li-image-container'>
@@ -87,7 +88,7 @@ function LeftColumnGoodsList({ objToSend }) {
                     </div>
                     Додати товар</li>
             </ul>
-        </div>
+        </div >
     )
 }
 

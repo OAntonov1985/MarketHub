@@ -167,7 +167,7 @@ function BasketForm() {
                     >Номер телефону</label>
                     <input
                         id="userPhone"
-                        type="text"
+                        type="number"
                         className={inputPhoneClass}
                         placeholder="Введіть свій номер телефону"
                         value={userPhone}

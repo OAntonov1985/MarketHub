@@ -42,6 +42,16 @@ a:visited {
   min-height: 100vh;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .header-component {
   display: flex;
   align-items: center;
@@ -1977,6 +1987,14 @@ h2 {
 
 .form-input-unactive-text {
   color: #6B7280;
+}
+
+.form-input-border-green {
+  border: 1px solid #76CA66;
+}
+
+.form-input-border-red {
+  border: 1px solid #BA0000;
 }
 
 .user-info-buttons-container {

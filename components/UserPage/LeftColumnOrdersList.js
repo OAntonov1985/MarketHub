@@ -4,22 +4,19 @@ import { useState } from 'react';
 
 
 function LeftColumnOrdersList({ objToSend }) {
-    const { isOpenOrders, setIsOpenOrders, setIsOpenGoods, isOpenGoods, setIsActiveCatogorie, setActiveItem } = objToSend;
+    const { setIsOpenGoods, isOpenGoods, setIsActiveCatogorie, setActiveItem, isActiveCategorie } = objToSend;
     const [activeItemInOrders, setActiveItemInOrders] = useState("Всі замовлення");
+
 
     return (
         <div className='left-column-item' >
             <div className='userPage-left-column-orders' id="Замволення"
                 onClick={(event) => {
-                    const { currentTarget } = event;
-                    setIsOpenOrders(!isOpenOrders);
-                    setIsOpenGoods(isOpenGoods ? isOpenGoods : !isOpenGoods);
                     setIsActiveCatogorie("");
-                    setActiveItem(currentTarget);
-                }}
-            >
+                    setActiveItem(event.target.id);
+                }}>
                 Замовлення
-                <div className={`left-column-item-image-container ${isOpenOrders ? "" : "image-container-transform"}`}>
+                <div className={`left-column-item-image-container ${isActiveCategorie === "Замволення" ? "image-container-transform" : ""}`}>
                     <Image
                         alt="icon of cirkle"
                         src="/useritem.svg"
@@ -33,7 +30,7 @@ function LeftColumnOrdersList({ objToSend }) {
                     />
                 </div>
             </div>
-            <ul className={isOpenOrders ? 'left-column-orders-list' : 'left-column-orders-list list-open-orders'}>
+            <ul className={`left-column-orders-list ${isActiveCategorie === "Замволення" ? 'list-open-orders' : ''}`}>
                 <li className={`left-column-orders-li ${activeItemInOrders === "Всі замовлення" ? "active-color" : ""}`} id="Всі замовлення"
                     onClick={(event) => setActiveItemInOrders(event.target.id)}
                 >
