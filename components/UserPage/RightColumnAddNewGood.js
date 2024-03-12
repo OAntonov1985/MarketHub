@@ -3,35 +3,54 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 function RightColumnAddNewGood() {
-
+    // let pfotoscount = 4;
     const PhotoUploader = () => {
-        const [photos, setPhotos] = useState(Array.from({ length: 4 }, () => null));
+        const [pfotoscount, setPhotosCount] = useState(4);
+        const [pfotosArray, setPhotosArray] = useState([]);
+        const [photos, setPhotos] = useState(Array.from({ length: pfotoscount }, () => null));
 
         const handleFileChange = (event) => {
+            // console.log(event.target.id)
             const fileList = event.target.files;
             const filesArray = Array.from(fileList);
-            setPhotos(filesArray);
+            if (pfotosArray[event.target.id] === undefined) {
+                const newArray = [...pfotosArray, ...filesArray];
+                setPhotosArray(newArray);
+            } else {
+                const updatedArray = pfotosArray.map((photo, index) => {
+                    if (index.toString() === event.target.id) {
+                        return filesArray[0]; // Заменяем файл по указанному индексу
+                    } else {
+                        return photo; // Оставляем остальные файлы без изменений
+                    }
+                });
+                setPhotosArray(updatedArray);
+            }
         };
+
 
         return (
             <div className='photo-previews-row'>
                 {photos.map((photo, index) => (
                     <div className='photo-preview' key={index}>
-                        <input
+                        <input id={index}
                             type="file"
                             className='input-photo-preview'
                             multiple
-                            onChange={handleFileChange}
+                            onChange={(e) => handleFileChange(e)}
                         />
                         <Image
                             className='input-photo-bg-inage'
                             alt='input-photo-bg-inage'
-                            src={photo ? URL.createObjectURL(photo) : "/bg_input_goods.svg"}
+                            // src="bg_input_goods.svg"
+                            src={pfotosArray[index] ? URL.createObjectURL(pfotosArray[index]) : "/bg_input_goods.svg"}
                             width={100}
                             height={100}
                         />
+
                     </div>
                 ))}
+
             </div>
         );
     };
@@ -73,14 +92,56 @@ function RightColumnAddNewGood() {
                 className="product-price-photo">
                 Фото</label>
             <PhotoUploader />
-            {/* <input name="product-price" id="product-price"
-                className="product-price-form-input"
-                type='number'
-                // disabled={!isActiveFields}
-                // onChange={(e) => setUserSurname(e.target.value)}
-                placeholder="Введіть ціну товару"
-            // value={userSurname} 
-            /> */}
+
+            {/* {photos.map(index => {
+                <div className='photo-preview-two' id={index - 1} >
+                    <Image
+                        className='input-photo-bg-inage'
+                        alt='input-photo-bg-inage'
+                        src="bg_input_goods.svg"
+                        width={100}
+                        height={100}
+                    />
+                </div>
+            })} */}
+            {/* <div className='photo-preview-two' id="test-folder" >
+                <Image
+                    className='input-photo-bg-inage'
+                    alt='input-photo-bg-inage'
+                    src="bg_input_goods.svg"
+                    width={100}
+                    height={100}
+                />
+            </div>
+
+            <div className='photo-preview-two' id="test-folder" >
+                <Image
+                    className='input-photo-bg-inage'
+                    alt='input-photo-bg-inage'
+                    src="bg_input_goods.svg"
+                    width={100}
+                    height={100}
+                />
+            </div>
+
+            <div className='photo-preview-two' id="test-folder" >
+                <Image
+                    className='input-photo-bg-inage'
+                    alt='input-photo-bg-inage'
+                    src="bg_input_goods.svg"
+                    width={100}
+                    height={100}
+                />
+            </div>
+            <div className='photo-preview-two' id="test-folder" >
+                <Image
+                    className='input-photo-bg-inage'
+                    alt='input-photo-bg-inage'
+                    src="bg_input_goods.svg"
+                    width={100}
+                    height={100}
+                />
+            </div> */}
         </form>
     )
 }

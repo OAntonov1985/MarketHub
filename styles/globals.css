@@ -1960,7 +1960,7 @@ h2 {
   flex-direction: column;
 }
 
-.user-info-form-label, .product-name-title, .product-price-title, .product-price-photo {
+.user-info-form-label, .product-name-title, .product-price-title, .product-price-photo, .product-description-title {
   margin-left: 1.6rem;
   font-size: 2.2rem;
   color: #012767;
@@ -2040,6 +2040,7 @@ h2 {
 .photo-previews-row {
   display: flex;
   gap: 1.2rem;
+  margin-bottom: 2.4rem;
 }
 
 .photo-preview {
@@ -2065,4 +2066,31 @@ h2 {
 
 .input-photo-preview::-webkit-file-upload-button {
   visibility: hidden;
+}
+
+.product-description-form-input {
+  width: 49.8rem;
+  height: 15rem;
+  border: 1px solid #012767;
+  border-radius: 8px;
+  background-color: #FBFBFB;
+  padding: 1.6rem;
+  font-size: 1.6rem;
+  color: #012767;
+  outline: 1px solid #012767;
+}
+
+.button-container {
+  display: flex;
+  justify-content: right;
+}
+
+.button-submit-form {
+  padding: 0.8rem 3.6rem;
+  font-size: 1.8rem;
+  border: 1px solid #76CA66;
+  border-radius: 4px;
+  color: #012767;
+  background-color: #FBFBFB;
+  cursor: pointer;
 }/*# sourceMappingURL=globals.css.map */
