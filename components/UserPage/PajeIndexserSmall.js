@@ -1,15 +1,15 @@
-"use client"
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
 import React from 'react';
+import { useState } from 'react';
+import Image from 'next/image';
 
-function PageIndexer({ total, activePage, setActivePage, totalItems }) {
-    // console.log(total)
-    const [startNumberToArray, setStartNumberToArray] = useState(1);
-    const maxPageRenderInString = Math.ceil(totalItems ? totalItems / 12 : total / 12); // встановлення кількості айтемів для відображення
 
-    const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
-    const lastPage = Math.ceil(totalItems ? totalItems / 12 : total / 12);
+function PajeIndexserSmall() {
+
+    // const [startNumberToArray, setStartNumberToArray] = useState(1);
+    // const maxPageRenderInString = Math.ceil(totalItems ? totalItems / 12 : total / 12); // встановлення кількості айтемів для відображення
+
+    // const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
+    // const lastPage = Math.ceil(totalItems ? totalItems / 12 : total / 12);
 
     const changeIndex = (event) => {
         if (event.target.id === "minus-one") {
@@ -35,7 +35,6 @@ function PageIndexer({ total, activePage, setActivePage, totalItems }) {
             }
         };
     };
-
 
     const ArrowDiv = () => {
         return (
@@ -80,18 +79,14 @@ function PageIndexer({ total, activePage, setActivePage, totalItems }) {
         setActivePage(parseFloat(event.target.id));
     };
 
-
     return (
         <div className='page-selector'>
             <ArrowDiv />
-            {arrayPages.map((item) => (
-                <div key={item} onClick={(event) => { handleClick(event) }} id={item}
-                    className={activePage === item ? 'active-page' : 'unactive-page'}
-                >{item}</div>
-            ))}
+            <div className='active-page'>1</div>
+            <div className='unactive-page'>2</div>
             <ArrowDivRotate />
         </div>
-    );
-};
+    )
+}
 
-export default React.memo(PageIndexer);
+export default React.memo(PajeIndexserSmall);

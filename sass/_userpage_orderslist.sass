@@ -1,0 +1,50 @@
+@import "_variables.sass"
+
+.right-culumn-user-orders-container
+    display: flex
+    flex-direction: column
+    height: 100%
+    font-size: 1.8rem
+    color: $color-text-main
+
+.right-culumn-user-orders-header, .right-culumn-user-orders-main
+    display: flex
+    margin-bottom: 3.2rem
+    justify-content: space-between
+    align-items: center
+    gap: 2rem
+
+.order-info-date
+    width: 11rem
+    // width: 11.2%
+
+.order-info-buyer, .order-info-order-status, .order-info-amount
+    width: 18rem    
+
+.order-info-goods
+    width: 21rem
+
+.order-date
+    font-size: 1.4rem
+    color: $color-text-search
+
+.order-status-green
+    color: $valid-field-border
+
+.order-status-red
+    color: $invalid-field-border
+
+.order-status-yellow
+    color: $color-order-yellow
+
+.order-info-goods
+    display: flex
+    gap: 1rem
+    align-items: center
+
+.good-photo
+    width: 60px
+    height: 60px    
+    border-radius: 4px
+    position: relative
+    flex: 0 0 60px

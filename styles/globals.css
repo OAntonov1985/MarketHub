@@ -2093,4 +2093,63 @@ h2 {
   color: #012767;
   background-color: #FBFBFB;
   cursor: pointer;
+}
+
+.right-culumn-user-orders-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-size: 1.8rem;
+  color: #012767;
+}
+
+.right-culumn-user-orders-header, .right-culumn-user-orders-main {
+  display: flex;
+  margin-bottom: 3.2rem;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.order-info-date {
+  width: 11rem;
+}
+
+.order-info-buyer, .order-info-order-status, .order-info-amount {
+  width: 18rem;
+}
+
+.order-info-goods {
+  width: 21rem;
+}
+
+.order-date {
+  font-size: 1.4rem;
+  color: #6B7280;
+}
+
+.order-status-green {
+  color: #76CA66;
+}
+
+.order-status-red {
+  color: #BA0000;
+}
+
+.order-status-yellow {
+  color: #FFA800;
+}
+
+.order-info-goods {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.good-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  position: relative;
+  flex: 0 0 60px;
 }/*# sourceMappingURL=globals.css.map */

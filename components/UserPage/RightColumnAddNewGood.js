@@ -3,11 +3,19 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 function RightColumnAddNewGood() {
-    // let pfotoscount = 4;
+    const [productName, setProductName] = useState('');
+    const [productPrice, setProductPrice] = useState('');
+    const [productDescription, setProductDescription] = useState('');
+
+    const [pfotoscount, setPhotosCount] = useState(4);
+    const [pfotosArray, setPhotosArray] = useState([]);
+    const [photos, setPhotos] = useState(Array.from({ length: pfotoscount }, () => null));
+
+
     const PhotoUploader = () => {
-        const [pfotoscount, setPhotosCount] = useState(4);
-        const [pfotosArray, setPhotosArray] = useState([]);
-        const [photos, setPhotos] = useState(Array.from({ length: pfotoscount }, () => null));
+        // const [pfotoscount, setPhotosCount] = useState(4);
+        // const [pfotosArray, setPhotosArray] = useState([]);
+        // const [photos, setPhotos] = useState(Array.from({ length: pfotoscount }, () => null));
 
         const handleFileChange = (event) => {
             // console.log(event.target.id)
@@ -56,92 +64,65 @@ function RightColumnAddNewGood() {
     };
 
 
-
-
-
-
-
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = {
+            productName,
+            productPrice,
+            productDescription,
+            pfotosArray
+        };
+        console.log(formData);
+    };
 
     return (
-        <form className="add-new-good">
-            <label htmlFor="product-name"
-                className="product-name-title">
-                Назва товару</label>
-            <input name="product-name" id="product-name"
+        <form className="add-new-good" onSubmit={handleSubmit}>
+            <label htmlFor="product-name" className="product-name-title">
+                Назва товару
+            </label>
+            <input
+                name="product-name"
+                id="product-name"
                 className="product-name-form-input"
-                // disabled={!isActiveFields}
-                // onChange={(e) => setUserName(e.target.value)}
                 placeholder="Введіть назву товару"
-            // value={userName} 
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
             />
 
-            <label htmlFor="product-price"
-                className="product-price-title">
-                Ціна товару</label>
-            <input name="product-price" id="product-price"
+            <label htmlFor="product-price" className="product-price-title">
+                Ціна товару
+            </label>
+            <input
+                name="product-price"
+                id="product-price"
                 className="product-price-form-input"
-                type='number'
-                // disabled={!isActiveFields}
-                // onChange={(e) => setUserSurname(e.target.value)}
+                type="number"
                 placeholder="Введіть ціну товару"
-            // value={userSurname} 
+                value={productPrice}
+                onChange={(e) => setProductPrice(e.target.value)}
             />
 
-            <label htmlFor="product-photo"
-                className="product-price-photo">
-                Фото</label>
+            <label htmlFor="product-photo" className="product-price-photo">
+                Фото
+            </label>
             <PhotoUploader />
 
-            {/* {photos.map(index => {
-                <div className='photo-preview-two' id={index - 1} >
-                    <Image
-                        className='input-photo-bg-inage'
-                        alt='input-photo-bg-inage'
-                        src="bg_input_goods.svg"
-                        width={100}
-                        height={100}
-                    />
-                </div>
-            })} */}
-            {/* <div className='photo-preview-two' id="test-folder" >
-                <Image
-                    className='input-photo-bg-inage'
-                    alt='input-photo-bg-inage'
-                    src="bg_input_goods.svg"
-                    width={100}
-                    height={100}
-                />
-            </div>
+            <label htmlFor="product-description" className="product-description-title">
+                Опис товару
+            </label>
+            <textarea
+                name="product-description"
+                id="product-description"
+                className="product-description-form-input"
+                value={productDescription}
+                onChange={(e) => setProductDescription(e.target.value)}
+            />
 
-            <div className='photo-preview-two' id="test-folder" >
-                <Image
-                    className='input-photo-bg-inage'
-                    alt='input-photo-bg-inage'
-                    src="bg_input_goods.svg"
-                    width={100}
-                    height={100}
-                />
+            <div className="button-container">
+                <button type="submit" className="button-submit-form">
+                    Зберегти
+                </button>
             </div>
-
-            <div className='photo-preview-two' id="test-folder" >
-                <Image
-                    className='input-photo-bg-inage'
-                    alt='input-photo-bg-inage'
-                    src="bg_input_goods.svg"
-                    width={100}
-                    height={100}
-                />
-            </div>
-            <div className='photo-preview-two' id="test-folder" >
-                <Image
-                    className='input-photo-bg-inage'
-                    alt='input-photo-bg-inage'
-                    src="bg_input_goods.svg"
-                    width={100}
-                    height={100}
-                />
-            </div> */}
         </form>
     )
 }
