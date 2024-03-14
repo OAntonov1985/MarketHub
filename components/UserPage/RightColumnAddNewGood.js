@@ -1,68 +1,90 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
+
+function PhotoUploader({ pfotosArray, setPhotosArray, setPfotosArrayLength }) {
+    const handleFileChange = (event) => {
+        // console.log(event.target.id)
+        const fileList = event.target.files;
+        const filesArray = Array.from(fileList);
+
+        // console.log(pfotosArray)
+        // console.log(filesArray)
+        const allNotNull = pfotosArray.every(item => item !== null);
+        console.log(allNotNull)
+        if (!allNotNull) {
+            if (filesArray.length >= 4) {
+                setPfotosArrayLength(filesArray.length)
+                setPhotosArray(filesArray);
+            }
+
+            setPhotosArray(filesArray);
+        }
+
+        // if (pfotosArray[event.target.id] === undefined) {
+        //     const newArray = [...pfotosArray, ...filesArray];
+        //     setPhotosArray(newArray);
+        // } else {
+        //     const updatedArray = pfotosArray.map((photo, index) => {
+        //         if (index.toString() === event.target.id) {
+        //             return filesArray[index]; // Заменяем файл по указанному индексу
+        //         } else {
+        //             return photo; // Оставляем остальные файлы без изменений
+        //         }
+        //     });
+        //     setPhotosArray(updatedArray);
+        // }
+    };
+
+    return (
+        <div className='photo-previews-row'>
+            {pfotosArray.map((photo, index) => (
+                <div className='photo-preview' key={index}>
+                    <input
+                        type="file"
+                        className='input-photo-preview'
+                        multiple
+                        onChange={(e) => handleFileChange(e, index)}
+                    />
+                    <div className='image-container-add-good'>
+                        <Image
+                            className={`input-photo-bg-image ${photo ? "input-photo-bigger" : ""}`}
+                            alt='input-photo-bg-inage'
+                            src={photo ? URL.createObjectURL(photo) : "/plusininputphoto.svg"}
+                            width={100}
+                            height={100}
+                        />
+                    </div>
+                </div>
+            ))}
+            <div className='photo-preview'>
+                <input
+                    type="file"
+                    className='input-photo-preview'
+                    multiple
+                    onChange={(e) => handleFileChange(e)}
+                />
+                <div className='image-container-add-good'>
+                    <Image
+                        className='input-photo-bg-image'
+                        alt='input-photo-bg-inage'
+                        src="/plusininputphoto.svg"
+                        width={100}
+                        height={100}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
 
 function RightColumnAddNewGood() {
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState('');
     const [productDescription, setProductDescription] = useState('');
+    const [pfotosArrayLength, setPfotosArrayLength] = useState(4);
+    const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotosArrayLength }, () => null));
 
-    const [pfotoscount, setPhotosCount] = useState(4);
-    const [pfotosArray, setPhotosArray] = useState([]);
-    const [photos, setPhotos] = useState(Array.from({ length: pfotoscount }, () => null));
-
-
-    const PhotoUploader = () => {
-        // const [pfotoscount, setPhotosCount] = useState(4);
-        // const [pfotosArray, setPhotosArray] = useState([]);
-        // const [photos, setPhotos] = useState(Array.from({ length: pfotoscount }, () => null));
-
-        const handleFileChange = (event) => {
-            // console.log(event.target.id)
-            const fileList = event.target.files;
-            const filesArray = Array.from(fileList);
-            if (pfotosArray[event.target.id] === undefined) {
-                const newArray = [...pfotosArray, ...filesArray];
-                setPhotosArray(newArray);
-            } else {
-                const updatedArray = pfotosArray.map((photo, index) => {
-                    if (index.toString() === event.target.id) {
-                        return filesArray[0]; // Заменяем файл по указанному индексу
-                    } else {
-                        return photo; // Оставляем остальные файлы без изменений
-                    }
-                });
-                setPhotosArray(updatedArray);
-            }
-        };
-
-
-        return (
-            <div className='photo-previews-row'>
-                {photos.map((photo, index) => (
-                    <div className='photo-preview' key={index}>
-                        <input id={index}
-                            type="file"
-                            className='input-photo-preview'
-                            multiple
-                            onChange={(e) => handleFileChange(e)}
-                        />
-                        <Image
-                            className='input-photo-bg-inage'
-                            alt='input-photo-bg-inage'
-                            // src="bg_input_goods.svg"
-                            src={pfotosArray[index] ? URL.createObjectURL(pfotosArray[index]) : "/bg_input_goods.svg"}
-                            width={100}
-                            height={100}
-                        />
-
-                    </div>
-                ))}
-
-            </div>
-        );
-    };
-
+    const memoizedPhotoUploader = useMemo(() => <PhotoUploader pfotosArray={pfotosArray} setPhotosArray={setPhotosArray} setPfotosArrayLength={setPfotosArrayLength} />, [pfotosArray, setPhotosArray]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -105,7 +127,7 @@ function RightColumnAddNewGood() {
             <label htmlFor="product-photo" className="product-price-photo">
                 Фото
             </label>
-            <PhotoUploader />
+            {memoizedPhotoUploader}
 
             <label htmlFor="product-description" className="product-description-title">
                 Опис товару
@@ -124,7 +146,7 @@ function RightColumnAddNewGood() {
                 </button>
             </div>
         </form>
-    )
+    );
 }
 
 export default React.memo(RightColumnAddNewGood);

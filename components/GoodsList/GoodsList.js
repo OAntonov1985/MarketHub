@@ -82,3 +82,23 @@ function GoodsList({ props, id, total }) {
 };
 
 export default React.memo(GoodsList);
+
+
+// const handleFileChange = (event) => {
+//     // console.log(event.target.id)
+//     const fileList = event.target.files;
+//     const filesArray = Array.from(fileList);
+//     if (pfotosArray[event.target.id] === undefined) {
+//         const newArray = [...pfotosArray, ...filesArray];
+//         setPhotosArray(newArray);
+//     } else {
+//         const updatedArray = pfotosArray.map((photo, index) => {
+//             if (index.toString() === event.target.id) {
+//                 return filesArray[0]; // Заменяем файл по указанному индексу
+//             } else {
+//                 return photo; // Оставляем остальные файлы без изменений
+//             }
+//         });
+//         setPhotosArray(updatedArray);
+//     }
+// };

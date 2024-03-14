@@ -2056,12 +2056,29 @@ h2 {
   cursor: pointer;
 }
 
-.input-photo-bg-inage {
+.image-container-add-good {
+  width: 100%;
+  height: 100%;
+  background-color: #F3F4F6;
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: -5;
+  top: 0;
+  z-index: -2;
+}
+
+.input-photo-bg-image {
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+  z-index: 3;
   border-radius: 4px;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.input-photo-bigger {
+  width: 80%;
+  height: 80%;
 }
 
 .input-photo-preview::-webkit-file-upload-button {
