@@ -10,7 +10,8 @@ const initialState = {
     totalPriseInAllBasket: 0,
     quantityOfGoods: 0,
     quantityOfFavorite: 0,
-    categoryToRender: "Особисті дані"
+    categoryToRender: "Особисті дані",
+    pfotoArrayLength: 4
 };
 
 
@@ -132,11 +133,15 @@ const userSlice = createSlice({
         setCategorieToRender: (state, action) => {
             state.categoryToRender = action.payload;
         }
+        ,
+        setPhotoArrayLength: (state, action) => {
+            state.pfotoArrayLength = action.payload;
+        }
     }
 });
 
 
 
-export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite, setCategorieToRender } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite, setCategorieToRender, setPhotoArrayLength } = userSlice.actions;
 
 export default userSlice.reducer;

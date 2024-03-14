@@ -1,38 +1,49 @@
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPhotoArrayLength } from '@/slices/userSlice';
 
-function PhotoUploader({ pfotosArray, setPhotosArray, setPfotosArrayLength }) {
+function PhotoUploader({ pfotosArray, setPhotosArray }) {
+    const dispatch = useDispatch();
+
     const handleFileChange = (event) => {
-        // console.log(event.target.id)
+
+        const arrayIndex = parseInt(event.target.id);
+
         const fileList = event.target.files;
         const filesArray = Array.from(fileList);
 
-        // console.log(pfotosArray)
-        // console.log(filesArray)
-        const allNotNull = pfotosArray.every(item => item !== null);
-        console.log(allNotNull)
-        if (!allNotNull) {
-            if (filesArray.length >= 4) {
-                setPfotosArrayLength(filesArray.length)
+        const allNotNull = pfotosArray.every(item => item === null);
+
+        if (pfotosArray[arrayIndex] && filesArray.length === 1) {
+            const updatedArray = pfotosArray.map((photo, index) => {
+                if (index === arrayIndex) {
+                    return filesArray[0];
+                } else {
+                    return photo;
+                }
+            });
+            setPhotosArray(updatedArray);
+        }
+        else if (allNotNull) {
+            if (filesArray.length >= pfotosArray.length) {
+                dispatch(setPhotoArrayLength(pfotosArray.length + filesArray.length));
                 setPhotosArray(filesArray);
             }
+            else {
+                const newArray = filesArray.concat(pfotosArray.slice(filesArray.length));
+                setPhotosArray(newArray);
+            }
+        }
+        else {
 
-            setPhotosArray(filesArray);
+            dispatch(setPhotoArrayLength(pfotosArray.length + filesArray.length));
+            let newArray = pfotosArray.concat(filesArray);
+            newArray = newArray.filter(item => item !== null);
+            setPhotosArray(newArray);
         }
 
-        // if (pfotosArray[event.target.id] === undefined) {
-        //     const newArray = [...pfotosArray, ...filesArray];
-        //     setPhotosArray(newArray);
-        // } else {
-        //     const updatedArray = pfotosArray.map((photo, index) => {
-        //         if (index.toString() === event.target.id) {
-        //             return filesArray[index]; // Заменяем файл по указанному индексу
-        //         } else {
-        //             return photo; // Оставляем остальные файлы без изменений
-        //         }
-        //     });
-        //     setPhotosArray(updatedArray);
-        // }
+
     };
 
     return (
@@ -41,6 +52,7 @@ function PhotoUploader({ pfotosArray, setPhotosArray, setPfotosArrayLength }) {
                 <div className='photo-preview' key={index}>
                     <input
                         type="file"
+                        id={index}
                         className='input-photo-preview'
                         multiple
                         onChange={(e) => handleFileChange(e, index)}
@@ -82,9 +94,11 @@ function RightColumnAddNewGood() {
     const [productPrice, setProductPrice] = useState('');
     const [productDescription, setProductDescription] = useState('');
     const [pfotosArrayLength, setPfotosArrayLength] = useState(4);
-    const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotosArrayLength }, () => null));
+    const { pfotoArrayLength } = useSelector((state) => state.user);
+    const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotoArrayLength }, () => null));
 
-    const memoizedPhotoUploader = useMemo(() => <PhotoUploader pfotosArray={pfotosArray} setPhotosArray={setPhotosArray} setPfotosArrayLength={setPfotosArrayLength} />, [pfotosArray, setPhotosArray]);
+
+    const memoizedPhotoUploader = useMemo(() => <PhotoUploader pfotosArray={pfotosArray} setPhotosArray={setPhotosArray} />, [pfotosArray, setPhotosArray]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
