@@ -21,6 +21,8 @@ function GoodCardSmall({ props, isFavorite }) {
     const router = useRouter();
     const categoryName = router.query.category;
     const subCategoryName = router.query.subcategory;
+    // console.log(categoryName)
+    // console.log(subCategoryName)
 
 
 

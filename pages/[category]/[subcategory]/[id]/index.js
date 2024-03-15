@@ -37,8 +37,6 @@ export async function getServerSideProps(context) {
         available: good.available
     };
 
-    // console.log(good.category_details.name)
-
     return {
         props: {
             good,

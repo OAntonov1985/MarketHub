@@ -4,11 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import GoodCardSlider from '../GoodCardSlider/GoodCardSlider';
 import React from 'react';
-import { useRouter } from 'next/router';
 import GoodCardDescription from '../GoodCardDescription/GoodCardDescription';
 
 function GoodCard({ props, breadCrumpData }) {
-    const { category, subcategory, title } = breadCrumpData;
+    const { category, subcategory, title } = breadCrumpData || {};
+    // console.log(category)
     // const router = useRouter();
     // const categoryName = router.query.category;
     // const subCategoryName = router;

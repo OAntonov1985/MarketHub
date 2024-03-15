@@ -12,6 +12,7 @@ function BaskerGoodRow({ props }) {
 
     const { id, title, thumbnail, number, price, totalPrice } = props;
     const dispatch = useDispatch();
+    // console.log(id)
 
 
     const reduseGoodQuantity = (e) => {

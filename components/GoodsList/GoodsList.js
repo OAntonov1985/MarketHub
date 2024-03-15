@@ -5,7 +5,6 @@ import React from 'react';
 import PageIndexer from '../PageIndexer/PageIndexer';
 import { useState, useEffect } from 'react';
 import GetFilteredData from '@/pages/api/GetFilteredData';
-import GetdData from '@/pages/api/GetData';
 import { useRouter } from 'next/router';
 
 function GoodsList({ props, id, total }) {
@@ -26,12 +25,6 @@ function GoodsList({ props, id, total }) {
 
     const router = useRouter();
     const subCategoryName = router.query.subcategory;
-
-    // // отримання даних без фільтру//
-    // async function getData(event) {
-    //     const { result } = await GetdData(event - 1, id, subCategoryName);
-    //     setListGoods(result.data);
-    // };
 
     // отримання даних виходячи з бічного фільтру//
     async function getFilteredDataMinMax() {

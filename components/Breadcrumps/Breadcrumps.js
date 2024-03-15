@@ -8,9 +8,7 @@ import React from 'react';
 function BreadCrumps() {
     const router = useRouter();
 
-    // function redirectUser(event) {
 
-    // }
 
     let categoryName = router.query.category;
     let subCategoryName = router.query.subcategory;

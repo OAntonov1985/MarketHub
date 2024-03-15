@@ -3,13 +3,14 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 
-function PajeIndexserSmall() {
+function PajeIndexserSmall({ totalUserPurchases, setActivePage, activePage }) {
 
-    // const [startNumberToArray, setStartNumberToArray] = useState(1);
-    // const maxPageRenderInString = Math.ceil(totalItems ? totalItems / 12 : total / 12); // встановлення кількості айтемів для відображення
+    const [startNumberToArray, setStartNumberToArray] = useState(1);
+    // const [activePage, setActivePage] = useState(1);
+    const maxPageRenderInString = Math.ceil(totalUserPurchases / 6); // встановлення кількості айтемів для відображення
 
-    // const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
-    // const lastPage = Math.ceil(totalItems ? totalItems / 12 : total / 12);
+    const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
+    const lastPage = Math.ceil(totalUserPurchases / 6);
 
     const changeIndex = (event) => {
         if (event.target.id === "minus-one") {
@@ -80,10 +81,13 @@ function PajeIndexserSmall() {
     };
 
     return (
-        <div className='page-selector'>
+        <div className='page-selector selector-bottom'>
             <ArrowDiv />
-            <div className='active-page'>1</div>
-            <div className='unactive-page'>2</div>
+            {arrayPages.map((item) => (
+                <div key={item} onClick={(event) => { handleClick(event) }} id={item}
+                    className={activePage === item ? 'active-page' : 'unactive-page'}
+                >{item}</div>
+            ))}
             <ArrowDivRotate />
         </div>
     )

@@ -2120,6 +2120,14 @@ h2 {
   color: #012767;
 }
 
+.right-culumn-user-orders-table {
+  height: 100%;
+}
+
+.selector-bottom {
+  margin-bottom: 0;
+}
+
 .right-culumn-user-orders-header, .right-culumn-user-orders-main {
   display: flex;
   margin-bottom: 3.2rem;
@@ -2169,4 +2177,9 @@ h2 {
   border-radius: 4px;
   position: relative;
   flex: 0 0 60px;
+  cursor: pointer;
+}
+
+.order-title {
+  cursor: pointer;
 }/*# sourceMappingURL=globals.css.map */

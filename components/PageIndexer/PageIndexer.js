@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 
 function PageIndexer({ total, activePage, setActivePage, totalItems }) {
-    // console.log(total)
+
     const [startNumberToArray, setStartNumberToArray] = useState(1);
     const maxPageRenderInString = Math.ceil(totalItems ? totalItems / 12 : total / 12); // встановлення кількості айтемів для відображення
 

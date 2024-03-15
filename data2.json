@@ -14,7 +14,15 @@
         "order_total_price": 35999,
         "order_status": "Нове замовлення",
         "buyer_id": 1002,
-        "seller_id": 0
+        "seller_id": 0,
+        "category_details": {
+            "id": "100",
+            "name": "Комп’ютерна техніка"
+        },
+        "sub_category_detail": {
+            "id": "130",
+            "name": "Ноутбуки"
+        }
     },
     {
         "order_number": "80234244",
@@ -31,7 +39,15 @@
         "order_total_price": 54999,
         "order_status": "Доставлено",
         "buyer_id": 1002,
-        "seller_id": 0
+        "seller_id": 0,
+        "category_details": {
+            "id": "100",
+            "name": "Комп’ютерна техніка"
+        },
+        "sub_category_detail": {
+            "id": "130",
+            "name": "Ноутбуки"
+        }
     },
     {
         "order_number": "80234243",
@@ -48,7 +64,15 @@
         "order_total_price": 35999,
         "order_status": "Скасовано",
         "buyer_id": 1002,
-        "seller_id": 0
+        "seller_id": 0,
+        "category_details": {
+            "id": "100",
+            "name": "Комп’ютерна техніка"
+        },
+        "sub_category_detail": {
+            "id": "130",
+            "name": "Ноутбуки"
+        }
     },
     {
         "order_number": "80234242",
@@ -65,7 +89,15 @@
         "order_total_price": 39999,
         "order_status": "Обробляється менеджером",
         "buyer_id": 1002,
-        "seller_id": 0
+        "seller_id": 0,
+        "category_details": {
+            "id": "100",
+            "name": "Комп’ютерна техніка"
+        },
+        "sub_category_detail": {
+            "id": "130",
+            "name": "Ноутбуки"
+        }
     },
     {
         "order_number": "80234245",
@@ -82,7 +114,15 @@
         "order_total_price": 16999,
         "order_status": "Доставлено",
         "buyer_id": 1002,
-        "seller_id": 0
+        "seller_id": 0,
+        "category_details": {
+            "id": "100",
+            "name": "Комп’ютерна техніка"
+        },
+        "sub_category_detail": {
+            "id": "130",
+            "name": "Ноутбуки"
+        }
     },
     {
         "order_number": "80234244",
@@ -99,7 +139,15 @@
         "order_total_price": 54999,
         "order_status": "В дорозі",
         "buyer_id": 1002,
-        "seller_id": 0
+        "seller_id": 0,
+        "category_details": {
+            "id": "100",
+            "name": "Комп’ютерна техніка"
+        },
+        "sub_category_detail": {
+            "id": "130",
+            "name": "Ноутбуки"
+        }
     },
     {
         "order_number": "80234243",
@@ -116,7 +164,15 @@
         "order_total_price": 35999,
         "order_status": "Скасовано",
         "buyer_id": 1002,
-        "seller_id": 0
+        "seller_id": 0,
+        "category_details": {
+            "id": "100",
+            "name": "Комп’ютерна техніка"
+        },
+        "sub_category_detail": {
+            "id": "130",
+            "name": "Ноутбуки"
+        }
     },
     {
         "order_number": "80234242",
@@ -133,6 +189,14 @@
         "order_total_price": 39999,
         "order_status": "Обробляється менеджером",
         "buyer_id": 1002,
-        "seller_id": 0
+        "seller_id": 0,
+        "category_details": {
+            "id": "100",
+            "name": "Комп’ютерна техніка"
+        },
+        "sub_category_detail": {
+            "id": "130",
+            "name": "Ноутбуки"
+        }
     }
 ]
