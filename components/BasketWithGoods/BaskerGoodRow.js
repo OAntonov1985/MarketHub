@@ -41,7 +41,7 @@ function BaskerGoodRow({ props }) {
     return (
         <div className="basket-with-good-item">
             <div className='good-item-left-column'>
-                <Link className="good-item-image" href={`http://localhost:3000/${id}/${title}/${id}`}>
+                <Link className="good-item-image" href={`/${id}/${title}/${id}`}>
                     <div className='good-item-image-container'>
                         <Image
                             alt="image of good"
@@ -58,7 +58,7 @@ function BaskerGoodRow({ props }) {
                 </Link>
 
                 <div className='good-item-description-column'>
-                    <Link className='good-item-description-title' href={`http://localhost:3000/${id}/${title}/${id}`}>{title}</Link>
+                    <Link className='good-item-description-title' href={`/${id}/${title}/${id}`}>{title}</Link>
                     <div className='good-item-description-number'>
                         <div className='good-item-description-selsector-number'>
                             <div className="selsector-number-minus">

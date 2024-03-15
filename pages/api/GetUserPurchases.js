@@ -2,7 +2,7 @@ import { MaketHubURL } from "../../components/Constants";
 
 export default async function GetUserPurchases(id, skip) {
     let result;
-    console.log(skip)
+
     try {
         const response = await fetch(MaketHubURL + `users/purchases/${id}/${skip}/6`, {
             method: 'GET',

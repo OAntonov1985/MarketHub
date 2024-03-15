@@ -2182,4 +2182,9 @@ h2 {
 
 .order-title {
   cursor: pointer;
+  color: #012767;
+}
+
+.order-title:visited {
+  color: #012767;
 }/*# sourceMappingURL=globals.css.map */

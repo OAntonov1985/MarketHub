@@ -16,7 +16,7 @@ function RightColumnUserOrders({ good, breadCrumpData }) {
         try {
             const result = await GetUserPurchases(1002, activePage - 1);
             setUserPurchases(result.result.data);
-            console.log(result.result.data)
+            // console.log(result.result.data)
             setTotalUserPurchases(result.result.total);
         } catch (error) {
             alert('Упс.... Щось пішло не так. зверніться до розробників');
@@ -63,7 +63,7 @@ function RightColumnUserOrders({ good, breadCrumpData }) {
                             </div>
                             <div className='order-info-goods'>
                                 <Link
-                                    href={`http://localhost:3000/${item.category_details.name}/${item.sub_category_detail.name}/${item.good_id}`}
+                                    href={`/${item.category_details.name}/${item.sub_category_detail.name}/${item.good_id}`}
                                     className='good-photo'>
                                     <Image
                                         alt="image of good"
@@ -78,7 +78,7 @@ function RightColumnUserOrders({ good, breadCrumpData }) {
                                     />
                                 </Link>
                                 <Link
-                                    href={`http://localhost:3000/${item.category_details.name}/${item.sub_category_detail.name}/${item.good_id}`}
+                                    href={`/${item.category_details.name}/${item.sub_category_detail.name}/${item.good_id}`}
                                     className='good-title order-title'>{item.order_goods_title.split(' ').slice(0, 3).join(' ')}
                                 </Link>
                             </div>
@@ -90,7 +90,6 @@ function RightColumnUserOrders({ good, breadCrumpData }) {
                 })}
             </div>
             <PajeIndexserSmall totalUserPurchases={totalUserPurchases} setActivePage={setActivePage} activePage={activePage} />
-            {/* <GoodCardGoodCard props={good} breadCrumpData={breadCrumpData} /> */}
         </div>
     )
 }
