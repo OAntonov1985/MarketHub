@@ -39,14 +39,11 @@ function SingInForm({ props }) {
             };
 
             const { JWTToken, Errorflag } = await singInFunction(body);
-            if (Errorflag) {
-                setLoading(false);
-            }
-            else if (JWTToken) {
-                setLoading(false);
+            if (JWTToken) {
                 router.push('/userpage');
-                // router.back();
-            };
+            }
+            else setLoading(false);
+
         }
         else alert('Помилка заповнення одного з полів');
     };
