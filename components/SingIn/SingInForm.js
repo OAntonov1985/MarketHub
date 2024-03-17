@@ -14,9 +14,6 @@ function SingInForm({ props }) {
     const { setLoading } = props;
     const router = useRouter();
 
-    // const dispatch = useDispatch();
-    // console.log(router)
-
     const [userEmail, setUserEmail] = useState('');
     const [inputEmailClass, setInputEmailClass] = useState("user-email");
     const [showErrorEmail, setShowErrorEmail] = useState(false);
@@ -39,13 +36,13 @@ function SingInForm({ props }) {
             };
 
             const { JWTToken, Errorflag } = await singInFunction(body);
-            if (JWTToken) {
-                setTimeout(() => {
-                    router.push('/userpage');
-                    setLoading(false);
-                }, 1000);
+            if (Errorflag) {
+                setLoading(false);
             }
-            else setLoading(false);
+            else if (JWTToken) {
+                setLoading(false);
+                router.push('/userpage');
+            };
 
         }
         else alert('Помилка заповнення одного з полів');
