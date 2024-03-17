@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import singInFunction from '@/pages/api/SingInFunction';
 import Image from "next/image";
 import Link from 'next/link';
@@ -41,6 +41,7 @@ function SingInForm({ props }) {
             }
             else if (JWTToken) {
                 setLoading(false);
+                // router.refresh();
                 router.push('/userpage');
             };
 
