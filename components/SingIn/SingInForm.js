@@ -40,8 +40,10 @@ function SingInForm({ props }) {
 
             const { JWTToken, Errorflag } = await singInFunction(body);
             if (JWTToken) {
-                router.push('/userpage');
-                setLoading(false);
+                setTimeout(() => {
+                    router.push('/userpage');
+                    setLoading(false);
+                }, 1000);
             }
             else setLoading(false);
 
