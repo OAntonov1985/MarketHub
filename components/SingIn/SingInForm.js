@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import singInFunction from '@/pages/api/SingInFunction';
 import Image from "next/image";
@@ -13,6 +13,7 @@ import Link from 'next/link';
 function SingInForm({ props }) {
     const { setLoading } = props;
     const router = useRouter();
+    const [pushUser, setPushUser] = useState(false);
 
     const [userEmail, setUserEmail] = useState('');
     const [inputEmailClass, setInputEmailClass] = useState("user-email");
@@ -25,9 +26,8 @@ function SingInForm({ props }) {
     const [pass, setPass] = useState("/eyeclosed.png");
     const [typeInput, setTypeInput] = useState("password");
 
-    function pushUser() {
-        router.push('/userpage');
-    }
+
+
     async function handleclick(event) {
         event.preventDefault();
         if (showErrorEmail === false && showErrorPassword === false) {
@@ -38,17 +38,24 @@ function SingInForm({ props }) {
             };
 
             const { JWTToken, Errorflag } = await singInFunction(body);
-            if (Errorflag) {
+            if (JWTToken) {
+                router.push('/userpage');
+                setPushUser(true);
                 setLoading(false);
             }
-            else if (JWTToken) {
+            else if (Errorflag) {
                 setLoading(false);
-                pushUser();
             };
 
         }
         else alert('Помилка заповнення одного з полів');
     };
+
+    useEffect(() => {
+        if (pushUser) {
+            router.push('/userpage');
+        }
+    }, [pushUser])
 
 
 
