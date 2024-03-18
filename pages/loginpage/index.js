@@ -22,7 +22,7 @@ function LogInPage() {
 
     // console.log('refresh')
     useEffect(() => {
-        // console.log('go')
+        console.log('go')
         if (userName) {
             router.push('/userpage')
         }
