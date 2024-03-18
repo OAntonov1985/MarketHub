@@ -7,7 +7,10 @@ export default function middleware(req) {
     // console.log(token)
     let urlAdress = req.url;
     if (!token && urlAdress.includes('/userpage')) {
-        return NextResponse.redirect(new URL('/loginpage', req.url))
+        return NextResponse.redirect(new URL('/loginpage', req.url));
+    }
+    else if (token && urlAdress.includes('/loginpage')) {
+        return NextResponse.redirect(new URL('/userpage', req.url));
     }
 
 }

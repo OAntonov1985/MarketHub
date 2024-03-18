@@ -15,18 +15,18 @@ import { useSelector } from 'react-redux';
 function LogInPage() {
     const [isRegistration, setIsRegistration] = useState(true);
     const [loading, setLoading] = useState(false);
-    // const userName = Cookies.get('jwtToken');
+    const userNameCookie = Cookies.get('jwtToken');
     const router = useRouter();
 
     let { userName } = useSelector((state) => state.user);
 
-    // console.log('refresh')
+    console.log('refresh')
     useEffect(() => {
         console.log('go')
         if (userName) {
             router.push('/userpage')
         }
-    }, [userName])
+    }, [userName, userNameCookie])
 
 
     const toggleMode = () => {
