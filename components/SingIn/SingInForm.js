@@ -41,6 +41,7 @@ function SingInForm({ props }) {
             }
             else if (JWTToken) {
                 setLoading(false);
+                console.log(777)
                 // router.refresh();
                 router.push('/userpage');
             };
