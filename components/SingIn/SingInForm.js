@@ -39,7 +39,8 @@ function SingInForm({ props }) {
 
             const { JWTToken, Errorflag } = await singInFunction(body);
             if (JWTToken) {
-                alert('Ваша авторизація пройшла успішно, з поверненням');
+                const userName = Cookies.get('userName')
+                alert(`Ваша авторизація пройшла успішно! З поверненням, ${userName}`);
                 setLoading(false);
                 router.push('/userpage');
             }
