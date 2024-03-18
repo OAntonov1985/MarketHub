@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SingIn from '@/components/SingIn/SingIn';
 import Registration from '@/components/Registration/Registration';
 import Head from 'next/head';
@@ -8,22 +8,25 @@ import backgroundImageg from "@/public/Back.png"
 import Spinner from '@/components/Spinner/Spinner';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
+import { useSelector } from 'react-redux';
 
 
 
 function LogInPage() {
     const [isRegistration, setIsRegistration] = useState(true);
     const [loading, setLoading] = useState(false);
-    const userName = Cookies.get('jwtToken');
+    // const userName = Cookies.get('jwtToken');
     const router = useRouter();
 
-    function pushUser() {
-        // console.log(777)
-        // console.log(userName)
+    let { userName } = useSelector((state) => state.user);
+
+    // console.log('refresh')
+    useEffect(() => {
+        // console.log('go')
         if (userName) {
             router.push('/userpage')
         }
-    }
+    }, [userName])
 
 
     const toggleMode = () => {
@@ -59,7 +62,7 @@ function LogInPage() {
                         <SingIn props={obj} /> :
                         <Registration props={obj} />}
                     <Image
-                        onClick={pushUser}
+                        // onClick={pushUser}
                         alt="logo image"
                         src='/logo.png'
                         quality={100}

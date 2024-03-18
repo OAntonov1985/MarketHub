@@ -1,10 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import singInFunction from '@/pages/api/SingInFunction';
 import Image from "next/image";
 import Link from 'next/link';
 import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+import { setUserName } from '@/slices/userSlice';
 
 // import { useDispatch } from 'react-redux';
 
@@ -14,6 +16,7 @@ import Cookies from 'js-cookie';
 function SingInForm({ props }) {
     const { setLoading } = props;
     const router = useRouter();
+    const dispatch = useDispatch();
 
 
 
@@ -43,60 +46,22 @@ function SingInForm({ props }) {
                 "password": userPassword
             };
 
-            try {
-                // const response = await fetch(URLADRESS + 'login', {
-                const response = await fetch('https://vps63222.hyperhost.name/markethub/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(body),
-
-                });
-
-                if (response.ok) {
-                    const data = await response.json()
-                        // console.log(data)
-                        .then(data => {
-                            Cookies.set('jwtToken', data.token, { expires: currentDate });
-                            Cookies.set('userName', data.firstname, { expires: currentDate });
-                            Cookies.set('userSurname', data.lastname, { expires: currentDate });
-                            Cookies.set('userPhone', data.phone, { expires: currentDate });
-                            Cookies.set('userEmail', data.email, { expires: currentDate });
-                            Cookies.set('userID', data.id, { expires: currentDate });
-                            // JWTToken = data.token;
-                            setLoading(false);
-                            router.push('/userpage');
-                        })
-                        .then(
-                        //         setLoading(false);
-                        // router.push('/userpage');
-                    )
-
-                } else {
-                    alert('Невірно введені пошта або пароль! Спробуйте ще');
-
-                };
-            } catch (error) {
-                alert('Упс.... Щось пішло не так');
-
+            const { Errorflag, data } = await singInFunction(body);
+            if (data) {
+                setLoading(false);
+                Cookies.set('jwtToken', data.token, { expires: currentDate });
+                Cookies.set('userName', data.firstname, { expires: currentDate });
+                Cookies.set('userSurname', data.lastname, { expires: currentDate });
+                Cookies.set('userPhone', data.phone, { expires: currentDate });
+                Cookies.set('userEmail', data.email, { expires: currentDate });
+                Cookies.set('userID', data.id, { expires: currentDate });
+                dispatch(setUserName(data.firstname));
+                // alert(`Ваша авторизація пройшла успішно! З поверненням, ${data.firstname}`);
+                router.push('/userpage');
+            }
+            else if (Errorflag) {
+                setLoading(false);
             };
-
-            // const { Errorflag, data } = await singInFunction(body);
-            // if (data) {
-            //     setLoading(false);
-            //     Cookies.set('jwtToken', data.token, { expires: currentDate });
-            //     Cookies.set('userName', data.firstname, { expires: currentDate });
-            //     Cookies.set('userSurname', data.lastname, { expires: currentDate });
-            //     Cookies.set('userPhone', data.phone, { expires: currentDate });
-            //     Cookies.set('userEmail', data.email, { expires: currentDate });
-            //     Cookies.set('userID', data.id, { expires: currentDate });
-            //     // alert(`Ваша авторизація пройшла успішно! З поверненням, ${data.firstname}`);
-            //     router.push('/userpage');
-            // }
-            // else if (Errorflag) {
-            //     setLoading(false);
-            // };
 
         }
         else alert('Помилка заповнення одного з полів');
