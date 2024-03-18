@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import singInFunction from '@/pages/api/SingInFunction';
 import Image from "next/image";
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+
 // import { useDispatch } from 'react-redux';
 
 
@@ -14,7 +14,6 @@ function SingInForm({ props }) {
     const { setLoading } = props;
     const router = useRouter();
 
-    const { userName } = useSelector((state) => state.user);
 
     const [userEmail, setUserEmail] = useState('');
     const [inputEmailClass, setInputEmailClass] = useState("user-email");
@@ -40,8 +39,9 @@ function SingInForm({ props }) {
 
             const { JWTToken, Errorflag } = await singInFunction(body);
             if (JWTToken) {
-                router.push('/userpage');
+                alert('Ваша авторизація пройшла успішно, з поверненням');
                 setLoading(false);
+                router.push('/userpage');
             }
             else if (Errorflag) {
                 setLoading(false);
@@ -50,15 +50,6 @@ function SingInForm({ props }) {
         }
         else alert('Помилка заповнення одного з полів');
     };
-
-    // useEffect(() => {
-    //     if (userName) {
-    //         router.push('/userpage');
-    //     }
-    //     router.push('/userpage');
-    // }, [userName])
-
-
 
 
     function validateEmail() {
