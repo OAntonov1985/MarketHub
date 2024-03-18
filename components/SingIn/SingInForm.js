@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import singInFunction from '@/pages/api/SingInFunction';
 import Image from "next/image";
 import Link from 'next/link';
+import Cookies from 'js-cookie';
 
 // import { useDispatch } from 'react-redux';
 
