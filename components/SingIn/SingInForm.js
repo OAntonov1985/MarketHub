@@ -25,7 +25,9 @@ function SingInForm({ props }) {
     const [pass, setPass] = useState("/eyeclosed.png");
     const [typeInput, setTypeInput] = useState("password");
 
-
+    function pushUser() {
+        router.push('/userpage');
+    }
     async function handleclick(event) {
         event.preventDefault();
         if (showErrorEmail === false && showErrorPassword === false) {
@@ -41,14 +43,14 @@ function SingInForm({ props }) {
             }
             else if (JWTToken) {
                 setLoading(false);
-                console.log(777)
-                // router.refresh();
-                router.push('/userpage');
+                pushUser();
             };
 
         }
         else alert('Помилка заповнення одного з полів');
     };
+
+
 
 
     function validateEmail() {
