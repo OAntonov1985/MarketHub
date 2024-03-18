@@ -51,12 +51,12 @@ function SingInForm({ props }) {
         else alert('Помилка заповнення одного з полів');
     };
 
-    useEffect(() => {
-        if (userName) {
-            router.push('/userpage');
-        }
-        router.push('/userpage');
-    }, [userName])
+    // useEffect(() => {
+    //     if (userName) {
+    //         router.push('/userpage');
+    //     }
+    //     router.push('/userpage');
+    // }, [userName])
 
 
 
