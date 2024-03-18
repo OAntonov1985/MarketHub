@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import singInFunction from '@/pages/api/SingInFunction';
 import Image from "next/image";
 import Link from 'next/link';
@@ -14,6 +14,9 @@ import Cookies from 'js-cookie';
 function SingInForm({ props }) {
     const { setLoading } = props;
     const router = useRouter();
+    const nav = usePathname();
+    // console.log(nav)
+    // console.log(router)
 
 
     const [userEmail, setUserEmail] = useState('');
@@ -31,8 +34,10 @@ function SingInForm({ props }) {
 
     async function handleclick(event) {
         event.preventDefault();
+
         const currentDate = new Date();
         currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
+
         if (showErrorEmail === false && showErrorPassword === false) {
             setLoading(true);
             const body = {
@@ -40,7 +45,7 @@ function SingInForm({ props }) {
                 "password": userPassword
             };
 
-            const { JWTToken, Errorflag, data } = await singInFunction(body);
+            const { Errorflag, data } = await singInFunction(body);
             if (data) {
                 setLoading(false);
                 Cookies.set('jwtToken', data.token, { expires: currentDate });
@@ -49,7 +54,9 @@ function SingInForm({ props }) {
                 Cookies.set('userPhone', data.phone, { expires: currentDate });
                 Cookies.set('userEmail', data.email, { expires: currentDate });
                 Cookies.set('userID', data.id, { expires: currentDate });
+                alert(`Ваша авторизація пройшла успішно! З поверненням, ${data.firstname}`);
                 router.push('/userpage');
+                router.forward('/userpage');
             }
             else if (Errorflag) {
                 setLoading(false);
