@@ -31,6 +31,8 @@ function SingInForm({ props }) {
 
     async function handleclick(event) {
         event.preventDefault();
+        const currentDate = new Date();
+        currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
         if (showErrorEmail === false && showErrorPassword === false) {
             setLoading(true);
             const body = {
@@ -38,11 +40,15 @@ function SingInForm({ props }) {
                 "password": userPassword
             };
 
-            const { JWTToken, Errorflag } = await singInFunction(body);
-            if (JWTToken) {
-                const userName = Cookies.get('userName')
-                alert(`Ваша авторизація пройшла успішно! З поверненням, ${userName}`);
+            const { JWTToken, Errorflag, data } = await singInFunction(body);
+            if (data) {
                 setLoading(false);
+                Cookies.set('jwtToken', data.token, { expires: currentDate });
+                Cookies.set('userName', data.firstname, { expires: currentDate });
+                Cookies.set('userSurname', data.lastname, { expires: currentDate });
+                Cookies.set('userPhone', data.phone, { expires: currentDate });
+                Cookies.set('userEmail', data.email, { expires: currentDate });
+                Cookies.set('userID', data.id, { expires: currentDate });
                 router.push('/userpage');
             }
             else if (Errorflag) {

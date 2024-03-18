@@ -5,6 +5,7 @@ export default function middleware(req) {
     let urlAdress = req.url;
     if (!token && urlAdress.includes('/userpage')) {
         return NextResponse.redirect('https://market-hub-sigma.vercel.app/loginpage')
+
         // return NextResponse.redirect('http://localhost:3000/loginpage')
     }
 }
