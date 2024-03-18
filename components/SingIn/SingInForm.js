@@ -93,7 +93,7 @@ function SingInForm({ props }) {
     return (
         <>
             <form
-                // onSubmit={handleclick}
+                onSubmit={handleclick}
                 className='singin-form'>
                 <label htmlFor="userEmail" className='label-title' >Електронна пошта</label>
                 <div className='container-to-field'>
@@ -133,10 +133,7 @@ function SingInForm({ props }) {
                     {showErrorPassword !== false ? <p className='paragraf-buttom'>Довжина паролю має бути 6 символів мінімум</p> : null}
                 </div>
                 <div className='button-singin'>
-                    <button
-                        onClick={handleclick}
-                        // type='submit' 
-                        className='button-singin-push btn-login-page'>Увійти</button>
+                    <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
                 </div>
                 <Link href='/forgetpassword/' className='forgot-link'>
                     <div className='forgot-password-link'>
