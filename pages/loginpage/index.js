@@ -6,12 +6,24 @@ import Registration from '@/components/Registration/Registration';
 import Head from 'next/head';
 import backgroundImageg from "@/public/Back.png"
 import Spinner from '@/components/Spinner/Spinner';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 
 
 function LogInPage() {
     const [isRegistration, setIsRegistration] = useState(true);
     const [loading, setLoading] = useState(false);
+    const userName = Cookies.get('jwtToken');
+    const router = useRouter();
+
+    function pushUser() {
+        // console.log(777)
+        // console.log(userName)
+        if (userName) {
+            router.push('/userpage')
+        }
+    }
 
 
     const toggleMode = () => {
@@ -47,12 +59,13 @@ function LogInPage() {
                         <SingIn props={obj} /> :
                         <Registration props={obj} />}
                     <Image
+                        onClick={pushUser}
                         alt="logo image"
                         src='/logo.png'
                         quality={100}
                         width={146}
                         height={75}
-                        className='logo-image'
+                        className='logo-image singin-logo'
                         priority
                         style={{
                             position: 'absolute',

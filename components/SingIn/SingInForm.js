@@ -56,7 +56,6 @@ function SingInForm({ props }) {
                 Cookies.set('userID', data.id, { expires: currentDate });
                 alert(`Ваша авторизація пройшла успішно! З поверненням, ${data.firstname}`);
                 router.push('/userpage');
-                router.forward('/userpage');
             }
             else if (Errorflag) {
                 setLoading(false);
