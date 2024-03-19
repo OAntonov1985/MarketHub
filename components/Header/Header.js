@@ -18,6 +18,7 @@ function Header({ transparentBackground }) {
     const [headerName, setHeaderName] = useState('');
     const [isVisible, setIsVisible] = useState("quantityOfGoods is-wisible");
     const [isVisibleFavorite, setIsVisibleFavorite] = useState("quantityOfFavorite is-wisible");
+    const [userPath, setUserPath] = useState("/loginpage");
 
     const dispatch = useDispatch();
     const { quantityOfGoods } = useSelector((state) => state.user);
@@ -77,10 +78,12 @@ function Header({ transparentBackground }) {
         if (userName) {
             dispatch(setUserName(userName));
             setHeaderName(<div className='header-user-name'>Привіт, {userName}!</div>);
+            setUserPath("/userpage");
         }
         else if (userName === undefined) {
             dispatch(setUserName(''));
             setHeaderName(null);
+            setUserPath("/loginpage");
         }
     }, [userName]);
 
@@ -138,7 +141,7 @@ function Header({ transparentBackground }) {
             </div>
             <div className='header-icons'>
                 {headerName}
-                <Link href={userName ? `/userpage` : `/loginpage`}>
+                <Link href={userPath}>
                     {/* <Link href={'/userpage'}> */}
                     <Image
                         alt="logo image client"

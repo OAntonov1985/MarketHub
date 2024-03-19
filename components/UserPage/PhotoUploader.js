@@ -8,7 +8,6 @@ function PhotoUploader({ pfotosArray, setPhotosArray }) {
     const dispatch = useDispatch();
 
     const handleFileChange = (event) => {
-
         const arrayIndex = parseInt(event.target.id);
 
         const fileList = event.target.files;
@@ -37,15 +36,28 @@ function PhotoUploader({ pfotosArray, setPhotosArray }) {
             }
         }
         else {
-
             dispatch(setPhotoArrayLength(pfotosArray.length + filesArray.length));
             let newArray = pfotosArray.concat(filesArray);
             newArray = newArray.filter(item => item !== null);
+            if (newArray.length < 4) {
+                while (newArray.length < 4) {
+                    newArray.push(null);
+                }
+            }
             setPhotosArray(newArray);
         }
-
-
     };
+
+    const deletePfoto = (index) => {
+        let idToDelete = +index.target.id;
+        let newArray = pfotosArray.filter((item, index) => index != idToDelete);
+        setPhotosArray(newArray);
+        if (newArray.length < 4) {
+            while (newArray.length < 4) {
+                newArray.push(null);
+            }
+        };
+    }
 
     return (
         <div className='photo-previews-row'>
@@ -65,6 +77,19 @@ function PhotoUploader({ pfotosArray, setPhotosArray }) {
                             src={photo ? URL.createObjectURL(photo) : "/plusininputphoto.svg"}
                             width={100}
                             height={100}
+                        />
+                    </div>
+                    <div className='container-for-cross'
+                        id={index}
+                        onClick={(event) => deletePfoto(event)}                    >
+                        <Image
+                            id={index}
+                            className={'input-photo-delete-image'}
+                            alt='input-photo-delete-image'
+                            src={"/inputcross.svg"}
+                            width={100}
+                            height={100}
+                        // onClick={deletePfoto(index)}
                         />
                     </div>
                 </div>

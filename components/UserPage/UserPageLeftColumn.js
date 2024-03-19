@@ -4,15 +4,14 @@ import LeftColumnOrdersList from './LeftColumnOrdersList';
 import LeftColumnGoodsList from './LeftColumnGoodsList';
 import LeftColumnUserInfo from './LeftColumnUserInfo';
 import LeftColumnUserOrders from './LeftColumnUserOrders';
-import { useState } from 'react';
-import { setCategorieToRender } from '@/slices/userSlice';
+import { useState, useEffect } from 'react';
+import { setCategorieToRender, setPhotoArrayLength } from '@/slices/userSlice';
 
 function UserPageLeftColumn() {
     const { userName } = useSelector((state) => state.user);
     const { categoryToRender } = useSelector((state) => state.user);
-    const [isActiveCategorie, setIsActiveCatogorie] = useState(categoryToRender)
-    // const [isOpenGoods, setIsOpenGoods] = useState(true);
-    // const [isOpenOrders, setIsOpenOrders] = useState(true);
+    const [isActiveCategorie, setIsActiveCatogorie] = useState(categoryToRender);
+    const { pfotoArrayLength } = useSelector((state) => state.user);
 
     const objToSend = { setIsActiveCatogorie, setActiveItem, isActiveCategorie };
 
@@ -23,8 +22,12 @@ function UserPageLeftColumn() {
         dispatch(setCategorieToRender(event));
     }
 
+    useEffect(() => {
+        if (pfotoArrayLength !== "Товари") {
+            dispatch(setPhotoArrayLength(4));
+        }
+    }, [pfotoArrayLength])
 
-    // console.log(categoryToRender)
     return (
         <div className='userPage-left-column'>
             <h4 className={'left-column-title'}>Привіт, {userName}</h4>

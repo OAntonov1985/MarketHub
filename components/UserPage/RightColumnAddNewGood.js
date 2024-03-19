@@ -8,22 +8,35 @@ function RightColumnAddNewGood() {
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState('');
     const [productDescription, setProductDescription] = useState('');
-    // const [pfotosArrayLength, setPfotosArrayLength] = useState(4);
     const { pfotoArrayLength } = useSelector((state) => state.user);
     const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotoArrayLength }, () => null));
 
 
-    const memoizedPhotoUploader = useMemo(() => <PhotoUploader pfotosArray={pfotosArray} setPhotosArray={setPhotosArray} />, [pfotosArray, setPhotosArray]);
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formData = {
-            productName,
-            productPrice,
-            productDescription,
-            pfotosArray
-        };
-        console.log(formData);
+        const testArr = pfotosArray.filter(item => item !== null)
+        if (productName.length <= 4) {
+            alert("Назва товару має бути більше 4 символів")
+        }
+        else if (testArr.length < 4) {
+            alert("Ьінімальна кількість фото має бути 4")
+        }
+        else if (productDescription.length <= 10) {
+            alert("Мінімальна довжина опису товару має бути 10 символів")
+        }
+        else if (productPrice.length == 0 || productPrice == 0) {
+            alert("Введіть корректну вартість товару")
+        }
+        else {
+            const formData = {
+                productName,
+                productPrice,
+                productDescription,
+                pfotosArray
+            };
+            console.log(formData);
+        }
+
     };
 
     return (
@@ -56,7 +69,7 @@ function RightColumnAddNewGood() {
             <label htmlFor="product-photo" className="product-price-photo">
                 Фото
             </label>
-            {memoizedPhotoUploader}
+            <PhotoUploader pfotosArray={pfotosArray} setPhotosArray={setPhotosArray} />
 
             <label htmlFor="product-description" className="product-description-title">
                 Опис товару
