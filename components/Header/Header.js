@@ -7,6 +7,9 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName, setinitialFavorite, setTotalFavorite } from '@/slices/userSlice';
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+
 
 
 
@@ -22,9 +25,18 @@ function Header({ transparentBackground }) {
     const { userFavorite } = useSelector((state) => state.user);
     const { quantityOfFavorite } = useSelector((state) => state.user);
     let { userName } = useSelector((state) => state.user);
-    // console.log(quantityOfFavorite)
 
+    const pathname = usePathname();
+    const router = useRouter();
+    const userNameCookie = userName = Cookies.get('userName');
 
+    useEffect(() => {
+        if (pathname === "/userpage") {
+            if (!userNameCookie) {
+                router.push('/loginpage');
+            }
+        }
+    }, [userNameCookie]);
 
     useEffect(() => {
 
@@ -70,7 +82,6 @@ function Header({ transparentBackground }) {
             dispatch(setUserName(''));
             setHeaderName(null);
         }
-
     }, [userName]);
 
 
@@ -89,6 +100,17 @@ function Header({ transparentBackground }) {
             setIsVisibleFavorite("quantityOfFavorite");
         }
     }, [quantityOfGoods, quantityOfFavorite])
+
+    // useEffect(() => {
+    //     if (userName) {
+    //         dispatch(setUserName(userName));
+    //         setHeaderName(<div className='header-user-name'>Привіт, {userName}!</div>);
+    //     }
+    //     else if (userName === undefined) {
+    //         dispatch(setUserName(''));
+    //         setHeaderName(null);
+    //     }
+    // }, [userName]);
 
 
     return (
@@ -125,8 +147,8 @@ function Header({ transparentBackground }) {
             </div>
             <div className='header-icons'>
                 {headerName}
-                {/* <Link href={userName ? `/userpage` : `/loginpage`}> */}
-                <Link href={'/userpage/'}>
+                <Link href={userName ? `/userpage` : `/loginpage`}>
+                    {/* <Link href={'/userpage/'}> */}
                     <Image
                         alt="logo image client"
                         src='/clienticon.svg'
@@ -170,6 +192,17 @@ function Header({ transparentBackground }) {
         </div>
     );
 };
+export async function getServerSideProps({ req }) {
+    const requestURL = req.url;
+    console.log('Запрошенный URL:', requestURL);
 
+    // Другая логика...
+
+    return {
+        props: {
+            // данные для передачи в компонент
+        },
+    };
+}
 
 export default React.memo(Header)
