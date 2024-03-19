@@ -30,13 +30,13 @@ function Header({ transparentBackground }) {
     const router = useRouter();
     const userNameCookie = userName = Cookies.get('userName');
 
-    useEffect(() => {
-        if (pathname === "/userpage") {
-            if (!userNameCookie) {
-                router.push('/loginpage');
-            }
-        }
-    }, [userNameCookie]);
+    // useEffect(() => {
+    //     if (pathname === "/userpage") {
+    //         if (!userNameCookie) {
+    //             router.push('/loginpage');
+    //         }
+    //     }
+    // }, [userNameCookie]);
 
     useEffect(() => {
 
@@ -147,8 +147,8 @@ function Header({ transparentBackground }) {
             </div>
             <div className='header-icons'>
                 {headerName}
-                <Link href={userName ? `/userpage` : `/loginpage`}>
-                    {/* <Link href={'/userpage/'}> */}
+                {/* <Link href={userName ? `/userpage` : `/loginpage`}> */}
+                <Link href={'/userpage'}>
                     <Image
                         alt="logo image client"
                         src='/clienticon.svg'
