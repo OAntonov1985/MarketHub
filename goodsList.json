@@ -1,0 +1,27 @@
+[
+    {
+        "order_number": "80234245",
+        "order_date": "13.03.204",
+        "good_id": "U0746366",
+        "order_goods_title": "НОУТБУК ASUS X1502ZA-BQ641 (90NB0VX1-M00V20)",
+        "order_goods_pfoto": "https://brain.com.ua/static/images/prod_img/6/6/U0746366_big.jpg",
+        "order_client_info": {
+            "name": "Taras",
+            "surname": "Shevchenko",
+            "phone": "380631234567",
+            "adress": "Стануть вам поперек горла, москалі ї**чі  Bankova str. 9"
+        },
+        "order_total_price": 35999,
+        "order_status": "Нове замовлення",
+        "buyer_id": 1002,
+        "seller_id": 0,
+        "category_details": {
+            "id": "100",
+            "name": "Комп’ютерна техніка"
+        },
+        "sub_category_detail": {
+            "id": "130",
+            "name": "Ноутбуки"
+        }
+    }
+]

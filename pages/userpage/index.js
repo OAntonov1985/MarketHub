@@ -1,16 +1,15 @@
 "use client";
 import Head from "next/head";
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/router';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import UserPageLeftColumn from '@/components/UserPage/UserPageLeftColumn';
 import UserPageRightColumn from '@/components/UserPage/UserPageRightColumn';
+import Spinner from '@/components/Spinner/Spinner';
+import { useSelector } from 'react-redux';
 
 
 export default function UserPage() {
-
-
+    const { loading } = useSelector((state) => state.user);
 
     return (
         <div className='userPage'>
@@ -21,6 +20,7 @@ export default function UserPage() {
             </Head>
             <Header />
             <div className='userPage-content'>
+                {loading ? <Spinner /> : null}
                 <UserPageLeftColumn />
                 <UserPageRightColumn />
             </div>

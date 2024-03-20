@@ -1,10 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveSubItemInGood } from '@/slices/userSlice';
 
 function LeftColumnGoodsList({ objToSend }) {
-    const { isOpenGoods, setIsActiveCatogorie, setActiveItem, isActiveCategorie } = objToSend;
-    const [activeItemGoods, setActiveItemGoods] = useState("Всі товари");
+    const { setIsActiveCatogorie, setActiveItem, isActiveCategorie } = objToSend;
+    const dispatch = useDispatch();
+    const { activeSubItemInGood } = useSelector((state) => state.user);
 
     return (
         <div className='left-column-item'>
@@ -26,12 +29,12 @@ function LeftColumnGoodsList({ objToSend }) {
                 </div>
             </div>
             <ul className={`left-column-goods-list ${isActiveCategorie === "Товари" ? "list-open-goods" : ""}`}>
-                <li className={`left-column-goods-li ${activeItemGoods === "Всі товари" ? "active-color" : ""}`} id="Всі товари"
-                    onClick={(event) => setActiveItemGoods(event.target.id)}>
+                <li className={`left-column-goods-li ${activeSubItemInGood === "Всі товари" ? "active-color" : ""}`} id="Всі товари"
+                    onClick={(event) => dispatch(setActiveSubItemInGood(event.target.id))}>
                     <div className='goods-li-image-container'>
                         <Image
                             alt="icon of cirkle"
-                            src={activeItemGoods === "Всі товари" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
+                            src={activeSubItemInGood === "Всі товари" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
                             quality={100}
                             fill
                             sizes="(max-width: 100%)"
@@ -42,11 +45,11 @@ function LeftColumnGoodsList({ objToSend }) {
                         />
                     </div>
                     Всі товари</li>
-                <li className={`left-column-goods-li ${activeItemGoods === "Активні товари" ? "active-color" : ""}`} id="Активні товари" onClick={(event) => setActiveItemGoods(event.target.id)}>
+                <li className={`left-column-goods-li ${activeSubItemInGood === "Активні товари" ? "active-color" : ""}`} id="Активні товари" onClick={(event) => dispatch(setActiveSubItemInGood(event.target.id))}>
                     <div className='goods-li-image-container'>
                         <Image
                             alt="icon of cirkle"
-                            src={activeItemGoods === "Активні товари" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
+                            src={activeSubItemInGood === "Активні товари" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
                             quality={100}
                             fill
                             sizes="(max-width: 100%)"
@@ -57,11 +60,11 @@ function LeftColumnGoodsList({ objToSend }) {
                         />
                     </div>
                     Активні товари</li>
-                <li className={`left-column-goods-li ${activeItemGoods === "Неактивні товари" ? "active-color" : ""}`} id="Неактивні товари" onClick={(event) => setActiveItemGoods(event.target.id)}>
+                <li className={`left-column-goods-li ${activeSubItemInGood === "Неактивні товари" ? "active-color" : ""}`} id="Неактивні товари" onClick={(event) => dispatch(setActiveSubItemInGood(event.target.id))}>
                     <div className='goods-li-image-container'>
                         <Image
                             alt="icon of cirkle"
-                            src={activeItemGoods === "Неактивні товари" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
+                            src={activeSubItemInGood === "Неактивні товари" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
                             quality={100}
                             fill
                             sizes="(max-width: 100%)"
@@ -72,11 +75,11 @@ function LeftColumnGoodsList({ objToSend }) {
                         />
                     </div>
                     Неактивні товари</li>
-                <li className={`left-column-goods-li ${activeItemGoods === "Додати товар" ? "active-color" : ""}`} id="Додати товар" onClick={(event) => setActiveItemGoods(event.target.id)}>
+                <li className={`left-column-goods-li ${activeSubItemInGood === "Додати товар" ? "active-color" : ""}`} id="Додати товар" onClick={(event) => dispatch(setActiveSubItemInGood(event.target.id))}>
                     <div className='goods-li-image-container'>
                         <Image
                             alt="icon of cirkle"
-                            src={activeItemGoods === "Додати товар" ? "/crossaddordergreen.svg" : "/crossaddorder.svg"}
+                            src={activeSubItemInGood === "Додати товар" ? "/crossaddordergreen.svg" : "/crossaddorder.svg"}
                             quality={100}
                             fill
                             sizes="(max-width: 100%)"

@@ -2,9 +2,6 @@ import { MaketHubURL } from "../../components/Constants";
 
 export default async function GetFilteredData(id, sortIndex, activePage, min, max, brandsToFilter, isAvailabale, subCategoryName) {
     let result;
-    // console.log(id)
-    // console.log(isAvailabale)
-    // console.log(subCategoryName)
     try {
         const params = new URLSearchParams();
         if (sortIndex === 1 || sortIndex === -1) params.append('sortIndex', sortIndex);
@@ -21,7 +18,7 @@ export default async function GetFilteredData(id, sortIndex, activePage, min, ma
             });
         }
         if (isAvailabale && isAvailabale === true) params.append('isAvailable', true);
-        console.log(MaketHubURL + `goods/categories/${id}` + '?' + params.toString())
+        // console.log(MaketHubURL + `goods/categories/${id}` + '?' + params.toString())
         const response = await fetch(MaketHubURL + `goods/${subCategoryName ? "subcategories" : "categories"}/${id}` + '?' + params.toString(),
             {
                 method: 'GET',

@@ -1,10 +1,16 @@
 import { MaketHubURL } from "../../components/Constants";
 
-export default async function GetdBrands(id, subCategoryName) {
+export default async function GetusersGoodsToSale(id, isActive) {
     let result;
 
     try {
-        const response = await fetch(MaketHubURL + `goods/${subCategoryName ? "subcaregoriebrand" : "caregoriebrand"}/${id}`, {
+        const params = new URLSearchParams();
+        if (typeof isActive !== 'undefined') {
+            params.append('isActive', isActive);
+        }
+        // console.log(MaketHubURL + `users/usergoods/${id}/0/12` + (params.toString() !== '' ? '?' + params.toString() : ''));
+
+        const response = await fetch(MaketHubURL + `users/usergoods/${id}/0/12` + (params.toString() !== '' ? '?' + params.toString() : ''), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

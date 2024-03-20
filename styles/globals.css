@@ -1350,12 +1350,12 @@ h2 {
   align-items: center;
   gap: 0.4rem;
   width: 100%;
-  margin-bottom: 14rem;
   font-size: 2.2rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   cursor: pointer;
+  padding-bottom: 2.4rem;
 }
 
 .arrow-container {
@@ -1956,7 +1956,8 @@ h2 {
   width: 71.4%;
   height: 69.4rem;
   border: 1px solid #34C3DD;
-  padding: 2.4rem;
+  padding: 2.4rem 2.4rem 0 2.4rem;
+  overflow-y: auto;
 }
 
 .user-info-form {
@@ -2137,13 +2138,10 @@ h2 {
 .right-culumn-user-orders-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   height: 100%;
   font-size: 1.8rem;
   color: #012767;
-}
-
-.right-culumn-user-orders-table {
-  height: 100%;
 }
 
 .selector-bottom {
@@ -2156,18 +2154,6 @@ h2 {
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-}
-
-.order-info-date {
-  width: 11rem;
-}
-
-.order-info-buyer, .order-info-order-status, .order-info-amount {
-  width: 18rem;
-}
-
-.order-info-goods {
-  width: 21rem;
 }
 
 .order-date {
@@ -2209,4 +2195,22 @@ h2 {
 
 .order-title:visited {
   color: #012767;
+}
+
+.order_status {
+  position: relative;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: minmax(10.7%, auto) minmax(20.4%, auto) minmax(20.4%, auto) minmax(15%, auto) minmax(15%, auto);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.grid-item {
+  text-align: left;
+  align-self: start;
+  margin-bottom: 2rem;
+  overflow-wrap: break-word;
 }/*# sourceMappingURL=globals.css.map */
