@@ -1,6 +1,9 @@
-import React, { useState, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PhotoUploader from './PhotoUploader';
+import GetGoodByID from '@/pages/api/GetGoodByID';
+import { setActiveSpinner, setGoodToEdit } from '@/slices/userSlice';
+
 
 
 
@@ -9,8 +12,33 @@ function RightColumnAddNewGood() {
     const [productPrice, setProductPrice] = useState('');
     const [productDescription, setProductDescription] = useState('');
     const { pfotoArrayLength } = useSelector((state) => state.user);
+    const { goodToEdit } = useSelector((state) => state.user);
     const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotoArrayLength }, () => null));
+    const dispatch = useDispatch();
+    console.log(goodToEdit)
 
+
+    const fetchData = async () => {
+        dispatch(setActiveSpinner(true));
+        try {
+            const result = await GetGoodByID(goodToEdit);
+            console.log(result.result)
+            setProductName(result.result.title);
+            setProductPrice(result.result.price);
+            setProductDescription(result.result.description);
+            setPhotosArray(result.result.images)
+            dispatch(setActiveSpinner(false));
+            dispatch(setGoodToEdit(''));
+        } catch (error) {
+            alert('Упс.... Щось пішло не так. зверніться до розробників');
+        }
+    };
+
+    useEffect(() => {
+        if (goodToEdit) {
+            fetchData();
+        };
+    }, [goodToEdit])
 
     const handleSubmit = (e) => {
         e.preventDefault();

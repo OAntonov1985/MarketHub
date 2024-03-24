@@ -1,16 +1,10 @@
 import { MaketHubURL } from "../../components/Constants";
 
-export default async function GetusersGoodsToSale(id, activePage, isActive) {
+export default async function GetGoodByID(id) {
     let result;
 
     try {
-        const params = new URLSearchParams();
-        if (typeof isActive !== 'undefined') {
-            params.append('isActive', isActive);
-        }
-        // console.log(MaketHubURL + `users/usergoods/${id}/0/12` + (params.toString() !== '' ? '?' + params.toString() : ''));
-
-        const response = await fetch(MaketHubURL + `users/usergoods/${id}/${activePage}/6` + (params.toString() !== '' ? '?' + params.toString() : ''), {
+        const response = await fetch(MaketHubURL + `goods/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

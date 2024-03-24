@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
 import Image from 'next/image';
 import Link from 'next/link';
-import PajeIndexserSmall from './PajeIndexserSmall';
+import PageIndexserSmall from './PageIndexserSmall';
 import GetUserPurchases from '@/pages/api/GetUserPurchases';
 import { useDispatch } from 'react-redux';
 import { setActiveSpinner } from '@/slices/userSlice';
@@ -41,7 +41,6 @@ function RightColumnUserOrders() {
                 <div className='order-info-buyer grid-item'>Дані про продавця</div>
                 <div className='order-info-amount grid-item'>Сума замовлення</div>
                 <div className='order-info-order-status grid-item'>Статус замовлення</div>
-
                 {userPurchases && userPurchases.map((item, index) => {
                     let classList = 'order-info-order-status';
                     switch (item.order_status) {
@@ -96,7 +95,7 @@ function RightColumnUserOrders() {
                     );
                 })}
             </div>
-            <PajeIndexserSmall totalUserPurchases={totalUserPurchases} setActivePage={setActivePage} activePage={activePage} />
+            <PageIndexserSmall total={totalUserPurchases} setActivePage={setActivePage} activePage={activePage} />
         </div>
     );
 

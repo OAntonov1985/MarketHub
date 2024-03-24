@@ -1,0 +1,59 @@
+@import "_variables.sass"
+
+.right-culumn-user-list-to-render-container 
+    display: flex
+    flex-direction: column   
+    justify-content: space-between
+    height: 100%
+    font-size: 1.8rem
+    color: $color-text-main
+    overflow: hidden
+
+.grid-container-users-goods
+    display: grid      
+    grid-template-columns: minmax(4.7%, auto) minmax(10.4%, auto) minmax(35.4%, auto) minmax(10%, auto) minmax(2%, auto)
+    gap: 1rem
+    margin-bottom: 2rem
+
+.user-good-description
+    overflow: hidden
+    text-overflow: ellipsis
+    // white-space: nowrap
+    display: -webkit-box
+    -webkit-line-clamp: 3
+    -webkit-box-orient: vertical
+
+.order-info-points-container
+    display: flex
+    flex-direction: column
+    gap: .3rem
+    align-items: center
+    justify-content: center
+    cursor: pointer
+    width: 2.4rem
+    height: 2.4rem
+    position: relative
+
+.order-info-points
+    position: relative
+    width: .45rem
+    height: .45rem
+    z-index: -2
+
+.edit-menu
+    position: absolute
+    display: none
+    width: 14.3rem
+    height: 9rem
+    padding: .8rem 1.2rem
+    border: 1px solid $border-color-secondary
+    border-radius: 4px
+    top: 1px
+    right: 22px
+    z-index: 2
+    background-color: $color-white
+    > :nth-child(-n+2)
+        margin-bottom: 4px
+
+.show-edit-menu
+    display: block

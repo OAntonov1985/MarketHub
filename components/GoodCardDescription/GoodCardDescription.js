@@ -23,16 +23,18 @@ function GoodCardDescription({ props, breadCrumpData }) {
     const formattedDescription = description.map(sentence => `<p class="description_par">${sentence}</p>`).join('\n');
 
     const addGoodToBasket = () => {
-        dispatch(setUserBasket(
-            {
-                id: id,
-                title: title,
-                price: price,
-                thumbnail: thumbnail,
-                number: 1,
-                totalPrice: price
-            }
-        ));
+        if (available) {
+            dispatch(setUserBasket(
+                {
+                    id: id,
+                    title: title,
+                    price: price,
+                    thumbnail: thumbnail,
+                    number: 1,
+                    totalPrice: price
+                }
+            ));
+        }
     };
 
     function addGoodToFavorite() {
@@ -53,7 +55,7 @@ function GoodCardDescription({ props, breadCrumpData }) {
             <h4 className='good-card-title'>{title}</h4>
             <div className='good-card-tech-info'>
                 <p className="good-card-number">Код товару: {id}</p>
-                <p className='top-sellers-availability'>Є в  наявності</p>
+                <p className={`top-sellers-availability ${available ? "" : "sail-prise"}`}>{available ? "Є в  наявності" : "Немає в наявності"}</p>
             </div>
             <div className="good-card-description">
                 <p className='description-title'>Опис товару</p>

@@ -6,7 +6,7 @@ import { setPhotoArrayLength } from '@/slices/userSlice';
 function PhotoUploader({ pfotosArray, setPhotosArray }) {
 
     const dispatch = useDispatch();
-
+    // console.log(pfotosArray)
     const handleFileChange = (event) => {
         const arrayIndex = parseInt(event.target.id);
 
@@ -74,7 +74,7 @@ function PhotoUploader({ pfotosArray, setPhotosArray }) {
                         <Image
                             className={`input-photo-bg-image ${photo ? "input-photo-bigger" : ""}`}
                             alt='input-photo-bg-inage'
-                            src={photo ? URL.createObjectURL(photo) : "/plusininputphoto.svg"}
+                            src={photo instanceof File ? URL.createObjectURL(photo) : (photo ? photo : "/plusininputphoto.svg")}
                             width={100}
                             height={100}
                         />

@@ -3,14 +3,14 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 
-function PajeIndexserSmall({ totalUserPurchases, setActivePage, activePage }) {
+function PageIndexserSmall({ total, setActivePage, activePage }) {
 
     const [startNumberToArray, setStartNumberToArray] = useState(1);
     // const [activePage, setActivePage] = useState(1);
-    const maxPageRenderInString = Math.ceil(totalUserPurchases / 6); // встановлення кількості айтемів для відображення
+    const maxPageRenderInString = Math.ceil(total / 6); // встановлення кількості айтемів для відображення
 
     const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
-    const lastPage = Math.ceil(totalUserPurchases / 6);
+    const lastPage = Math.ceil(total / 6);
 
     const changeIndex = (event) => {
         if (event.target.id === "minus-one") {
@@ -93,4 +93,4 @@ function PajeIndexserSmall({ totalUserPurchases, setActivePage, activePage }) {
     )
 }
 
-export default React.memo(PajeIndexserSmall);
+export default React.memo(PageIndexserSmall);
