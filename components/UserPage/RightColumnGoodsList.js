@@ -50,7 +50,7 @@ function RightColumnGoodsList() {
     async function changeGoodAvability(event, isAvalable) {
         dispatch(setActiveSpinner(true));
         try {
-            const result = await SetProductAvability(event.target.id);
+            const result = await SetProductAvability(event.target.id, !isAvalable);
             fetchData();
             dispatch(setActiveSpinner(false));
             alert(result.result.message);
@@ -60,8 +60,6 @@ function RightColumnGoodsList() {
     };
 
     async function deleteGood(event, title) {
-        // console.log(event.target.id)
-        // console.log(title)
         let isDeletingGood = confirm(`Ви дійсно бажаєте видалити ${title}`);
         console.log(isDeletingGood)
         if (isDeletingGood) {
@@ -75,7 +73,6 @@ function RightColumnGoodsList() {
                 alert('Упс.... Щось пішло не так. зверніться до розробників');
             }
         }
-
     };
 
     return (
