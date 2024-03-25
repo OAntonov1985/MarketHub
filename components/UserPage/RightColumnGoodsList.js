@@ -5,6 +5,8 @@ import RightColumnUsersGoodsListToRender from './RightColumnUsersGoodsListToRend
 import GetusersGoodsToSale from '@/pages/api/GetusersGoodsToSale';
 import { useDispatch } from 'react-redux';
 import { setActiveSpinner } from '@/slices/userSlice';
+import SetProductAvability from '@/pages/api/SetProductAvability';
+import DeleteGood from '@/pages/api/DeleteGood';
 
 
 function RightColumnGoodsList() {
@@ -14,6 +16,8 @@ function RightColumnGoodsList() {
     const [activePage, setActivePage] = useState(1);
     const [activeItem, setActiveItem] = useState(null);
     const dispatch = useDispatch();
+
+    const objectToSend = { userGoodsToSale, totalUserGoodsToSale, setActivePage, activePage, setActiveItem, activeItem, changeGoodAvability, deleteGood };
 
     // console.log(userGoodsToSale)
     const fetchData = async () => {
@@ -28,8 +32,12 @@ function RightColumnGoodsList() {
             alert('Упс.... Щось пішло не так. зверніться до розробників');
         }
     };
+
+
     useEffect(() => {
-        if (activeSubItemInGood === "Всі товари" || activeSubItemInGood === "Активні товари" || activeSubItemInGood === "Неактивні товари") {
+        if (activeSubItemInGood === "Всі товари" ||
+            activeSubItemInGood === "Активні товари" ||
+            activeSubItemInGood === "Неактивні товари") {
             fetchData();
         }
     }, [activeSubItemInGood, activePage]);
@@ -39,11 +47,42 @@ function RightColumnGoodsList() {
         setActiveItem(null);
     }, [activeSubItemInGood]);
 
+    async function changeGoodAvability(event, isAvalable) {
+        dispatch(setActiveSpinner(true));
+        try {
+            const result = await SetProductAvability(event.target.id);
+            fetchData();
+            dispatch(setActiveSpinner(false));
+            alert(result.result.message);
+        } catch (error) {
+            alert('Упс.... Щось пішло не так. зверніться до розробників');
+        }
+    };
+
+    async function deleteGood(event, title) {
+        // console.log(event.target.id)
+        // console.log(title)
+        let isDeletingGood = confirm(`Ви дійсно бажаєте видалити ${title}`);
+        console.log(isDeletingGood)
+        if (isDeletingGood) {
+            dispatch(setActiveSpinner(true));
+            try {
+                const result = await DeleteGood(event.target.id);
+                fetchData();
+                dispatch(setActiveSpinner(false));
+                alert(result.result.message);
+            } catch (error) {
+                alert('Упс.... Щось пішло не так. зверніться до розробників');
+            }
+        }
+
+    };
+
     return (
         <>
             {activeSubItemInGood === "Додати товар" ? < RightColumnAddNewGood /> : < RightColumnUsersGoodsListToRender
-                userGoodsToSale={userGoodsToSale} totalUserGoodsToSale={totalUserGoodsToSale}
-                setActivePage={setActivePage} activePage={activePage} setActiveItem={setActiveItem} activeItem={activeItem} />}
+                objectToSend={objectToSend}
+            />}
         </>
     )
 }

@@ -13,6 +13,7 @@ export default function UserPage() {
 
     return (
         <div className='userPage'>
+            {loading ? <Spinner /> : null}
             <Head>
                 <title>MarketHub - знайденться все!</title>
                 <link rel="icon" href="/frame380.png" sizes="any" />
@@ -20,7 +21,6 @@ export default function UserPage() {
             </Head>
             <Header />
             <div className='userPage-content'>
-                {loading ? <Spinner /> : null}
                 <UserPageLeftColumn />
                 <UserPageRightColumn />
             </div>

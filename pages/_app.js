@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 
 
 
+
 const ubuntu = Ubuntu({
     subsets: ['cyrillic'],
     weight: ["300", "400", "500", '700'],

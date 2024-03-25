@@ -7,7 +7,9 @@ import formattedPrice from '../HelperFunctions/FormattedPrice';
 import { useDispatch } from 'react-redux';
 import { setActiveSubItemInGood, setGoodToEdit } from '@/slices/userSlice';
 
-function RightColumnUsersGoodsListToRender({ totalUserGoodsToSale, userGoodsToSale, activePage, setActivePage, activeItem, setActiveItem }) {
+
+function RightColumnUsersGoodsListToRender({ objectToSend }) {
+    const { userGoodsToSale, totalUserGoodsToSale, setActivePage, activePage, setActiveItem, activeItem, changeGoodAvability, deleteGood } = objectToSend;
 
     const [isVisibleEditMenu, setIsVisibleEditMenu] = useState(false);
     const dispatch = useDispatch();
@@ -15,7 +17,6 @@ function RightColumnUsersGoodsListToRender({ totalUserGoodsToSale, userGoodsToSa
 
     const toggleEditMenu = (itemId) => {
         const editMenu = document.getElementById(itemId);
-
         if (editMenu) {
             editMenu.classList.toggle('show-edit-menu');
         }
@@ -23,10 +24,11 @@ function RightColumnUsersGoodsListToRender({ totalUserGoodsToSale, userGoodsToSa
     };
 
     function pushToEditGood(event) {
-        // console.log(event.target.id);
         dispatch(setActiveSubItemInGood("Додати товар"));
         dispatch(setGoodToEdit(event.target.id));
-    }
+    };
+
+
 
 
 
@@ -109,9 +111,19 @@ function RightColumnUsersGoodsListToRender({ totalUserGoodsToSale, userGoodsToSa
                                     />
                                 </div>
                                 <div className={`edit-menu ${activeItem === item.id ? "show-edit-menu" : ""}`} id={item.id}>
-                                    <div className={isVisibleEditMenu ? "visible" : "hidden"}>{item.available === true ? "Деактивувати" : "Активувати"}</div>
-                                    <div className={isVisibleEditMenu ? "visible" : "hidden"} id={item.id} onClick={(event) => pushToEditGood(event)}>Редагувати</div>
-                                    <div className={isVisibleEditMenu ? "visible" : "hidden"}>Видалити</div>
+                                    <div className={isVisibleEditMenu ? "visible" : "hidden"}
+                                        id={item.id}
+                                        onClick={(event) => changeGoodAvability(event, item.available)}>
+                                        {item.available === true ? "Деактивувати" : "Активувати"}
+                                    </div>
+                                    <div className={isVisibleEditMenu ? "visible" : "hidden"}
+                                        id={item.id}
+                                        onClick={(event) => pushToEditGood(event)}>
+                                        Редагувати</div>
+                                    <div className={isVisibleEditMenu ? "visible" : "hidden"}
+                                        id={item.id}
+                                        onClick={(event) => deleteGood(event, item.title)}
+                                    >Видалити</div>
                                 </div>
                             </div>
                         </React.Fragment>
