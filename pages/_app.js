@@ -3,6 +3,8 @@ import { Ubuntu, Poppins } from 'next/font/google';
 import React from 'react';
 import { store } from "../store/store";
 import { Provider } from 'react-redux';
+import Spinner from '@/components/Spinner/Spinner';
+
 
 
 
@@ -18,6 +20,7 @@ const poppins = Poppins({
     weight: ["300", "400", "500", '700'],
 });
 function MyApp({ Component, pageProps }) {
+
     return (
         <>
             <Provider store={store}>

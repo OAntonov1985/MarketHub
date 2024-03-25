@@ -15,7 +15,9 @@ function RightColumnAddNewGood() {
     const { goodToEdit } = useSelector((state) => state.user);
     const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotoArrayLength }, () => null));
     const dispatch = useDispatch();
-    console.log(goodToEdit)
+    // console.log(productDescription.length)
+    // console.log(productDescription.join('').length)
+
 
 
     const fetchData = async () => {
@@ -47,9 +49,9 @@ function RightColumnAddNewGood() {
             alert("Назва товару має бути більше 4 символів")
         }
         else if (testArr.length < 4) {
-            alert("Ьінімальна кількість фото має бути 4")
+            alert("Мінімальна кількість фото має бути 4")
         }
-        else if (productDescription.length <= 10) {
+        else if (productDescription.length <= 3) {
             alert("Мінімальна довжина опису товару має бути 10 символів")
         }
         else if (productPrice.length == 0 || productPrice == 0) {
@@ -59,12 +61,11 @@ function RightColumnAddNewGood() {
             const formData = {
                 productName,
                 productPrice,
-                productDescription,
+                productDescription: productDescription.split('.'),
                 pfotosArray
             };
             console.log(formData);
         }
-
     };
 
     return (
@@ -73,25 +74,33 @@ function RightColumnAddNewGood() {
                 Назва товару
             </label>
             <input
+                maxLength={50}
                 name="product-name"
                 id="product-name"
                 className="product-name-form-input"
                 placeholder="Введіть назву товару"
                 value={productName}
-                onChange={(e) => setProductName(e.target.value)}
+                onChange={(event) => setProductName(event.target.value)}
             />
 
             <label htmlFor="product-price" className="product-price-title">
                 Ціна товару
             </label>
             <input
+                maxLength={5}
+                minength={0}
                 name="product-price"
                 id="product-price"
                 className="product-price-form-input"
-                type="number"
+                type="text"
                 placeholder="Введіть ціну товару"
                 value={productPrice}
-                onChange={(e) => setProductPrice(e.target.value)}
+                onChange={(event) => {
+                    const newValue = event.target.value;
+                    if (!(newValue.length === 1 && newValue[0] === '0') && (!isNaN(newValue) || newValue === '')) {
+                        setProductPrice(newValue);
+                    }
+                }}
             />
 
             <label htmlFor="product-photo" className="product-price-photo">
@@ -103,6 +112,7 @@ function RightColumnAddNewGood() {
                 Опис товару
             </label>
             <textarea
+                maxLength={1500}
                 name="product-description"
                 id="product-description"
                 className="product-description-form-input"

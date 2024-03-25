@@ -24,7 +24,7 @@ body {
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
-  min-height: 100vh;
+  min-height: 100%;
   background: #FBFBFB;
   overflow-x: hidden;
 }
@@ -39,7 +39,9 @@ a:visited {
 }
 
 #__next {
-  min-height: 100vh;
+  min-height: 100%;
+  min-width: 100%;
+  position: relative;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -186,6 +188,7 @@ h2 {
 .main {
   max-width: 192rem;
   margin: 0 auto;
+  min-height: 100%;
 }
 
 .main-content {
@@ -634,14 +637,15 @@ h2 {
 }
 
 .spinner {
+  margin: 0 auto;
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   background-color: black;
   opacity: 0.4;
   z-index: 4;
   min-width: 100vw;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1867,7 +1871,6 @@ h2 {
   min-height: 100%;
   max-width: 192rem;
   margin: 0 auto;
-  position: relative;
 }
 
 .userPage-content {
@@ -1878,7 +1881,7 @@ h2 {
 }
 
 .userPage-left-column {
-  width: 26.9%;
+  width: 20%;
   height: 69.4rem;
   padding: 2.4rem;
   color: #FBFBFB;
@@ -1956,7 +1959,7 @@ h2 {
 }
 
 .userPage-right-column {
-  width: 71.4%;
+  width: 78.3%;
   height: 69.4rem;
   border: 1px solid #34C3DD;
   padding: 2.4rem 2.4rem 0 2.4rem;
@@ -2121,6 +2124,7 @@ h2 {
   font-size: 1.6rem;
   color: #012767;
   outline: 1px solid #012767;
+  resize: none;
 }
 
 .button-container {
@@ -2183,17 +2187,19 @@ h2 {
 }
 
 .good-photo {
-  width: 60px;
-  height: 60px;
-  border-radius: 4px;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 0.4rem;
   position: relative;
-  flex: 0 0 60px;
+  flex: 0 0 6rem;
   cursor: pointer;
 }
 
 .order-title {
   cursor: pointer;
   color: #012767;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .order-title:visited {
