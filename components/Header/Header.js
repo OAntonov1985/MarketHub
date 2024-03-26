@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName, setinitialFavorite, setTotalFavorite } from '@/slices/userSlice';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import GetSearchResult from '@/pages/api/GetSearchResult';
 
 
 
@@ -19,6 +20,7 @@ function Header({ transparentBackground }) {
     const [isVisible, setIsVisible] = useState("quantityOfGoods is-wisible");
     const [isVisibleFavorite, setIsVisibleFavorite] = useState("quantityOfFavorite is-wisible");
     const [userPath, setUserPath] = useState("/loginpage");
+    const [searchText, setSearchText] = useState("");
 
     const dispatch = useDispatch();
     const { quantityOfGoods } = useSelector((state) => state.user);
@@ -105,6 +107,32 @@ function Header({ transparentBackground }) {
     }, [quantityOfGoods, quantityOfFavorite])
 
 
+    // const fetchData = async () => {
+    //     // dispatch(setActiveSpinner(true));
+    //     try {
+    //         const result = await GetusersGoodsToSale(searchText);
+    //         console.log(result)
+    //         // setUserGoodsToSale(result.result.data);
+    //         // setTotalUserGoodsToSale(result.result.total);
+    //         // dispatch(setActiveSpinner(false));
+    //     } catch (error) {
+    //         alert('Упс.... Щось пішло не так. зверніться до розробників');
+    //     }
+    // };
+
+    async function searchingFunction(event) {
+        setSearchText(event.target.value);
+        // console.log(event.target.value)
+        try {
+            const result = await GetSearchResult(event.target.value);
+            console.log(result)
+            // setUserGoodsToSale(result.result.data);
+            // setTotalUserGoodsToSale(result.result.total);
+            // dispatch(setActiveSpinner(false));
+        } catch (error) {
+            alert('Упс.... Щось пішло не так. зверніться до розробників');
+        }
+    }
 
 
     return (
@@ -126,6 +154,8 @@ function Header({ transparentBackground }) {
                 <input
                     type="text"
                     className='header-input-field'
+                    value={searchText}
+                    onChange={searchingFunction}
                     placeholder='Я шукаю ...'
                 />
                 <Image
@@ -142,7 +172,6 @@ function Header({ transparentBackground }) {
             <div className='header-icons'>
                 {headerName}
                 <Link href={userPath}>
-                    {/* <Link href={'/userpage'}> */}
                     <Image
                         alt="logo image client"
                         src='/clienticon.svg'
@@ -181,22 +210,9 @@ function Header({ transparentBackground }) {
                     />
                 </Link>
                 <div className={isVisibleFavorite}>{quantityOfFavorite}</div>
-
             </div>
         </div>
     );
 };
-export async function getServerSideProps({ req }) {
-    const requestURL = req.url;
-    console.log('Запрошенный URL:', requestURL);
-
-    // Другая логика...
-
-    return {
-        props: {
-            // данные для передачи в компонент
-        },
-    };
-}
 
 export default React.memo(Header)
