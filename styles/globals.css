@@ -859,9 +859,12 @@ h2 {
   display: flex;
   flex-direction: column;
   max-width: 192rem;
+  min-height: 100vh;
 }
 
 .category-main-content {
+  display: flex;
+  flex-direction: column;
   margin: 4.1rem 9rem;
   flex: 1 1 auto;
 }
@@ -883,6 +886,14 @@ h2 {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.empty-categorie {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
 }
 
 .good-card {
@@ -1440,6 +1451,7 @@ h2 {
   font-weight: 500;
   padding: 1.1rem 2.7rem;
   border-radius: 0.8rem;
+  cursor: pointer;
 }
 
 .good-item-title {
@@ -1816,6 +1828,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 775;
 }
 
 .modal-content {
@@ -1848,6 +1861,31 @@ h2 {
   cursor: pointer;
 }
 
+.in-userpage {
+  width: 67.3rem;
+  height: 18rem;
+  background-color: #FBFBFB;
+  border: 1px solid #012767;
+  border-radius: 0px;
+}
+
+.modal-in-userpage-title {
+  color: #414141;
+  font-size: 3.2rem;
+  font-weight: normal;
+  margin-bottom: 2.6rem;
+}
+
+.modal-content-button-in-userpage {
+  padding: 0.8rem 2rem;
+  font-size: 1.8rem;
+  color: #012767;
+  border: 1px solid #76CA66;
+  border-radius: 4px;
+  background-color: #FBFBFB;
+  cursor: pointer;
+}
+
 .favorite-conteiner {
   display: flex;
   flex-direction: column;
@@ -1857,12 +1895,33 @@ h2 {
 }
 
 .favorite-content {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 100%;
+  height: 100%;
   margin: 4rem 9rem 12.4rem 9rem;
 }
 
 .item-favorite {
-  width: 100%;
+  height: 100%;
+}
+
+.empty-favorite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 100%;
+  height: 100%;
+}
+
+.empty-favorite-button {
+  padding: 1.2rem 3.8rem;
+  background-color: #76CA66;
+  border: 1px solid #76CA66;
+  border-radius: 8px;
+  color: #F8FAFC;
+  cursor: pointer;
 }
 
 .userPage {

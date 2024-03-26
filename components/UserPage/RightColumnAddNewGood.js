@@ -11,12 +11,13 @@ function RightColumnAddNewGood() {
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState('');
     const [productDescription, setProductDescription] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const { pfotoArrayLength } = useSelector((state) => state.user);
     const { goodToEdit } = useSelector((state) => state.user);
     const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotoArrayLength }, () => null));
+
     const dispatch = useDispatch();
-    // console.log(productDescription.length)
-    // console.log(productDescription.join('').length)
 
 
 
@@ -58,74 +59,98 @@ function RightColumnAddNewGood() {
             alert("Введіть корректну вартість товару")
         }
         else {
+            // setIsModalOpen(true);
             const formData = {
                 productName,
                 productPrice,
                 productDescription: productDescription.split('.'),
                 pfotosArray
             };
+            clearAllFields()
             console.log(formData);
         }
     };
 
+
+    function clearAllFields() {
+        setIsModalOpen(true);
+        setProductName('');
+        setProductPrice('');
+        setProductDescription('');
+        setPhotosArray(Array.from({ length: pfotoArrayLength }, () => null))
+    }
+
     return (
-        <form className="add-new-good" onSubmit={handleSubmit}>
-            <label htmlFor="product-name" className="product-name-title">
-                Назва товару
-            </label>
-            <input
-                maxLength={50}
-                name="product-name"
-                id="product-name"
-                className="product-name-form-input"
-                placeholder="Введіть назву товару"
-                value={productName}
-                onChange={(event) => setProductName(event.target.value)}
-            />
+        <>
+            <form className="add-new-good" onSubmit={handleSubmit}>
+                <label htmlFor="product-name" className="product-name-title">
+                    Назва товару
+                </label>
+                <input
+                    maxLength={50}
+                    name="product-name"
+                    id="product-name"
+                    className="product-name-form-input"
+                    placeholder="Введіть назву товару"
+                    value={productName}
+                    onChange={(event) => setProductName(event.target.value)}
+                />
 
-            <label htmlFor="product-price" className="product-price-title">
-                Ціна товару
-            </label>
-            <input
-                maxLength={5}
-                minength={0}
-                name="product-price"
-                id="product-price"
-                className="product-price-form-input"
-                type="text"
-                placeholder="Введіть ціну товару"
-                value={productPrice}
-                onChange={(event) => {
-                    const newValue = event.target.value;
-                    if (!(newValue.length === 1 && newValue[0] === '0') && (!isNaN(newValue) || newValue === '')) {
-                        setProductPrice(newValue);
-                    }
-                }}
-            />
+                <label htmlFor="product-price" className="product-price-title">
+                    Ціна товару
+                </label>
+                <input
+                    maxLength={5}
+                    minength={0}
+                    name="product-price"
+                    id="product-price"
+                    className="product-price-form-input"
+                    type="text"
+                    placeholder="Введіть ціну товару"
+                    value={productPrice}
+                    onChange={(event) => {
+                        const newValue = event.target.value;
+                        if (!(newValue.length === 1 && newValue[0] === '0') && (!isNaN(newValue) || newValue === '')) {
+                            setProductPrice(newValue);
+                        }
+                    }}
+                />
 
-            <label htmlFor="product-photo" className="product-price-photo">
-                Фото
-            </label>
-            <PhotoUploader pfotosArray={pfotosArray} setPhotosArray={setPhotosArray} />
+                <label htmlFor="product-photo" className="product-price-photo">
+                    Фото
+                </label>
+                <PhotoUploader pfotosArray={pfotosArray} setPhotosArray={setPhotosArray} />
 
-            <label htmlFor="product-description" className="product-description-title">
-                Опис товару
-            </label>
-            <textarea
-                maxLength={1500}
-                name="product-description"
-                id="product-description"
-                className="product-description-form-input"
-                value={productDescription}
-                onChange={(e) => setProductDescription(e.target.value)}
-            />
+                <label htmlFor="product-description" className="product-description-title">
+                    Опис товару
+                </label>
+                <textarea
+                    maxLength={1500}
+                    name="product-description"
+                    id="product-description"
+                    className="product-description-form-input"
+                    value={productDescription}
+                    onChange={(e) => setProductDescription(e.target.value)}
+                />
 
-            <div className="button-container">
-                <button type="submit" className="button-submit-form">
-                    Зберегти
-                </button>
-            </div>
-        </form>
+                <div className="button-container">
+                    <button type="submit" className="button-submit-form" onClick={handleSubmit}>
+                        Зберегти
+                    </button>
+                </div>
+            </form>
+            {
+                isModalOpen && (
+                    <div className="modal-overlay">
+                        <div className="modal-content in-userpage">
+                            <h4 className='modal-in-userpage-title'>Товар додано до каталогу.</h4>
+                            <button className='modal-content-button-in-userpage' onClick={() => setIsModalOpen(false)}>Продовжити</button>
+                        </div>
+                    </div>
+                )
+            }
+        </>
+
     );
 }
 

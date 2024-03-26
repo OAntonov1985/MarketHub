@@ -8,8 +8,27 @@
     margin: auto
 
 .favorite-content
+    display: flex
+    flex-direction: column
     flex: 1 1 100%
+    height: 100%
     margin: 4rem 9rem 12.4rem 9rem
 
 .item-favorite
-    width: 100%
+    height: 100%
+
+.empty-favorite    
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    flex: 1 1 100%
+    height: 100%
+
+.empty-favorite-button   
+    padding: 1.2rem 3.8rem
+    background-color: $valid-field-border
+    border: 1px solid $valid-field-border
+    border-radius: 8px
+    color: $color-white
+    cursor: pointer

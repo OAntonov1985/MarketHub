@@ -4,6 +4,7 @@ import Footer from '@/components/Footer/Footer';
 import Head from 'next/head';
 import GoodCardSmall from '@/components/GoodCardSmall/GoodCardSmall';
 import { useSelector } from 'react-redux';
+import Emptyfavorite from '@/components/EmptyFavorite/Emptyfavorite';
 
 
 function Favorite() {
@@ -21,14 +22,13 @@ function Favorite() {
                 <Header />
                 <div className='favorite-content'>
                     <h4 className='basket-with-goods-title'>Улюблене</h4>
-                    <div className='goods-list-goods-items item-favorite'>
+                    {userFavorite.length === 0 ? <Emptyfavorite /> : <div className='goods-list-goods-items item-favorite'>
                         {!!userFavorite && userFavorite.map(props => {
                             return (
                                 <GoodCardSmall key={props.id} props={props} isFavorite={isFavorite} />
                             );
                         })}
-
-                    </div>
+                    </div>}
                 </div>
                 <Footer />
             </div>
