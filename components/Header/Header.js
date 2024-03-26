@@ -123,15 +123,18 @@ function Header({ transparentBackground }) {
     async function searchingFunction(event) {
         setSearchText(event.target.value);
         // console.log(event.target.value)
-        try {
-            const result = await GetSearchResult(event.target.value);
-            console.log(result)
-            // setUserGoodsToSale(result.result.data);
-            // setTotalUserGoodsToSale(result.result.total);
-            // dispatch(setActiveSpinner(false));
-        } catch (error) {
-            alert('Упс.... Щось пішло не так. зверніться до розробників');
+        if (event.target.value.length >= 2) {
+            try {
+                const result = await GetSearchResult(event.target.value);
+                console.log(result.result.data)
+                // setUserGoodsToSale(result.result.data);
+                // setTotalUserGoodsToSale(result.result.total);
+                // dispatch(setActiveSpinner(false));
+            } catch (error) {
+                alert('Упс.... Щось пішло не так. зверніться до розробників');
+            }
         }
+
     }
 
 
