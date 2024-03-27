@@ -54,6 +54,23 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .header-component {
   display: flex;
   align-items: center;
@@ -183,6 +200,54 @@ h2 {
 
 .is-wisible {
   display: none;
+}
+
+.search-results-header {
+  display: block;
+  border: 1px solid #012767;
+  position: absolute;
+  top: 115px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 666;
+  background-color: #F8FAFC;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  width: 65rem;
+  height: 35rem;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+.result-item {
+  display: flex;
+  gap: 1rem;
+  color: #012767;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.item-image-container {
+  position: relative;
+  height: 7rem;
+  width: 7rem;
+}
+
+.item-content-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border-bottom: 1px solid #e8e8e8;
+  justify-content: space-around;
+}
+
+.search-total {
+  display: inline-block;
+  color: #012767;
+  align-items: flex-end;
+  margin: 3rem 0 1rem;
+  text-align: right;
+  cursor: pointer;
 }
 
 .main {

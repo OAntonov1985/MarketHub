@@ -6,10 +6,11 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName, setinitialFavorite, setTotalFavorite } from '@/slices/userSlice';
+import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName, setinitialFavorite, setTotalFavorite, setSearchResult } from '@/slices/userSlice';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import GetSearchResult from '@/pages/api/GetSearchResult';
+import formattedPrice from '../HelperFunctions/FormattedPrice';
 
 
 
@@ -21,6 +22,8 @@ function Header({ transparentBackground }) {
     const [isVisibleFavorite, setIsVisibleFavorite] = useState("quantityOfFavorite is-wisible");
     const [userPath, setUserPath] = useState("/loginpage");
     const [searchText, setSearchText] = useState("");
+    const [searchResult, setSearchResult] = useState([]);
+    const [searchResultTotal, setSearchResultTotal] = useState('');
 
     const dispatch = useDispatch();
     const { quantityOfGoods } = useSelector((state) => state.user);
@@ -107,26 +110,18 @@ function Header({ transparentBackground }) {
     }, [quantityOfGoods, quantityOfFavorite])
 
 
-    // const fetchData = async () => {
-    //     // dispatch(setActiveSpinner(true));
-    //     try {
-    //         const result = await GetusersGoodsToSale(searchText);
-    //         console.log(result)
-    //         // setUserGoodsToSale(result.result.data);
-    //         // setTotalUserGoodsToSale(result.result.total);
-    //         // dispatch(setActiveSpinner(false));
-    //     } catch (error) {
-    //         alert('Упс.... Щось пішло не так. зверніться до розробників');
-    //     }
-    // };
 
     async function searchingFunction(event) {
         setSearchText(event.target.value);
         // console.log(event.target.value)
-        if (event.target.value.length >= 2) {
+        if (event.target.value.length >= 1) {
             try {
                 const result = await GetSearchResult(event.target.value);
-                console.log(result.result.data)
+                setSearchResult(result.result.data);
+                setSearchResultTotal(result.result.total)
+                // console.log(result.result)
+                console.log(searchResult)
+                // dispatch(setSearchResult(result.result));
                 // setUserGoodsToSale(result.result.data);
                 // setTotalUserGoodsToSale(result.result.total);
                 // dispatch(setActiveSpinner(false));
@@ -134,7 +129,6 @@ function Header({ transparentBackground }) {
                 alert('Упс.... Щось пішло не так. зверніться до розробників');
             }
         }
-
     }
 
 
@@ -171,6 +165,33 @@ function Header({ transparentBackground }) {
                     className='search-input-field'
                     priority
                 />
+            </div>
+            <div></div>
+            <div className='search-results-header'>
+                {searchResult.splice(0, 10).map((item, index) => {
+                    return (
+                        <div className='result-item' key={item.id}>
+                            <div className='item-image-container'>
+                                <Image
+                                    alt="image of good"
+                                    src={item.thumbnail}
+                                    sizes="(max-width: 100%)"
+                                    quality={40}
+                                    width={60}
+                                    height={60}
+                                    className='image-of-good-in-search'
+                                    priority
+                                />
+                            </div>
+                            <div className='item-content-container'>
+                                <div className='search-result search-title'>{item.title.split(' ').length > 5 ? (item.title[5][0] == '(' || item.title[5][0] == '/' ? item.title.split(' ').slice(0, 4).join(' ') : item.title.split(' ').slice(0, 5).join(' ')) : item.title}</div>
+                                {/* <div className='search-result search-id'>{item.id}</div> */}
+                                <div className='search-result search-price'>{formattedPrice(item.price)} грн</div>
+                            </div>
+                        </div>
+                    )
+                })}
+                <div className='search-result search-total'>Подивитись всі результати: {searchResultTotal}</div>
             </div>
             <div className='header-icons'>
                 {headerName}
