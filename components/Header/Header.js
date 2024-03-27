@@ -200,7 +200,8 @@ function Header({ transparentBackground }) {
                         </Link>
                     )
                 })}
-                <div className='search-result search-total' onClick={redirectUserToSearchPage}>Подивитись всі результати: {searchResultTotal}</div>
+                <Link href={"/searchresultpage"}
+                    className='search-result search-total' >Подивитись всі результати: {searchResultTotal}</Link>
             </div>
             <div className='header-icons'>
                 {headerName}
