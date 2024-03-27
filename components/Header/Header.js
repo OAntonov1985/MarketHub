@@ -113,14 +113,14 @@ function Header({ transparentBackground }) {
 
     async function searchingFunction(event) {
         setSearchText(event.target.value);
-        // console.log(event.target.value)
         if (event.target.value.length >= 1) {
             try {
                 const result = await GetSearchResult(event.target.value);
-                setSearchResult(result.result.data);
+                console.log(result.result)
+                setSearchResult(result.result.data.slice(0, 10));
                 setSearchResultTotal(result.result.total)
-                // console.log(result.result)
-                console.log(searchResult)
+
+                // console.log(searchResult)
                 // dispatch(setSearchResult(result.result));
                 // setUserGoodsToSale(result.result.data);
                 // setTotalUserGoodsToSale(result.result.total);
@@ -129,6 +129,14 @@ function Header({ transparentBackground }) {
                 alert('Упс.... Щось пішло не так. зверніться до розробників');
             }
         }
+        else if (event.target.value.length === 0) {
+            setSearchResult([]);
+            setSearchResultTotal("");
+        }
+    }
+
+    function redirectUserToSearchPage() {
+        router.push("/searchresultpage");
     }
 
 
@@ -167,31 +175,32 @@ function Header({ transparentBackground }) {
                 />
             </div>
             <div></div>
-            <div className='search-results-header'>
-                {searchResult.splice(0, 10).map((item, index) => {
+            <div className={`search-results-header ${searchResult.length == 0 ? "is-wisible" : ""}`}>
+                {searchResult.map((item, index) => {
                     return (
-                        <div className='result-item' key={item.id}>
+                        <Link href={`/${item.id}/${item.title}/${item.id}`}
+                            className='result-item' key={item.id}>
                             <div className='item-image-container'>
                                 <Image
                                     alt="image of good"
                                     src={item.thumbnail}
                                     sizes="(max-width: 100%)"
                                     quality={40}
-                                    width={60}
-                                    height={60}
+                                    width={80}
+                                    height={80}
                                     className='image-of-good-in-search'
                                     priority
                                 />
                             </div>
                             <div className='item-content-container'>
                                 <div className='search-result search-title'>{item.title.split(' ').length > 5 ? (item.title[5][0] == '(' || item.title[5][0] == '/' ? item.title.split(' ').slice(0, 4).join(' ') : item.title.split(' ').slice(0, 5).join(' ')) : item.title}</div>
-                                {/* <div className='search-result search-id'>{item.id}</div> */}
+                                <div className='order-date search-id'>{item.id}</div>
                                 <div className='search-result search-price'>{formattedPrice(item.price)} грн</div>
                             </div>
-                        </div>
+                        </Link>
                     )
                 })}
-                <div className='search-result search-total'>Подивитись всі результати: {searchResultTotal}</div>
+                <div className='search-result search-total' onClick={redirectUserToSearchPage}>Подивитись всі результати: {searchResultTotal}</div>
             </div>
             <div className='header-icons'>
                 {headerName}
