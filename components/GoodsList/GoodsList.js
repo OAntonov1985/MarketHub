@@ -50,7 +50,11 @@ function GoodsList({ props, id, total }) {
 
 
     function applyChangesAsideFilter() {
-        getFilteredDataMinMax();
+        if (activePage === 1) {
+            getFilteredDataMinMax();
+        } else setActivePage(1);
+
+        // getFilteredDataMinMax();
     }
 
 
