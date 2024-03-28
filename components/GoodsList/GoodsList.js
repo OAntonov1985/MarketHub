@@ -8,7 +8,7 @@ import GetFilteredData from '@/pages/api/GetFilteredData';
 import { useRouter } from 'next/router';
 
 
-export default function GoodsList({ props, id, total }) {
+function GoodsList({ props, id, total }) {
     const [listGoods, setListGoods] = useState(props);  /// Отримує список товарів з бекенду ///
     const [selectedFilterOption, setSelectedFilterOption] = useState("Новинки"); /// Встановлює опцію сортування (Новинки Від Від) ///
     const [activePage, setActivePage] = useState(1); /// Встановлює активну сторінку перегляду знизу ///
@@ -75,6 +75,6 @@ export default function GoodsList({ props, id, total }) {
     )
 };
 
-// export default React.memo(GoodsList);
+export default React.memo(GoodsList);
 
 

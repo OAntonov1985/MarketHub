@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PageIndexserSmall from './PageIndexserSmall';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11,9 +11,7 @@ import { setActiveSubItemInGood, setGoodToEdit } from '@/slices/userSlice';
 function RightColumnUsersGoodsListToRender({ objectToSend }) {
     const { userGoodsToSale, totalUserGoodsToSale, setActivePage, activePage, setActiveItem, activeItem, changeGoodAvability, deleteGood } = objectToSend;
 
-    const [isVisibleEditMenu, setIsVisibleEditMenu] = useState(false);
     const dispatch = useDispatch();
-
 
     const toggleEditMenu = (itemId) => {
         const editMenu = document.getElementById(itemId);
@@ -23,13 +21,28 @@ function RightColumnUsersGoodsListToRender({ objectToSend }) {
         setActiveItem(itemId === activeItem ? null : itemId);
     };
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            const isEditMenuClicked = event.target.classList.contains('order-info-points-container');
+
+            if (!isEditMenuClicked) {
+                const editMenus = document.querySelectorAll('.show-edit-menu');
+                editMenus.forEach(menu => menu.classList.remove('show-edit-menu'));
+            }
+        };
+
+        window.addEventListener('click', handleClickOutside);
+
+        return () => {
+            window.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
+
     function pushToEditGood(event) {
         dispatch(setActiveSubItemInGood("Додати товар"));
         dispatch(setGoodToEdit(event.target.id));
     };
-
-
-
 
 
     return (
@@ -111,16 +124,16 @@ function RightColumnUsersGoodsListToRender({ objectToSend }) {
                                     />
                                 </div>
                                 <div className={`edit-menu ${activeItem === item.id ? "show-edit-menu" : ""}`} id={item.id}>
-                                    <div className={isVisibleEditMenu ? "visible" : "hidden"}
+                                    <div
                                         id={item.id}
                                         onClick={(event) => changeGoodAvability(event, item.available)}>
                                         {item.available === true ? "Деактивувати" : "Активувати"}
                                     </div>
-                                    <div className={isVisibleEditMenu ? "visible" : "hidden"}
+                                    <div
                                         id={item.id}
                                         onClick={(event) => pushToEditGood(event)}>
                                         Редагувати</div>
-                                    <div className={isVisibleEditMenu ? "visible" : "hidden"}
+                                    <div
                                         id={item.id}
                                         onClick={(event) => deleteGood(event, item.title)}
                                     >Видалити</div>

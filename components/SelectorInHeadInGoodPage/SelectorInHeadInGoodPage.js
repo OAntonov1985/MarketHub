@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import React from 'react';
 // import 
@@ -32,6 +32,25 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
         }
         setActivePage(1);
     }
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            const isShowSortMenu = event.target.closest('.selected-sort-option');
+
+            if (!isShowSortMenu) {
+                setIsToggled(false);
+            }
+        };
+
+        window.addEventListener('click', handleClickOutside);
+
+        return () => {
+            window.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
+
+
 
     return (
         <div className="selector-filter-container">

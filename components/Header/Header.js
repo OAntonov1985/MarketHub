@@ -24,6 +24,7 @@ function Header({ transparentBackground }) {
     const [searchText, setSearchText] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [searchResultTotal, setSearchResultTotal] = useState('');
+    const [isVisibleSearchResult, setIsVisibleSearchResult] = useState(false);
 
     const dispatch = useDispatch();
     const { quantityOfGoods } = useSelector((state) => state.user);
@@ -116,15 +117,13 @@ function Header({ transparentBackground }) {
         if (event.target.value.length >= 1) {
             try {
                 const result = await GetSearchResult(event.target.value);
-                console.log(result.result)
                 setSearchResult(result.result.data.slice(0, 10));
-                setSearchResultTotal(result.result.total)
+                setSearchResultTotal(result.result.total);
 
-                // console.log(searchResult)
-                // dispatch(setSearchResult(result.result));
-                // setUserGoodsToSale(result.result.data);
-                // setTotalUserGoodsToSale(result.result.total);
-                // dispatch(setActiveSpinner(false));
+                if (result.result.data.length > 0) {
+                    setIsVisibleSearchResult(true);
+                } else setIsVisibleSearchResult(false);
+
             } catch (error) {
                 alert('Упс.... Щось пішло не так. зверніться до розробників');
             }
@@ -132,12 +131,28 @@ function Header({ transparentBackground }) {
         else if (event.target.value.length === 0) {
             setSearchResult([]);
             setSearchResultTotal("");
+            setIsVisibleSearchResult(false);
         }
     }
 
-    function redirectUserToSearchPage() {
-        router.push("/searchresultpage");
-    }
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            const isSearchHeaderClicked = event.target.closest('.search-results-header');
+            const isInputFieldClicked = event.target.closest('.header-input-field');
+
+            if (!isSearchHeaderClicked && !isInputFieldClicked) {
+                setIsVisibleSearchResult(false);
+            }
+        };
+
+        window.addEventListener('click', handleClickOutside);
+
+        return () => {
+            window.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
 
 
     return (
@@ -162,6 +177,7 @@ function Header({ transparentBackground }) {
                     value={searchText}
                     onChange={searchingFunction}
                     placeholder='Я шукаю ...'
+                    onClick={() => searchResult.length > 0 ? setIsVisibleSearchResult(true) : null}
                 />
                 <Image
                     alt="logo image search in input field"
@@ -175,7 +191,7 @@ function Header({ transparentBackground }) {
                 />
             </div>
             <div></div>
-            <div className={`search-results-header ${searchResult.length == 0 ? "is-wisible" : ""}`}>
+            <div className={`search-results-header ${isVisibleSearchResult ? "" : "is-wisible"}`} >
                 {searchResult.map((item, index) => {
                     return (
                         <Link href={`/${item.id}/${item.title}/${item.id}`}

@@ -6,7 +6,7 @@ import BreadCrumps from '@/components/Breadcrumps/Breadcrumps';
 import GoodsList from '@/components/GoodsList/GoodsList';
 import Head from 'next/head';
 import React from 'react';
-import EmptuCategorie from '@/components/EmptyCategotie/EmptyCategorie';
+import EmptyCategorie from '@/components/EmptyCategotie/EmptyCategorie';
 
 
 
@@ -23,7 +23,7 @@ function CategoryPage({ subCategories, goods, id, total }) {
                 <Header />
                 <div className="category-main-content">
                     <BreadCrumps id={id} />
-                    {goods.length === 0 ? <EmptuCategorie /> : (
+                    {goods.length === 0 ? <EmptyCategorie /> : (
                         <>
                             <div className="subcategories-row">
                                 <SubcategoriesInCatPage subCategories={subCategories} />
