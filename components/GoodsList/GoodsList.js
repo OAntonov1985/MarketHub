@@ -23,20 +23,17 @@ function GoodsList({ props, id, total }) {
 
     const objToAsideFilter = { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, };
 
-
     const router = useRouter();
     const subCategoryName = router.query.subcategory;
 
     // отримання даних виходячи з бічного фільтру//
     async function getFilteredDataMinMax() {
         const { result } = await GetFilteredData(id, sortIndex, activePage === 1 ? 0 : activePage - 1, prciseStart, prciseEnd, brandsToFilter, isAvailabale, subCategoryName);
-        // console.log(result.data)
         setTotalItems(result.total)
         setListGoods(result.data);
     };
 
     function selectPageAndGetData() {
-        // console.log(activePage)
         getFilteredDataMinMax();
     }
 
@@ -53,8 +50,6 @@ function GoodsList({ props, id, total }) {
         if (activePage === 1) {
             getFilteredDataMinMax();
         } else setActivePage(1);
-
-        // getFilteredDataMinMax();
     }
 
 
@@ -62,7 +57,7 @@ function GoodsList({ props, id, total }) {
         <div className='goods-list'>
             {listGoods && listGoods.length ?
                 <>
-                    <HeaderSelectorToFilter setSelectedFilterOption={setSelectedFilterOption} selectedFilterOption={selectedFilterOption} setActivePage={setActivePage} setSortIndex={setSortIndex} />
+                    <HeaderSelectorToFilter setSelectedFilterOption={setSelectedFilterOption} selectedFilterOption={selectedFilterOption} setActivePage={setActivePage} setSortIndex={setSortIndex} total={total} />
                     <div className="goods-list-render">
                         <AsideFilter id={id} objToAsideFilter={objToAsideFilter} />
                         <div className="goods-list-goods-items">

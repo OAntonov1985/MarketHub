@@ -14,7 +14,7 @@ const initialState = {
     pfotoArrayLength: 4,
     activeSubItemInGood: "Всі товари",
     goodToEdit: '',
-    searchResult: {}
+    searchPhrase: ''
 };
 
 
@@ -149,14 +149,14 @@ const userSlice = createSlice({
         setGoodToEdit: (state, action) => {
             state.goodToEdit = action.payload;
         },
-        setSearchResult: (state, action) => {
-            state.searchResult = action.payload;
+        setSearchPearchPhrase: (state, action) => {
+            state.searchPhrase = action.payload;
         }
     }
 });
 
 
 
-export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite, setCategorieToRender, setPhotoArrayLength, setActiveSpinner, setActiveSubItemInGood, setGoodToEdit, setSearchResult } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite, setCategorieToRender, setPhotoArrayLength, setActiveSpinner, setActiveSubItemInGood, setGoodToEdit, setSearchPearchPhrase } = userSlice.actions;
 
 export default userSlice.reducer;

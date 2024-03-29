@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import React from 'react';
-// import 
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 
-
-function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, setActivePage, setSortIndex }) {
+function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, setActivePage, setSortIndex, total }) {
 
     const liClassname = "filter-li-options";
     const [classNames, setClassNames] = useState(liClassname);
     const [isToggled, setIsToggled] = useState(false);
+
+    const { searchPhrase } = useSelector((state) => state.user);
+
+    const router = useRouter()
 
 
     const handleToggle = () => {
@@ -49,60 +53,65 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
         };
     }, []);
 
-
-
+    console.log(router.pathname)
 
     return (
-        <div className="selector-filter-container">
-            <p className='selected-sort-option' onClick={handleToggle}>{selectedFilterOption}
-                <button className="filter-arrow-button">
-                    <Image className='arrow'
-                        alt="logo home"
-                        src='/selector-arrow-down.svg'
-                        quality={100}
-                        width={20}
-                        height={20}
-                    />
-                </button>
-            </p>
-            <ul className={`options-list ${isToggled ? 'display-option-list' : ''}`}>
-                <li value="Новинки" className={`${liClassname} ${isToggled ? 'display-li-options' : ''}`}
-                    onClick={setLiValue}
-                >Новинки
-                    <div className="filter-checked-container">
-                        <Image
+        <div className={`selector-filter-container 
+         ${(router.pathname === "/searchresultpage") ? "in-searchpage" : ""}`}>
+            {(searchPhrase && router.pathname === "/searchresultpage" && searchPhrase.length > 0) ? <div className='search-result-title'>Результат пошуку за запитом «<span>{searchPhrase}</span>» знайдено {total} товарів</div> : null}
+            <div>
+                <p className='selected-sort-option' onClick={handleToggle}>{selectedFilterOption}
+                    <button className="filter-arrow-button">
+                        <Image className='arrow'
                             alt="logo home"
-                            src='/checkmark-outline.svg'
+                            src='/selector-arrow-down.svg'
                             quality={100}
-                            width={24}
-                            height={24} />
-                    </div>
-                </li>
-                <li value="Від дешевих до дорогих" className={`${liClassname} ${isToggled ? 'display-li-options' : ''}`}
-                    onClick={setLiValue}
-                >Від дешевих до дорогих
-                    <div className="filter-checked-container">
-                        <Image
-                            alt="logo home"
-                            src='/checkmark-outline.svg'
-                            quality={100}
-                            width={24}
-                            height={24} />
-                    </div>
-                </li>
-                <li value="Від дорогих до дешевих" className={`${liClassname} ${isToggled ? 'display-li-options' : ''}`}
-                    onClick={setLiValue}
-                >Від дорогих до дешевих
-                    <div className="filter-checked-container">
-                        <Image
-                            alt="logo home"
-                            src='/checkmark-outline.svg'
-                            quality={100}
-                            width={24}
-                            height={24} />
-                    </div>
-                </li>
-            </ul>
+                            width={20}
+                            height={20}
+                        />
+                    </button>
+                </p>
+                <ul className={`options-list ${isToggled ? 'display-option-list' : ''}`}>
+                    <li value="Новинки" className={`${liClassname} ${isToggled ? 'display-li-options' : ''}`}
+                        onClick={setLiValue}
+                    >Новинки
+                        <div className="filter-checked-container">
+                            <Image
+                                alt="logo home"
+                                src='/checkmark-outline.svg'
+                                quality={100}
+                                width={24}
+                                height={24} />
+                        </div>
+                    </li>
+                    <li value="Від дешевих до дорогих" className={`${liClassname} ${isToggled ? 'display-li-options' : ''}`}
+                        onClick={setLiValue}
+                    >Від дешевих до дорогих
+                        <div className="filter-checked-container">
+                            <Image
+                                alt="logo home"
+                                src='/checkmark-outline.svg'
+                                quality={100}
+                                width={24}
+                                height={24} />
+                        </div>
+                    </li>
+                    <li value="Від дорогих до дешевих" className={`${liClassname} ${isToggled ? 'display-li-options' : ''}`}
+                        onClick={setLiValue}
+                    >Від дорогих до дешевих
+                        <div className="filter-checked-container">
+                            <Image
+                                alt="logo home"
+                                src='/checkmark-outline.svg'
+                                quality={100}
+                                width={24}
+                                height={24} />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
         </div>
     );
 };

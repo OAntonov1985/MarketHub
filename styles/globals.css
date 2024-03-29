@@ -1201,10 +1201,16 @@ h2 {
 
 .selector-filter-container {
   height: 4rem;
+  position: relative;
   display: flex;
-  flex-direction: column;
+  width: 100%;
   margin-bottom: 4rem;
-  align-items: flex-end;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+.in-searchpage {
+  justify-content: space-between;
 }
 
 .selected-sort-option {
@@ -1230,6 +1236,7 @@ h2 {
 }
 
 .options-list {
+  position: relative;
   font-size: 1.8rem;
   width: 30rem;
   height: 0;
@@ -2415,4 +2422,13 @@ h2 {
 
 .show-edit-menu {
   display: block;
+}
+
+.search-result-title {
+  font-size: 2.4rem;
+  color: #012767;
+}
+
+.search-result-title span {
+  color: #00E6F4;
 }/*# sourceMappingURL=globals.css.map */

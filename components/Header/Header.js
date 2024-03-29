@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName, setinitialFavorite, setTotalFavorite, setSearchResult } from '@/slices/userSlice';
+import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName, setinitialFavorite, setTotalFavorite, setSearchPearchPhrase } from '@/slices/userSlice';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import GetSearchResult from '@/pages/api/GetSearchResult';
@@ -15,8 +15,10 @@ import formattedPrice from '../HelperFunctions/FormattedPrice';
 
 
 
-function Header({ transparentBackground }) {
+function Header({ transparentBackground, setSearchPhraseInSearchField }) {
 
+    // const { setSearchPhrase } = props;
+    // console.log(setSearchPhraseInSearchField)
     const [headerName, setHeaderName] = useState('');
     const [isVisible, setIsVisible] = useState("quantityOfGoods is-wisible");
     const [isVisibleFavorite, setIsVisibleFavorite] = useState("quantityOfFavorite is-wisible");
@@ -36,6 +38,8 @@ function Header({ transparentBackground }) {
     const pathname = usePathname();
     const router = useRouter();
     const userNameCookie = userName = Cookies.get('userName');
+
+
 
     useEffect(() => {
         if (pathname === "/userpage") {
@@ -114,6 +118,8 @@ function Header({ transparentBackground }) {
 
     async function searchingFunction(event) {
         setSearchText(event.target.value);
+        dispatch(setSearchPearchPhrase(event.target.value));
+
         if (event.target.value.length >= 1) {
             try {
                 const result = await GetSearchResult(event.target.value);
@@ -177,17 +183,21 @@ function Header({ transparentBackground }) {
                     value={searchText}
                     onChange={searchingFunction}
                     placeholder='Я шукаю ...'
+                    onKeyDown={(event) => (event.key === 'Enter' && searchText.length !== 0) ?
+                        (setIsVisibleSearchResult(false), router.push("/searchresultpage")) : null}
                     onClick={() => searchResult.length > 0 ? setIsVisibleSearchResult(true) : null}
                 />
                 <Image
                     alt="logo image search in input field"
                     src='/iconserach.svg'
+                    href={"/searchresultpage"}
                     sizes="(max-width: 100%)"
                     quality={100}
                     width={18}
                     height={18}
                     className='search-input-field'
                     priority
+                    onClick={() => router.push("/searchresultpage")}
                 />
             </div>
             <div></div>
@@ -217,7 +227,9 @@ function Header({ transparentBackground }) {
                     )
                 })}
                 <Link href={"/searchresultpage"}
-                    className='search-result search-total' >Подивитись всі результати: {searchResultTotal}</Link>
+                    className='search-result search-total'
+                    onClick={() => setIsVisibleSearchResult(false)}
+                >Подивитись всі результати: {searchResultTotal}</Link>
             </div>
             <div className='header-icons'>
                 {headerName}

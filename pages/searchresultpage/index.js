@@ -4,16 +4,34 @@ import Footer from '@/components/Footer/Footer';
 import Head from 'next/head';
 import GoodsList from '@/components/GoodsList/GoodsList';
 import { useSelector } from 'react-redux';
+import GetSearchResult from '@/pages/api/GetSearchResult';
 
 export default function SearchResultPage() {
     const [goods, setGoods] = useState([]);
-    const { searchResult } = useSelector((state) => state.user);
-    // console.log(searchResult);
+    const [total, setTotal] = useState([]);
+
+    const { searchPhrase } = useSelector((state) => state.user);
+
 
     useEffect(() => {
-        setGoods(searchResult.data)
-        // console.log(searchResult);
-    }, [searchResult])
+        async function searchingFunction() {
+            if (searchPhrase.length >= 1) {
+                try {
+                    const result = await GetSearchResult(searchPhrase);
+                    console.log(result)
+                    setGoods(result.result.data);
+                    setTotal(result.result.total);
+
+                } catch (error) {
+                    alert('Упс.... Щось пішло не так. зверніться до розробників');
+                }
+            }
+            else if (searchPhrase.length === 0) {
+
+            }
+        }
+        searchingFunction()
+    }, [searchPhrase])
 
 
     return (
@@ -26,10 +44,12 @@ export default function SearchResultPage() {
             <div className='category-page'>
                 <Header />
                 <div className='category-main-content'>
-                    <GoodsList props={goods} id={100} total={searchResult.total} />
+                    <div className=''>
+                    </div>
+                    {(goods && goods.length > 0) ? <GoodsList props={goods} id={100} total={total} /> : null}
+
                 </div>
 
-                {/* <GoodCard /> */}
                 <Footer />
             </div>
         </>
