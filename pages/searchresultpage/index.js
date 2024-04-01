@@ -18,8 +18,8 @@ export default function SearchResultPage() {
             if (searchPhrase.length >= 1) {
                 try {
                     const result = await GetSearchResult(searchPhrase);
-                    console.log(result)
-                    setGoods(result.result.data);
+                    // console.log(result)
+                    setGoods(result.result.data.splice(0, 12));
                     setTotal(result.result.total);
 
                 } catch (error) {

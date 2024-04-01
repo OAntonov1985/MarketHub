@@ -2,7 +2,7 @@ import { MaketHubURL } from "../../components/Constants";
 
 export default async function GetSearchResult(searchTerm) {
     let result;
-    // console.log(searchTerm)
+
     try {
         const response = await fetch(MaketHubURL + `search/${searchTerm}`, {
             method: 'GET',

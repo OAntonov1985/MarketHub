@@ -6,6 +6,8 @@ import PageIndexer from '../PageIndexer/PageIndexer';
 import { useState, useEffect } from 'react';
 import GetFilteredData from '@/pages/api/GetFilteredData';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import GetSearchResultInPage from '@/pages/api/GetSearchResultInPage';
 
 
 function GoodsList({ props, id, total }) {
@@ -25,6 +27,7 @@ function GoodsList({ props, id, total }) {
 
     const router = useRouter();
     const subCategoryName = router.query.subcategory;
+    const { searchPhrase } = useSelector((state) => state.user);
 
     // отримання даних виходячи з бічного фільтру//
     async function getFilteredDataMinMax() {
@@ -33,13 +36,35 @@ function GoodsList({ props, id, total }) {
         setListGoods(result.data);
     };
 
+
+    async function getFilteredDataInSearchPage() {
+        console.log(searchPhrase)
+        console.log(activePage)
+        console.log(sortIndex)
+        console.log(prciseStart)
+        console.log(prciseEnd)
+        console.log(brandsToFilter)
+        console.log(isAvailabale)
+        const { result } = await GetSearchResultInPage(searchPhrase, activePage === 1 ? 0 : activePage - 1, sortIndex,
+            prciseStart.length !== 0 ? prciseStart : null, prciseEnd.length !== 0 ? prciseEnd : null, brandsToFilter, isAvailabale);
+        setTotalItems(result.total)
+        setListGoods(result.data);
+    };
+
     function selectPageAndGetData() {
-        getFilteredDataMinMax();
+        if (router.pathname !== "/searchresultpage") {
+            getFilteredDataMinMax();
+        }
+        else getFilteredDataInSearchPage()
+
     }
 
     useEffect(() => {
         if (pageLoaded) {
-            getFilteredDataMinMax();
+            if (router.pathname !== "/searchresultpage") {
+                getFilteredDataMinMax();
+            } else getFilteredDataInSearchPage();
+
         } else {
             setPageLoaded(true);
         }
@@ -48,7 +73,9 @@ function GoodsList({ props, id, total }) {
 
     function applyChangesAsideFilter() {
         if (activePage === 1) {
-            getFilteredDataMinMax();
+            if (router.pathname !== "/searchresultpage") {
+                getFilteredDataMinMax();
+            } else getFilteredDataInSearchPage();
         } else setActivePage(1);
     }
 
