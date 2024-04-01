@@ -10,20 +10,12 @@ import EmptySearch from '@/components/EmptySearch';
 export default function SearchResultPage() {
     const [goods, setGoods] = useState([]);
     const [total, setTotal] = useState([]);
-    const [showEmptySearch, setShowEmptySearch] = useState(false);
+
 
 
     const { searchPhrase } = useSelector((state) => state.user);
     const { total: totalFromStore } = useSelector((state) => state.user);
-    console.log(totalFromStore)
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowEmptySearch(true);
-        }, 2000);
-
-        return () => clearTimeout(timer);
-    }, []);
 
     useEffect(() => {
         async function searchingFunction() {
