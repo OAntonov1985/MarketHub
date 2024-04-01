@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName, setinitialFavorite, setTotalFavorite, setSearchPearchPhrase } from '@/slices/userSlice';
+import { totalGoods, setTotalPriseInAllBasket, setInitialBasket, setUserName, setinitialFavorite, setTotalFavorite, setSearchPearchPhrase, setSearchActive, setSearchTotalResult } from '@/slices/userSlice';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import GetSearchResult from '@/pages/api/GetSearchResult';
@@ -25,7 +25,6 @@ function Header({ transparentBackground, setSearchPhraseInSearchField }) {
     const [userPath, setUserPath] = useState("/loginpage");
     const [searchText, setSearchText] = useState("");
     const [searchResult, setSearchResult] = useState([]);
-    const [searchResultTotal, setSearchResultTotal] = useState('');
     const [isVisibleSearchResult, setIsVisibleSearchResult] = useState(false);
 
     const dispatch = useDispatch();
@@ -33,6 +32,7 @@ function Header({ transparentBackground, setSearchPhraseInSearchField }) {
     const { userBasket } = useSelector((state) => state.user);
     const { userFavorite } = useSelector((state) => state.user);
     const { quantityOfFavorite } = useSelector((state) => state.user);
+    const { total } = useSelector((state) => state.user);
     let { userName } = useSelector((state) => state.user);
 
     const pathname = usePathname();
@@ -124,7 +124,7 @@ function Header({ transparentBackground, setSearchPhraseInSearchField }) {
             try {
                 const result = await GetSearchResult(event.target.value);
                 setSearchResult(result.result.data.slice(0, 10));
-                setSearchResultTotal(result.result.total);
+                dispatch(setSearchTotalResult(result.result.total));
 
                 if (result.result.data.length > 0) {
                     setIsVisibleSearchResult(true);
@@ -136,7 +136,6 @@ function Header({ transparentBackground, setSearchPhraseInSearchField }) {
         }
         else if (event.target.value.length === 0) {
             setSearchResult([]);
-            setSearchResultTotal("");
             setIsVisibleSearchResult(false);
         }
     }
@@ -184,7 +183,7 @@ function Header({ transparentBackground, setSearchPhraseInSearchField }) {
                     onChange={searchingFunction}
                     placeholder='Я шукаю ...'
                     onKeyDown={(event) => (event.key === 'Enter' && searchText.length !== 0) ?
-                        (setIsVisibleSearchResult(false), router.push("/searchresultpage")) : null}
+                        (dispatch(setSearchActive()), setIsVisibleSearchResult(false), router.push("/searchresultpage")) : null}
                     onClick={() => searchResult.length > 0 ? setIsVisibleSearchResult(true) : null}
                 />
                 <Image
@@ -197,7 +196,7 @@ function Header({ transparentBackground, setSearchPhraseInSearchField }) {
                     height={18}
                     className='search-input-field'
                     priority
-                    onClick={() => router.push("/searchresultpage")}
+                    onClick={() => (dispatch(setSearchActive()), router.push("/searchresultpage"))}
                 />
             </div>
             <div></div>
@@ -228,8 +227,8 @@ function Header({ transparentBackground, setSearchPhraseInSearchField }) {
                 })}
                 <Link href={"/searchresultpage"}
                     className='search-result search-total'
-                    onClick={() => setIsVisibleSearchResult(false)}
-                >Подивитись всі результати: {searchResultTotal}</Link>
+                    onClick={() => (dispatch(setSearchActive()), setIsVisibleSearchResult(false))}
+                >Подивитись всі результати: {total}</Link>
             </div>
             <div className='header-icons'>
                 {headerName}

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 
-function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, setActivePage, setSortIndex, total }) {
+function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, setActivePage, setSortIndex }) {
 
     const liClassname = "filter-li-options";
     const [classNames, setClassNames] = useState(liClassname);
@@ -13,7 +13,9 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
 
     const { searchPhrase } = useSelector((state) => state.user);
 
-    const router = useRouter()
+    const router = useRouter();
+    const { total } = useSelector((state) => state.user);
+    const { searchActive } = useSelector((state) => state.user);
 
 
     const handleToggle = () => {
@@ -52,8 +54,6 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
             window.removeEventListener('click', handleClickOutside);
         };
     }, []);
-
-    console.log(router.pathname)
 
     return (
         <div className={`selector-filter-container 

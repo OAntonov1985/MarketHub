@@ -6,11 +6,13 @@ import PageIndexer from '../PageIndexer/PageIndexer';
 import { useState, useEffect } from 'react';
 import GetFilteredData from '@/pages/api/GetFilteredData';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import GetSearchResultInPage from '@/pages/api/GetSearchResultInPage';
+import EmptySearch from '../EmptySearch';
+import { setSearchTotalResult } from '@/slices/userSlice';
 
 
-function GoodsList({ props, id, total }) {
+export default function GoodsList({ props, id, total }) {
     const [listGoods, setListGoods] = useState(props);  /// Отримує список товарів з бекенду ///
     const [selectedFilterOption, setSelectedFilterOption] = useState("Новинки"); /// Встановлює опцію сортування (Новинки Від Від) ///
     const [activePage, setActivePage] = useState(1); /// Встановлює активну сторінку перегляду знизу ///
@@ -23,13 +25,16 @@ function GoodsList({ props, id, total }) {
     const [sortIndex, setSortIndex] = useState(0); /// Встановлює сортування (-1, 1, 0)///
     const [pageLoaded, setPageLoaded] = useState(false); /// Запобігає зайвому запуску функції ///
 
+
     const objToAsideFilter = { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, };
 
     const router = useRouter();
+    const dispatch = useDispatch();
     const subCategoryName = router.query.subcategory;
     const { searchPhrase } = useSelector((state) => state.user);
+    const { searchActive } = useSelector((state) => state.user);
 
-    // отримання даних виходячи з бічного фільтру//
+
     async function getFilteredDataMinMax() {
         const { result } = await GetFilteredData(id, sortIndex, activePage === 1 ? 0 : activePage - 1, prciseStart, prciseEnd, brandsToFilter, isAvailabale, subCategoryName);
         setTotalItems(result.total)
@@ -37,16 +42,11 @@ function GoodsList({ props, id, total }) {
     };
 
 
+
     async function getFilteredDataInSearchPage() {
-        console.log(searchPhrase)
-        console.log(activePage)
-        console.log(sortIndex)
-        console.log(prciseStart)
-        console.log(prciseEnd)
-        console.log(brandsToFilter)
-        console.log(isAvailabale)
         const { result } = await GetSearchResultInPage(searchPhrase, activePage === 1 ? 0 : activePage - 1, sortIndex,
             prciseStart.length !== 0 ? prciseStart : null, prciseEnd.length !== 0 ? prciseEnd : null, brandsToFilter, isAvailabale);
+        dispatch(setSearchTotalResult(result.total));
         setTotalItems(result.total)
         setListGoods(result.data);
     };
@@ -56,8 +56,31 @@ function GoodsList({ props, id, total }) {
             getFilteredDataMinMax();
         }
         else getFilteredDataInSearchPage()
-
     }
+
+    useEffect(() => {
+        if (router.pathname === "/searchresultpage") {
+            setPriceStart("");
+            setPriceEnd("");
+            setBrandsTofilter([]);
+            setIsAvailabale(false);
+            setSortIndex(0);
+            setActivePage(1);
+            setSelectedFilterOption("Новинки");
+
+            async function getFilteredDataInSearchPage() {
+                const { result } = await GetSearchResultInPage(searchPhrase, 1, 0,
+                    null, null, []);
+                setTotalItems(result.total)
+                setListGoods(result.data);
+            };
+        }
+        getFilteredDataInSearchPage();
+
+    }, [searchActive])
+
+
+
 
     useEffect(() => {
         if (pageLoaded) {
@@ -101,6 +124,6 @@ function GoodsList({ props, id, total }) {
     )
 };
 
-export default React.memo(GoodsList);
+// export default React.memo(GoodsList);
 
 

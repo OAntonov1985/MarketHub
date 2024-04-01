@@ -46,7 +46,8 @@ function AsideFilter({ id, objToAsideFilter }) {
         }
     }
 
-
+    useEffect(() => {
+    }, [brandsToFilter]);
 
     return (
         <div className="goods-list-filter-column">
@@ -61,7 +62,13 @@ function AsideFilter({ id, objToAsideFilter }) {
                     {brandsArray.map(item => {
                         return <li key={item}>
                             <label className='input-label'>
-                                <input type='checkbox' id={item} className='checkbox' onChange={checkBrandsFilter} />
+                                <input
+                                    type='checkbox'
+                                    id={item}
+                                    className='checkbox'
+                                    onChange={checkBrandsFilter}
+                                    checked={brandsToFilter.includes(item)}
+                                />
                                 <span className='span-input'></span>
                                 {item}
                             </label>
@@ -70,7 +77,7 @@ function AsideFilter({ id, objToAsideFilter }) {
                 </ul>
                 <div>
                     <label className='input-label mb-label' >
-                        <input type="checkbox" id="isAvailable" name="scales" className='checkbox' onChange={() => setIsAvailabale(!isAvailabale)} />
+                        <input type="checkbox" id="isAvailable" name="scales" className='checkbox' checked={isAvailabale} onChange={() => setIsAvailabale(!isAvailabale)} />
                         <span className='span-input'></span>
                         Є в наявності
                     </label>
