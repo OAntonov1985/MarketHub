@@ -8,7 +8,6 @@ import GetFilteredData from '@/pages/api/GetFilteredData';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import GetSearchResultInPage from '@/pages/api/GetSearchResultInPage';
-import EmptySearch from '../EmptySearch';
 import { setSearchTotalResult } from '@/slices/userSlice';
 
 
@@ -74,8 +73,9 @@ export default function GoodsList({ props, id, total }) {
                 setTotalItems(result.total)
                 setListGoods(result.data);
             };
+            getFilteredDataInSearchPage();
         }
-        getFilteredDataInSearchPage();
+
 
     }, [searchActive])
 
