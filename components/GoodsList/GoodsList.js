@@ -11,7 +11,7 @@ import GetSearchResultInPage from '@/pages/api/GetSearchResultInPage';
 import { setSearchTotalResult } from '@/slices/userSlice';
 
 
-export default function GoodsList({ props, id, total }) {
+function GoodsList({ props, id, total, setGoods }) {
     const [listGoods, setListGoods] = useState(props);  /// Отримує список товарів з бекенду ///
     const [selectedFilterOption, setSelectedFilterOption] = useState("Новинки"); /// Встановлює опцію сортування (Новинки Від Від) ///
     const [activePage, setActivePage] = useState(1); /// Встановлює активну сторінку перегляду знизу ///
@@ -34,8 +34,10 @@ export default function GoodsList({ props, id, total }) {
     const { searchActive } = useSelector((state) => state.user);
 
 
+
     async function getFilteredDataMinMax() {
-        const { result } = await GetFilteredData(id, sortIndex, activePage === 1 ? 0 : activePage - 1, prciseStart, prciseEnd, brandsToFilter, isAvailabale, subCategoryName);
+        const { result } = await GetFilteredData(id, sortIndex, activePage === 1 ? 0 : activePage - 1,
+            prciseStart, prciseEnd, brandsToFilter, isAvailabale, subCategoryName);
         setTotalItems(result.total)
         setListGoods(result.data);
     };
@@ -43,22 +45,25 @@ export default function GoodsList({ props, id, total }) {
 
 
     async function getFilteredDataInSearchPage() {
-        const { result } = await GetSearchResultInPage(searchPhrase, activePage === 1 ? 0 : activePage - 1, sortIndex,
-            prciseStart.length !== 0 ? prciseStart : null, prciseEnd.length !== 0 ? prciseEnd : null, brandsToFilter, isAvailabale);
+        const { result } = await GetSearchResultInPage(searchPhrase, activePage === 1 ? 0 : activePage - 1,
+            sortIndex, prciseStart.length !== 0 ? prciseStart : null,
+            prciseEnd.length !== 0 ? prciseEnd : null, brandsToFilter, isAvailabale);
         dispatch(setSearchTotalResult(result.total));
-        setTotalItems(result.total)
+        setTotalItems(result.total);
         setListGoods(result.data);
-    };
+    }
 
     function selectPageAndGetData() {
         if (router.pathname !== "/searchresultpage") {
             getFilteredDataMinMax();
         }
-        else getFilteredDataInSearchPage()
+        else getFilteredDataInSearchPage();
     }
 
     useEffect(() => {
-        if (router.pathname === "/searchresultpage") {
+
+        if (router.pathname === "/searchresultpage" && pageLoaded) {
+
             setPriceStart("");
             setPriceEnd("");
             setBrandsTofilter([]);
@@ -68,18 +73,14 @@ export default function GoodsList({ props, id, total }) {
             setSelectedFilterOption("Новинки");
 
             async function getFilteredDataInSearchPage() {
-                const { result } = await GetSearchResultInPage(searchPhrase, 1, 0,
+                const { result } = await GetSearchResultInPage(searchPhrase, 0, 0,
                     null, null, []);
                 setTotalItems(result.total)
                 setListGoods(result.data);
             };
             getFilteredDataInSearchPage();
         }
-
-
     }, [searchActive])
-
-
 
 
     useEffect(() => {
@@ -124,6 +125,6 @@ export default function GoodsList({ props, id, total }) {
     )
 };
 
-// export default React.memo(GoodsList);
+export default React.memo(GoodsList);
 
 

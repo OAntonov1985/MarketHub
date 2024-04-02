@@ -28,7 +28,6 @@ export default async function GetSearchResultInPage(searchPhrase, activePage, so
             });
         if (response.ok) {
             const data = await response.json();
-            // console.log(data)
             result = data;
         } else {
             throw new Error('Ошибка при получении данных');

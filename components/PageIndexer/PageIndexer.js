@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 function PageIndexer({ total, activePage, setActivePage, totalItems }) {
 
@@ -10,6 +11,8 @@ function PageIndexer({ total, activePage, setActivePage, totalItems }) {
 
     const arrayPages = Array.from({ length: maxPageRenderInString }, (_, index) => startNumberToArray + index);
     const lastPage = Math.ceil(totalItems ? totalItems / 12 : total / 12);
+
+    const { searchActive } = useSelector((state) => state.user);
 
     const changeIndex = (event) => {
         if (event.target.id === "minus-one") {
@@ -79,6 +82,8 @@ function PageIndexer({ total, activePage, setActivePage, totalItems }) {
     const handleClick = (event) => {
         setActivePage(parseFloat(event.target.id));
     };
+
+
 
 
     return (

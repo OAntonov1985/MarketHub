@@ -11,13 +11,11 @@ export default function SearchResultPage() {
     const [goods, setGoods] = useState([]);
     const [total, setTotal] = useState([]);
 
-
-
     const { searchPhrase } = useSelector((state) => state.user);
     const { total: totalFromStore } = useSelector((state) => state.user);
 
-
     useEffect(() => {
+
         async function searchingFunction() {
             if (searchPhrase.length >= 1) {
                 try {
@@ -47,9 +45,9 @@ export default function SearchResultPage() {
             <div className='category-page'>
                 <Header />
                 <div className='category-main-content'>
-                    {(totalFromStore && totalFromStore > 0) ? ((goods && goods.length > 0) ? <GoodsList props={goods} id={100} total={total} /> : null) : <EmptySearch />}
+                    {(totalFromStore && totalFromStore > 0) ? ((goods && goods.length > 0) ? <GoodsList props={goods} id={100} total={total} setGoods={setGoods} /> : null)
+                        : <EmptySearch />}
                 </div>
-
                 <Footer />
             </div>
         </>
