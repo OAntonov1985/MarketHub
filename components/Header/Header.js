@@ -203,7 +203,7 @@ function Header({ transparentBackground, setSearchPhraseInSearchField }) {
             <div className={`search-results-header ${isVisibleSearchResult ? "" : "is-wisible"}`} >
                 {searchResult.map((item, index) => {
                     return (
-                        <Link href={`/${item.id}/${item.title}/${item.id}`}
+                        <Link href={`/${item.category_details.name}/${item.sub_category_detail.name}/${item.id}`}
                             className='result-item' key={item.id}>
                             <div className='item-image-container'>
                                 <Image

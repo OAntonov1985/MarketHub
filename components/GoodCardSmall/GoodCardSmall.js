@@ -16,6 +16,7 @@ function GoodCardSmall({ props, isFavorite }) {
     const [isInFavorite, setIsInFavorite] = useState(false);
     const [className, setClassname] = useState(false)
     const dispatch = useDispatch();
+    // console.log(props)
 
 
     const router = useRouter();

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import GetSearchResult from '@/pages/api/GetSearchResult';
 import EmptySearch from '@/components/EmptySearch';
 
-export default function SearchResultPage() {
+function SearchResultPage() {
     const [goods, setGoods] = useState([]);
     const [total, setTotal] = useState([]);
 
@@ -54,4 +54,4 @@ export default function SearchResultPage() {
     );
 }
 
-// export default React.memo(SearchResultPage)
+export default React.memo(SearchResultPage)
