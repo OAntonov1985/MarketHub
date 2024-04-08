@@ -5,6 +5,8 @@
     height: 100%
     display: flex
     flex-direction: column
+    overflow: auto
+    padding: 2.4rem     
 
 .photo-previews-row
     display: flex
@@ -14,8 +16,7 @@
     
    
 .photo-preview
-    position: relative
-    // cursor: pointer
+    position: relative   
 
 .input-photo-preview
     width: 10rem
@@ -58,6 +59,7 @@
     border-radius: 4px
     width: 2.4rem
     height: 2.4rem 
+    margin-left: .1rem
 .input-photo-bigger
     width: 65%
     height: 65%
@@ -70,7 +72,9 @@
 
 .product-description-form-input
     width: 49.8rem
-    height: 15rem
+    // height: 15rem
+    min-height: 15rem
+    margin-left: .1rem
     border: 1px solid $color-text-main
     border-radius: 8px
     background-color: $background-color
@@ -79,10 +83,12 @@
     color: $color-text-main
     outline: 1px solid $color-text-main
     resize: none
+   
 
 .button-container
     display: flex
     justify-content: right
+    margin-bottom: 2.4rem
 
 .button-submit-form
     padding: .8rem 3.6rem
@@ -92,3 +98,6 @@
     color: $color-text-main
     background-color: $background-color
     cursor: pointer
+
+.ml1
+    margin-left: .1rem

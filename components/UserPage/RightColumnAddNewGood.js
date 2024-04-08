@@ -1,14 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PhotoUploader from './PhotoUploader';
+import Cookies from 'js-cookie';
 import GetGoodByID from '@/pages/api/GetGoodByID';
 import { setActiveSpinner, setGoodToEdit } from '@/slices/userSlice';
+import { Computers } from '../Constants';
+import { Phones } from '../Constants';
+import { Household } from '../Constants';
+import { GameConsoles } from '../Constants';
+import { Audio } from '../Constants';
 
 
 
 
 function RightColumnAddNewGood() {
     const [productName, setProductName] = useState('');
+    const [productBrend, setProductBrend] = useState('');
+    const [subCaregorySelest, setSubCaregorySelest] = useState(Computers);
+
+    const [categoryInfo, setCategoryInfo] = useState({
+        id: "100",
+        name: "Комп’ютерна техніка"
+    });
+    const [subCategoryInfo, setSubCategoryInfo] = useState({
+        id: subCaregorySelest[0].id.toString(),
+        name: subCaregorySelest[0].name
+    });
+
+
     const [productPrice, setProductPrice] = useState('');
     const [productDescription, setProductDescription] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,6 +37,8 @@ function RightColumnAddNewGood() {
     const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotoArrayLength }, () => null));
 
     const dispatch = useDispatch();
+
+    const userID = Cookies.get('userID');
 
 
 
@@ -46,8 +67,11 @@ function RightColumnAddNewGood() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const testArr = pfotosArray.filter(item => item !== null)
-        if (productName.length <= 4) {
-            alert("Назва товару має бути більше 4 символів")
+        if (productBrend.length <= 1) {
+            alert("Назва бренду товару має бути більше 2 символів")
+        }
+        else if (testArr.length < 4) {
+            alert("Мінімальна кількість фото має бути 4")
         }
         else if (testArr.length < 4) {
             alert("Мінімальна кількість фото має бути 4")
@@ -59,35 +83,28 @@ function RightColumnAddNewGood() {
             alert("Введіть корректну вартість товару")
         }
         else {
-            // setIsModalOpen(true);
+
             const currentDate = new Date();
             const year = currentDate.getFullYear();
-            const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // +1, так как месяцы нумеруются с 0
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0');
             const day = String(currentDate.getDate()).padStart(2, '0');
 
-            // Получаем часы, минуты и секунды
             const hours = String(currentDate.getHours()).padStart(2, '0');
             const minutes = String(currentDate.getMinutes()).padStart(2, '0');
             const seconds = String(currentDate.getSeconds()).padStart(2, '0');
             const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
             const formData = {
-                id: "U0937652",
                 title: productName,
                 price: productPrice,
                 description: productDescription.split('.'),
-                thumbnail: pfotosArray[0],
-                images: pfotosArray.splice(1),
+                // thumbnail: pfotosArray[0],
+                // images: pfotosArray.splice(1),
+                images: pfotosArray,
                 available: true,
-                brend: "Lenovo".toUpperCase(),
-                category_details:
-                {
-                    id: 200,
-                    name: "Мобільні телефони"
-                },
-                sub_category_detail: {
-                    id: 210,
-                    name: "Смартфони"
-                },
+                brend: productBrend,
+                category_details: categoryInfo,
+                sub_category_detail: subCategoryInfo,
+                // seller_id: userID,
                 seller_id: 1003,
                 create_at: formattedDate,
                 how_many_solds: 0
@@ -105,6 +122,26 @@ function RightColumnAddNewGood() {
         setPhotosArray(Array.from({ length: pfotoArrayLength }, () => null))
     }
 
+
+
+    function subCategorySelector(event) {
+        if (event.target.selectedOptions[0].id == "100") setSubCaregorySelest(Computers)
+        else if (event.target.selectedOptions[0].id == "200") setSubCaregorySelest(Phones)
+        else if (event.target.selectedOptions[0].id == "300") setSubCaregorySelest(Household)
+        else if (event.target.selectedOptions[0].id == "400") setSubCaregorySelest(GameConsoles)
+        else if (event.target.selectedOptions[0].id == "500") setSubCaregorySelest(Audio)
+        setCategoryInfo({
+            id: event.target.selectedOptions[0].id,
+            name: event.target.selectedOptions[0].value
+        });
+        setSubCategoryInfo({
+            id: subCaregorySelest[0].id,
+            name: subCaregorySelest[0].name
+        })
+    }
+    // console.log(categoryInfo)
+    // console.log(subCategoryInfo)
+    // Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita dolorem in soluta corrupti, nemo voluptatibus excepturi nobis libero modi illo recusandae minima labore dolor officiis, animi tenetur sint quidem veritatis.
     return (
         <>
             <form className="add-new-good" onSubmit={handleSubmit}>
@@ -119,6 +156,19 @@ function RightColumnAddNewGood() {
                     placeholder="Введіть назву товару"
                     value={productName}
                     onChange={(event) => setProductName(event.target.value)}
+                />
+
+                <label htmlFor="product-brend" className="product-name-title">
+                    Назва бренду
+                </label>
+                <input
+                    minLength={3}
+                    name="product-name"
+                    id="product-name"
+                    className="product-name-form-input"
+                    placeholder="Введіть назву бренду"
+                    value={productBrend}
+                    onChange={(event) => setProductBrend(event.target.value.toUpperCase())}
                 />
 
                 <label htmlFor="product-price" className="product-price-title">
@@ -140,6 +190,29 @@ function RightColumnAddNewGood() {
                         }
                     }}
                 />
+
+                <label htmlFor="selected_category" className="product-name-title">Оберіть категорію</label>
+                <select name="selected_category" id="" className="product-name-form-input" onChange={subCategorySelector}>
+                    <option value="Комп’ютерна техніка" id='100'>Комп’ютерна техніка</option>
+                    <option value="Мобільні телефони" id='200'>Мобільні телефони</option>
+                    <option value="Побутова техніка" id='300'>Побутова техніка</option>
+                    <option value="Ігрові приставки" id='400'>Ігрові приставки</option>
+                    <option value="Аудіотехніка" id='500'>Аудіотехніка</option>
+                </select>
+
+                <label htmlFor="selected_subCategory" className="product-name-title">Оберіть підкатегорію</label>
+                <select name="selected_subCategory" id="" className="product-name-form-input"
+                    onChange={(event) => setSubCategoryInfo({
+                        id: event.target.selectedOptions[0].id,
+                        name: event.target.selectedOptions[0].value
+                    })}>
+                    {subCaregorySelest.map((item, index) => {
+                        return (
+                            <option value={item.name} id={item.id} key={index}>{item.name}</option>
+                        )
+                    })}
+                </select>
+
 
                 <label htmlFor="product-photo" className="product-price-photo">
                     Фото

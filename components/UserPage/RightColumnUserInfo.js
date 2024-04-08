@@ -103,7 +103,6 @@ function RightColumnUserInfo() {
                     className={isActiveFields ? (`user-info-form-input ${showErrorEmail ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
                     disabled={!isActiveFields}
                     onChange={(e) => validateEmail(e.target.value)}
-                    // onBlur={validateEmail}
                     placeholder="Введіть вашу пошту"
                     autoComplete="userEmail"
                     value={userEmail} />

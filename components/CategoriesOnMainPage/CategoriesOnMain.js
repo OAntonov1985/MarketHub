@@ -3,7 +3,6 @@ import Link from 'next/link';
 import React from 'react';
 
 function CategoriesOnMain({ categories }) {
-    // console.log(categories)
 
     return (
         <>

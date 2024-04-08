@@ -15,10 +15,8 @@ import formattedPrice from '../HelperFunctions/FormattedPrice';
 
 
 
-function Header({ transparentBackground, setSearchPhraseInSearchField }) {
+function Header({ transparentBackground }) {
 
-    // const { setSearchPhrase } = props;
-    // console.log(setSearchPhraseInSearchField)
     const [headerName, setHeaderName] = useState('');
     const [isVisible, setIsVisible] = useState("quantityOfGoods is-wisible");
     const [isVisibleFavorite, setIsVisibleFavorite] = useState("quantityOfFavorite is-wisible");
