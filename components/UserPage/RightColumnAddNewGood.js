@@ -9,6 +9,8 @@ import { Phones } from '../Constants';
 import { Household } from '../Constants';
 import { GameConsoles } from '../Constants';
 import { Audio } from '../Constants';
+import AddNewGood from '@/pages/api/AddNewGood';
+import Spinner from '../Spinner/Spinner';
 
 
 
@@ -64,55 +66,52 @@ function RightColumnAddNewGood() {
         };
     }, [goodToEdit])
 
-    const handleSubmit = (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
-        const testArr = pfotosArray.filter(item => item !== null)
-        if (productBrend.length <= 1) {
-            alert("Назва бренду товару має бути більше 2 символів")
-        }
-        else if (testArr.length < 4) {
-            alert("Мінімальна кількість фото має бути 4")
-        }
-        else if (testArr.length < 4) {
-            alert("Мінімальна кількість фото має бути 4")
-        }
-        else if (productDescription.length <= 3) {
-            alert("Мінімальна довжина опису товару має бути 10 символів")
-        }
-        else if (productPrice.length == 0 || productPrice == 0) {
-            alert("Введіть корректну вартість товару")
-        }
-        else {
+        dispatch(setActiveSpinner(true));
 
+        const testArr = pfotosArray.filter(item => item !== null);
+
+        if (productBrend.length <= 1) {
+            alert("Назва бренду товару має бути більше 2 символів");
+        } else if (testArr.length < 4) {
+            alert("Мінімальна кількість фото має бути 4");
+        } else if (productDescription.length <= 3) {
+            alert("Мінімальна довжина опису товару має бути 10 символів");
+        } else if (productPrice.length === 0 || productPrice === "0") {
+            alert("Введіть корректну вартість товару");
+        } else {
             const currentDate = new Date();
             const year = currentDate.getFullYear();
             const month = String(currentDate.getMonth() + 1).padStart(2, '0');
             const day = String(currentDate.getDate()).padStart(2, '0');
-
             const hours = String(currentDate.getHours()).padStart(2, '0');
             const minutes = String(currentDate.getMinutes()).padStart(2, '0');
             const seconds = String(currentDate.getSeconds()).padStart(2, '0');
             const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-            const formData = {
-                title: productName,
-                price: productPrice,
-                description: productDescription.split('.'),
-                // thumbnail: pfotosArray[0],
-                // images: pfotosArray.splice(1),
-                images: pfotosArray,
-                available: true,
-                brend: productBrend,
-                category_details: categoryInfo,
-                sub_category_detail: subCategoryInfo,
-                // seller_id: userID,
-                seller_id: 1003,
-                create_at: formattedDate,
-                how_many_solds: 0
-            };
-            // clearAllFields();
-            console.log(formData);
+
+            const formData = new FormData();
+            formData.append('title', productName);
+            formData.append('price', productPrice);
+            formData.append('description', productDescription.split('.'));
+            formData.append('images', pfotosArray[0]); // Добавьте изображение для thumbnail
+            pfotosArray.slice(1).forEach(image => {
+                formData.append('images', image); // Добавьте остальные изображения
+            });
+            formData.append('available', true);
+            formData.append('brend', productBrend);
+            formData.append('category_details', JSON.stringify(categoryInfo));
+            formData.append('sub_category_detail', JSON.stringify(subCategoryInfo));
+            formData.append('seller_id', 1003);
+            formData.append('create_at', formattedDate);
+            formData.append('how_many_solds', 0);
+
+            const { result } = await AddNewGood(formData);
+            dispatch(setActiveSpinner(false));
+            console.log(result);
         }
-    };
+    }
+
 
     function clearAllFields() {
         setIsModalOpen(true);

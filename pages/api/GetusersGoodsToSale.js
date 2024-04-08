@@ -8,7 +8,6 @@ export default async function GetusersGoodsToSale(id, activePage, isActive) {
         if (typeof isActive !== 'undefined') {
             params.append('isActive', isActive);
         }
-        // console.log(MaketHubURL + `users/usergoods/${id}/0/12` + (params.toString() !== '' ? '?' + params.toString() : ''));
 
         const response = await fetch(MaketHubURL + `users/usergoods/${id}/${activePage}/6` + (params.toString() !== '' ? '?' + params.toString() : ''), {
             method: 'GET',
