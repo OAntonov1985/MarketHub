@@ -11,6 +11,7 @@ import { GameConsoles } from '../Constants';
 import { Audio } from '../Constants';
 import AddNewGood from '@/pages/api/AddNewGood';
 import Spinner from '../Spinner/Spinner';
+import { uploadImagesToStorage } from '@/pages/api/DownloadImages';
 
 
 
@@ -68,48 +69,52 @@ function RightColumnAddNewGood() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        dispatch(setActiveSpinner(true));
+        // dispatch(setActiveSpinner(true));
 
         const testArr = pfotosArray.filter(item => item !== null);
+        const downloadURLs = await uploadImagesToStorage(pfotosArray, productBrend);
+        console.log("Download URLs:", downloadURLs);
+        // formData.append('images', downloadURLs);
+        console.log(formData);
 
-        if (productBrend.length <= 1) {
-            alert("Назва бренду товару має бути більше 2 символів");
-        } else if (testArr.length < 4) {
-            alert("Мінімальна кількість фото має бути 4");
-        } else if (productDescription.length <= 3) {
-            alert("Мінімальна довжина опису товару має бути 10 символів");
-        } else if (productPrice.length === 0 || productPrice === "0") {
-            alert("Введіть корректну вартість товару");
-        } else {
-            const currentDate = new Date();
-            const year = currentDate.getFullYear();
-            const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-            const day = String(currentDate.getDate()).padStart(2, '0');
-            const hours = String(currentDate.getHours()).padStart(2, '0');
-            const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-            const seconds = String(currentDate.getSeconds()).padStart(2, '0');
-            const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+        // if (productBrend.length <= 1) {
+        //     alert("Назва бренду товару має бути більше 2 символів");
+        // } else if (testArr.length < 4) {
+        //     alert("Мінімальна кількість фото має бути 4");
+        // } else if (productDescription.length <= 3) {
+        //     alert("Мінімальна довжина опису товару має бути 10 символів");
+        // } else if (productPrice.length === 0 || productPrice === "0") {
+        //     alert("Введіть корректну вартість товару");
+        // } else {
+        //     const currentDate = new Date();
+        //     const year = currentDate.getFullYear();
+        //     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        //     const day = String(currentDate.getDate()).padStart(2, '0');
+        //     const hours = String(currentDate.getHours()).padStart(2, '0');
+        //     const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+        //     const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+        //     const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 
-            const formData = new FormData();
-            formData.append('title', productName);
-            formData.append('price', productPrice);
-            formData.append('description', productDescription.split('.'));
-            formData.append('images', pfotosArray[0]); // Добавьте изображение для thumbnail
-            pfotosArray.slice(1).forEach(image => {
-                formData.append('images', image); // Добавьте остальные изображения
-            });
-            formData.append('available', true);
-            formData.append('brend', productBrend);
-            formData.append('category_details', JSON.stringify(categoryInfo));
-            formData.append('sub_category_detail', JSON.stringify(subCategoryInfo));
-            formData.append('seller_id', 1003);
-            formData.append('create_at', formattedDate);
-            formData.append('how_many_solds', 0);
+        //     // const formData = new FormData();
+        //     // formData.append('title', productName);
+        //     // formData.append('price', productPrice);
+        //     // formData.append('description', productDescription.split('.'));
+        //     // formData.append('images', pfotosArray[0]); // Добавьте изображение для thumbnail
 
-            const { result } = await AddNewGood(formData);
-            dispatch(setActiveSpinner(false));
-            console.log(result);
-        }
+        //     // formData.append('available', true);
+        //     // formData.append('brend', productBrend);
+        //     // formData.append('category_details', JSON.stringify(categoryInfo));
+        //     // formData.append('sub_category_detail', JSON.stringify(subCategoryInfo));
+        //     // formData.append('seller_id', 1003);
+        //     // formData.append('create_at', formattedDate);
+        //     // formData.append('how_many_solds', 0);
+
+
+        //     const downloadURLs = await uploadImagesToStorage(pfotosArray, productBrend);
+        //     console.log("Download URLs:", downloadURLs);
+        //     formData.append('images', downloadURLs);
+        //     console.log(formData);
+        // }
     }
 
 
