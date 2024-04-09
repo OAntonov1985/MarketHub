@@ -1,4 +1,3 @@
-// Ваш файл utils/firebase.js
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { initializeApp } from "firebase/app";
 
@@ -13,15 +12,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
-// Функция для загрузки изображений в Firebase Storage
+
 export async function uploadImagesToStorage(files, productBrend) {
     const uploadPromises = files.map(async file => {
         const storageRef = ref(storage, `${productBrend}/` + file.name);
         await uploadBytesResumable(storageRef, file);
 
-        // Получение URL загруженного изображения
         const downloadURL = await getDownloadURL(storageRef);
-        console.log("Image uploaded:", downloadURL);
         return downloadURL;
     });
 

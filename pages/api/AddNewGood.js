@@ -1,19 +1,28 @@
+import { MaketHubURL } from "../../components/Constants";
+
 export default async function AddNewGood(formData) {
+    let result;
+    // console.log(formData)
+
     try {
-        const response = await fetch('https://market-hub-backend-dat4.vercel.app/createnewgood', {
+        const response = await fetch(MaketHubURL + `createnewgood`, {
             method: 'POST',
-            body: formData,
-            mode: "no-cors"
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
         });
 
         if (response.ok) {
             const data = await response.json();
-            return { result: data };
+            result = data;
+            // console.log(data);
+
         } else {
-            throw new Error('Failed to add new good');
+            throw new Error('Упс.... Щось пішло не так. Зверніться до розробників');
         }
     } catch (error) {
-        console.error('Failed to add new good:', error);
-        throw error;
+        throw new Error('Упс.... Щось пішло не так. Зверніться до розробників');
     }
+    return { result }
 }

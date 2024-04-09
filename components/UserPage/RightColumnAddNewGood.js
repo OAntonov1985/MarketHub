@@ -40,7 +40,6 @@ function RightColumnAddNewGood() {
     const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotoArrayLength }, () => null));
 
     const dispatch = useDispatch();
-
     const userID = Cookies.get('userID');
 
 
@@ -49,9 +48,10 @@ function RightColumnAddNewGood() {
         dispatch(setActiveSpinner(true));
         try {
             const result = await GetGoodByID(goodToEdit);
-            console.log(result.result)
+            // console.log(result.result)
             setProductName(result.result.title);
             setProductPrice(result.result.price);
+            setProductBrend(result.result.brend)
             setProductDescription(result.result.description);
             setPhotosArray(result.result.images)
             dispatch(setActiveSpinner(false));
@@ -69,62 +69,76 @@ function RightColumnAddNewGood() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        // dispatch(setActiveSpinner(true));
+        dispatch(setActiveSpinner(true));
 
         const testArr = pfotosArray.filter(item => item !== null);
-        const downloadURLs = await uploadImagesToStorage(pfotosArray, productBrend);
-        console.log("Download URLs:", downloadURLs);
-        // formData.append('images', downloadURLs);
-        console.log(formData);
 
-        // if (productBrend.length <= 1) {
-        //     alert("Назва бренду товару має бути більше 2 символів");
-        // } else if (testArr.length < 4) {
-        //     alert("Мінімальна кількість фото має бути 4");
-        // } else if (productDescription.length <= 3) {
-        //     alert("Мінімальна довжина опису товару має бути 10 символів");
-        // } else if (productPrice.length === 0 || productPrice === "0") {
-        //     alert("Введіть корректну вартість товару");
-        // } else {
-        //     const currentDate = new Date();
-        //     const year = currentDate.getFullYear();
-        //     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-        //     const day = String(currentDate.getDate()).padStart(2, '0');
-        //     const hours = String(currentDate.getHours()).padStart(2, '0');
-        //     const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-        //     const seconds = String(currentDate.getSeconds()).padStart(2, '0');
-        //     const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-
-        //     // const formData = new FormData();
-        //     // formData.append('title', productName);
-        //     // formData.append('price', productPrice);
-        //     // formData.append('description', productDescription.split('.'));
-        //     // formData.append('images', pfotosArray[0]); // Добавьте изображение для thumbnail
-
-        //     // formData.append('available', true);
-        //     // formData.append('brend', productBrend);
-        //     // formData.append('category_details', JSON.stringify(categoryInfo));
-        //     // formData.append('sub_category_detail', JSON.stringify(subCategoryInfo));
-        //     // formData.append('seller_id', 1003);
-        //     // formData.append('create_at', formattedDate);
-        //     // formData.append('how_many_solds', 0);
+        if (productBrend.length <= 1) {
+            alert("Назва бренду товару має бути більше 2 символів");
+        } else if (testArr.length < 4) {
+            alert("Мінімальна кількість фото має бути 4");
+        } else if (productDescription.length <= 3) {
+            alert("Мінімальна довжина опису товару має бути 10 символів");
+        } else if (productPrice.length === 0 || productPrice === "0") {
+            alert("Введіть корректну вартість товару");
+        } else {
+            const currentDate = new Date();
+            const year = currentDate.getFullYear();
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+            const day = String(currentDate.getDate()).padStart(2, '0');
+            const hours = String(currentDate.getHours()).padStart(2, '0');
+            const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+            const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 
 
-        //     const downloadURLs = await uploadImagesToStorage(pfotosArray, productBrend);
-        //     console.log("Download URLs:", downloadURLs);
-        //     formData.append('images', downloadURLs);
-        //     console.log(formData);
-        // }
+            const downloadURLs = await uploadImagesToStorage(pfotosArray, productName);
+            if (downloadURLs.length > 0) {
+                const formData = {
+                    title: productName,
+                    price: productPrice,
+                    description: productDescription.split('.'),
+                    thumbnail: downloadURLs[0],
+                    images: downloadURLs.splice(1),
+                    available: true,
+                    brend: productBrend,
+                    category_details: categoryInfo,
+                    sub_category_detail: subCategoryInfo,
+                    seller_id: 1003,
+                    create_at: formattedDate,
+                    how_many_solds: 0
+                }
+                const addNewGoodREsult = await AddNewGood(formData);
+
+                if (addNewGoodREsult.result.status == "SUCCESS") {
+                    dispatch(setActiveSpinner(false));
+                    clearAllFields();
+                } else {
+                    dispatch(setActiveSpinner(false));
+                    alert("При додаванні товару сталася помилка. Зверніться до розробників")
+                }
+
+            } else dispatch(setActiveSpinner(false));
+        }
     }
 
 
     function clearAllFields() {
         setIsModalOpen(true);
         setProductName('');
+        setProductBrend('');
         setProductPrice('');
         setProductDescription('');
+        setSubCaregorySelest(Computers);
         setPhotosArray(Array.from({ length: pfotoArrayLength }, () => null))
     }
+
+    useEffect(() => {
+        setSubCategoryInfo({
+            id: subCaregorySelest[0].id.toString(),
+            name: subCaregorySelest[0].name
+        })
+    }, [categoryInfo])
 
 
 
@@ -138,14 +152,8 @@ function RightColumnAddNewGood() {
             id: event.target.selectedOptions[0].id,
             name: event.target.selectedOptions[0].value
         });
-        setSubCategoryInfo({
-            id: subCaregorySelest[0].id,
-            name: subCaregorySelest[0].name
-        })
     }
-    // console.log(categoryInfo)
-    // console.log(subCategoryInfo)
-    // Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita dolorem in soluta corrupti, nemo voluptatibus excepturi nobis libero modi illo recusandae minima labore dolor officiis, animi tenetur sint quidem veritatis.
+
     return (
         <>
             <form className="add-new-good" onSubmit={handleSubmit}>
@@ -247,6 +255,7 @@ function RightColumnAddNewGood() {
                         <div className="modal-content in-userpage">
                             <h4 className='modal-in-userpage-title'>Товар додано до каталогу.</h4>
                             <button className='modal-content-button-in-userpage' onClick={() => setIsModalOpen(false)}>Продовжити</button>
+                            <button className='modal-content-button-in-userpage' onClick={() => setIsModalOpen(false)}>Подивитись товар на сайті</button>
                         </div>
                     </div>
                 )
