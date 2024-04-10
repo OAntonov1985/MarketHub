@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActiveSubItemInGood } from '@/slices/userSlice';
 

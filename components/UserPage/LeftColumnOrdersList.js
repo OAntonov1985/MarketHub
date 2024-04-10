@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 
 function LeftColumnOrdersList({ objToSend }) {
-    const { setIsOpenGoods, isOpenGoods, setIsActiveCatogorie, setActiveItem, isActiveCategorie } = objToSend;
+    const { setIsActiveCatogorie, setActiveItem, isActiveCategorie } = objToSend;
     const [activeItemInOrders, setActiveItemInOrders] = useState("Всі замовлення");
 
 
