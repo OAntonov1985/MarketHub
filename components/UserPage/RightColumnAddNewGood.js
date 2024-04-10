@@ -145,9 +145,7 @@ function RightColumnAddNewGood() {
             id: subCaregorySelest[0].id.toString(),
             name: subCaregorySelest[0].name
         });
-    }, [categoryInfo])
-
-
+    }, [categoryInfo]);
 
     function CategorySelector(event) {
 
