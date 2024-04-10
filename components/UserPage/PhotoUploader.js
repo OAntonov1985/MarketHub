@@ -6,7 +6,6 @@ import { setPhotoArrayLength } from '@/slices/userSlice';
 function PhotoUploader({ pfotosArray, setPhotosArray }) {
 
     const dispatch = useDispatch();
-    // console.log(pfotosArray)
     const handleFileChange = (event) => {
         const arrayIndex = parseInt(event.target.id);
 

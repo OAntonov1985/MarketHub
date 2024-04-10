@@ -4,56 +4,62 @@ import PhotoUploader from './PhotoUploader';
 import Cookies from 'js-cookie';
 import GetGoodByID from '@/pages/api/GetGoodByID';
 import { setActiveSpinner, setGoodToEdit } from '@/slices/userSlice';
-import { Computers } from '../Constants';
-import { Phones } from '../Constants';
-import { Household } from '../Constants';
-import { GameConsoles } from '../Constants';
-import { Audio } from '../Constants';
+import { Computers, Phones, Household, GameConsoles, Audio, Categories } from '../Constants';
 import AddNewGood from '@/pages/api/AddNewGood';
-import Spinner from '../Spinner/Spinner';
+import { useRouter } from 'next/router';
 import { uploadImagesToStorage } from '@/pages/api/DownloadImages';
 
 
 
 
 function RightColumnAddNewGood() {
-    const [productName, setProductName] = useState('');
-    const [productBrend, setProductBrend] = useState('');
-    const [subCaregorySelest, setSubCaregorySelest] = useState(Computers);
+    const [productName, setProductName] = useState(''); // назва продукту
+    const [productBrend, setProductBrend] = useState(''); // назва бренду продукту
+    const [subCaregorySelest, setSubCaregorySelest] = useState(Computers); // субкатегорія для рендерінгу селекту
+    const [categoryValue, setCategoryValue] = useState(Categories[0].name); // назва категорії
+    const [subCaregoryValue, setSubCaregoryValue] = useState(Computers[0].name); // назва субкатегорії
 
     const [categoryInfo, setCategoryInfo] = useState({
         id: "100",
         name: "Комп’ютерна техніка"
-    });
+    }); // інфо для створення нового товару (категорія)
+
     const [subCategoryInfo, setSubCategoryInfo] = useState({
         id: subCaregorySelest[0].id.toString(),
         name: subCaregorySelest[0].name
-    });
+    }); // інфо для створення нового товару (субкатегорія)
 
+    const [productPrice, setProductPrice] = useState(''); // ціна товару 
+    const [productDescription, setProductDescription] = useState(''); // опис товару 
+    const [newGoodId, setNewGoodId] = useState(''); // опис товару 
+    const [isModalOpen, setIsModalOpen] = useState(false); // чи відкрита модалка
+    const { pfotoArrayLength } = useSelector((state) => state.user); // довжина фото масиву
+    const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotoArrayLength }, () => null)); // масив фото
 
-    const [productPrice, setProductPrice] = useState('');
-    const [productDescription, setProductDescription] = useState('');
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const { pfotoArrayLength } = useSelector((state) => state.user);
-    const { goodToEdit } = useSelector((state) => state.user);
-    const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotoArrayLength }, () => null));
+    const { goodToEdit } = useSelector((state) => state.user);  //товар для редагування
 
     const dispatch = useDispatch();
+    const router = useRouter();
     const userID = Cookies.get('userID');
-
-
 
     const fetchData = async () => {
         dispatch(setActiveSpinner(true));
         try {
             const result = await GetGoodByID(goodToEdit);
-            // console.log(result.result)
             setProductName(result.result.title);
             setProductPrice(result.result.price);
-            setProductBrend(result.result.brend)
+            setProductBrend(result.result.brend);
+            setCategoryValue(result.result.category_details.name);
+
+            if (result.result.category_details.id == "100") setSubCaregorySelest(Computers)
+            else if (result.result.category_details.id == "200") setSubCaregorySelest(Phones)
+            else if (result.result.category_details.id == "300") setSubCaregorySelest(Household)
+            else if (result.result.category_details.id == "400") setSubCaregorySelest(GameConsoles)
+            else if (result.result.category_details.id == "500") setSubCaregorySelest(Audio)
+
+            setSubCaregoryValue(result.result.sub_category_detail.name);
             setProductDescription(result.result.description);
-            setPhotosArray(result.result.images)
+            setPhotosArray([result.result.thumbnail, ...result.result.images])
             dispatch(setActiveSpinner(false));
             dispatch(setGoodToEdit(''));
         } catch (error) {
@@ -91,7 +97,6 @@ function RightColumnAddNewGood() {
             const seconds = String(currentDate.getSeconds()).padStart(2, '0');
             const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 
-
             const downloadURLs = await uploadImagesToStorage(pfotosArray, productName);
             if (downloadURLs.length > 0) {
                 const formData = {
@@ -111,6 +116,7 @@ function RightColumnAddNewGood() {
                 const addNewGoodREsult = await AddNewGood(formData);
 
                 if (addNewGoodREsult.result.status == "SUCCESS") {
+                    setNewGoodId(addNewGoodREsult.result.id);
                     dispatch(setActiveSpinner(false));
                     clearAllFields();
                 } else {
@@ -130,28 +136,44 @@ function RightColumnAddNewGood() {
         setProductPrice('');
         setProductDescription('');
         setSubCaregorySelest(Computers);
-        setPhotosArray(Array.from({ length: pfotoArrayLength }, () => null))
+        setPhotosArray(Array.from({ length: pfotoArrayLength }, () => null));
+        setSubCaregoryValue(Computers[0].name);
     }
 
     useEffect(() => {
         setSubCategoryInfo({
             id: subCaregorySelest[0].id.toString(),
             name: subCaregorySelest[0].name
-        })
+        });
     }, [categoryInfo])
 
 
 
-    function subCategorySelector(event) {
+    function CategorySelector(event) {
+
         if (event.target.selectedOptions[0].id == "100") setSubCaregorySelest(Computers)
         else if (event.target.selectedOptions[0].id == "200") setSubCaregorySelest(Phones)
         else if (event.target.selectedOptions[0].id == "300") setSubCaregorySelest(Household)
         else if (event.target.selectedOptions[0].id == "400") setSubCaregorySelest(GameConsoles)
         else if (event.target.selectedOptions[0].id == "500") setSubCaregorySelest(Audio)
+        setCategoryValue(event.target.value);
         setCategoryInfo({
             id: event.target.selectedOptions[0].id,
             name: event.target.selectedOptions[0].value
         });
+    }
+
+    function subCategorySelector(event) {
+        setSubCaregoryValue(event.target.value);
+        setSubCategoryInfo({
+            id: event.target.selectedOptions[0].id,
+            name: event.target.selectedOptions[0].value
+        })
+    }
+
+    function pushUserToNewGood() {
+        setIsModalOpen(false);
+        router.push(`/${categoryInfo.name}/${subCategoryInfo.name}/${newGoodId}`);
     }
 
     return (
@@ -204,27 +226,30 @@ function RightColumnAddNewGood() {
                 />
 
                 <label htmlFor="selected_category" className="product-name-title">Оберіть категорію</label>
-                <select name="selected_category" id="" className="product-name-form-input" onChange={subCategorySelector}>
-                    <option value="Комп’ютерна техніка" id='100'>Комп’ютерна техніка</option>
-                    <option value="Мобільні телефони" id='200'>Мобільні телефони</option>
-                    <option value="Побутова техніка" id='300'>Побутова техніка</option>
-                    <option value="Ігрові приставки" id='400'>Ігрові приставки</option>
-                    <option value="Аудіотехніка" id='500'>Аудіотехніка</option>
+                <select name="selected_category" id="selected_category" className="product-name-form-input" value={categoryValue} onChange={CategorySelector}>
+                    {Categories.map((item, index) => (
+                        <option
+                            value={item.name}
+                            id={item.id}
+                            key={index}>
+                            {item.name}
+                        </option>
+                    ))}
                 </select>
 
                 <label htmlFor="selected_subCategory" className="product-name-title">Оберіть підкатегорію</label>
-                <select name="selected_subCategory" id="" className="product-name-form-input"
-                    onChange={(event) => setSubCategoryInfo({
-                        id: event.target.selectedOptions[0].id,
-                        name: event.target.selectedOptions[0].value
-                    })}>
-                    {subCaregorySelest.map((item, index) => {
-                        return (
-                            <option value={item.name} id={item.id} key={index}>{item.name}</option>
-                        )
-                    })}
+                <select name="selected_subCategory" id="selected_subCategory" className="product-name-form-input"
+                    value={subCaregoryValue}
+                    onChange={subCategorySelector}>
+                    {subCaregorySelest.map((item, index) => (
+                        <option
+                            value={item.name}
+                            id={item.id}
+                            key={index}>
+                            {item.name}
+                        </option>
+                    ))}
                 </select>
-
 
                 <label htmlFor="product-photo" className="product-price-photo">
                     Фото
@@ -255,7 +280,8 @@ function RightColumnAddNewGood() {
                         <div className="modal-content in-userpage">
                             <h4 className='modal-in-userpage-title'>Товар додано до каталогу.</h4>
                             <button className='modal-content-button-in-userpage' onClick={() => setIsModalOpen(false)}>Продовжити</button>
-                            <button className='modal-content-button-in-userpage' onClick={() => setIsModalOpen(false)}>Подивитись товар на сайті</button>
+                            <p className='modal-paragraf-or'>або</p>
+                            <button className='modal-content-button-in-userpage' onClick={pushUserToNewGood}>Подивитись товар на сайті</button>
                         </div>
                     </div>
                 )

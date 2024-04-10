@@ -1,6 +1,29 @@
 export const URLADRESS = "https://markethub-mfbw.onrender.com/markethub/";
 export const MaketHubURL = "https://market-hub-backend-dat4.vercel.app/";
 
+export const Categories = [
+    {
+        id: 100,
+        name: "Комп’ютерна техніка"
+    },
+    {
+        id: 200,
+        name: "Мобільні телефони"
+    },
+    {
+        id: 300,
+        name: "Побутова техніка"
+    },
+    {
+        id: 400,
+        name: "Ігрові приставки"
+    },
+    {
+        id: 500,
+        name: "Аудіотехніка"
+    }
+]
+
 export const Computers = [
     {
         id: 110,

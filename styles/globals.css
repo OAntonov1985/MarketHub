@@ -1939,7 +1939,7 @@ h2 {
 
 .in-userpage {
   width: 67.3rem;
-  height: 18rem;
+  min-height: 18rem;
   background-color: #FBFBFB;
   border: 1px solid #012767;
   border-radius: 0px;
@@ -1960,6 +1960,12 @@ h2 {
   border-radius: 4px;
   background-color: #FBFBFB;
   cursor: pointer;
+}
+
+.modal-paragraf-or {
+  margin: 2.4rem 0;
+  font-size: 1.8rem;
+  color: #012767;
 }
 
 .favorite-conteiner {
