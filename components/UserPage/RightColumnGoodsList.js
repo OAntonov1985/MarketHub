@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { setActiveSpinner } from '@/slices/userSlice';
 import SetProductAvability from '@/pages/api/SetProductAvability';
 import DeleteGood from '@/pages/api/DeleteGood';
+import GetLinksOfImages from '@/pages/api/GetLinksOfImages';
+import deleteImagesAndFolder from '@/pages/api/DeleteFilesInFireBase';
 
 
 function RightColumnGoodsList() {
@@ -61,14 +63,22 @@ function RightColumnGoodsList() {
 
     async function deleteGood(event, title) {
         let isDeletingGood = confirm(`Ви дійсно бажаєте видалити ${title}`);
-        console.log(isDeletingGood)
+
         if (isDeletingGood) {
             dispatch(setActiveSpinner(true));
             try {
-                const result = await DeleteGood(event.target.id);
-                fetchData();
-                dispatch(setActiveSpinner(false));
-                alert(result.result.message);
+                const linksArray = await GetLinksOfImages(event.target.id);
+                if (linksArray.length > 0) {
+                    const resultDeleteImg = await deleteImagesAndFolder(linksArray);
+                    if (resultDeleteImg) {
+                        const result = await DeleteGood(event.target.id);
+                        fetchData();
+                        alert(result.result.message);
+                    } else {
+                        dispatch(setActiveSpinner(false));
+                        alert("Щось пішло не так");
+                    }
+                }
             } catch (error) {
                 alert('Упс.... Щось пішло не так. зверніться до розробників');
             }

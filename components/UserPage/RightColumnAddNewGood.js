@@ -19,6 +19,8 @@ function RightColumnAddNewGood() {
     const [categoryValue, setCategoryValue] = useState(Categories[0].name); // назва категорії
     const [subCaregoryValue, setSubCaregoryValue] = useState(Computers[0].name); // назва субкатегорії
 
+    const [goodSaved, setGoodSaved] = useState(null);
+
     const [categoryInfo, setCategoryInfo] = useState({
         id: "100",
         name: "Комп’ютерна техніка"
@@ -38,14 +40,17 @@ function RightColumnAddNewGood() {
 
     const { goodToEdit } = useSelector((state) => state.user);  //товар для редагування
 
+
     const dispatch = useDispatch();
     const router = useRouter();
     const userID = Cookies.get('userID');
+
 
     const fetchData = async () => {
         dispatch(setActiveSpinner(true));
         try {
             const result = await GetGoodByID(goodToEdit);
+            setGoodSaved(result.result);
             setProductName(result.result.title);
             setProductPrice(result.result.price);
             setProductBrend(result.result.brend);
@@ -56,6 +61,16 @@ function RightColumnAddNewGood() {
             else if (result.result.category_details.id == "300") setSubCaregorySelest(Household)
             else if (result.result.category_details.id == "400") setSubCaregorySelest(GameConsoles)
             else if (result.result.category_details.id == "500") setSubCaregorySelest(Audio)
+
+            setCategoryInfo({
+                id: result.result.category_details.id,
+                name: result.result.category_details.name
+            });
+
+            setSubCategoryInfo({
+                id: result.result.sub_category_detail.id,
+                name: result.result.sub_category_detail.name
+            })
 
             setSubCaregoryValue(result.result.sub_category_detail.name);
             setProductDescription(result.result.description);
@@ -75,57 +90,86 @@ function RightColumnAddNewGood() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        dispatch(setActiveSpinner(true));
 
-        const testArr = pfotosArray.filter(item => item !== null);
+        if (goodSaved === null) {
 
-        if (productBrend.length <= 1) {
-            alert("Назва бренду товару має бути більше 2 символів");
-        } else if (testArr.length < 4) {
-            alert("Мінімальна кількість фото має бути 4");
-        } else if (productDescription.length <= 3) {
-            alert("Мінімальна довжина опису товару має бути 10 символів");
-        } else if (productPrice.length === 0 || productPrice === "0") {
-            alert("Введіть корректну вартість товару");
-        } else {
-            const currentDate = new Date();
-            const year = currentDate.getFullYear();
-            const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-            const day = String(currentDate.getDate()).padStart(2, '0');
-            const hours = String(currentDate.getHours()).padStart(2, '0');
-            const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-            const seconds = String(currentDate.getSeconds()).padStart(2, '0');
-            const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+            const testArr = pfotosArray.filter(item => item !== null);
 
-            const downloadURLs = await uploadImagesToStorage(pfotosArray, productName);
-            if (downloadURLs.length > 0) {
-                const formData = {
-                    title: productName,
-                    price: productPrice,
-                    description: productDescription.split('.'),
-                    thumbnail: downloadURLs[0],
-                    images: downloadURLs.splice(1),
-                    available: true,
-                    brend: productBrend,
-                    category_details: categoryInfo,
-                    sub_category_detail: subCategoryInfo,
-                    seller_id: 1003,
-                    create_at: formattedDate,
-                    how_many_solds: 0
-                }
-                const addNewGoodREsult = await AddNewGood(formData);
+            if (productBrend.length <= 1) {
+                alert("Назва бренду товару має бути більше 2 символів");
+            } else if (testArr.length < 4) {
+                alert("Мінімальна кількість фото має бути 4");
+            } else if (productDescription.length <= 3) {
+                alert("Мінімальна довжина опису товару має бути 10 символів");
+            } else if (productPrice.length === 0 || productPrice === "0") {
+                alert("Введіть корректну вартість товару");
+            } else {
+                dispatch(setActiveSpinner(true));
+                const currentDate = new Date();
+                const year = currentDate.getFullYear();
+                const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+                const day = String(currentDate.getDate()).padStart(2, '0');
+                const hours = String(currentDate.getHours()).padStart(2, '0');
+                const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+                const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+                const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 
-                if (addNewGoodREsult.result.status == "SUCCESS") {
-                    setNewGoodId(addNewGoodREsult.result.id);
-                    dispatch(setActiveSpinner(false));
-                    clearAllFields();
-                } else {
-                    dispatch(setActiveSpinner(false));
-                    alert("При додаванні товару сталася помилка. Зверніться до розробників")
-                }
+                const downloadURLs = await uploadImagesToStorage(pfotosArray, productName);
+                if (downloadURLs.length > 0) {
+                    const formData = {
+                        title: productName,
+                        price: productPrice,
+                        description: productDescription.split(".").map(item => item + "."),
+                        thumbnail: downloadURLs[0],
+                        images: downloadURLs.splice(1),
+                        available: true,
+                        brend: productBrend,
+                        category_details: categoryInfo,
+                        sub_category_detail: subCategoryInfo,
+                        seller_id: 1003,
+                        create_at: formattedDate,
+                        how_many_solds: 0
+                    }
 
-            } else dispatch(setActiveSpinner(false));
+                    const addNewGoodREsult = await AddNewGood(formData);
+
+                    if (addNewGoodREsult.result.status == "SUCCESS") {
+                        setNewGoodId(addNewGoodREsult.result.id);
+                        dispatch(setActiveSpinner(false));
+                        clearAllFields();
+                    } else {
+                        dispatch(setActiveSpinner(false));
+                        alert("При додаванні товару сталася помилка. Зверніться до розробників")
+                    }
+
+                } else dispatch(setActiveSpinner(false));
+            }
         }
+        else {
+            // console.log(productName)
+            if (goodSaved.title !== productName) {
+                console.log(productName)
+            }
+            if (goodSaved.brend !== productBrend) {
+                console.log(productBrend)
+            }
+            if (goodSaved.price !== productPrice) {
+                console.log(productPrice)
+            }
+            if (goodSaved.category_details.id !== categoryInfo.id || goodSaved.category_details.name !== categoryInfo.name) {
+                console.log(categoryInfo)
+            }
+            if (goodSaved.sub_category_detail.id !== subCategoryInfo.id || goodSaved.sub_category_detail.name !== subCategoryInfo.name) {
+                console.log(subCategoryInfo)
+            }
+            if (!Array.isArray(productDescription)) {
+                console.log(productDescription.split('.').map(item => item + "."))
+            }
+
+
+        }
+
+
     }
 
 
@@ -173,6 +217,10 @@ function RightColumnAddNewGood() {
         setIsModalOpen(false);
         router.push(`/${categoryInfo.name}/${subCategoryInfo.name}/${newGoodId}`);
     }
+
+
+
+    // console.log(goodSaved)
 
     return (
         <>
@@ -267,7 +315,9 @@ function RightColumnAddNewGood() {
                 />
 
                 <div className="button-container">
-                    <button type="submit" className="button-submit-form" onClick={handleSubmit}>
+                    <button type="submit" className="button-submit-form"
+                        // onClick={(e) => pushToButton(e)}>
+                        onClick={(e) => handleSubmit(e)}>
                         Зберегти
                     </button>
                 </div>
