@@ -2487,6 +2487,8 @@ h2 {
 .about-container {
   display: flex;
   gap: 2.4rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .about-team {
