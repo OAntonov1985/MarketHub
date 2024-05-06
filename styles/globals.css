@@ -173,6 +173,12 @@ h2 {
 .logo-image-favorite {
   width: 24px;
   height: 24px;
+  margin-right: 2.4rem;
+}
+
+.logo-image-about {
+  width: 24px;
+  height: 24px;
 }
 
 .header-icons {
@@ -1177,6 +1183,7 @@ h2 {
   color: #FBFBFB;
   margin-right: 1.2rem;
   transition: 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .good-card-buy-good:hover, .good-card-add-to-favorite:hover {
@@ -1192,6 +1199,7 @@ h2 {
   color: #116ACC;
   border: 0.1rem solid #116ACC;
   transition: 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .good-card-logo-container {
@@ -2452,4 +2460,60 @@ h2 {
 
 .search-result-title span {
   color: #00E6F4;
+}
+
+.about-my-dream-team {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 192rem;
+  min-height: 100vh;
+}
+
+.about-title {
+  font-size: 3rem;
+  color: #012767;
+  font-weight: normal;
+  margin-bottom: 6.6rem;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  margin: 4.1rem 9rem;
+  flex: 1 1 auto;
+}
+
+.about-container {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.about-team {
+  width: 29.7rem;
+  height: 51.1rem;
+}
+
+.photo-our-team {
+  border-radius: 8px;
+}
+
+.image-container-about {
+  position: relative;
+  width: 29.7rem;
+  height: 35rem;
+  margin-bottom: 1.6rem;
+}
+
+.team-info p {
+  margin-bottom: 1.6rem;
+  font-size: 1.8rem;
+}
+
+.team-info:lastchild {
+  margin-bottom: 0px;
+}
+
+.about-linkedin {
+  font-size: 1.8rem;
 }/*# sourceMappingURL=globals.css.map */

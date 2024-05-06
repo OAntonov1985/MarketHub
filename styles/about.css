@@ -1,0 +1,14 @@
+.about-my-dream-team {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 192rem;
+  min-height: 100vh;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  margin: 4.1rem 9rem;
+  flex: 1 1 auto;
+}/*# sourceMappingURL=about.css.map */

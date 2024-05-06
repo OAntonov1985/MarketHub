@@ -263,12 +263,24 @@ function Header({ transparentBackground }) {
                         sizes="(max-width: 100%)"
                         quality={100}
                         width={24}
-                        height={30}
+                        height={24}
                         className='logo-image-favorite'
                         priority
                     />
                 </Link>
                 <div className={isVisibleFavorite}>{quantityOfFavorite}</div>
+                <Link href="/about/" className="logo-image-about">
+                    <Image
+                        alt="logo image about us"
+                        src="/about.svg"
+                        sizes="(max-width: 100%)"
+                        quality={100}
+                        width={30}
+                        height={30}
+                        className='logo-image-about'
+                        priority
+                    />
+                </Link>
             </div>
         </div>
     );
