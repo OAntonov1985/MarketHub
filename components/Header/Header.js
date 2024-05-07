@@ -197,7 +197,6 @@ function Header({ transparentBackground }) {
                     onClick={() => (dispatch(setSearchActive()), router.push("/searchresultpage"))}
                 />
             </div>
-            <div></div>
             <div className={`search-results-header ${isVisibleSearchResult ? "" : "is-wisible"}`} >
                 {searchResult.map((item, index) => {
                     return (

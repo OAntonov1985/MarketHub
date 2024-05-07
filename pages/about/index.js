@@ -84,7 +84,7 @@ export default function About() {
                             </div>
                             <div className="team-info">
                                 <p>Антонов Олександр</p>
-                                <p>Frontend Developer</p>
+                                <p>Fullstack Developer</p>
                                 <Link
                                     className='about-linkedin'
                                     href="https://www.linkedin.com/in/oleksandr-antonov-7a57b0285/"
@@ -96,7 +96,7 @@ export default function About() {
                                 <Image
                                     className='photo-our-team'
                                     alt="photo-our-team"
-                                    src={"/about/фото.png"}
+                                    src={"/about/Ганна.png"}
                                     quality={100}
                                     fill
                                     sizes="(max-width: 100%)"
@@ -107,7 +107,7 @@ export default function About() {
                                 </Image>
                             </div>
                             <div className="team-info">
-                                <p>Анна Майсеєнко</p>
+                                <p>Ганна Моїсеєнко</p>
                                 <p>QA Engineer (Manual)</p>
                                 <Link
                                     className='about-linkedin'
