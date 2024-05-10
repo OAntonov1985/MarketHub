@@ -1,14 +1,18 @@
-import GoogleProvider from 'next-auth/providers/google'
-import FacebookProvider from "next-auth/providers/facebook";
-// import { users } from '../config/user';
+import GoogleProvider from 'next-auth/providers/google';
 
 export const authConfig = {
+
     providers: [
         GoogleProvider({
-            clientId: "169414495987-jg3qi1n4e0n5d07nf6nrp5km4jmq5asf.apps.googleusercontent.com",
-            clientSecret: "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",
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            secret: process.env.NEXTAUTH_SECRET,
+            authorization: {
+                params: {
+                    scope: 'openid profile email offline_access read:products'
+                }
+            }
         })
-
     ],
     cookies: true
 }

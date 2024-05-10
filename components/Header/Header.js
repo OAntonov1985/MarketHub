@@ -42,7 +42,7 @@ function Header({ transparentBackground }) {
 
     const isSession = useSession();
     const { data, status } = isSession;
-    console.log(data);
+    // console.log(data);
     // console.log(process.env.GOOGLE_CLIENT_SECRET);
 
 
