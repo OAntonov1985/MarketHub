@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -7,6 +9,9 @@ import Link from 'next/link';
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { setUserName } from '@/slices/userSlice';
+import { signIn } from 'next-auth/react';
+import SingIn from './SingIn';
+
 
 // import { useDispatch } from 'react-redux';
 
@@ -138,6 +143,42 @@ function SingInForm({ props }) {
                     />
                     {showErrorPassword !== false ? <p className='paragraf-buttom'>Довжина паролю має бути 6 символів мінімум</p> : null}
                 </div>
+
+                <p className='use-social-network-par'>Або скористайся соціальними мережами</p>
+                <div className='social-buttons'>
+                    <button className='social-button'>
+                        <p>Facebook</p>
+                        <div className='icon-container'>
+                            <Image
+                                alt="logo image social fase"
+                                src='/social_icon/Social Icons.svg'
+                                sizes="(max-width: 100%)"
+                                quality={100}
+                                width={16}
+                                height={16}
+                                className='logo-image'
+                                priority
+                            />
+                        </div>
+                    </button>
+                    <Link href="http://localhost:3000/api/auth/callback/google" className='social-button'
+                    // onClick={() => signIn("google")}
+                    >
+                        <p>Google</p>
+                        <div className='icon-container'>
+                            <Image
+                                alt="logo image social fase"
+                                src='/social_icon/Vector.svg'
+                                sizes="(max-width: 100%)"
+                                quality={100}
+                                width={16}
+                                height={16}
+                                className='logo-image'
+                                priority
+                            />
+                        </div>
+                    </Link>
+                </div >
                 <div className='button-singin'>
                     <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
                 </div>
@@ -146,7 +187,7 @@ function SingInForm({ props }) {
                         <p className='forgot-link'>Забули пароль</p>
                     </div>
                 </Link>
-            </form>
+            </form >
         </>
     );
 };

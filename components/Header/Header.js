@@ -1,5 +1,4 @@
-"use client";
-
+// "use client";
 import React from 'react';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
@@ -11,6 +10,10 @@ import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import GetSearchResult from '@/pages/api/GetSearchResult';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
+import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { authConfig } from '@/config/config';
+
 
 
 
@@ -37,15 +40,20 @@ function Header({ transparentBackground }) {
     const router = useRouter();
     const userNameCookie = userName = Cookies.get('userName');
 
+    const isSession = useSession();
+    const { data, status } = isSession;
+    // console.log(data);
+    // console.log(process.env.GOOGLE_CLIENT_SECRET);
+
 
 
     useEffect(() => {
         if (pathname === "/userpage") {
-            if (!userNameCookie) {
+            if (status !== "authenticated") {
                 router.push('/loginpage');
             }
         }
-    }, [userNameCookie]);
+    }, [data]);
 
     useEffect(() => {
 
@@ -83,17 +91,17 @@ function Header({ transparentBackground }) {
 
 
     useEffect(() => {
-        if (userName) {
-            dispatch(setUserName(userName));
-            setHeaderName(<div className='header-user-name'>Привіт, {userName}!</div>);
+        if (status == "authenticated") {
+            dispatch(setUserName(data.user.name.split(' ')[0]));
+            setHeaderName(<div className='header-user-name'>Привіт, {data.user.name.split(' ')[0]}!</div>);
             setUserPath("/userpage");
         }
-        else if (userName === undefined) {
+        else {
             dispatch(setUserName(''));
             setHeaderName(null);
             setUserPath("/loginpage");
         }
-    }, [userName]);
+    }, [data]);
 
 
     useEffect(() => {

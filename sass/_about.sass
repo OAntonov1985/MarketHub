@@ -4,7 +4,7 @@
     margin: 0 auto
     display: flex
     flex-direction: column
-    max-width: 192rem  
+    max-width: 192rem      
     min-height: 100vh
 
 .about-title
@@ -13,7 +13,9 @@
     font-weight: normal
     margin-bottom: 6.6rem
     @media only screen and (max-width: 1023px)
-        margin-bottom: 2.4rem
+        margin-bottom: 0
+    @media only screen and (max-width: 740px)
+        text-align: center
 
 .about-content
     display: flex
@@ -22,32 +24,47 @@
     flex:  1 1 auto
     @media only screen and (max-width: 1023px)
         margin: 2.4rem 6rem 10rem
+        gap: 2.4rem
+
+    @media only screen and (max-width: 740px)
+        margin: 2.4rem 4rem 10rem
+        gap: 2.4rem
 
 .about-container
     display: flex
     gap: 2.4rem
     flex-wrap: wrap
-    justify-content: space-around
-
-.about-team
-    width: 29.7rem
-    // height: 51.1rem
-    margin-bottom: 4rem
-    @media only screen and (max-width: 1023px)
-        width: 28.5rem
+    // justify-content: space-between
+    justify-content: space-around   
     
-    // background-color: red
-    
+     
 
 .photo-our-team
     border-radius: 16px    
+
+.about-team    
+    display: flex
+    flex-direction: column    
+    width: 29.7rem
+    height: 51rem  
+    margin-bottom: 1.6rem
+    @media only screen and (max-width: 1023px)
+        width: 28.5rem
+        height: 49.5rem 
+    @media only screen and (max-width: 740px)
+        width: 89%
+        max-width: 50rem
+        height: 53.8rem 
    
 
 .image-container-about
     position: relative
-    width: 29.7rem
+    width: 100%
     height: 35rem  
     margin-bottom: 1.6rem
+    @media only screen and (max-width: 740px)
+        height: 40rem 
+ 
     
 
 .team-info p 

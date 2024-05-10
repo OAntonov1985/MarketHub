@@ -1,6 +1,7 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 import { useState } from 'react';
+import { signOut } from "next-auth/react"
 
 function RightColumnUserInfo() {
     let name = Cookies.get('userName');
@@ -35,7 +36,7 @@ function RightColumnUserInfo() {
         setUserEmail(e);
         if (/^[a-zA-Z0-9]{3,}@[a-zA-Z0-9]{3,}\.[a-zA-Z0-9]{2,}$/.test(userEmail)) setShowErrorEmail(false);
         else setShowErrorEmail(true);
-    }
+    };
 
     //////////   userPassword    //////////
     const [userPassword, setUserPassword] = useState('XXXXXXXX');
@@ -132,6 +133,7 @@ function RightColumnUserInfo() {
                     onClick={saveChanges}
                 >Зберегти</button>
             </div>
+            <button onClick={() => signOut({ callbackUrl: "/" })}>Sing Out</button>
         </div>
     )
 }

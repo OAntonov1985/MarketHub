@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 
 
 
+
 function Home({ categories, topSellers, promotionGoods }) {
     const router = useRouter();
     const isHomePage = router.pathname === '/';

@@ -39,7 +39,7 @@ function CategoryPage({ subCategories, goods, id, total }) {
 }
 export async function getServerSideProps(context) {
 
-    let id;
+    let id = null;
     if (context.query.category === "Комп’ютерна техніка") id = 100;
     else if (context.query.category === "Мобільні телефони") id = 200;
     else if (context.query.category === "Побутова техніка") id = 300;
@@ -53,7 +53,7 @@ export async function getServerSideProps(context) {
     const resGoods = await fetch(`https://market-hub-backend-dat4.vercel.app/goods/categories/${id}/0/12`);
     const goods = await resGoods.json();
 
-    // console.log(id)
+
     return {
         props: {
             subCategories,

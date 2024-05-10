@@ -3,6 +3,8 @@ import { Ubuntu, Poppins } from 'next/font/google';
 import React from 'react';
 import { store } from "../store/store";
 import { Provider } from 'react-redux';
+import { Providers } from '@/Providers/Provider';
+import { SessionProvider } from "next-auth/react"
 
 
 
@@ -18,15 +20,20 @@ const poppins = Poppins({
     subsets: ['latin'],
     weight: ["300", "400", "500", '700'],
 });
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+    // console.log(session)
 
     return (
         <>
+
             <Provider store={store}>
-                <div className={ubuntu.className}>
-                    <Component {...pageProps} />
-                </div>
+                <SessionProvider session={session}>
+                    <div className={ubuntu.className}>
+                        <Component {...pageProps} />
+                    </div>
+                </SessionProvider>
             </Provider>
+
         </>
     )
 }

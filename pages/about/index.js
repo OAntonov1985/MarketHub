@@ -53,7 +53,7 @@ export default function About() {
                                     fill
                                     sizes="(max-width: 100%)"
                                     style={{
-                                        objectFit: 'contain',
+                                        objectFit: 'cover',
                                         width: '100%'
                                     }}>
                                 </Image>

@@ -10,7 +10,7 @@
     border-bottom: 1px solid #FFF
     position: relative
     background-color: red
-    @media only screen and (max-width: 1023px)
+    @media only screen and (max-width: 1024px)
         padding: 0 6rem 
         justify-content: flex-start
 
@@ -33,7 +33,7 @@
         
     @media only screen and (max-width: 1023px)
         width: 23rem
-        position: static
+        position: relative
         top: auto
         left: auto
         transform: none
@@ -166,6 +166,8 @@ h2
     padding: 2rem
     @media only screen and (max-width: 1023px)
         width: 54rem
+    @media only screen and (max-width: 740px)
+        width: 70%
         
    
 
@@ -200,9 +202,10 @@ h2
     margin: 3rem 0 2rem    
     cursor: pointer
 
-.search-id
-    // font-size: 1.2rem !important
-    margin-bottom: 20px
+.search-id    
+    margin-bottom: 2rem
+    @media only screen and (max-width: 740px)
+        margin-bottom: .5rem
 
 .is-wisible
     display: none

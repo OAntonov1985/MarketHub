@@ -1,4 +1,4 @@
-// import Link from "next/link";
+"use client"
 import Head from "next/head";
 import GoodCard from '@/components/GoodCard/GoodCard';
 import React from 'react';
@@ -25,17 +25,28 @@ function ProductPage({ good, breadCrumpData }) {
 
 export async function getServerSideProps(context) {
     let id = context.query.id
+    let breadCrumpData = {
+        category: null,
+        subcategory: null,
+        title: null,
+        id: null,
+        available: null
+    };;
     // console.log(id)
     const resGoods = await fetch(MaketHubURL + `goods/${id}`);
     const good = await resGoods.json();
+    // console.log(good)
 
-    const breadCrumpData = {
-        category: good.category_details.name,
-        subcategory: good.sub_category_detail.name,
-        title: good.title,
-        id: good.id,
-        available: good.available
-    };
+    if (good) {
+        breadCrumpData = {
+            category: good ? good.category_details?.name : null,
+            subcategory: good ? good.sub_category_detail : null,
+            title: good ? good.title : null,
+            id: good.id,
+            available: good.available
+        };
+    }
+
 
     return {
         props: {
