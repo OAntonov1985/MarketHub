@@ -3,7 +3,6 @@ import { Ubuntu, Poppins } from 'next/font/google';
 import React from 'react';
 import { store } from "../store/store";
 import { Provider } from 'react-redux';
-import { Providers } from '@/Providers/Provider';
 import { SessionProvider } from "next-auth/react"
 
 
