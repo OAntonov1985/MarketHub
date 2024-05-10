@@ -10,7 +10,6 @@ import { SessionProvider } from "next-auth/react"
 
 
 
-
 const ubuntu = Ubuntu({
     subsets: ['cyrillic'],
     weight: ["300", "400", "500", '700'],
