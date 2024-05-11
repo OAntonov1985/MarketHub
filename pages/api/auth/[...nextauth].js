@@ -1,3 +1,4 @@
+// "use client"
 import { connectMongoDB } from "../../../config/mongodb";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
@@ -7,12 +8,12 @@ const authOptions = {
     providers: [
         process.env.VERCEL_ENV === "preview",
         GoogleProvider({
-            checks: ['none'],
+            // checks: ['none'],
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
             authorization: { params: { scope: "openid email profile" } },
             idToken: true,
-            // checks: ["pkce", "state"]
+            checks: ["pkce", "state"]
         }),
     ],
     callbacks: {
