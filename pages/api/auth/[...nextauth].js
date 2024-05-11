@@ -4,7 +4,6 @@ import GoogleProvider from "next-auth/providers/google";
 import mongoose from "mongoose";
 
 const authOptions = {
-
     providers: [
         process.env.VERCEL_ENV === "preview",
         GoogleProvider({
