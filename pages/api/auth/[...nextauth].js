@@ -4,16 +4,25 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import mongoose from "mongoose";
 
-const authOptions = {
+
+export const authOptions = {
     providers: [
         process.env.VERCEL_ENV === "preview",
         GoogleProvider({
-            // checks: ['none'],
+            checks: ['none'],
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            authorization: { params: { scope: "openid email profile" } },
-            idToken: true,
-            checks: ["pkce", "state"]
+            // cookies: {
+            //     sessionToken: {
+            //         name: `__Secure-next-auth.session-token`,
+            //         options: {
+            //             httpOnly: true,
+            //             sameSite: 'lax',
+            //             path: '/',
+            //             secure: true
+            //         }
+            //     }
+            // }
         }),
     ],
     callbacks: {
@@ -51,7 +60,7 @@ const authOptions = {
             return user;
         },
     },
-    secret: process.env.NEXTAUTN_SECRET
+    secret: process.env.NEXTAUTH_SECRET
 };
 
 export default NextAuth(authOptions);
