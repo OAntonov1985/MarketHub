@@ -42,18 +42,18 @@ function Header({ transparentBackground }) {
 
     const isSession = useSession();
     const { data, status } = isSession;
-    // console.log(data);
+    console.log(status);
     // console.log(process.env.GOOGLE_CLIENT_SECRET);
 
 
 
-    useEffect(() => {
-        if (pathname === "/userpage") {
-            if (status !== "authenticated") {
-                router.push('/loginpage');
-            }
-        }
-    }, [data]);
+    // useEffect(() => {
+    //     if (pathname === "/userpage") {
+    //         if (status !== "authenticated") {
+    //             router.push('/loginpage');
+    //         }
+    //     }
+    // }, [status]);
 
     useEffect(() => {
 
@@ -101,7 +101,7 @@ function Header({ transparentBackground }) {
             setHeaderName(null);
             setUserPath("/loginpage");
         }
-    }, [data]);
+    }, [status]);
 
 
     useEffect(() => {

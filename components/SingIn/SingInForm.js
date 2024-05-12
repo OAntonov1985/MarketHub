@@ -161,8 +161,11 @@ function SingInForm({ props }) {
                             />
                         </div>
                     </button>
-                    <Link href="http://localhost:3000/api/auth/callback/google" className='social-button'
-                    // onClick={() => signIn("google")}
+                    <Link href="#" className='social-button'
+                        onClick={() => signIn('google', {
+                            redirect: true,
+                            callbackUrl: '/userpage'
+                        })}
                     >
                         <p>Google</p>
                         <div className='icon-container'>
