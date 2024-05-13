@@ -146,7 +146,10 @@ function SingInForm({ props }) {
 
                 <p className='use-social-network-par'>Або скористайся соціальними мережами</p>
                 <div className='social-buttons'>
-                    <button className='social-button'>
+                    <button onClick={() => signIn('fasebook', {
+                        redirect: true,
+                        callbackUrl: '/userpage'
+                    })} className='social-button'>
                         <p>Facebook</p>
                         <div className='icon-container'>
                             <Image
@@ -161,7 +164,7 @@ function SingInForm({ props }) {
                             />
                         </div>
                     </button>
-                    <Link href="#" className='social-button'
+                    <button className='social-button'
                         onClick={() => signIn('google', {
                             redirect: true,
                             callbackUrl: '/userpage'
@@ -180,7 +183,7 @@ function SingInForm({ props }) {
                                 priority
                             />
                         </div>
-                    </Link>
+                    </button>
                 </div >
                 <div className='button-singin'>
                     <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
