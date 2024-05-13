@@ -45,27 +45,47 @@ function SingInForm({ props }) {
         currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
 
         if (showErrorEmail === false && showErrorPassword === false) {
-            setLoading(true);
+            // setLoading(true);
             const body = {
                 "email": userEmail,
                 "password": userPassword
             };
+            console.log(body)
+            // const { userEmail, userPassword } = body;
+            // const email = body.userEmail;
+            // const password = body.userPassword
 
-            const { Errorflag, data } = await singInFunction(body);
-            if (data) {
-                setLoading(false);
-                Cookies.set('jwtToken', data.token, { expires: currentDate });
-                Cookies.set('userName', data.firstname, { expires: currentDate });
-                Cookies.set('userSurname', data.lastname, { expires: currentDate });
-                Cookies.set('userPhone', data.phone, { expires: currentDate });
-                Cookies.set('userEmail', data.email, { expires: currentDate });
-                Cookies.set('userID', data.id, { expires: currentDate });
-                dispatch(setUserName(data.firstname));
-                router.push('/userpage');
+            // const { Errorflag, data } = await singInFunction(body);
+            // if (data) {
+            //     setLoading(false);
+            //     Cookies.set('jwtToken', data.token, { expires: currentDate });
+            //     Cookies.set('userName', data.firstname, { expires: currentDate });
+            //     Cookies.set('userSurname', data.lastname, { expires: currentDate });
+            //     Cookies.set('userPhone', data.phone, { expires: currentDate });
+            //     Cookies.set('userEmail', data.email, { expires: currentDate });
+            //     Cookies.set('userID', data.id, { expires: currentDate });
+            //     dispatch(setUserName(data.firstname));
+            //     router.push('/userpage');
+            // }
+            // else if (Errorflag) {
+            //     setLoading(false);
+            // };
+            try {
+                const result = await signIn('credentials', {
+                    redirect: false,
+                    email: "aantonov1984@gmail.com",
+                    password: "passwordd",
+                });
+                if (result.error) {
+                    // Обработка ошибки, если есть
+                    console.error('Ошибка входа:', result.error);
+                } else {
+                    // Перенаправление после успешного входа
+                    router.push('/');
+                }
+            } catch (error) {
+                console.error('Ошибка входа:', error);
             }
-            else if (Errorflag) {
-                setLoading(false);
-            };
         }
         else alert('Помилка заповнення одного з полів');
     };
@@ -146,7 +166,7 @@ function SingInForm({ props }) {
 
                 <p className='use-social-network-par'>Або скористайся соціальними мережами</p>
                 <div className='social-buttons'>
-                    <button onClick={() => signIn('fasebook', {
+                    {/* <button onClick={() => signIn('fasebook', {
                         redirect: true,
                         callbackUrl: '/userpage'
                     })} className='social-button'>
@@ -163,30 +183,11 @@ function SingInForm({ props }) {
                                 priority
                             />
                         </div>
-                    </button>
-                    <button className='social-button'
-                        onClick={() => signIn('google', {
-                            redirect: true,
-                            callbackUrl: '/userpage'
-                        })}
-                    >
-                        <p>Google</p>
-                        <div className='icon-container'>
-                            <Image
-                                alt="logo image social fase"
-                                src='/social_icon/Vector.svg'
-                                sizes="(max-width: 100%)"
-                                quality={100}
-                                width={16}
-                                height={16}
-                                className='logo-image'
-                                priority
-                            />
-                        </div>
-                    </button>
+                    </button> */}
+
                 </div >
                 <div className='button-singin'>
-                    <button type='submit' className='button-singin-push btn-login-page'>Увійти</button>
+                    <button type='submit' className='button-singin-push btn-login-page' >Увійти</button>
                 </div>
                 <Link href='/forgetpassword/' className='forgot-link'>
                     <div className='forgot-password-link'>
@@ -194,6 +195,25 @@ function SingInForm({ props }) {
                     </div>
                 </Link>
             </form >
+            <button className='social-button'
+                onClick={() => signIn('google', {
+                    redirect: true,
+                    callbackUrl: '/userpage'
+                })}>
+                <p>Google</p>
+                <div className='icon-container'>
+                    <Image
+                        alt="logo image social fase"
+                        src='/social_icon/Vector.svg'
+                        sizes="(max-width: 100%)"
+                        quality={100}
+                        width={16}
+                        height={16}
+                        className='logo-image'
+                        priority
+                    />
+                </div>
+            </button>
         </>
     );
 };
