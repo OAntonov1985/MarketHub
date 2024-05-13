@@ -10,25 +10,11 @@ const authOptions = {
         process.env.VERCEL_ENV === "preview",
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            // cookies: {
-            //     sessionToken: {
-            //         name: `__Secure-next-auth.session-token`,
-            //         options: {
-            //             httpOnly: true,
-            //             sameSite: 'lax',
-            //             path: '/',
-            //             secure: true
-            //         }
-            //     }
-            // }
-            // // authorization: { params: { scope: "openid email profile" } },
-            // // idToken: true,
-            // // checks: ["pkce", "state"]
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
         }),
         FacebookProvider({
             clientId: process.env.FACEBOOK_CLIENT_ID,
-            clientSecret: process.env.FACEBOOK_CLIENT_SECRET
+            clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
         })
     ],
     callbacks: {
