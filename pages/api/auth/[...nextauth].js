@@ -97,4 +97,17 @@ const authOptions = {
     secret: process.env.NEXTAUTN_SECRET
 };
 
+
 export default NextAuth(authOptions);
+
+
+
+// {
+//     status: 'connected',
+//     authResponse: {
+//         accessToken: '...',
+//         expiresIn:'...',
+//         signedRequest:'...',
+//         userID:'...'
+//     }
+// }
