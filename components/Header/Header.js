@@ -41,13 +41,13 @@ function Header({ transparentBackground }) {
     console.log(status);
 
 
-    // useEffect(() => {
-    //     if (pathname === "/userpage") {
-    //         if (status !== "authenticated") {
-    //             router.push('/loginpage');
-    //         }
-    //     }
-    // });
+    useEffect(() => {
+        if (pathname === "/userpage") {
+            if (status !== "authenticated") {
+                router.push('/loginpage');
+            }
+        }
+    });
 
 
 
