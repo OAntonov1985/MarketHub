@@ -11,6 +11,10 @@ import { useRouter } from 'next/navigation';
 import GetSearchResult from '@/pages/api/GetSearchResult';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
 import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { authConfig } from '@/config/config';
+
+
 
 
 
@@ -39,17 +43,17 @@ function Header({ transparentBackground }) {
     const isSession = useSession();
     const { data, status } = isSession;
     console.log(status);
+    // console.log(process.env.GOOGLE_CLIENT_SECRET);
 
 
-    useEffect(() => {
-        if (pathname === "/userpage") {
-            if (status !== "authenticated") {
-                router.push('/loginpage');
-            }
-        }
-    });
 
-
+    // useEffect(() => {
+    //     if (pathname === "/userpage") {
+    //         if (status !== "authenticated") {
+    //             router.push('/loginpage');
+    //         }
+    //     }
+    // }, [status]);
 
     useEffect(() => {
 
@@ -81,6 +85,7 @@ function Header({ transparentBackground }) {
             dispatch(setTotalFavorite(userFavorite.length));
         }
 
+        userName = Cookies.get('userName');
     }, []);
 
 
@@ -89,10 +94,12 @@ function Header({ transparentBackground }) {
         if (status == "authenticated") {
             dispatch(setUserName(data.user.name.split(' ')[0]));
             setHeaderName(<div className='header-user-name'>Привіт, {data.user.name.split(' ')[0]}!</div>);
+            setUserPath("/userpage");
         }
         else {
             dispatch(setUserName(''));
             setHeaderName(null);
+            setUserPath("/loginpage");
         }
     }, [status]);
 
@@ -230,8 +237,7 @@ function Header({ transparentBackground }) {
             </div>
             <div className='header-icons'>
                 {headerName}
-                {/* <Link href={userPath}> */}
-                <Link href="/userpage">
+                <Link href={userPath}>
                     <Image
                         alt="logo image client"
                         src='/clienticon.svg'
