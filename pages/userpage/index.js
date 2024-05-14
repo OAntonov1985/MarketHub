@@ -6,15 +6,32 @@ import UserPageLeftColumn from '@/components/UserPage/UserPageLeftColumn';
 import UserPageRightColumn from '@/components/UserPage/UserPageRightColumn';
 import Spinner from '@/components/Spinner/Spinner';
 import { useSelector } from 'react-redux';
-import { getSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
 
 export default function UserPage() {
     const { loading } = useSelector((state) => state.user);
+    const { data: session } = useSession()
+    const router = useRouter();
+    console.log(session)
+    if (!session) {
+        return (
+            <>
+                <div className="modal-overlay" >
+                    <div className="modal-content" >
+                        <h4 className='modal-title'>Вітаємо!</h4>
+                        <h4 className='modal-title'>Виконайте авторизацію або реєстрацію  щоб продовжити як користувач!</h4>
+                        <button className='modal-button' onClick={() => router.push("/loginpage")}>До сторінки авторизації</button>
+                    </div>
+                </div>
+            </>
+        )
+    }
 
 
-    return (
+
+    else return (
         <div className='userPage'>
             {loading ? <Spinner /> : null}
             <Head>

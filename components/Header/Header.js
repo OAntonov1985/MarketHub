@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 import GetSearchResult from '@/pages/api/GetSearchResult';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
 import { useSession } from 'next-auth/react';
-import { getServerSession } from 'next-auth';
+import { getSession } from 'next-auth';
 import { authConfig } from '@/config/config';
 
 
@@ -237,7 +237,8 @@ function Header({ transparentBackground }) {
             </div>
             <div className='header-icons'>
                 {headerName}
-                <Link href={userPath}>
+                {/* <Link href={userPath}> */}
+                <Link href="/userpage">
                     <Image
                         alt="logo image client"
                         src='/clienticon.svg'
