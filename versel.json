@@ -1,0 +1,9 @@
+{
+    "rewrites": [
+        {
+            "source": "/userpage",
+            "destination": "/loginpage",
+            "statusCode": 302
+        }
+    ]
+}
