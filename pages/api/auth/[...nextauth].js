@@ -6,6 +6,9 @@ import Credentials from "next-auth/providers/credentials";
 import mongoose from "mongoose";
 
 const authOptions = {
+    session: {
+        strategy: "jwt",
+    },
     providers: [
         process.env.VERCEL_ENV === "preview",
         GoogleProvider({
@@ -62,6 +65,9 @@ const authOptions = {
 
             return user;
         },
+    },
+    pages: {
+        signIn: '/loginpage'
     },
     secret: process.env.NEXTAUTN_SECRET
 };

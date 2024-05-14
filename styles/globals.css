@@ -643,6 +643,7 @@ h2 {
   border: 1px solid #F8FAFC;
   margin-top: 2.4rem;
   transition: background 0.3s;
+  cursor: pointer;
 }
 
 .btn-login-page {
@@ -656,6 +657,7 @@ h2 {
   background: linear-gradient(#116ACC, rgba(17, 106, 204, 0));
   transition: background 0.3s;
   margin-bottom: 0.8rem;
+  cursor: pointer;
 }
 
 .btn-login-page:hover, .secondary-button:hover {

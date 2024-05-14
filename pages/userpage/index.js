@@ -6,6 +6,8 @@ import UserPageLeftColumn from '@/components/UserPage/UserPageLeftColumn';
 import UserPageRightColumn from '@/components/UserPage/UserPageRightColumn';
 import Spinner from '@/components/Spinner/Spinner';
 import { useSelector } from 'react-redux';
+import { getSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 
 export default function UserPage() {
@@ -27,18 +29,28 @@ export default function UserPage() {
             <Footer />
         </div>
     )
+
+}
+export async function getServerSideProps(context) {
+    const session = await getSession(context)
+    // console.log(session)
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/loginpage',
+                permanent: false,
+            },
+        }
+    }
+    return {
+        props: {}, // передаваемые props
+    }
 }
 
 
 
 
-{/* <Link href='/mainpage/' className='main-link'>
-<p className='main-link'>Головна сторінка з категоріями і пошуком</p>
-</Link>
-<Link href='/' className='main-link'>
-<p className='main-link'>Головна сторінка</p>
-</Link>
-<button onClick={deleteUserInfo}>Вийти з акаунту</button> */}
+
 
 
 
