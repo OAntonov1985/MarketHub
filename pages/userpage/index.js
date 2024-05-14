@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import Head from "next/head";
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
@@ -10,8 +10,9 @@ import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
 
-export default function UserPage() {
+export default function UserPage({ session }) {
     const { loading } = useSelector((state) => state.user);
+    console.log(session)
 
     return (
         <div className='userPage'>
@@ -32,19 +33,17 @@ export default function UserPage() {
 
 }
 export async function getServerSideProps(context) {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
     const session = await getSession(context)
     // console.log(session)
     if (!session) {
         return {
             redirect: {
-                destination: '/loginpage',
-                permanent: false,
+                destination: '/loginpage'
             },
         }
     }
     return {
-        props: {}, // передаваемые props
+        props: { session }, // передаваемые props
     }
 }
 
