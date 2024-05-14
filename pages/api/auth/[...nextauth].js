@@ -1,15 +1,14 @@
 // "use client"
 import { connectMongoDB } from "../../../config/mongodb";
-import NextAuth from "next-auth";
+import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import mongoose from "mongoose";
 
-
-export const authOptions = {
-    // session: {
-    //     strategy: "jwt",
-    // },
+const authOptions = {
+    session: {
+        strategy: "jwt",
+    },
     providers: [
         process.env.VERCEL_ENV === "preview",
         GoogleProvider({
@@ -19,7 +18,6 @@ export const authOptions = {
         }),
         Credentials({
             name: "credentials",
-            secret: process.env.SECRET,
             async authorize(credentials) {
                 const { email, password } = credentials;
                 try {
@@ -47,7 +45,6 @@ export const authOptions = {
     callbacks: {
         async signIn({ user, account }) {
             if (account.provider === "google") {
-                // const { email } = user;
                 const { name, email } = user;
 
                 const userInf0 = {
@@ -72,7 +69,6 @@ export const authOptions = {
                     else if (!userExists) {
                         await mongoose.connection.collection("users").insertOne(userInf0);
                         return userInf0
-                        // return null
                     }
                     return null;
                 } catch (error) {
@@ -86,12 +82,8 @@ export const authOptions = {
     pages: {
         signIn: '/loginpage'
     },
-    secret: process.env.NEXTAUTH_SECRET,
-
+    secret: process.env.NEXTAUTN_SECRET
 };
 
 
 export default NextAuth(authOptions);
-
-
-

@@ -41,8 +41,8 @@ function SingInForm({ props }) {
     async function handleclick(event) {
         event.preventDefault();
 
-        const currentDate = new Date();
-        currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
+        // const currentDate = new Date();
+        // currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
 
         if (showErrorEmail === false && showErrorPassword === false) {
             const body = {
@@ -56,7 +56,7 @@ function SingInForm({ props }) {
                     email: body.email,
                     password: body.password,
                 });
-                console.log(result)
+                // console.log(result)
                 if (result.error) {
                     console.error('Помилка входу:', result.error);
                     alert('Користувача з такою поштою або паролем не знайдено.')
@@ -77,9 +77,9 @@ function SingInForm({ props }) {
                 redirect: true,
                 callbackUrl: "/userpage"
             });
-            if (result) {
+            if (!result) {
                 alert('Користувача з такою поштою не знайдено.')
-            } else if (!result) {
+            } else if (result) {
                 router.push('/userpage');
             }
         } catch (error) {
