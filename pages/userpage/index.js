@@ -10,9 +10,9 @@ import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
 
-export default function UserPage({ session }) {
+export default function UserPage() {
     const { loading } = useSelector((state) => state.user);
-    console.log(session)
+
 
     return (
         <div className='userPage'>
@@ -31,20 +31,6 @@ export default function UserPage({ session }) {
         </div>
     )
 
-}
-export async function getServerSideProps(context) {
-    const session = await getSession(context)
-    // console.log(session)
-    if (!session) {
-        return {
-            redirect: {
-                destination: '/loginpage'
-            },
-        }
-    }
-    return {
-        props: { session }, // передаваемые props
-    }
 }
 
 

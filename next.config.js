@@ -2,7 +2,14 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-        domains: ["markethub-mfbw.onrender.com", "storage.googleapis.com", "brain.com.ua", "netlify.com", "markethubstore.netlify.app", "firebasestorage.googleapis.com"],
+        remotePatterns: [
+            { hostname: "markethub-mfbw.onrender.com" },
+            { hostname: "storage.googleapis.com" },
+            { hostname: "brain.com.ua" },
+            { hostname: "netlify.com" },
+            { hostname: "firebasestorage.googleapis.com" }
+        ]
+        // domains: ["markethub-mfbw.onrender.com", "storage.googleapis.com", "brain.com.ua", "netlify.com", "markethubstore.netlify.app", "firebasestorage.googleapis.com"],
     },
 
 };
