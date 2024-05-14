@@ -236,8 +236,8 @@ function Header({ transparentBackground }) {
             </div>
             <div className='header-icons'>
                 {headerName}
-                {/* <Link href={userPath}> */}
-                <Link href="/userpage">
+                <Link href={userPath}>
+                    {/* <Link href="/userpage"> */}
                     <Image
                         alt="logo image client"
                         src='/clienticon.svg'

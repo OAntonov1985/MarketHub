@@ -4,13 +4,12 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import mongoose from "mongoose";
-import { sign } from 'jsonwebtoken';
-import { setCookie } from 'next-cookies';
+
 
 export const authOptions = {
-    session: {
-        strategy: "jwt",
-    },
+    // session: {
+    //     strategy: "jwt",
+    // },
     providers: [
         process.env.VERCEL_ENV === "preview",
         GoogleProvider({
