@@ -45,50 +45,45 @@ function SingInForm({ props }) {
         currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
 
         if (showErrorEmail === false && showErrorPassword === false) {
-            // setLoading(true);
             const body = {
                 "email": userEmail,
                 "password": userPassword
             };
-            console.log(body)
-            // const { userEmail, userPassword } = body;
-            // const email = body.userEmail;
-            // const password = body.userPassword
 
-            // const { Errorflag, data } = await singInFunction(body);
-            // if (data) {
-            //     setLoading(false);
-            //     Cookies.set('jwtToken', data.token, { expires: currentDate });
-            //     Cookies.set('userName', data.firstname, { expires: currentDate });
-            //     Cookies.set('userSurname', data.lastname, { expires: currentDate });
-            //     Cookies.set('userPhone', data.phone, { expires: currentDate });
-            //     Cookies.set('userEmail', data.email, { expires: currentDate });
-            //     Cookies.set('userID', data.id, { expires: currentDate });
-            //     dispatch(setUserName(data.firstname));
-            //     router.push('/userpage');
-            // }
-            // else if (Errorflag) {
-            //     setLoading(false);
-            // };
             try {
                 const result = await signIn('credentials', {
                     redirect: false,
-                    email: "aantonov1984@gmail.com",
-                    password: "passwordd",
+                    email: body.email,
+                    password: body.password,
                 });
                 if (result.error) {
-                    // Обработка ошибки, если есть
-                    console.error('Ошибка входа:', result.error);
+                    console.error('Помилка входу:', result.error);
+                    alert('Користувача з такою поштою або паролем не знайдено.')
                 } else {
-                    // Перенаправление после успешного входа
-                    router.push('/');
+                    router.push('/userpage');
                 }
             } catch (error) {
-                console.error('Ошибка входа:', error);
+                console.error('Помилка входу:', error);
             }
         }
         else alert('Помилка заповнення одного з полів');
     };
+
+    async function singInWithGoogle() {
+        try {
+            const result = await signIn('google', {
+                redirect: true,
+                callbackUrl: "/userpage"
+            });
+            if (result) {
+                alert('Користувача з такою поштою не знайдено.')
+            } else if (!result) {
+                router.push('/userpage');
+            }
+        } catch (error) {
+            alert('помилка входу:', error);
+        }
+    }
 
 
     function validateEmail() {
@@ -196,10 +191,7 @@ function SingInForm({ props }) {
                 </Link>
             </form >
             <button className='social-button'
-                onClick={() => signIn('google', {
-                    redirect: true,
-                    callbackUrl: '/userpage'
-                })}>
+                onClick={() => singInWithGoogle()}>
                 <p>Google</p>
                 <div className='icon-container'>
                     <Image

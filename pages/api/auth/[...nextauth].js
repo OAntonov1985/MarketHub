@@ -13,91 +13,55 @@ const authOptions = {
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET
         }),
-        // Credentials({
-        //     name: "credentials",
-        //     // credentials: {
-        //     //     email: { label: 'email', type: 'email', required: true },
-        //     //     password: { label: 'password', type: 'password', required: true },
-        //     // },
-        //     async authorize(credentials) {
-        //         console.log(credentials)
-        //         // if (!credentials?.email || !credentials.password) return null;
+        Credentials({
+            name: "credentials",
+            async authorize(credentials) {
+                const { email, password } = credentials;
+                try {
+                    await connectMongoDB();
+                    const userExists = await mongoose.connection.collection("users").findOne({ email, password });
 
-        //         // const currentUser = users.find(user => user.email === credentials.email)
-
-        //         // if (currentUser && currentUser.password === credentials.password) {
-        //         //     const { password, ...userWithoutPass } = currentUser;
-
-        //         //     return userWithoutPass;
-        //         // }
-
-        //         // return null
-        //     }
-        // })
+                    if (userExists.email == email && userExists.password == password) {
+                        return userExists;
+                    }
+                    else if (userExists.email == email && userExists.password !== password) {
+                        return null
+                    }
+                    else if (!userExists) {
+                        return new Error("Користувача з такою поштою не знайдено.")
+                    }
+                    return null;
+                } catch (error) {
+                    console.error("Error processing signIn callback:", error);
+                }
+                return null
+            }
+        })
     ],
 
     callbacks: {
         async signIn({ user, account }) {
             if (account.provider === "google") {
-                const { name, email } = user;
-
-                const userInf0 = {
-                    name: name.split(' ')[0],
-                    surname: name.split(' ')[1],
-                    nameAs: {
-                        nameAs: name.split(' ')[0],
-                        surnameAs: name.split(' ')[1],
-                    },
-                    email,
-                    userOrders: {},
-                    userProductsToSale: {}
-                }
+                const { email } = user;
 
                 try {
                     await connectMongoDB();
                     const userExists = await mongoose.connection.collection("users").findOne({ email });
 
-                    if (!userExists) {
-                        await mongoose.connection.collection("users").insertOne(userInf0);
-                        console.log("User saved successfully:", userInf0);
+                    if (userExists) {
+                        return userExists;
                     }
-
-                    return user;
+                    else if (!userExists) {
+                        return null
+                    }
+                    return null;
                 } catch (error) {
                     console.error("Error processing signIn callback:", error);
                 }
             }
-            // else if (account.provider === "facebook") {
-            //     const { name, email } = user;
 
-            //     const userInf0 = {
-            //         name: name.split(' ')[0],
-            //         surname: name.split(' ')[1],
-            //         nameAs: {
-            //             nameAs: name.split(' ')[0],
-            //             surnameAs: name.split(' ')[1],
-            //         },
-            //         email,
-            //         userOrders: {},
-            //         userProductsToSale: {}
-            //     }
-
-            //     try {
-            //         await connectMongoDB();
-            //         const userExists = await mongoose.connection.collection("users").findOne({ email });
-
-            //         if (!userExists) {
-            //             await mongoose.connection.collection("users").insertOne(userInf0);
-            //             console.log("User saved successfully:", userInf0);
-            //         }
-
-            //         return user;
-            //     } catch (error) {
-            //         console.error("Error processing signIn callback:", error);
-            //     }
-            // }
             return user;
-        }
+        },
     },
     secret: process.env.NEXTAUTN_SECRET
 };
@@ -107,12 +71,3 @@ export default NextAuth(authOptions);
 
 
 
-// {
-//     status: 'connected',
-//     authResponse: {
-//         accessToken: '...',
-//         expiresIn:'...',
-//         signedRequest:'...',
-//         userID:'...'
-//     }
-// }
