@@ -1,11 +1,13 @@
 // "use client"
 import { connectMongoDB } from "../../../config/mongodb";
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import mongoose from "mongoose";
+import { sign } from 'jsonwebtoken';
+import { setCookie } from 'next-cookies';
 
-const authOptions = {
+export const authOptions = {
     session: {
         strategy: "jwt",
     },
@@ -18,6 +20,7 @@ const authOptions = {
         }),
         Credentials({
             name: "credentials",
+            secret: process.env.SECRET,
             async authorize(credentials) {
                 const { email, password } = credentials;
                 try {
@@ -45,7 +48,20 @@ const authOptions = {
     callbacks: {
         async signIn({ user, account }) {
             if (account.provider === "google") {
-                const { email } = user;
+                // const { email } = user;
+                const { name, email } = user;
+
+                const userInf0 = {
+                    name: name.split(' ')[0],
+                    surname: name.split(' ')[1],
+                    nameAs: {
+                        nameAs: name.split(' ')[0],
+                        surnameAs: name.split(' ')[1],
+                    },
+                    email,
+                    userOrders: {},
+                    userProductsToSale: {}
+                }
 
                 try {
                     await connectMongoDB();
@@ -55,7 +71,9 @@ const authOptions = {
                         return userExists;
                     }
                     else if (!userExists) {
-                        return null
+                        await mongoose.connection.collection("users").insertOne(userInf0);
+                        return userInf0
+                        // return null
                     }
                     return null;
                 } catch (error) {
@@ -69,7 +87,8 @@ const authOptions = {
     pages: {
         signIn: '/loginpage'
     },
-    secret: process.env.NEXTAUTN_SECRET
+    secret: process.env.NEXTAUTH_SECRET,
+
 };
 
 

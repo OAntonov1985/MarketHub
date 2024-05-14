@@ -15,39 +15,39 @@ export default function UserPage() {
     const { data: session } = useSession()
     const router = useRouter();
     console.log(session)
-    // if (!session) {
-    //     return (
-    //         <>
-    //             <div className="modal-overlay" >
-    //                 <div className="modal-content" >
-    //                     <h4 className='modal-title'>Вітаємо!</h4>
-    //                     <h4 className='modal-title'>Виконайте авторизацію або реєстрацію  щоб продовжити як користувач!</h4>
-    //                     <button className='modal-button' onClick={() => router.push("/loginpage")}>До сторінки авторизації</button>
-    //                 </div>
-    //             </div>
-    //         </>
-    //     )
-    // }
+    if (!session) {
+        return (
+            <>
+                <div className="modal-overlay" >
+                    <div className="modal-content" >
+                        <h4 className='modal-title'>Вітаємо!</h4>
+                        <h4 className='modal-title'>Виконайте авторизацію або реєстрацію  щоб продовжити як користувач!</h4>
+                        <button className='modal-button' onClick={() => router.push("/loginpage")}>До сторінки авторизації</button>
+                    </div>
+                </div>
+            </>
+        )
+    }
 
 
 
-    // else 
-    return (
-        <div className='userPage'>
-            {loading ? <Spinner /> : null}
-            <Head>
-                <title>MarketHub - знайденться все!</title>
-                <link rel="icon" href="/frame380.png" sizes="any" />
-                <meta name='MarketHub' content='MarketHub - тут може бути Ваша реклама' />
-            </Head>
-            <Header />
-            <div className='userPage-content'>
-                <UserPageLeftColumn />
-                <UserPageRightColumn />
+    else
+        return (
+            <div className='userPage'>
+                {loading ? <Spinner /> : null}
+                <Head>
+                    <title>MarketHub - знайденться все!</title>
+                    <link rel="icon" href="/frame380.png" sizes="any" />
+                    <meta name='MarketHub' content='MarketHub - тут може бути Ваша реклама' />
+                </Head>
+                <Header />
+                <div className='userPage-content'>
+                    <UserPageLeftColumn />
+                    <UserPageRightColumn />
+                </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
-    )
+        )
 
 }
 

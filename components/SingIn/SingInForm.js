@@ -61,8 +61,7 @@ function SingInForm({ props }) {
                     console.error('Помилка входу:', result.error);
                     alert('Користувача з такою поштою або паролем не знайдено.')
                 } else {
-                    router.push('/userpage')
-                    // setTimeout(() => { router.push('/userpage'); }, 1000)
+                    router.push('/userpage');
 
                 }
             } catch (error) {
