@@ -32,6 +32,7 @@ export default function UserPage() {
 
 }
 export async function getServerSideProps(context) {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     const session = await getSession(context)
     // console.log(session)
     if (!session) {
