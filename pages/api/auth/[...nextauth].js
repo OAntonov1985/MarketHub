@@ -1,7 +1,8 @@
-// "use client"
+"use client"
 import { connectMongoDB } from "../../../config/mongodb";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
 import Credentials from "next-auth/providers/credentials";
 import mongoose from "mongoose";
 
@@ -15,6 +16,11 @@ const authOptions = {
             name: "google",
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        }),
+        FacebookProvider({
+            name: "facebook",
+            clientId: process.env.FACEBOOK_CLIENT_ID,
+            clientSecret: process.env.FACEBOOK_CLIENT_SECRET
         }),
         Credentials({
             name: "credentials",
@@ -44,20 +50,20 @@ const authOptions = {
 
     callbacks: {
         async signIn({ user, account }) {
-            if (account.provider === "google") {
+            if (account.provider === "google" || account.provider === "facebook") {
                 const { name, email } = user;
 
-                const userInf0 = {
-                    name: name.split(' ')[0],
-                    surname: name.split(' ')[1],
-                    nameAs: {
-                        nameAs: name.split(' ')[0],
-                        surnameAs: name.split(' ')[1],
-                    },
-                    email,
-                    userOrders: {},
-                    userProductsToSale: {}
-                }
+                // const userInf0 = {
+                //     name: name.split(' ')[0],
+                //     surname: name.split(' ')[1],
+                //     nameAs: {
+                //         nameAs: name.split(' ')[0],
+                //         surnameAs: name.split(' ')[1],
+                //     },
+                //     email,
+                //     userOrders: {},
+                //     userProductsToSale: {}
+                // }
 
                 try {
                     await connectMongoDB();
@@ -67,8 +73,9 @@ const authOptions = {
                         return userExists;
                     }
                     else if (!userExists) {
-                        await mongoose.connection.collection("users").insertOne(userInf0);
-                        return userInf0
+                        // await mongoose.connection.collection("users").insertOne(userInf0);
+                        // return userInf0
+                        return null
                     }
                     return null;
                 } catch (error) {
@@ -80,7 +87,8 @@ const authOptions = {
         },
     },
     pages: {
-        signIn: '/loginpage'
+        signIn: '/loginpage',
+        error: '/error'
     },
     secret: process.env.NEXTAUTN_SECRET
 };

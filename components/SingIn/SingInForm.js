@@ -41,9 +41,6 @@ function SingInForm({ props }) {
     async function handleclick(event) {
         event.preventDefault();
 
-        // const currentDate = new Date();
-        // currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
-
         if (showErrorEmail === false && showErrorPassword === false) {
             const body = {
                 "email": userEmail,
@@ -62,7 +59,6 @@ function SingInForm({ props }) {
                     alert('Користувача з такою поштою або паролем не знайдено.')
                 } else {
                     router.push('/userpage');
-
                 }
             } catch (error) {
                 console.error('Помилка входу:', error);
@@ -77,7 +73,6 @@ function SingInForm({ props }) {
                 redirect: true,
                 callbackUrl: "/userpage"
             });
-            // console.log(result)
             if (result) {
                 router.push('/userpage');
             } else {
@@ -88,6 +83,29 @@ function SingInForm({ props }) {
 
         } catch (error) {
             alert('помилка входу:', error);
+        }
+    }
+
+
+    async function singInWithFacebook() {
+        try {
+            const result = await signIn('facebook', {
+                redirect: true,
+                callbackUrl: "/userpage"
+            });
+            console.log(result)
+            if (result) {
+                router.push('/userpage');
+            }
+            // else {
+            //     console.log(result)
+            //     setTimeout(() => {
+            //         alert('Користувача з такою поштою не знайдено.');
+            //     }, 1000);
+            // }
+
+        } catch (error) {
+            alert('Помилка входу:', error);
         }
     }
 
@@ -166,27 +184,6 @@ function SingInForm({ props }) {
                 </div>
 
                 <p className='use-social-network-par'>Або скористайся соціальними мережами</p>
-                <div className='social-buttons'>
-                    {/* <button onClick={() => signIn('fasebook', {
-                        redirect: true,
-                        callbackUrl: '/userpage'
-                    })} className='social-button'>
-                        <p>Facebook</p>
-                        <div className='icon-container'>
-                            <Image
-                                alt="logo image social fase"
-                                src='/social_icon/Social Icons.svg'
-                                sizes="(max-width: 100%)"
-                                quality={100}
-                                width={16}
-                                height={16}
-                                className='logo-image'
-                                priority
-                            />
-                        </div>
-                    </button> */}
-
-                </div >
                 <div className='button-singin'>
                     <button type='submit' className='button-singin-push btn-login-page' >Увійти</button>
                 </div>
@@ -196,22 +193,40 @@ function SingInForm({ props }) {
                     </div>
                 </Link>
             </form >
-            <button className='social-button'
-                onClick={() => singInWithGoogle()}>
-                <p>Google</p>
-                <div className='icon-container'>
-                    <Image
-                        alt="logo image social fase"
-                        src='/social_icon/Vector.svg'
-                        sizes="(max-width: 100%)"
-                        quality={100}
-                        width={16}
-                        height={16}
-                        className='logo-image'
-                        priority
-                    />
-                </div>
-            </button>
+            <div className='social-buttons'>
+                <button onClick={() => singInWithFacebook()} className='social-button'>
+                    <p>Facebook</p>
+                    <div className='icon-container'>
+                        <Image
+                            alt="logo image social fase"
+                            src='/social_icon/Social Icons.svg'
+                            sizes="(max-width: 100%)"
+                            quality={100}
+                            width={16}
+                            height={16}
+                            className='logo-image'
+                            priority
+                        />
+                    </div>
+                </button>
+                <button className='social-button'
+                    onClick={() => singInWithGoogle()}>
+                    <p>Google</p>
+                    <div className='icon-container'>
+                        <Image
+                            alt="logo image social fase"
+                            src='/social_icon/Vector.svg'
+                            sizes="(max-width: 100%)"
+                            quality={100}
+                            width={16}
+                            height={16}
+                            className='logo-image'
+                            priority
+                        />
+                    </div>
+                </button>
+            </div >
+
         </>
     );
 };
