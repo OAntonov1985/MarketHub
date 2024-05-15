@@ -53,17 +53,19 @@ const authOptions = {
             if (account.provider === "google" || account.provider === "facebook") {
                 const { name, email } = user;
 
-                // const userInf0 = {
-                //     name: name.split(' ')[0],
-                //     surname: name.split(' ')[1],
-                //     nameAs: {
-                //         nameAs: name.split(' ')[0],
-                //         surnameAs: name.split(' ')[1],
-                //     },
-                //     email,
-                //     userOrders: {},
-                //     userProductsToSale: {}
-                // }
+                const userInf0 = {
+                    name: name.split(' ')[0],
+                    surname: name.split(' ')[1],
+                    nameAs: {
+                        nameAs: name.split(' ')[0],
+                        surnameAs: name.split(' ')[1],
+                    },
+                    email,
+                    userOrders: {},
+                    userProductsToSale: {},
+                    password: "password",
+                    pfone: ""
+                }
 
                 try {
                     await connectMongoDB();
@@ -73,9 +75,9 @@ const authOptions = {
                         return userExists;
                     }
                     else if (!userExists) {
-                        // await mongoose.connection.collection("users").insertOne(userInf0);
-                        // return userInf0
-                        return null
+                        await mongoose.connection.collection("users").insertOne(userInf0);
+                        return userInf0
+                        // return null
                     }
                     return null;
                 } catch (error) {
@@ -86,10 +88,10 @@ const authOptions = {
             return user;
         },
     },
-    // pages: {
-    //     signIn: '/loginpage',
-    //     error: '/error'
-    // },
+    pages: {
+        signIn: '/loginpage',
+        error: '/error'
+    },
     secret: process.env.NEXTAUTN_SECRET
 };
 
