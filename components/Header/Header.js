@@ -46,13 +46,13 @@ function Header({ transparentBackground }) {
 
 
 
-    // useEffect(() => {
-    //     if (pathname === "/userpage") {
-    //         if (status !== "authenticated") {
-    //             router.push('/loginpage');
-    //         }
-    //     }
-    // }, [status]);
+    useEffect(() => {
+        if (pathname === "/userpage") {
+            if (status !== "authenticated") {
+                router.push('/loginpage');
+            }
+        }
+    }, [status]);
 
     useEffect(() => {
 
@@ -100,7 +100,7 @@ function Header({ transparentBackground }) {
             setHeaderName(null);
             setUserPath("/loginpage");
         }
-    }, [status]);
+    });
 
 
     useEffect(() => {

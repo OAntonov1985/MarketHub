@@ -77,11 +77,15 @@ function SingInForm({ props }) {
                 redirect: true,
                 callbackUrl: "/userpage"
             });
-            if (!result) {
-                alert('Користувача з такою поштою не знайдено.')
-            } else if (result) {
+            console.log
+            if (result) {
                 router.push('/userpage');
+            } else {
+                setTimeout(() => {
+                    alert('Користувача з такою поштою не знайдено.');
+                }, 1000);
             }
+
         } catch (error) {
             alert('помилка входу:', error);
         }
