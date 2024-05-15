@@ -77,7 +77,7 @@ function SingInForm({ props }) {
                 redirect: true,
                 callbackUrl: "/userpage"
             });
-            console.log
+            // console.log(result)
             if (result) {
                 router.push('/userpage');
             } else {

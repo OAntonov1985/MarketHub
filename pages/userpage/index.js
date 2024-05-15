@@ -6,12 +6,22 @@ import UserPageLeftColumn from '@/components/UserPage/UserPageLeftColumn';
 import UserPageRightColumn from '@/components/UserPage/UserPageRightColumn';
 import Spinner from '@/components/Spinner/Spinner';
 import { useSelector } from 'react-redux';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 
 export default function UserPage() {
     const { loading } = useSelector((state) => state.user);
+    const isSession = useSession();
+    const { data, status } = isSession;
+    const router = useRouter();
+    console.log(isSession)
+    if (status !== "authenticated") {
+        // router.push("/loginpage")
+        // setTimeout(() => router.push("/loginpage"), 500)
+    }
 
-    return (
+    if (status === "authenticated") return (
         <div className='userPage'>
             {loading ? <Spinner /> : null}
             <Head>
