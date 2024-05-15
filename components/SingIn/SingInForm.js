@@ -194,6 +194,7 @@ function SingInForm({ props }) {
                 </Link>
             </form >
             <div className='social-buttons'>
+                {/* <button onClick={() => signIn('facebook')} className='social-button'> */}
                 <button onClick={() => singInWithFacebook()} className='social-button'>
                     <p>Facebook</p>
                     <div className='icon-container'>

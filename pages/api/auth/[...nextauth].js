@@ -86,10 +86,10 @@ const authOptions = {
             return user;
         },
     },
-    pages: {
-        signIn: '/loginpage',
-        error: '/error'
-    },
+    // pages: {
+    //     signIn: '/loginpage',
+    //     error: '/error'
+    // },
     secret: process.env.NEXTAUTN_SECRET
 };
 
