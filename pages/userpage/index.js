@@ -21,7 +21,6 @@ export default function UserPage() {
         // setTimeout(() => router.push("/loginpage"), 500)
     }
 
-
     if (status === "authenticated") return (
         <div className='userPage'>
             {loading ? <Spinner /> : null}
