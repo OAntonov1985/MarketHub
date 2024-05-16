@@ -41,18 +41,15 @@ function Header({ transparentBackground }) {
 
     const isSession = useSession();
     const { data, status } = isSession;
-    // console.log(status);
-    // console.log(process.env.GOOGLE_CLIENT_SECRET);
+
+    // const session = getSession() 
+    // const allCookies = Cookies.get();
+    // console.log(allCookies)
 
 
 
-    // useEffect(() => {
-    //     if (pathname === "/userpage") {
-    //         if (status !== "authenticated") {
-    //             router.push('/loginpage');
-    //         }
-    //     }
-    // }, [status]);
+
+
 
     useEffect(() => {
 

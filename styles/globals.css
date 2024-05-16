@@ -656,7 +656,7 @@ h2 {
   border-radius: 0.8rem;
   background: linear-gradient(#116ACC, rgba(17, 106, 204, 0));
   transition: background 0.3s;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.6rem;
   cursor: pointer;
 }
 
@@ -709,8 +709,7 @@ h2 {
 .use-social-network-par {
   color: #F8FAFC;
   margin-bottom: 1.6rem;
-  margin-left: 7rem;
-  font-size: 0.8rem;
+  font-size: 1.6rem;
 }
 
 .social-buttons {

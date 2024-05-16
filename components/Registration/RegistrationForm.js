@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from "next/image";
 import RegistrationFunction from '@/pages/api/RegistrationFunction';
+import { signIn } from 'next-auth/react';
 
 
 function RegistrationForm({ props }) {
@@ -114,6 +115,26 @@ function RegistrationForm({ props }) {
             typeInput === "password" ? "text" : "password",
         );
     };
+
+    async function singInWithGoogle() {
+
+        try {
+            const result = await signIn('google1', {
+                redirect: true,
+                callbackUrl: "/userpage"
+            });
+            if (result) {
+                router.push('/userpage');
+            } else {
+                setTimeout(() => {
+                    alert('Користувача з такою поштою не знайдено.');
+                }, 1000);
+            }
+
+        } catch (error) {
+            alert('помилка входу:', error);
+        }
+    }
 
 
 
@@ -260,11 +281,45 @@ function RegistrationForm({ props }) {
                 <div className='button-singin'>
                     <button type='submit' className='button-singin-push btn-login-page'>Зареєструватися</button>
                 </div>
-                <p className='politcik-registration'>Створюючи обліковий запис, ви погоджуєтеся з нашими
+                {/* <p className='politcik-registration'>Створюючи обліковий запис, ви погоджуєтеся з нашими
                     <a href="#" className='politcik-registration-link'>  Умовами обслуговування</a> та
                     <a href="#" className='politcik-registration-link'>  Політикою конфіденційності</a>
-                </p>
+                </p> */}
             </form>
+            <p className='use-social-network-par'>Або скористайся соціальними мережами</p>
+            <div className='social-buttons'>
+                <button onClick={() => singInWithFacebook()} className='social-button'>
+                    <p>Facebook</p>
+                    <div className='icon-container'>
+                        <Image
+                            alt="logo image social fase"
+                            src='/social_icon/Social Icons.svg'
+                            sizes="(max-width: 100%)"
+                            quality={100}
+                            width={16}
+                            height={16}
+                            className='logo-image'
+                            priority
+                        />
+                    </div>
+                </button>
+                <button className='social-button'
+                    onClick={() => singInWithGoogle()}>
+                    <p>Google</p>
+                    <div className='icon-container'>
+                        <Image
+                            alt="logo image social fase"
+                            src='/social_icon/Vector.svg'
+                            sizes="(max-width: 100%)"
+                            quality={100}
+                            width={16}
+                            height={16}
+                            className='logo-image'
+                            priority
+                        />
+                    </div>
+                </button>
+            </div >
         </>
     );
 };

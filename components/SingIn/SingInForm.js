@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { setUserName } from '@/slices/userSlice';
 import { signIn } from 'next-auth/react';
 import SingIn from './SingIn';
-
+import authOptions from "../../pages/api/auth/[...nextauth]"
 
 // import { useDispatch } from 'react-redux';
 
@@ -68,6 +68,8 @@ function SingInForm({ props }) {
     };
 
     async function singInWithGoogle() {
+
+
         try {
             const result = await signIn('google', {
                 redirect: true,
@@ -182,19 +184,17 @@ function SingInForm({ props }) {
                     />
                     {showErrorPassword !== false ? <p className='paragraf-buttom'>Довжина паролю має бути 6 символів мінімум</p> : null}
                 </div>
-
-                <p className='use-social-network-par'>Або скористайся соціальними мережами</p>
                 <div className='button-singin'>
                     <button type='submit' className='button-singin-push btn-login-page' >Увійти</button>
                 </div>
-                <Link href='/forgetpassword/' className='forgot-link'>
+                {/* <Link href='/forgetpassword/' className='forgot-link'>
                     <div className='forgot-password-link'>
                         <p className='forgot-link'>Забули пароль</p>
                     </div>
-                </Link>
+                </Link> */}
             </form >
+            <p className='use-social-network-par'>Або скористайся соціальними мережами</p>
             <div className='social-buttons'>
-                {/* <button onClick={() => signIn('facebook')} className='social-button'> */}
                 <button onClick={() => singInWithFacebook()} className='social-button'>
                     <p>Facebook</p>
                     <div className='icon-container'>

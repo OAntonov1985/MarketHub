@@ -6,6 +6,8 @@ import FacebookProvider from "next-auth/providers/facebook";
 import Credentials from "next-auth/providers/credentials";
 import mongoose from "mongoose";
 
+
+
 const authOptions = {
     session: {
         strategy: "jwt",
@@ -15,7 +17,7 @@ const authOptions = {
         GoogleProvider({
             name: "google",
             clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         }),
         FacebookProvider({
             name: "facebook",
@@ -50,8 +52,33 @@ const authOptions = {
 
     callbacks: {
         async signIn({ user, account }) {
-            if (account.provider === "google" || account.provider === "facebook") {
+
+            if (account.provider === "test" || account.provider === "facebook") {
                 const { name, email } = user;
+                console.log("google")
+
+                try {
+                    await connectMongoDB();
+                    const userExists = await mongoose.connection.collection("users").findOne({ email });
+
+                    if (userExists) {
+                        return userExists;
+                    }
+                    else if (!userExists) {
+                        // await mongoose.connection.collection("users").insertOne(userInf0);
+                        // return userInf0;
+                        return null;
+                    }
+                    return null;
+                } catch (error) {
+                    console.error("Error processing signIn callback:", error);
+                }
+                return user;
+            }
+            else if (account.provider === "google1") {
+                const { name, email } = user;
+                console.log("google1")
+
 
                 const userInf0 = {
                     name: name.split(' ')[0],
@@ -72,26 +99,28 @@ const authOptions = {
                     const userExists = await mongoose.connection.collection("users").findOne({ email });
 
                     if (userExists) {
-                        return userExists;
+                        return null;
+
                     }
                     else if (!userExists) {
                         await mongoose.connection.collection("users").insertOne(userInf0);
-                        return userInf0
-                        // return null
+                        return userInf0;
+                        // return userExists;
                     }
                     return null;
                 } catch (error) {
                     console.error("Error processing signIn callback:", error);
                 }
+                return userInf0;
             }
 
-            return user;
+
         },
     },
-    pages: {
-        signIn: '/loginpage',
-        error: '/error'
-    },
+    // pages: {
+    //     signIn: '/loginpage',
+    //     error: '/error'
+    // },
     secret: process.env.NEXTAUTN_SECRET
 };
 

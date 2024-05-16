@@ -20,11 +20,11 @@ function Registration({ props }) {
                 <div className='button-singin'>
                     <button className='button-singin-push secondary-button' onClick={toggleMode}>Увійти</button>
                 </div>
-                <Link href='/forgetpassword/' className='forgot-link'>
+                {/* <Link href='/forgetpassword/' className='forgot-link'>
                     <div className='forgot-password-link'>
                         <p className='forgot-link'>Забули пароль</p>
                     </div>
-                </Link>
+                </Link> */}
             </div>
         </>
     );
