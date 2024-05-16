@@ -53,9 +53,9 @@ const authOptions = {
     callbacks: {
         async signIn({ user, account }) {
 
-            if (account.provider === "test" || account.provider === "facebook") {
+            if (account.provider === "google" || account.provider === "facebook") {
                 const { name, email } = user;
-                console.log("google")
+                // console.log("google")
                 const userInf0 = {
                     name: name.split(' ')[0],
                     surname: name.split(' ')[1],
@@ -88,44 +88,44 @@ const authOptions = {
                 }
                 return user;
             }
-            else if (account.provider === "google1") {
-                const { name, email } = user;
-                console.log("google1")
+            // else if (account.provider === "google1") {
+            //     const { name, email } = user;
+            //     console.log("google1")
 
 
-                const userInf0 = {
-                    name: name.split(' ')[0],
-                    surname: name.split(' ')[1],
-                    nameAs: {
-                        nameAs: name.split(' ')[0],
-                        surnameAs: name.split(' ')[1],
-                    },
-                    email,
-                    userOrders: {},
-                    userProductsToSale: {},
-                    password: "password",
-                    pfone: ""
-                }
+            //     const userInf0 = {
+            //         name: name.split(' ')[0],
+            //         surname: name.split(' ')[1],
+            //         nameAs: {
+            //             nameAs: name.split(' ')[0],
+            //             surnameAs: name.split(' ')[1],
+            //         },
+            //         email,
+            //         userOrders: {},
+            //         userProductsToSale: {},
+            //         password: "password",
+            //         pfone: ""
+            //     }
 
-                try {
-                    await connectMongoDB();
-                    const userExists = await mongoose.connection.collection("users").findOne({ email });
+            //     try {
+            //         await connectMongoDB();
+            //         const userExists = await mongoose.connection.collection("users").findOne({ email });
 
-                    if (userExists) {
-                        return null;
+            //         if (userExists) {
+            //             return null;
 
-                    }
-                    else if (!userExists) {
-                        await mongoose.connection.collection("users").insertOne(userInf0);
-                        return userInf0;
-                        // return userExists;
-                    }
-                    return null;
-                } catch (error) {
-                    console.error("Error processing signIn callback:", error);
-                }
-                return userInf0;
-            }
+            //         }
+            //         else if (!userExists) {
+            //             await mongoose.connection.collection("users").insertOne(userInf0);
+            //             return userInf0;
+            //             // return userExists;
+            //         }
+            //         return null;
+            //     } catch (error) {
+            //         console.error("Error processing signIn callback:", error);
+            //     }
+            //     return userInf0;
+            // }
 
 
         },
