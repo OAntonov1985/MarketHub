@@ -86,7 +86,7 @@ const authOptions = {
                 } catch (error) {
                     console.error("Error processing signIn callback:", error);
                 }
-                return user;
+                // return user;
             }
             // else if (account.provider === "google1") {
             //     const { name, email } = user;
