@@ -68,7 +68,7 @@ function SingInForm({ props }) {
     };
 
     async function singInWithGoogle() {
-        Cookies.set('singIn', "singIn")
+        // Cookies.set('singIn', "singIn")
 
         try {
             const result = await signIn('google', {
@@ -96,16 +96,15 @@ function SingInForm({ props }) {
                 redirect: true,
                 callbackUrl: "/userpage"
             });
-            console.log(result)
             if (result) {
                 router.push('/userpage');
             }
-            // else {
-            //     console.log(result)
-            //     setTimeout(() => {
-            //         alert('Користувача з такою поштою не знайдено.');
-            //     }, 1000);
-            // }
+            else {
+                console.log(result)
+                setTimeout(() => {
+                    alert('Користувача з такою поштою не знайдено.');
+                }, 1000);
+            }
 
         } catch (error) {
             alert('Помилка входу:', error);
