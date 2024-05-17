@@ -53,7 +53,7 @@ function SingInForm({ props }) {
                     email: body.email,
                     password: body.password,
                 });
-                // console.log(result)
+
                 if (result.error) {
                     console.error('Помилка входу:', result.error);
                     alert('Користувача з такою поштою або паролем не знайдено.')
@@ -68,13 +68,14 @@ function SingInForm({ props }) {
     };
 
     async function singInWithGoogle() {
-
+        Cookies.set('singIn', "singIn")
 
         try {
             const result = await signIn('google', {
                 redirect: true,
                 callbackUrl: "/userpage"
             });
+            // console.log(result)
             if (result) {
                 router.push('/userpage');
             } else {

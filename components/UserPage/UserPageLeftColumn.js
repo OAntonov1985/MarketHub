@@ -7,6 +7,7 @@ import LeftColumnUserOrders from './LeftColumnUserOrders';
 import { useState, useEffect } from 'react';
 import { setCategorieToRender, setPhotoArrayLength } from '@/slices/userSlice';
 import { signOut } from "next-auth/react";
+import Cookies from 'js-cookie';
 
 function UserPageLeftColumn() {
     const { userName } = useSelector((state) => state.user);
@@ -27,7 +28,17 @@ function UserPageLeftColumn() {
         if (pfotoArrayLength !== "Товари") {
             dispatch(setPhotoArrayLength(4));
         }
-    }, [pfotoArrayLength])
+    }, [pfotoArrayLength]);
+
+    function SingOutFunc() {
+        Cookies.remove('userName', { path: '/' })
+        Cookies.remove('userSurname', { path: '/' })
+        Cookies.remove('userEmail', { path: '/' })
+        Cookies.remove('userPassword', { path: '/' })
+        Cookies.remove('userToken', { path: '/' })
+        Cookies.remove('userPhone', { path: '/' })
+        signOut({ callbackUrl: "/" })
+    }
 
     return (
         <div className='userPage-left-column'>
@@ -39,7 +50,7 @@ function UserPageLeftColumn() {
                 <LeftColumnUserOrders isActiveCategorie={isActiveCategorie} setActiveItem={setActiveItem} />
             </div>
             <div>
-                <button className="exit-button" onClick={() => signOut({ callbackUrl: "/" })}>Вийти з аккаунту</button>
+                <button className="exit-button" onClick={SingOutFunc}>Вийти з аккаунту</button>
             </div>
         </div>
     )
