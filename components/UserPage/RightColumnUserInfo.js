@@ -1,7 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 import { useState } from 'react';
-import { signOut } from "next-auth/react"
 
 function RightColumnUserInfo() {
     let name = Cookies.get('userName');
@@ -133,7 +132,7 @@ function RightColumnUserInfo() {
                     onClick={saveChanges}
                 >Зберегти</button>
             </div>
-            <button onClick={() => signOut({ callbackUrl: "/" })}>Sing Out</button>
+
         </div>
     )
 }

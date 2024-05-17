@@ -23,6 +23,27 @@
     color: $background-color
     background-color: $color-background-loginpage
     z-index: 3
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+.exit-button
+    font-size: 1.6rem
+    color: $background-color
+    border: none    
+    background-color: $color-background-loginpage
+    cursor: pointer
+    position: relative   
+    
+
+.exit-button::after
+        content: ''
+        position: absolute
+        left: 0
+        bottom: -3px
+        width: 100%
+        height: 2px
+        background-color: $color-white 
 
 .active-color
     color: $valid-field-border

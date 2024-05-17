@@ -6,6 +6,7 @@ import LeftColumnUserInfo from './LeftColumnUserInfo';
 import LeftColumnUserOrders from './LeftColumnUserOrders';
 import { useState, useEffect } from 'react';
 import { setCategorieToRender, setPhotoArrayLength } from '@/slices/userSlice';
+import { signOut } from "next-auth/react";
 
 function UserPageLeftColumn() {
     const { userName } = useSelector((state) => state.user);
@@ -30,11 +31,16 @@ function UserPageLeftColumn() {
 
     return (
         <div className='userPage-left-column'>
-            <h4 className={'left-column-title'}>Привіт, {userName}</h4>
-            <LeftColumnUserInfo isActiveCategorie={isActiveCategorie} setActiveItem={setActiveItem} />
-            <LeftColumnOrdersList objToSend={objToSend} />
-            <LeftColumnGoodsList objToSend={objToSend} />
-            <LeftColumnUserOrders isActiveCategorie={isActiveCategorie} setActiveItem={setActiveItem} />
+            <div>
+                <h4 className={'left-column-title'}>Привіт, {userName}</h4>
+                <LeftColumnUserInfo isActiveCategorie={isActiveCategorie} setActiveItem={setActiveItem} />
+                <LeftColumnOrdersList objToSend={objToSend} />
+                <LeftColumnGoodsList objToSend={objToSend} />
+                <LeftColumnUserOrders isActiveCategorie={isActiveCategorie} setActiveItem={setActiveItem} />
+            </div>
+            <div>
+                <button className="exit-button" onClick={() => signOut({ callbackUrl: "/" })}>Вийти з аккаунту</button>
+            </div>
         </div>
     )
 }

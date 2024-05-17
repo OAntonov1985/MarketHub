@@ -2126,6 +2126,28 @@ h2 {
   color: #FBFBFB;
   background-color: #012767;
   z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.exit-button {
+  font-size: 1.6rem;
+  color: #FBFBFB;
+  border: none;
+  background-color: #012767;
+  cursor: pointer;
+  position: relative;
+}
+
+.exit-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background-color: #F8FAFC;
 }
 
 .active-color {
