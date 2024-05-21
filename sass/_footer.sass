@@ -1,14 +1,22 @@
 @import _variables.sass
 
 .footer
-    height: 17.6rem
+    // height: 17.6rem
     background-color: $color-background-loginpage
     padding: 2.4rem 9rem 
     color: $color-white
     display: flex
+    gap: 1rem
     justify-content: space-between
     @media only screen and (max-width: 1023px)
         padding: 2.4rem 6rem 
+    @media only screen and (max-width: 768px)
+        padding: 2.4rem 4rem 
+    @media only screen and (max-width : 600px)
+        flex-wrap: wrap
+    @media only screen and (max-width : 533px) 
+        // padding: 2.4rem 2rem 
+        padding: 1.6rem
 
 
 .footer p
@@ -16,17 +24,30 @@
     font-style: normal
     font-weight: 400
     line-height: 150%
+    text-align: center
+    @media only screen and (max-width: 1023px)
    
 .footer-paragraf
-    margin-bottom: 1.2rem   
+    margin-bottom: 1.2rem
+    @media only screen and (max-width: 1023px)
+        margin-bottom: 1rem   
 
 .footer-lert-column-logo-container
     position: relative
+    margin: auto
     width: 11rem
     height: 5.6rem
     margin-bottom: 2.4rem
+    @media only screen and (max-width: 1023px)
+        margin-bottom: 1.6rem
     
 
 .footer-central-column
     display: flex
     align-items: flex-end
+    @media only screen and (max-width : 600px)
+        order: 3
+        width: 100%
+        justify-content: center
+        margin-top: 4rem
+        margin-bottom: 0

@@ -705,6 +705,8 @@ h2 {
 @media only screen and (max-width: 533px) {
   .top-sellers-row {
     padding: 0 2rem;
+    margin-bottom: 5rem;
+    gap: 2.4rem;
   }
 }
 
@@ -842,16 +844,31 @@ h2 {
 }
 
 .footer {
-  height: 17.6rem;
   background-color: #012767;
   padding: 2.4rem 9rem;
   color: #F8FAFC;
   display: flex;
+  gap: 1rem;
   justify-content: space-between;
 }
 @media only screen and (max-width: 1023px) {
   .footer {
     padding: 2.4rem 6rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .footer {
+    padding: 2.4rem 4rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .footer {
+    flex-wrap: wrap;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .footer {
+    padding: 1.6rem;
   }
 }
 
@@ -860,22 +877,42 @@ h2 {
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
+  text-align: center;
 }
-
 .footer-paragraf {
   margin-bottom: 1.2rem;
+}
+@media only screen and (max-width: 1023px) {
+  .footer-paragraf {
+    margin-bottom: 1rem;
+  }
 }
 
 .footer-lert-column-logo-container {
   position: relative;
+  margin: auto;
   width: 11rem;
   height: 5.6rem;
   margin-bottom: 2.4rem;
+}
+@media only screen and (max-width: 1023px) {
+  .footer-lert-column-logo-container {
+    margin-bottom: 1.6rem;
+  }
 }
 
 .footer-central-column {
   display: flex;
   align-items: flex-end;
+}
+@media only screen and (max-width: 600px) {
+  .footer-central-column {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 4rem;
+    margin-bottom: 0;
+  }
 }
 
 .login-page {
