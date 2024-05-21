@@ -56,7 +56,9 @@ const authOptions = (req, res) => {
             async signIn({ user, account }) {
                 if (account.provider === "google" || account.provider === "facebook") {
                     const { name, email } = user;
-
+                    // const customArg = context.query.customArg;
+                    // console.log(customArg)
+                    // console.log(profile)
                     const userInf0 = {
                         name: name.split(' ')[0],
                         surname: name.split(' ')[1],

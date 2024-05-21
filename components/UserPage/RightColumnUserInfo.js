@@ -95,7 +95,7 @@ function RightColumnUserInfo() {
                 <input name="userEmail" id="userEmail"
                     className="user-info-form-input form-input-unactive"
                     disabled
-                    readonly
+                    readOnly
                     placeholder="Введіть вашу пошту"
                     autoComplete="userEmail"
                     value={email} />

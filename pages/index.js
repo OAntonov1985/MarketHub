@@ -33,7 +33,7 @@ function Home({ categories, topSellers, promotionGoods }) {
                         quality={100}
                         width={1440}
                         height={770}
-                        className='logo-image'
+                        className='logo-image-in-main'
                         priority
                         style={{
                             position: 'absolute',

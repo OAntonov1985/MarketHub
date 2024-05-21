@@ -2,43 +2,63 @@
 .header-component
     display: flex
     align-items: center
-    justify-content: space-between
+    justify-content: flex-start
     height: 9.6rem
     font-size: 2rem
     padding: 0 9rem 
     color: white
     border-bottom: 1px solid #FFF
-    position: relative
-    background-color: red
+    position: relative    
     @media only screen and (max-width: 1024px)
-        padding: 0 6rem 
-        justify-content: flex-start
-
-    @media only screen and (max-width: 744px)
+        padding: 0 6rem      
+    @media only screen and (max-width: 820px)
         padding: 0 4rem 
+    @media only screen and (max-width: 533px)
+        padding: 0 2rem
 
+
+.conteiner-for-two-components
+    display: flex
+    margin-left: auto
+    @media only screen and (max-width: 768px)
+        justify-content: space-between
+        width: 100%
 
     
 .header-search-field
     width: 40.4rem   
-    width: clamp(5rem, 28vw, 40.2rem)
+    // width: clamp(5rem, 28vw, 40.2rem)
+    position: relative
+   
     // width: clamp(5rem, 23vw, 40.2rem)
     position: absolute    
     top: 50%
     left: 50%
     transform: translate(-50%, -50%)
-    margin-right: 1.5rem
+    // margin-right: 1.5rem
+    // margin-left: auto
+    // margin-right: 18rem
+    @media only screen and (max-width: 1366px)
+        width: 36rem
+
+    @media only screen and (max-width: 1280px)
+        width: 34rem
     @media only screen and (max-width: 1120px)
-        width: 23rem
-        
-    @media only screen and (max-width: 1023px)
-        width: 23rem
+        width: 26rem
         position: relative
         top: auto
         left: auto
         transform: none
         margin-left: 4rem
-        margin-right: 1.5rem
+        margin-right: 1.5rem      
+
+    @media only screen and (max-width: 1024px)  
+        width: 20rem
+    @media only screen and (max-width: 768px)
+        width: 24rem
+    @media only screen and (max-width: 533px)
+        width: 18rem
+        margin-left: 1rem
 
         
 
@@ -53,6 +73,8 @@
     color: $color-text-gray
     padding: 0 4rem 0 1.6rem
     outline: none
+    @media only screen and (max-width: 768px)
+        border: 1px solid $border-color-secondary
 
 .search-input-field
     position: absolute
@@ -63,13 +85,12 @@
     cursor: pointer
 
 .logo-image-client
-    margin-right: 2.4rem
+    margin-right: 2.4rem    
+    @media only screen and (max-width: 820px)
+        margin-right: 2rem
+    @media only screen and (max-width: 768px)
+        margin-right: 0
 
-.header-icons
-    display: flex
-    justify-content: flex-end
-    align-items: center
-    // min-width: 23rem
 
 .header-user-name
     margin-right: 1.6em
@@ -79,7 +100,13 @@
     font-weight: 400
     line-height: 1.8rem
     text-align: right
-    // letter-spacing: -0.18rem
+    word-break: break-word
+    @media only screen and (max-width: 1280px)
+        width: 14rem
+    @media only screen and (max-width: 768px)
+        text-align: left
+        margin-right: 0
+        width: auto
 
 .header-in-main    
     width: 100%
@@ -88,9 +115,14 @@
     margin: 0 auto
     z-index: -1
     overflow: hidden
+    @media only screen and (max-width: 768px)
+        height: 50rem
 
-h1
-    margin-top: 11.6rem
+.logo-image-in-main
+    @media only screen and (max-width: 768px)
+        height: 50rem
+h1   
+    margin: 11.6rem 6rem 0
     font-size: 14rem
     font-weight: 500
     line-height: 150%     
@@ -100,7 +132,17 @@ h1
     -webkit-text-fill-color: transparent
     text-align: center
     text-transform: uppercase
-
+    @media only screen and (max-width: 1280px)
+        font-size: 12rem
+    @media only screen and (max-width: 1024px)
+        font-size: 10rem
+    @media only screen and (max-width: 768px)
+        font-size: 7.2rem
+        margin-top: 4rem
+    @media only screen and (max-width: 600px)
+        font-size: 6rem
+    @media only screen and (max-width: 533px)
+        font-size: 4rem
 h2
     color: #EBEBEC
     text-align: center
@@ -109,26 +151,93 @@ h2
     font-style: normal
     font-weight: 400
     line-height: normal
+    margin: 0 6rem
+    @media only screen and (max-width: 1280px)
+        font-size: 4.2rem
+    @media only screen and (max-width: 1024px)
+        font-size: 4rem
+    @media only screen and (max-width: 768px)
+        font-size: 3.6rem        
+    @media only screen and (max-width: 600px)
+        font-size: 3rem
+    @media only screen and (max-width: 533px)
+        font-size: 2.4rem
 
 
 .logo-image-basket
     margin-right: 2.4rem
+    @media only screen and (max-width: 820px)
+        margin-right: 2rem
 
 .logo-image-favorite
     width: 24px
     height: 24px  
     margin-right: 2.4rem
+    @media only screen and (max-width: 820px)
+        margin-right: 2rem
+    @media only screen and (max-width: 768px)
+        margin-right: 0
+    
 
-.logo-image-about
-    // margin-left: 2.4rem
-    width: 24px
-    height: 24px
+.logo-image-about   
+    width: 2.4rem
+    height: 2.4rem
+
+.text-icons
+    display: none
+    @media only screen and (max-width: 768px)
+        display: block
 
 .header-icons
-    position: relative
-    @media only screen and (max-width: 1023px)
-        margin-left: auto 
+    display: flex
+    justify-content: flex-end
+    align-items: center    
+    margin-left: auto     
+    @media only screen and (max-width: 768px)
+        position: absolute
+        top: 94px
+        right: 0px
+        width: 37rem
+        display: flex
+        flex-direction: column
+        background-color: #010101
+        // background-color: $color-order-yellow
+        gap: 2.4rem
+        justify-content: flex-start
+        align-items: flex-start
+        padding: 2.4rem
+        display: none
+
+.dspl-flex
+    display: flex
         
+.burger
+    // display: flex
+    flex-direction: column
+    gap: 3px
+    justify-content: center
+    align-items: center
+    width: 31px
+    height: 4rem
+    display: none
+    cursor: pointer
+    position: relative
+    @media only screen and (max-width: 768px)
+        display: flex
+
+.line
+    width: 31px
+    height: 3px
+    background-color: $background-color-items
+
+.burger-menu-row
+    @media only screen and (max-width: 768px)
+        display: flex
+        color: $color-white !important
+        justify-content: space-between
+        width: 100%
+    
+
 
 .quantityOfGoods, .quantityOfFavorite
     display: flex
@@ -166,9 +275,14 @@ h2
     padding: 2rem
     @media only screen and (max-width: 1023px)
         width: 54rem
+        padding: 1.7rem
     @media only screen and (max-width: 740px)
         width: 70%
-        
+        font-size: 1.4rem
+        padding: 1.5rem
+    @media only screen and (max-width: 600px)
+        padding: 1.2rem
+        font-size: 1.2rem
    
 
 
@@ -179,13 +293,21 @@ h2
     margin-bottom: 2rem
     cursor: pointer
     height: 8rem
+    @media only screen and (max-width: 740px)
+        height: 7rem
 
 .item-image-container
     position: relative
     height: 8rem
     width: 8rem  
     
-
+.image-of-good-in-search
+    @media only screen and (max-width: 1023px)
+        width: 7rem !important
+        height: 7rem !important
+    @media only screen and (max-width: 533px)
+        width: 6rem !important
+        height: 6rem !important
 
 .item-content-container
     display: flex
@@ -205,7 +327,10 @@ h2
 .search-id    
     margin-bottom: 2rem
     @media only screen and (max-width: 740px)
-        margin-bottom: .5rem
+        // margin-bottom: 1rem
+        font-size: 1.2rem !important
+    @media only screen and (max-width: 533px)
+        margin-bottom: 1.5rem 
 
 .is-wisible
     display: none

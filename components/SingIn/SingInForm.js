@@ -74,8 +74,8 @@ function SingInForm({ props }) {
             const result = await signIn('google', {
                 redirect: true,
                 callbackUrl: "/userpage"
+
             });
-            // console.log(result)
             if (result) {
                 router.push('/userpage');
             } else {

@@ -12,6 +12,7 @@ function CategoriesOnMain({ categories }) {
                         <Link href={categories.name} key={categories.id} id={categories.id} className="main-categories-row-one">
                             <div className="image-container">
                                 <Image
+                                    className='img-title'
                                     alt={`image of ${categories.name}`}
                                     src={categories.photo_preview}
                                     sizes="(max-width: 100%)"
