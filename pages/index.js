@@ -45,6 +45,7 @@ function Home({ categories, topSellers, promotionGoods }) {
                         }}
                     />
                     <h1>Market hub</h1>
+                    <p className='duplicate-h1'>MARKET HUB</p>
                     <h2>Обирай найкраще, не виходячи з дому</h2>
                 </div>
 

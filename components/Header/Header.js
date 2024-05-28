@@ -234,13 +234,11 @@ function Header({ transparentBackground }) {
                     >Подивитись всі результати: {total}</Link>
                 </div>
 
-                {/* <div className='header-icons'> */}
+
                 <div className={`header-icons ${isVisibleMenu ? "dspl-flex" : ""}`}>
                     {headerName}
                     <Link href={userPath} className='burger-menu-row'>
                         <p className='text-icons'>Особистий кабінет</p>
-                        {/* {isVisibleMenu ? "Особистий кабінет" : ""} */}
-                        {/* <Link href="/userpage"> */}
                         <Image
                             alt="logo image client"
                             src='/clienticon.svg'
@@ -254,7 +252,6 @@ function Header({ transparentBackground }) {
                         />
                     </Link>
                     <Link href="/basket/" className="logo-image-basket burger-menu-row">
-                        {/* {isVisibleMenu ? '' : "Кошик"} */}
                         <p className='text-icons'>Кошик</p>
                         <Image
                             alt="logo image basket"
@@ -269,7 +266,6 @@ function Header({ transparentBackground }) {
                     </Link>
                     <div className={isVisible}>{quantityOfGoods}</div>
                     <Link href="/favorite/" className="logo-image-favorite burger-menu-row">
-                        {/* {isVisibleMenu ? '' : "Улюблене"} */}
                         <p className='text-icons'>Улюблене</p>
                         <Image
                             alt="logo image favorite"
