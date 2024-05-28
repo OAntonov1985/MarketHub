@@ -263,8 +263,9 @@ function Header({ transparentBackground }) {
                             className='photo-image-basket'
                             priority
                         />
+                        <div className={isVisible}>{quantityOfGoods}</div>
                     </Link>
-                    <div className={isVisible}>{quantityOfGoods}</div>
+
                     <Link href="/favorite/" className="logo-image-favorite burger-menu-row">
                         <p className='text-icons'>Улюблене</p>
                         <Image
@@ -277,8 +278,9 @@ function Header({ transparentBackground }) {
                             className='logo-image-favorite'
                             priority
                         />
+                        <div className={isVisibleFavorite}>{quantityOfFavorite}</div>
                     </Link>
-                    <div className={isVisibleFavorite}>{quantityOfFavorite}</div>
+
                     <Link href="/about/" className="logo-image-about burger-menu-row">
                         {/* {isVisibleMenu ? '' : "Про нас"} */}
                         <p className='text-icons'>Про нас</p>
@@ -295,9 +297,9 @@ function Header({ transparentBackground }) {
                     </Link>
                 </div>
                 <div className="burger" onClick={() => setIsVisibleMenu(!isVisibleMenu)}>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
+                    <div className="line"></div>
+                    <div className="line"></div>
+                    <div className="line"></div>
                 </div>
             </div>
 

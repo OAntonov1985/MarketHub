@@ -21,6 +21,9 @@
 .conteiner-for-two-components
     display: flex
     margin-left: auto
+    width: 100%
+    justify-content: space-around
+    align-items: center 
     @media only screen and (max-width: 768px)
         justify-content: space-between
         width: 100%
@@ -29,9 +32,8 @@
 .header-search-field
     width: 40.4rem   
     // width: clamp(5rem, 28vw, 40.2rem)
-    position: relative
+    // position: relative
    
-    // width: clamp(5rem, 23vw, 40.2rem)
     position: absolute    
     top: 50%
     left: 50%
@@ -51,10 +53,12 @@
         left: auto
         transform: none
         margin-left: 4rem
-        margin-right: 1.5rem      
+        margin-right: 1.5rem     
+         
 
     @media only screen and (max-width: 1024px)  
-        width: 20rem
+        width: 100%
+        max-width: 24rem
     @media only screen and (max-width: 768px)
         width: 24rem
     @media only screen and (max-width: 533px)
@@ -91,7 +95,8 @@
     cursor: pointer
 
 .logo-image-client
-    margin-right: 2.4rem    
+    margin-right: 2.4rem  
+    // position: relative  
     @media only screen and (max-width: 820px)
         margin-right: 2rem
     @media only screen and (max-width: 768px)
@@ -121,7 +126,7 @@
     height: 77rem
     margin: 0 auto
     // z-index: -1
-    position: relative
+    // position: relative
     // overflow: hidden
     @media only screen and (max-width: 768px)
         height: 50rem
@@ -273,7 +278,7 @@ h2
     height: 4rem
     display: none
     cursor: pointer
-    position: relative
+    // position: relative
     @media only screen and (max-width: 768px)
         display: flex
 
@@ -283,6 +288,7 @@ h2
     background-color: $background-color-items
 
 .burger-menu-row
+    position: relative
     @media only screen and (max-width: 768px)
         display: flex
         color: $color-white !important
@@ -295,8 +301,8 @@ h2
     display: flex
     align-items: center
     justify-content: center
-    top: 27px
-    right: 175px
+    top: -7px
+    right: -9px
     width: 1.6rem
     height: 1.6rem
     border-radius: 50% 
@@ -304,24 +310,25 @@ h2
     position: absolute
     background-color: $color-blue
     color: $color-white
-    @media only screen and (max-width: 1024px)
-        right: 147px
-    @media only screen and (max-width: 820px)
-        right: 120px
-    @media only screen and (max-width: 768px)
-        right: 16px
-        top: 106px
+    // @media only screen and (max-width: 1024px)
+    //     right: 147px
+    // @media only screen and (max-width: 820px)
+    //     right: 120px
+    // @media only screen and (max-width: 768px)
+    //     right: 16px
+    //     top: 67px
 
 
 .quantityOfFavorite
-    right: 130px
-    @media only screen and (max-width: 1024px)
-        right: 100px
-    @media only screen and (max-width: 820px)
-        right: 77px
-    @media only screen and (max-width: 768px)
-        top: 156px
-        right: 16px
+    top:  -9px
+    right: -7px
+    // @media only screen and (max-width: 1024px)
+    //     right: 100px
+    // @media only screen and (max-width: 820px)
+    //     right: 77px
+    // @media only screen and (max-width: 768px)
+    //     top: 156px
+    //     right: 16px
 
 .search-results-header
     display: block
@@ -363,7 +370,7 @@ h2
         height: 7rem
 
 .item-image-container
-    position: relative
+    // position: relative
     height: 8rem
     width: 8rem  
     
