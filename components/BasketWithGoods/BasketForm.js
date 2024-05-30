@@ -82,7 +82,8 @@ function BasketForm() {
             setUserName(userNameInCookies);
             setUserSurname(userSurnameInCookies);
             setUserEmail(userEmailInCookies);
-            setUserPfone(userPhoneInCookies);
+            if (userPhoneInCookies) setUserPfone(userPhoneInCookies);
+
         }
         else {
             setUserName("");

@@ -5,17 +5,8 @@ import React from 'react';
 
 
 
-function BreadCrumps() {
+function BreadCrumps({ goods }) {
     const router = useRouter();
-
-
-
-    let categoryName = router.query.category;
-    let subCategoryName = router.query.subcategory;
-    let id = router.query.id;
-    // console.log(id)
-    // console.log(subID)
-
 
     return (
         <div className='theWay'>
@@ -27,13 +18,10 @@ function BreadCrumps() {
                     width={16}
                     height={16} />
             </Link>
-
-            <Link href={"#"} className='bread-crum-text-way'>/
-                <p href={`/${categoryName}`}>
-                    {categoryName}
-                </p>
-                {subCategoryName === undefined ? "" : `/${subCategoryName}`}{id ? `/${id}` : ""}
+            <Link href={`/${goods.category_details.name}`} id={goods.category_details.id} className='bread-crum-text-way'>/
+                <p>{goods.category_details.name}</p>
             </Link>
+            {router.pathname === "/[category]" ? null : <p className='bread-crum-text-way'>/{goods.sub_category_detail.name}</p>}
         </div >
     )
 };

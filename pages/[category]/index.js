@@ -22,7 +22,7 @@ function CategoryPage({ subCategories, goods, id, total }) {
             <div className='category-page'>
                 <Header />
                 <div className="category-main-content">
-                    <BreadCrumps id={id} />
+                    <BreadCrumps goods={goods[0]} />
                     {goods.length === 0 ? <EmptyCategorie /> : (
                         <>
                             <div className="subcategories-row">

@@ -7,6 +7,7 @@ import { MaketHubURL } from "../../../../components/Constants"
 
 
 function ProductPage({ good, breadCrumpData }) {
+
     return (
         <>
             <Head>
@@ -25,21 +26,15 @@ function ProductPage({ good, breadCrumpData }) {
 
 export async function getServerSideProps(context) {
     let id = context.query.id
-    let breadCrumpData = {
-        category: null,
-        subcategory: null,
-        title: null,
-        id: null,
-        available: null
-    };;
-    // console.log(id)
+    let breadCrumpData;
+
     const resGoods = await fetch(MaketHubURL + `goods/${id}`);
     const good = await resGoods.json();
     // console.log(good)
 
     if (good) {
         breadCrumpData = {
-            category: good ? good.category_details?.name : null,
+            category: good ? good.category_details : null,
             subcategory: good ? good.sub_category_detail : null,
             title: good ? good.title : null,
             id: good.id,

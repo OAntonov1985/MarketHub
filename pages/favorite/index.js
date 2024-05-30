@@ -9,7 +9,6 @@ import Emptyfavorite from '@/components/EmptyFavorite/Emptyfavorite';
 
 function Favorite() {
     const { userFavorite } = useSelector((state) => state.user);
-    // console.log(userFavorite)
     const isFavorite = true;
     return (
         <>

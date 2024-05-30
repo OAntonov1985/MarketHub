@@ -16,7 +16,7 @@ function GoodCardSmall({ props, isFavorite }) {
     const [isInFavorite, setIsInFavorite] = useState(false);
     const [className, setClassname] = useState(false)
     const dispatch = useDispatch();
-    // console.log(props)
+    // console.log(sub_category_detail)
 
 
     const router = useRouter();
@@ -77,17 +77,19 @@ function GoodCardSmall({ props, isFavorite }) {
                 title: title,
                 price: price,
                 thumbnail: (thumbnail ? thumbnail : images[0]),
-                available: available
+                available: available,
+                category_details: category_details,
+                sub_category_detail: sub_category_detail
             }
         ))
     }
 
     return (
         <Link key={id}
-            href="/[category]/[subcategory]/[id]" as={`/${categoryName ? categoryName : (category_details ? category_details.name : null)}/${subCategoryName ? subCategoryName : sub_category_detail?.name}/${id}`}
+            href="/[category]/[subcategory]/[title]" as={`/${category_details.name}/${sub_category_detail.name}/${id}`}
             className={className ? "top-sellers-item" : "top-sellers-item top-sellers-in-favorite"} >
             <div className="image-container-top-sellers">
-                <div className={`container-for-icon-favorite ${isFavorite ? 'icon-in-favorite' : ''}`} id={id}>
+                <div className={`container-for-icon-favorite`} id={id}>
                     <Image
                         id={props.id}
                         onClick={addToFavorite}
@@ -103,23 +105,22 @@ function GoodCardSmall({ props, isFavorite }) {
                         }}>
                     </Image>
                 </div>
-                {isFavorite === true ? null :
-                    <div className='container-for-icon-add-to-basket' id={id} >
-                        <Image
-                            id={id}
-                            onClick={addToBasket}
-                            className='basket-icon'
-                            alt="icon of basket"
-                            src={available === false ? "/noavalablegoodicon.svg" : (isInBaslet === false ? "/basketincard.svg" : "/goodInBasket.svg")}
-                            quality={100}
-                            fill
-                            sizes="(max-width: 100%)"
-                            style={{
-                                objectFit: 'contain',
-                                width: '100%'
-                            }}>
-                        </Image>
-                    </div>}
+                <div className='container-for-icon-add-to-basket' id={id} >
+                    <Image
+                        id={id}
+                        onClick={addToBasket}
+                        className='basket-icon'
+                        alt="icon of basket"
+                        src={available === false ? "/noavalablegoodicon.svg" : (isInBaslet === false ? "/basketincard.svg" : "/goodInBasket.svg")}
+                        quality={100}
+                        fill
+                        sizes="(max-width: 100%)"
+                        style={{
+                            objectFit: 'contain',
+                            width: '100%'
+                        }}>
+                    </Image>
+                </div>
                 <div className="container-for-imafe-top-sellers">
                     <Image
                         alt="image of good"
