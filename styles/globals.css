@@ -540,6 +540,11 @@ h2 {
     font-size: 1.2rem;
   }
 }
+@media only screen and (max-width: 532px) {
+  .search-results-header {
+    top: 8rem;
+  }
+}
 
 .result-item {
   display: flex;
@@ -1017,6 +1022,24 @@ h2 {
   min-height: 76.8rem;
   background-color: #012767;
   border-radius: 1.6rem;
+  padding: 0 6rem;
+}
+@media only screen and (max-width: 990px) {
+  .content {
+    margin: 9rem 0;
+    padding: 0 4rem;
+  }
+}
+@media only screen and (max-width: 910px) {
+  .content {
+    flex-direction: column;
+    padding: 0 6rem;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .content {
+    padding: 0 2rem;
+  }
 }
 
 .sing-in-left-column,
@@ -1028,12 +1051,36 @@ h2 {
   cursor: pointer;
 }
 
-.sing-in-left-column {
-  padding: 10.3rem 6rem 4.4rem;
+@media only screen and (max-width: 910px) {
+  .sing-in-left-column {
+    margin-top: 17.8rem;
+    margin-bottom: 6.2rem;
+    margin-right: auto;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .sing-in-left-column {
+    margin: auto;
+    margin-top: 17.8rem;
+    margin-bottom: 6.2rem;
+  }
 }
 
 .sing-in-right-column {
-  padding: 10.3rem 6rem 4.4rem 6.5rem;
+  padding-left: 4rem;
+}
+@media only screen and (max-width: 910px) {
+  .sing-in-right-column {
+    margin-bottom: 9.2rem;
+    padding-left: 0;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .sing-in-right-column {
+    margin: auto;
+    margin-bottom: 9.2rem;
+    text-align: center;
+  }
 }
 
 .login-page-text {
@@ -1126,7 +1173,19 @@ h2 {
   margin-bottom: 1.6rem;
   display: flex;
   justify-content: space-between;
+  gap: 3rem;
   max-width: 30rem;
+}
+@media only screen and (max-width: 533px) {
+  .social-buttons {
+    flex-direction: column;
+  }
+}
+
+.social_logo {
+  position: relative;
+  height: 1.6rem;
+  width: 1.6rem;
 }
 
 .social-button {
@@ -1142,6 +1201,11 @@ h2 {
   font-size: 1.6rem;
   cursor: pointer;
   padding: 1rem 1.6rem;
+}
+@media only screen and (max-width: 533px) {
+  .social-button {
+    width: 100%;
+  }
 }
 
 .icon-container {
@@ -2190,11 +2254,11 @@ h2 {
   border: none;
   background-color: #FBFBFB;
   border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 .active-button {
   border: 1px solid #76CA66;
-  cursor: pointer;
 }
 
 .unactive-button {

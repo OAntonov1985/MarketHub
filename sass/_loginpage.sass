@@ -16,28 +16,49 @@
     align-items: center
     flex-wrap: wrap    
     width: 75%
-    max-width: 108rem
-    // height: 75% 
-    // height: 76.8rem 
+    max-width: 108rem    
     min-height: 76.8rem 
     background-color: $color-background-loginpage
     border-radius: 1.6rem 
+    padding: 0 6rem
+    @media only screen and (max-width : 990px)
+        margin: 9rem 0
+        padding: 0 4rem
+    @media only screen and (max-width : 910px)
+        flex-direction: column
+        padding: 0 6rem
+    @media only screen and (max-width : 533px)
+        padding: 0 2rem
 
 .sing-in-left-column, 
-.sing-in-right-column 
-    // padding: 10.3rem 6rem 4.4rem      
+.sing-in-right-column        
     flex-basis: 50%
 
 .singin-logo
-    cursor: pointer
+    cursor: pointer    
    
 
 .sing-in-left-column
-   padding: 10.3rem 6rem 4.4rem   
+    @media only screen and (max-width : 910px)
+        margin-top: 17.8rem
+        margin-bottom: 6.2rem
+        margin-right: auto
+    @media only screen and (max-width : 533px)
+        margin: auto
+        margin-top: 17.8rem
+        margin-bottom: 6.2rem
+    
+   
 
 .sing-in-right-column 
-    padding: 10.3rem 6rem 4.4rem 6.5rem
-
+    padding-left: 4rem
+    @media only screen and (max-width : 910px)        
+        margin-bottom: 9.2rem
+        padding-left: 0
+    @media only screen and (max-width : 533px)
+        margin: auto
+        margin-bottom: 9.2rem
+        text-align: center
 .login-page-text
     color: $color-white
     font-weight: 300
@@ -126,7 +147,15 @@
     margin-bottom: 1.6rem
     display: flex
     justify-content: space-between   
+    gap: 3rem    
     max-width: 30rem 
+    @media only screen and (max-width: 533px)
+        flex-direction: column
+
+.social_logo
+    position: relative
+    height: 1.6rem 
+    width: 1.6rem 
 
 .social-button
     width: 13.3rem
@@ -141,14 +170,15 @@
     font-size: 1.6rem
     cursor: pointer
     padding: 1rem 1.6rem
+    @media only screen and (max-width: 533px)
+        width: 100%
 
-// .social-button:hover
-//     background-color: gray
 
 .icon-container
     position: relative
     height: 1.6rem
     width: 1.6rem
+
 
 .user-email, .user-password, .user-name, .user-surname, .user-tel, .user-password, .user-passwordAgain    
     width: 100%

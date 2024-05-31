@@ -205,7 +205,7 @@ function SingInForm({ props }) {
                             quality={100}
                             width={16}
                             height={16}
-                            className='logo-image'
+                            className='social_logo'
                             priority
                         />
                     </div>
@@ -213,7 +213,7 @@ function SingInForm({ props }) {
                 <button className='social-button'
                     onClick={() => singInWithGoogle()}>
                     <p>Google</p>
-                    <div className='icon-container'>
+                    <div className='icon-container singin_form'>
                         <Image
                             alt="logo image social fase"
                             src='/social_icon/Vector.svg'
@@ -221,7 +221,7 @@ function SingInForm({ props }) {
                             quality={100}
                             width={16}
                             height={16}
-                            className='logo-image'
+                            className='social_logo'
                             priority
                         />
                     </div>

@@ -56,7 +56,7 @@ function LogInPage() {
                         quality={100}
                         width={146}
                         height={75}
-                        className='logo-image singin-logo'
+                        className='singin-logo'
                         priority
                         style={{
                             position: 'absolute',
