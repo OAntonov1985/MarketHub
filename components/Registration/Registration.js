@@ -4,15 +4,15 @@ import Link from 'next/link';
 
 
 function Registration({ props }) {
-    const { loading, setLoading, toggleMode } = props;
-    const obj = { setLoading };
+    const { isRegistration, setLoading, toggleMode } = props;
+
 
 
     return (
         <>
-            <div className="sing-in-left-column">
+            <div className={`sing-in-left-column ${isRegistration ? null : "padding-top"}`}>
                 <h4 className='right-column-paragraph'>Реєстрація</h4>
-                <RegistrationForm props={obj} />
+                <RegistrationForm props={setLoading} />
             </div>
             <div className='sing-in-right-column'>
                 <p className='singin-paragraph login-page-text'>Привіт!</p>
@@ -20,11 +20,6 @@ function Registration({ props }) {
                 <div className='button-singin'>
                     <button className='button-singin-push secondary-button' onClick={toggleMode}>Увійти</button>
                 </div>
-                {/* <Link href='/forgetpassword/' className='forgot-link'>
-                    <div className='forgot-password-link'>
-                        <p className='forgot-link'>Забули пароль</p>
-                    </div>
-                </Link> */}
             </div>
         </>
     );

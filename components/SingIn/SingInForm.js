@@ -68,7 +68,6 @@ function SingInForm({ props }) {
     };
 
     async function singInWithGoogle() {
-        // Cookies.set('singIn', "singIn")
 
         try {
             const result = await signIn('google', {
@@ -187,11 +186,6 @@ function SingInForm({ props }) {
                 <div className='button-singin'>
                     <button type='submit' className='button-singin-push btn-login-page' >Увійти</button>
                 </div>
-                {/* <Link href='/forgetpassword/' className='forgot-link'>
-                    <div className='forgot-password-link'>
-                        <p className='forgot-link'>Забули пароль</p>
-                    </div>
-                </Link> */}
             </form >
             <p className='use-social-network-par'>Або скористайся соціальними мережами</p>
             <div className='social-buttons'>

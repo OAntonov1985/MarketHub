@@ -28,11 +28,17 @@
         flex-direction: column
         padding: 0 6rem
     @media only screen and (max-width : 533px)
-        padding: 0 2rem
+        padding: 0 1.6rem
 
 .sing-in-left-column, 
 .sing-in-right-column        
     flex-basis: 50%
+    margin-bottom: 6rem
+
+.padding-top
+    padding-top: 12.7rem
+    @media only screen and (max-width : 910px)
+        padding-top: 0
 
 .singin-logo
     cursor: pointer    
@@ -40,13 +46,14 @@
 
 .sing-in-left-column
     @media only screen and (max-width : 910px)
+        width: 100%
         margin-top: 17.8rem
         margin-bottom: 6.2rem
         margin-right: auto
     @media only screen and (max-width : 533px)
         margin: auto
         margin-top: 17.8rem
-        margin-bottom: 6.2rem
+        margin-bottom: 4.5rem
     
    
 
@@ -59,11 +66,18 @@
         margin: auto
         margin-bottom: 9.2rem
         text-align: center
+
 .login-page-text
     color: $color-white
     font-weight: 300
     font-size: 2.8rem
-    line-height: 4.8rem 
+    line-height: 4.8rem
+    @media only screen and (max-width : 910px)
+        font-size: 2.2rem 
+        line-height: 3.2rem
+    @media only screen and (max-width : 533px)
+       font-size: 1.6rem  
+       line-height: 1.5rem
     
 
 .secondary-button
@@ -77,6 +91,8 @@
     margin-top: 2.4rem
     transition: background 0.3s
     cursor: pointer
+    @media only screen and (max-width : 910px)
+        width: 100%
 
 
 .btn-login-page
@@ -91,6 +107,8 @@
     transition: background 0.3s
     margin-bottom: 1.6rem
     cursor: pointer
+    @media only screen and (max-width : 910px)
+        width: 100% 
 
 .btn-login-page:hover, .secondary-button:hover
     background: $color-hover-button
@@ -119,6 +137,8 @@
     font-size: 2rem
     font-weight: 300    
     margin-bottom: 1.6rem
+    @media only screen and (max-width : 910px)
+        text-align: center
     
 
 .singin-form, .registration-form
@@ -130,6 +150,8 @@
     position: relative
     margin-bottom: 1.6rem
     max-width: 30rem
+    @media only screen and (max-width : 910px)
+        max-width: 100%
     
 
 .label-title
@@ -142,6 +164,11 @@
     color: $color-white
     margin-bottom: 1.6rem    
     font-size: 1.6rem
+    @media only screen and (max-width : 910px)
+        font-size: 1.2rem
+        text-align: center
+    @media only screen and (max-width : 533px)
+        font-size: .8rem
 
 .social-buttons
     margin-bottom: 1.6rem
@@ -149,8 +176,10 @@
     justify-content: space-between   
     gap: 3rem    
     max-width: 30rem 
-    @media only screen and (max-width: 533px)
-        flex-direction: column
+    @media only screen and (max-width : 910px)
+        max-width: 100%
+    @media only screen and (max-width: 533px)        
+        gap: 1.6rem
 
 .social_logo
     position: relative
@@ -170,8 +199,9 @@
     font-size: 1.6rem
     cursor: pointer
     padding: 1rem 1.6rem
-    @media only screen and (max-width: 533px)
+    @media only screen and (max-width : 910px)
         width: 100%
+   
 
 
 .icon-container
@@ -190,7 +220,9 @@
     font-weight: 400
     font-size: 1.6rem
     line-height: 125%
-    color: $color-text-gray    
+    color: $color-text-gray
+    @media only screen and (max-width : 910px)
+        max-width: 100%  
 
 .user-email:focus, .user-password:focus, .user-name:focus, .user-surname:focus, .user-tel:focus, .user-password:focus, .user-passwordAgain:focus 
     background-color: #b3cee2

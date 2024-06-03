@@ -20,7 +20,7 @@ function LogInPage() {
     const toggleMode = () => {
         setIsRegistration(prevState => !prevState);
     };
-    const obj = { loading, setLoading, toggleMode }
+    const obj = { loading, setLoading, toggleMode, isRegistration }
 
     return (
         <>

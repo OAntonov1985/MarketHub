@@ -298,7 +298,7 @@ function RegistrationForm({ props }) {
                             quality={100}
                             width={16}
                             height={16}
-                            className='logo-image'
+                            className='social_logo'
                             priority
                         />
                     </div>
@@ -314,7 +314,7 @@ function RegistrationForm({ props }) {
                             quality={100}
                             width={16}
                             height={16}
-                            className='logo-image'
+                            className='social_logo'
                             priority
                         />
                     </div>

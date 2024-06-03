@@ -5,7 +5,7 @@ import React from 'react';
 
 function SingIn({ props }) {
     const { loading, setLoading, toggleMode } = props;
-    const obj = { setLoading };
+    const obj = { setLoading, toggleMode };
 
     return (
         <>

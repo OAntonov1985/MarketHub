@@ -1038,13 +1038,23 @@ h2 {
 }
 @media only screen and (max-width: 533px) {
   .content {
-    padding: 0 2rem;
+    padding: 0 1.6rem;
   }
 }
 
 .sing-in-left-column,
 .sing-in-right-column {
   flex-basis: 50%;
+  margin-bottom: 6rem;
+}
+
+.padding-top {
+  padding-top: 12.7rem;
+}
+@media only screen and (max-width: 910px) {
+  .padding-top {
+    padding-top: 0;
+  }
 }
 
 .singin-logo {
@@ -1053,6 +1063,7 @@ h2 {
 
 @media only screen and (max-width: 910px) {
   .sing-in-left-column {
+    width: 100%;
     margin-top: 17.8rem;
     margin-bottom: 6.2rem;
     margin-right: auto;
@@ -1062,7 +1073,7 @@ h2 {
   .sing-in-left-column {
     margin: auto;
     margin-top: 17.8rem;
-    margin-bottom: 6.2rem;
+    margin-bottom: 4.5rem;
   }
 }
 
@@ -1089,6 +1100,18 @@ h2 {
   font-size: 2.8rem;
   line-height: 4.8rem;
 }
+@media only screen and (max-width: 910px) {
+  .login-page-text {
+    font-size: 2.2rem;
+    line-height: 3.2rem;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .login-page-text {
+    font-size: 1.6rem;
+    line-height: 1.5rem;
+  }
+}
 
 .secondary-button {
   padding: 1.3rem;
@@ -1101,6 +1124,11 @@ h2 {
   margin-top: 2.4rem;
   transition: background 0.3s;
   cursor: pointer;
+}
+@media only screen and (max-width: 910px) {
+  .secondary-button {
+    width: 100%;
+  }
 }
 
 .btn-login-page {
@@ -1115,6 +1143,11 @@ h2 {
   transition: background 0.3s;
   margin-bottom: 1.6rem;
   cursor: pointer;
+}
+@media only screen and (max-width: 910px) {
+  .btn-login-page {
+    width: 100%;
+  }
 }
 
 .btn-login-page:hover, .secondary-button:hover {
@@ -1143,6 +1176,11 @@ h2 {
   font-weight: 300;
   margin-bottom: 1.6rem;
 }
+@media only screen and (max-width: 910px) {
+  .right-column-paragraph {
+    text-align: center;
+  }
+}
 
 .singin-form, .registration-form {
   display: flex;
@@ -1154,6 +1192,11 @@ h2 {
   position: relative;
   margin-bottom: 1.6rem;
   max-width: 30rem;
+}
+@media only screen and (max-width: 910px) {
+  .container-to-field {
+    max-width: 100%;
+  }
 }
 
 .label-title {
@@ -1168,6 +1211,17 @@ h2 {
   margin-bottom: 1.6rem;
   font-size: 1.6rem;
 }
+@media only screen and (max-width: 910px) {
+  .use-social-network-par {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .use-social-network-par {
+    font-size: 0.8rem;
+  }
+}
 
 .social-buttons {
   margin-bottom: 1.6rem;
@@ -1176,9 +1230,14 @@ h2 {
   gap: 3rem;
   max-width: 30rem;
 }
+@media only screen and (max-width: 910px) {
+  .social-buttons {
+    max-width: 100%;
+  }
+}
 @media only screen and (max-width: 533px) {
   .social-buttons {
-    flex-direction: column;
+    gap: 1.6rem;
   }
 }
 
@@ -1202,7 +1261,7 @@ h2 {
   cursor: pointer;
   padding: 1rem 1.6rem;
 }
-@media only screen and (max-width: 533px) {
+@media only screen and (max-width: 910px) {
   .social-button {
     width: 100%;
   }
@@ -1225,6 +1284,11 @@ h2 {
   font-size: 1.6rem;
   line-height: 125%;
   color: #6B7280;
+}
+@media only screen and (max-width: 910px) {
+  .user-email, .user-password, .user-name, .user-surname, .user-tel, .user-password, .user-passwordAgain {
+    max-width: 100%;
+  }
 }
 
 .user-email:focus, .user-password:focus, .user-name:focus, .user-surname:focus, .user-tel:focus, .user-password:focus, .user-passwordAgain:focus {
