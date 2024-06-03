@@ -5,7 +5,7 @@ import GetdBrands from '@/pages/api/GetBrands';
 import { useRouter } from 'next/router';
 
 function AsideFilter({ id, objToAsideFilter }) {
-    const { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale } = objToAsideFilter;
+    const { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, isVisibleAsideFilter } = objToAsideFilter;
     const [brandsArray, setBrandsArray] = useState([]);
 
     const router = useRouter();
@@ -49,8 +49,10 @@ function AsideFilter({ id, objToAsideFilter }) {
     useEffect(() => {
     }, [brandsToFilter]);
 
+
+
     return (
-        <div className="goods-list-filter-column">
+        <div className={`goods-list-filter-column ${isVisibleAsideFilter ? "is-visible-aside-filter" : null} `}>
             <p className='aside-filter-price'>Ціна:</p>
             <div className="filter-range">
                 <input className="filter-price-start" type="text" placeholder='Від:' maxLength={6} value={prciseStart} onChange={(event) => ChekcInputValue(event, 'start')} /> -

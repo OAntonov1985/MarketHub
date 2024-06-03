@@ -1,19 +1,29 @@
 @import _variables.sass
 
+.goods-list
+    width: 100%
+
 .goods-list-render
+    // position: relative
     display: flex
     // flex-direction: column
     width: 100%
     gap: 2%    
     margin-bottom: 1.9%
+    
 
    
 
 .goods-list-goods-items
     display: flex
     flex-wrap: wrap
+    justify-content: space-around
     gap: 2.4rem
     width: 77.2%
     height: auto
+    @media only screen and (max-width : 1024px)
+        width: 100%
+    @media only screen and (max-width : 600px)
+        padding: 0 2.2rem
     
    

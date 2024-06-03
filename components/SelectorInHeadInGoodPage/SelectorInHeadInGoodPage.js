@@ -5,11 +5,12 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 
-function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, setActivePage, setSortIndex }) {
+function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption, setActivePage, setSortIndex, setIsVisibleAsideFilter, isVisibleAsideFilter }) {
 
     const liClassname = "filter-li-options";
     const [classNames, setClassNames] = useState(liClassname);
     const [isToggled, setIsToggled] = useState(false);
+
 
     const { searchPhrase } = useSelector((state) => state.user);
 
@@ -48,10 +49,20 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
             }
         };
 
+        const handleClickOutsideFilterButton = (event) => {
+            const isShowFilterMenu = event.target.closest('.filter-button');
+
+            if (!isShowFilterMenu) {
+                setIsVisibleAsideFilter(false);
+            }
+        };
+
         window.addEventListener('click', handleClickOutside);
+        window.addEventListener('click', handleClickOutsideFilterButton);
 
         return () => {
-            window.removeEventListener('click', handleClickOutside);
+            window.removeEventListener('click', handleClickOutside),
+                window.removeEventListener('click', handleClickOutsideFilterButton)
         };
     }, []);
 
@@ -59,7 +70,7 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
         <div className={`selector-filter-container 
          ${(router.pathname === "/searchresultpage") ? "in-searchpage" : ""}`}>
             {(searchPhrase && router.pathname === "/searchresultpage" && searchPhrase.length > 0) ? <div className='search-result-title'>Результат пошуку за запитом «<span>{searchPhrase}</span>» знайдено {total} товарів</div> : null}
-            <div>
+            <div className='filter-container'>
                 <p className='selected-sort-option' onClick={handleToggle}>{selectedFilterOption}
                     <button className="filter-arrow-button">
                         <Image className='arrow'
@@ -110,8 +121,14 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
                     </li>
                 </ul>
             </div>
-
-
+            <div className='icon-container filter-button' onClick={() => setIsVisibleAsideFilter(!isVisibleAsideFilter)}>
+                <Image
+                    alt="logo filter"
+                    src='/filter.svg'
+                    quality={100}
+                    width={24}
+                    height={24} />
+            </div>
         </div>
     );
 };

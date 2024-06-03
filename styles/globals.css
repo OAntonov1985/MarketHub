@@ -788,6 +788,11 @@ h2 {
   gap: 0.9rem;
   margin-bottom: 14rem;
 }
+@media only screen and (max-width: 768px) {
+  .top-sellers-row {
+    justify-content: space-around;
+  }
+}
 @media only screen and (max-width: 533px) {
   .top-sellers-row {
     padding: 0 2rem;
@@ -804,6 +809,7 @@ h2 {
   height: 48.8rem;
   padding: 1.6rem 0.8rem;
   width: 22.4%;
+  max-width: 35rem;
   min-width: 27rem;
   border-radius: 3.2rem;
   border: 1px solid #00E6F4;
@@ -1570,6 +1576,26 @@ h2 {
   margin: 4.1rem 9rem;
   flex: 1 1 auto;
 }
+@media only screen and (max-width: 1024px) {
+  .category-main-content {
+    margin: 4.1rem 7rem;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .category-main-content {
+    margin: 4.1rem 5rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .category-main-content {
+    margin: 3.1rem 3rem;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .category-main-content {
+    margin: 2.4rem 1.6rem;
+  }
+}
 
 .subcategories-row {
   margin-bottom: 4rem;
@@ -1842,16 +1868,25 @@ h2 {
   width: 100%;
   margin-bottom: 4rem;
   justify-content: flex-end;
-  align-items: baseline;
+}
+@media only screen and (max-width: 1024px) {
+  .selector-filter-container {
+    justify-content: space-between;
+    gap: 1.6rem;
+  }
 }
 
 .in-searchpage {
   justify-content: space-between;
 }
 
+.filter-container {
+  width: 86%;
+  max-width: 30rem;
+}
+
 .selected-sort-option {
   font-size: 1.8rem;
-  width: 30rem;
   height: 4rem;
   padding: 0.8rem 1.2rem;
   border-radius: 0.8rem;
@@ -1860,8 +1895,21 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.8rem;
   cursor: pointer;
+}
+
+.filter-button {
+  display: none;
+  width: 2.4rem;
+  height: 100%;
+  cursor: pointer;
+}
+@media only screen and (max-width: 1024px) {
+  .filter-button {
+    display: block;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .filter-arrow-button {
@@ -1882,6 +1930,7 @@ h2 {
 }
 
 .display-option-list {
+  margin-top: 0.8rem;
   height: 12.8rem;
   border-radius: 0.8rem;
   border: 1px solid #00E6F4;
@@ -1918,6 +1967,7 @@ h2 {
 .goods-list-filter-column {
   border-radius: 1.6rem;
   width: 20.9%;
+  min-width: 25rem;
   height: 20%;
   background-color: #F5F6F7;
   border: 1px solid #00E6F4;
@@ -1930,6 +1980,23 @@ h2 {
   font-weight: 400;
   line-height: normal;
 }
+@media only screen and (max-width: 1024px) {
+  .goods-list-filter-column {
+    display: none;
+    position: absolute;
+    z-index: 77;
+    height: auto;
+    right: 3rem;
+    width: 29.5rem;
+    background-color: #010101;
+    border: none;
+    color: #F8FAFC;
+  }
+}
+
+.is-visible-aside-filter {
+  display: block;
+}
 
 .aside-filter-price, .goods-producer-title {
   margin-bottom: 1.6rem;
@@ -1939,10 +2006,11 @@ h2 {
   margin-bottom: 2.5rem;
   display: flex;
   color: #6B7280 !important;
+  gap: 4px;
 }
 
 .filter-price-start, .filter-price-end {
-  width: 6rem;
+  width: 8rem;
   height: 2.4rem;
   border-radius: 0.8rem;
   border: 1px solid #D9D9D9;
@@ -1958,17 +2026,21 @@ h2 {
 .filter-price-start::placeholder, .filter-price-end::placeholder {
   color: #6B7280 !important;
 }
-
-.filter-price-start {
-  margin-right: 0.4rem;
+@media only screen and (max-width: 1024px) {
+  .filter-price-start::placeholder, .filter-price-end::placeholder {
+    color: #F8FAFC !important;
+  }
 }
 
-.filter-price-end {
-  margin-left: 0.4rem;
+.filter-price-start, .filter-price-end {
+  outline: none;
 }
-
-.filter-price-start::placeholder, .filter-price-end::placeholder {
-  color: #012767;
+@media only screen and (max-width: 1024px) {
+  .filter-price-start, .filter-price-end {
+    border: 1px solid #F8FAFC;
+    background-color: #010101;
+    color: #F8FAFC;
+  }
 }
 
 .goods-producer-list {
@@ -2043,10 +2115,20 @@ h2 {
   top: 1px;
   left: 1px;
   content: "";
+  color: red;
+}
+@media only screen and (max-width: 1024px) {
+  .checkbox:checked + .span-input:before {
+    background-image: url("/Vector (Stroke)1.svg");
+  }
 }
 
 .mb-label {
   margin-bottom: 2.4rem;
+}
+
+.goods-list {
+  width: 100%;
 }
 
 .goods-list-render {
@@ -2059,9 +2141,20 @@ h2 {
 .goods-list-goods-items {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   gap: 2.4rem;
   width: 77.2%;
   height: auto;
+}
+@media only screen and (max-width: 1024px) {
+  .goods-list-goods-items {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .goods-list-goods-items {
+    padding: 0 2.2rem;
+  }
 }
 
 .subcategory-page {

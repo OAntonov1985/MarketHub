@@ -23,9 +23,10 @@ function GoodsList({ props, id, total, setGoods }) {
     const [isAvailabale, setIsAvailabale] = useState(false); /// Встановлює опцію фільтрування "Є в наявності"///
     const [sortIndex, setSortIndex] = useState(0); /// Встановлює сортування (-1, 1, 0)///
     const [pageLoaded, setPageLoaded] = useState(false); /// Запобігає зайвому запуску функції ///
+    const [isVisibleAsideFilter, setIsVisibleAsideFilter] = useState(false);  /// Відображає чи скриває бічний фільтр в мобільній ///
 
 
-    const objToAsideFilter = { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, };
+    const objToAsideFilter = { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, isVisibleAsideFilter };
 
     const router = useRouter();
     const dispatch = useDispatch();
@@ -104,11 +105,12 @@ function GoodsList({ props, id, total, setGoods }) {
     }
 
 
+
     return (
         <div className='goods-list'>
             {listGoods && listGoods.length ?
                 <>
-                    <HeaderSelectorToFilter setSelectedFilterOption={setSelectedFilterOption} selectedFilterOption={selectedFilterOption} setActivePage={setActivePage} setSortIndex={setSortIndex} total={total} />
+                    <HeaderSelectorToFilter setSelectedFilterOption={setSelectedFilterOption} selectedFilterOption={selectedFilterOption} setActivePage={setActivePage} setSortIndex={setSortIndex} total={total} setIsVisibleAsideFilter={setIsVisibleAsideFilter} isVisibleAsideFilter={isVisibleAsideFilter} />
                     <div className="goods-list-render">
                         <AsideFilter id={id} objToAsideFilter={objToAsideFilter} />
                         <div className="goods-list-goods-items">
