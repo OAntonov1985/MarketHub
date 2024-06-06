@@ -26,7 +26,7 @@ function GoodsList({ props, id, total, setGoods }) {
     const [isVisibleAsideFilter, setIsVisibleAsideFilter] = useState(false);  /// Відображає чи скриває бічний фільтр в мобільній ///
 
 
-    const objToAsideFilter = { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, isVisibleAsideFilter };
+    const objToAsideFilter = { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, isVisibleAsideFilter, setIsVisibleAsideFilter };
 
     const router = useRouter();
     const dispatch = useDispatch();

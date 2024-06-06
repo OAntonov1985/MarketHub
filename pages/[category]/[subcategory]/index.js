@@ -7,7 +7,7 @@ import React from 'react';
 
 
 function SubCategoryPage({ goods, id, total }) {
-    // console.log(goods[0])
+
     return (
         <>
             <Head>

@@ -50,9 +50,12 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
         };
 
         const handleClickOutsideFilterButton = (event) => {
-            const isShowFilterMenu = event.target.closest('.filter-button');
+            const isShowFilterMenu = event.target.closest('.goods-list-filter-column');
+            const isShowFilterMenuButton = event.target.closest('.icon-container');
+            console.log(isShowFilterMenu)
+            console.log(isShowFilterMenuButton)
 
-            if (!isShowFilterMenu) {
+            if (isShowFilterMenuButton === null & isShowFilterMenu === null) {
                 setIsVisibleAsideFilter(false);
             }
         };
@@ -61,8 +64,8 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
         window.addEventListener('click', handleClickOutsideFilterButton);
 
         return () => {
-            window.removeEventListener('click', handleClickOutside),
-                window.removeEventListener('click', handleClickOutsideFilterButton)
+            window.removeEventListener('click', handleClickOutside)
+            window.removeEventListener('click', handleClickOutsideFilterButton)
         };
     }, []);
 

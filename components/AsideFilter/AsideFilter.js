@@ -5,7 +5,7 @@ import GetdBrands from '@/pages/api/GetBrands';
 import { useRouter } from 'next/router';
 
 function AsideFilter({ id, objToAsideFilter }) {
-    const { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, isVisibleAsideFilter } = objToAsideFilter;
+    const { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, isVisibleAsideFilter, setIsVisibleAsideFilter } = objToAsideFilter;
     const [brandsArray, setBrandsArray] = useState([]);
 
     const router = useRouter();
@@ -84,7 +84,7 @@ function AsideFilter({ id, objToAsideFilter }) {
                         Є в наявності
                     </label>
                 </div>
-                <button className='aside-filter-button' onClick={applyChangesAsideFilter}>Застосувати</button>
+                <button className='aside-filter-button' onClick={() => { applyChangesAsideFilter(); setIsVisibleAsideFilter(false) }}>Застосувати</button>
             </div>
         </div>
     )
