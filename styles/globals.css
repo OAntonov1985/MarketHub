@@ -1015,6 +1015,18 @@ h2 {
   justify-content: center;
   align-items: center;
 }
+@media only screen and (max-width: 533px) {
+  .login-page {
+    background-color: #012767;
+    align-items: flex-start;
+  }
+}
+
+@media only screen and (max-width: 533px) {
+  .bg-image-login-page {
+    display: none;
+  }
+}
 
 .content {
   margin: 11.5rem 0;
@@ -1045,6 +1057,9 @@ h2 {
 @media only screen and (max-width: 533px) {
   .content {
     padding: 0 1.6rem;
+    margin: 6rem 0 0;
+    width: 100%;
+    justify-content: flex-start;
   }
 }
 
@@ -1066,6 +1081,13 @@ h2 {
 .singin-logo {
   cursor: pointer;
 }
+@media only screen and (max-width: 533px) {
+  .singin-logo {
+    margin-top: 0 !important;
+    width: 10.9rem;
+    height: 5.8rem;
+  }
+}
 
 @media only screen and (max-width: 910px) {
   .sing-in-left-column {
@@ -1078,7 +1100,7 @@ h2 {
 @media only screen and (max-width: 533px) {
   .sing-in-left-column {
     margin: auto;
-    margin-top: 17.8rem;
+    margin-top: 10.8rem;
     margin-bottom: 4.5rem;
   }
 }
@@ -1094,8 +1116,6 @@ h2 {
 }
 @media only screen and (max-width: 533px) {
   .sing-in-right-column {
-    margin: auto;
-    margin-bottom: 9.2rem;
     text-align: center;
   }
 }
@@ -1187,6 +1207,11 @@ h2 {
     text-align: center;
   }
 }
+@media only screen and (max-width: 533px) {
+  .right-column-paragraph {
+    font-weight: 500;
+  }
+}
 
 .singin-form, .registration-form {
   display: flex;
@@ -1210,6 +1235,12 @@ h2 {
   font-size: 1.8rem;
   color: #F8FAFC;
   margin-bottom: 0.8rem;
+}
+@media only screen and (max-width: 533px) {
+  .label-title {
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+  }
 }
 
 .use-social-network-par {

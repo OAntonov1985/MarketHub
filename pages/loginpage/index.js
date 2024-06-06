@@ -32,6 +32,7 @@ function LogInPage() {
             <main className='login-page'>
                 {loading === true ? <Spinner /> : null}
                 <Image
+                    className='bg-image-login-page'
                     alt="background image"
                     src={backgroundImageg}
                     quality={70}

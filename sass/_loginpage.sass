@@ -6,7 +6,14 @@
     flex-wrap: wrap
     justify-content: center
     align-items: center   
+    @media only screen and (max-width : 533px)
+        background-color: $color-text-main
+        align-items: flex-start
               
+.bg-image-login-page
+    @media only screen and (max-width : 533px)
+        display: none
+        
 
 .content    
     margin: 11.5rem 0
@@ -28,7 +35,10 @@
         flex-direction: column
         padding: 0 6rem
     @media only screen and (max-width : 533px)
-        padding: 0 1.6rem
+        padding: 0 1.6rem        
+        margin: 6rem 0 0
+        width: 100% 
+        justify-content: flex-start       
 
 .sing-in-left-column, 
 .sing-in-right-column        
@@ -42,6 +52,10 @@
 
 .singin-logo
     cursor: pointer    
+    @media only screen and (max-width : 533px)
+        margin-top: 0 !important
+        width: 10.9rem
+        height: 5.8rem
    
 
 .sing-in-left-column
@@ -52,7 +66,7 @@
         margin-right: auto
     @media only screen and (max-width : 533px)
         margin: auto
-        margin-top: 17.8rem
+        margin-top: 10.8rem
         margin-bottom: 4.5rem
     
    
@@ -62,9 +76,7 @@
     @media only screen and (max-width : 910px)        
         margin-bottom: 9.2rem
         padding-left: 0
-    @media only screen and (max-width : 533px)
-        margin: auto
-        margin-bottom: 9.2rem
+    @media only screen and (max-width : 533px)      
         text-align: center
 
 .login-page-text
@@ -139,6 +151,8 @@
     margin-bottom: 1.6rem
     @media only screen and (max-width : 910px)
         text-align: center
+    @media only screen and (max-width : 533px)
+        font-weight: 500
     
 
 .singin-form, .registration-form
@@ -159,6 +173,9 @@
     font-size: 1.8rem    
     color: $color-white
     margin-bottom: .8rem
+    @media only screen and (max-width : 533px)
+        font-size: 1.6rem
+        line-height: 1.8rem
 
 .use-social-network-par
     color: $color-white
