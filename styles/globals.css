@@ -1637,6 +1637,11 @@ h2 {
   display: flex;
   gap: 0.4rem;
 }
+@media only screen and (max-width: 533px) {
+  .theWay {
+    margin-bottom: 2.4rem;
+  }
+}
 
 .bread-crum-text-way {
   color: #012767;
@@ -1646,6 +1651,11 @@ h2 {
   font-weight: 400;
   line-height: normal;
 }
+@media only screen and (max-width: 533px) {
+  .bread-crum-text-way {
+    font-size: 1.4rem;
+  }
+}
 
 .empty-categorie {
   display: flex;
@@ -1653,6 +1663,35 @@ h2 {
   justify-content: center;
   align-items: center;
   flex: 1 1 auto;
+}
+@media only screen and (max-width: 533px) {
+  .empty-categorie {
+    justify-content: flex-start;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .category-empty-title {
+    font-size: 3.6rem !important;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .category-empty-title {
+    font-size: 3.2rem !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .category-empty-title {
+    font-size: 2.8rem !important;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .category-empty-title {
+    font-size: 2.4rem !important;
+    line-height: 100% !important;
+    margin-top: 9.6rem;
+    margin-bottom: 23.7rem !important;
+  }
 }
 
 .good-card {
@@ -1906,6 +1945,11 @@ h2 {
     gap: 1.6rem;
   }
 }
+@media only screen and (max-width: 533px) {
+  .selector-filter-container {
+    margin-bottom: 2.4rem;
+  }
+}
 
 .in-searchpage {
   justify-content: space-between;
@@ -2017,8 +2061,7 @@ h2 {
     position: absolute;
     z-index: 77;
     height: auto;
-    right: 3rem;
-    width: 29.5rem;
+    width: 91%;
     background-color: #010101;
     border: none;
     color: #F8FAFC;
@@ -2195,6 +2238,26 @@ h2 {
 
 .subcategory-main-content {
   margin: 4.1rem 9rem;
+}
+@media only screen and (max-width: 1024px) {
+  .subcategory-main-content {
+    margin: 4.1rem 7rem;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .subcategory-main-content {
+    margin: 4.1rem 5rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .subcategory-main-content {
+    margin: 3.1rem 3rem;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .subcategory-main-content {
+    margin: 2.4rem 1.6rem;
+  }
 }
 
 .page-selector {
@@ -2764,6 +2827,13 @@ h2 {
   border-radius: 8px;
   color: #F8FAFC;
   cursor: pointer;
+}
+@media only screen and (max-width: 533px) {
+  .empty-favorite-button {
+    width: 100%;
+    max-width: 34.3rem;
+    margin-bottom: 3.6rem;
+  }
 }
 
 .userPage {

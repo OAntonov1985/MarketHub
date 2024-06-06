@@ -7,7 +7,7 @@ function SubCategotyCard({ subCategories }) {
     const category = subCategories.parent_category_name;
     const subcategory = subCategories.sub_category_name;
     return (
-        <Link key={subCategories.id} className="main-categories-row-two" href="/[category]/[subcategory]" as={`/${category}/${subcategory}`}>
+        <Link key={subCategories.id} className="main-categories-row-two" href="/[category]/[subcategory]" as={`/${category}/${subcategory}`} id={subCategories.id}>
             <div className="image-container">
                 <Image
                     alt="image of computer"

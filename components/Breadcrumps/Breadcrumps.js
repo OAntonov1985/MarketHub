@@ -7,6 +7,7 @@ import React from 'react';
 
 function BreadCrumps({ goods }) {
     const router = useRouter();
+    // console.log(router.query)
 
     return (
         <div className='theWay'>
@@ -18,10 +19,10 @@ function BreadCrumps({ goods }) {
                     width={16}
                     height={16} />
             </Link>
-            <Link href={`/${goods.category_details.name}`} id={goods.category_details.id} className='bread-crum-text-way'>/
-                <p>{goods.category_details.name}</p>
+            <Link href={`/${goods ? goods.category_details.name : router.query.category}`} id={goods ? goods.category_details.id : null} className='bread-crum-text-way'>/
+                <p>{goods ? goods.category_details.name : router.query.category}</p>
             </Link>
-            {router.pathname === "/[category]" ? null : <p className='bread-crum-text-way'>/{goods.sub_category_detail.name}</p>}
+            {router.pathname === "/[category]" ? null : <p className='bread-crum-text-way'>/{goods ? goods.sub_category_detail.name : router.query.category}</p>}
         </div >
     )
 };

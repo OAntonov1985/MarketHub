@@ -7,7 +7,7 @@ import React from 'react';
 
 
 function SubCategoryPage({ goods, id, total }) {
-
+    // console.log(goods[0])
     return (
         <>
             <Head>
@@ -29,7 +29,7 @@ function SubCategoryPage({ goods, id, total }) {
 
 export async function getServerSideProps(context) {
 
-    let id;
+    let id = context.query.subcategory;
     if (context.query.subcategory === "Настільні комп’ютери") id = 110;
     else if (context.query.subcategory === "Планшети") id = 120;
     else if (context.query.subcategory === "Ноутбуки") id = 130;
