@@ -2806,6 +2806,26 @@ h2 {
   height: 100%;
   margin: 4rem 9rem 12.4rem 9rem;
 }
+@media only screen and (max-width: 1024px) {
+  .favorite-content {
+    margin: 4.1rem 7rem;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .favorite-content {
+    margin: 4.1rem 5rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .favorite-content {
+    margin: 3.1rem 3rem;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .favorite-content {
+    margin: 2.4rem 1.6rem;
+  }
+}
 
 .item-favorite {
   height: 100%;

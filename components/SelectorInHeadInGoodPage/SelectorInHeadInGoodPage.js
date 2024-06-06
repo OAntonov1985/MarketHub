@@ -52,8 +52,6 @@ function HeaderSelectorToFilter({ selectedFilterOption, setSelectedFilterOption,
         const handleClickOutsideFilterButton = (event) => {
             const isShowFilterMenu = event.target.closest('.goods-list-filter-column');
             const isShowFilterMenuButton = event.target.closest('.icon-container');
-            console.log(isShowFilterMenu)
-            console.log(isShowFilterMenuButton)
 
             if (isShowFilterMenuButton === null & isShowFilterMenu === null) {
                 setIsVisibleAsideFilter(false);
