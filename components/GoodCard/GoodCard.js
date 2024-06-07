@@ -36,6 +36,11 @@ function GoodCard({ props, breadCrumpData }) {
                     <p className='bread-crum-text-way'>/{title}</p>
                 </div>
                 <div className="good-card-container">
+                    <h4 className='good-card-title'>{props.title}</h4>
+                    <div className='good-card-tech-info'>
+                        <p className="good-card-number">Код товару: {props.id}</p>
+                        <p className={`top-sellers-availability ${props.available ? "" : "sail-prise"}`}>{props.available ? "Є в  наявності" : "Немає в наявності"}</p>
+                    </div>
                     <GoodCardSlider props={props} />
                     <GoodCardDescription props={props} breadCrumpData={breadCrumpData} />
                 </div>

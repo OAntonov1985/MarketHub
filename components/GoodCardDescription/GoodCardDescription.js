@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserFavorite, setUserBasket } from '@/slices/userSlice';
 
@@ -10,6 +10,10 @@ import { setUserFavorite, setUserBasket } from '@/slices/userSlice';
 
 function GoodCardDescription({ props, breadCrumpData }) {
 
+    const [isVisibleAllDescription, setIsVisibleAllDescription] = useState(false);
+    const [textInButton, setTextInButton] = useState("Докладніше");
+
+
     const { title, description, price, thumbnail, available } = props;
     const { id } = breadCrumpData;
     const dispatch = useDispatch();
@@ -17,6 +21,7 @@ function GoodCardDescription({ props, breadCrumpData }) {
     const arrayIndex = userFavorite.findIndex(item => {
         return item.id === id
     });
+
 
 
 
@@ -50,8 +55,15 @@ function GoodCardDescription({ props, breadCrumpData }) {
         ))
     }
 
+    useEffect(() => {
+        if (isVisibleAllDescription) setTextInButton("Сховати детальний опис")
+        else setTextInButton("Докладніше")
+
+    }, [isVisibleAllDescription])
+
     return (
         <div className="good-card-right-column">
+            {/* <h4 className='good-card-title'>{title.split(' ').slice(0, 4).join(' ')}</h4> */}
             <h4 className='good-card-title'>{title}</h4>
             <div className='good-card-tech-info'>
                 <p className="good-card-number">Код товару: {id}</p>
@@ -59,7 +71,9 @@ function GoodCardDescription({ props, breadCrumpData }) {
             </div>
             <div className="good-card-description">
                 <p className='description-title'>Опис товару</p>
-                <div dangerouslySetInnerHTML={{ __html: formattedDescription }} />
+                <p className="description_par">{title}</p>
+                <div className={`description-text ${!isVisibleAllDescription ? null : "height-auto"}`} dangerouslySetInnerHTML={{ __html: formattedDescription }} />
+                <button className='all-text-view' onClick={() => setIsVisibleAllDescription(!isVisibleAllDescription)}>{textInButton}</button>
             </div>
             <p className='good-card-price'>{formattedPrice(price)} грн</p>
             <div className='godd-card-added'>

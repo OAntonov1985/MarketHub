@@ -30,7 +30,6 @@ export async function getServerSideProps(context) {
 
     const resGoods = await fetch(MaketHubURL + `goods/${id}`);
     const good = await resGoods.json();
-    // console.log(good)
 
     if (good) {
         breadCrumpData = {
