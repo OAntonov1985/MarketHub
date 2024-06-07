@@ -33,13 +33,15 @@ function GoodCard({ props, breadCrumpData }) {
                     <Link href={`/${category.name}/${subcategory.name}`} id={subcategory.id} className='bread-crum-text-way'>/
                         <p>{subcategory.name}</p>
                     </Link>
-                    <p className='bread-crum-text-way'>/{title}</p>
+                    <p className='bread-crum-text-way title-name'>/{title}</p>
                 </div>
                 <div className="good-card-container">
-                    <h4 className='good-card-title'>{props.title}</h4>
-                    <div className='good-card-tech-info'>
-                        <p className="good-card-number">Код товару: {props.id}</p>
-                        <p className={`top-sellers-availability ${props.available ? "" : "sail-prise"}`}>{props.available ? "Є в  наявності" : "Немає в наявності"}</p>
+                    <div className='header-info-mobile'>
+                        <h4 className='good-card-title'>{props.title}</h4>
+                        <div className='good-card-tech-info'>
+                            <p className="good-card-number">Код товару: {props.id}</p>
+                            <p className={`top-sellers-availability ${props.available ? "" : "sail-prise"}`}>{props.available ? "Є в  наявності" : "Немає в наявності"}</p>
+                        </div>
                     </div>
                     <GoodCardSlider props={props} />
                     <GoodCardDescription props={props} breadCrumpData={breadCrumpData} />

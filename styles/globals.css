@@ -921,6 +921,11 @@ h2 {
   line-height: normal;
   text-align: center;
 }
+@media only screen and (max-width: 533px) {
+  .top-sellers-availability {
+    font-size: 1.4rem;
+  }
+}
 
 .noavailability {
   display: block;
@@ -1638,7 +1643,7 @@ h2 {
   display: flex;
   gap: 0.4rem;
 }
-@media only screen and (max-width: 533px) {
+@media only screen and (max-width: 764px) {
   .theWay {
     margin-bottom: 2.4rem;
   }
@@ -1656,6 +1661,10 @@ h2 {
   .bread-crum-text-way {
     font-size: 1.4rem;
   }
+}
+
+.title-name {
+  overflow-wrap: break-word;
 }
 
 .empty-categorie {
@@ -1714,7 +1723,12 @@ h2 {
 }
 @media only screen and (max-width: 1024px) {
   .good-card-main-content {
-    padding: 4rem 4.7rem 16.8rem;
+    padding: 4rem 4.7rem 8rem;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .good-card-main-content {
+    padding: 2.4rem 1.6rem 8rem;
   }
 }
 
@@ -1731,7 +1745,25 @@ h2 {
 @media only screen and (max-width: 1024px) {
   .good-card-container {
     flex-direction: column;
-    gap: 3rem;
+    align-items: flex-start;
+  }
+}
+
+.header-info-mobile {
+  display: none;
+}
+@media only screen and (max-width: 1024px) {
+  .header-info-mobile {
+    display: block;
+  }
+}
+
+.header-info-laptop {
+  display: block;
+}
+@media only screen and (max-width: 1024px) {
+  .header-info-laptop {
+    display: none;
   }
 }
 
@@ -1747,6 +1779,12 @@ h2 {
     width: 100%;
   }
 }
+@media only screen and (max-width: 533px) {
+  .good-card-left-column {
+    min-height: 34.2rem;
+    margin-bottom: 1.6rem;
+  }
+}
 
 .good-card-big-pfoto-column {
   background-color: #F3F4F6;
@@ -1759,6 +1797,16 @@ h2 {
   flex-direction: column;
   gap: 3.9%;
 }
+@media only screen and (max-width: 1024px) {
+  .good-card-medium-pfoto-column {
+    gap: 2.4rem;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .good-card-medium-pfoto-column {
+    display: none;
+  }
+}
 
 .good-card-big-pfoto-column {
   display: flex;
@@ -1770,6 +1818,12 @@ h2 {
   position: absolute;
   left: 26.4%;
   top: 0px;
+}
+@media only screen and (max-width: 533px) {
+  .good-card-big-pfoto-column {
+    left: 0;
+    width: 100%;
+  }
 }
 
 .bigger-ptoto {
@@ -1824,6 +1878,11 @@ h2 {
   height: 63.8%;
   transition: 0.5s ease-in-out;
 }
+@media only screen and (max-width: 533px) {
+  .good-card-big-pfoto-container {
+    height: 90%;
+  }
+}
 
 .medium-pfoto-container {
   width: 80%;
@@ -1848,12 +1907,22 @@ h2 {
     width: 100%;
   }
 }
+@media only screen and (max-width: 533px) {
+  .good-card-right-column {
+    flex-direction: column-reverse;
+  }
+}
 
 .good-card-title {
   font-size: 4rem;
   color: #116ACC;
   font-weight: 400;
   margin-bottom: 1.6rem;
+}
+@media only screen and (max-width: 533px) {
+  .good-card-title {
+    font-size: 2.4rem;
+  }
 }
 
 .good-card-tech-info {
@@ -1868,6 +1937,11 @@ h2 {
   font-size: 1.8rem;
   font-weight: 400;
   line-height: 150%;
+}
+@media only screen and (max-width: 533px) {
+  .good-card-number {
+    font-size: 1.4rem;
+  }
 }
 
 .good-card-description {
@@ -1941,9 +2015,22 @@ h2 {
   font-size: 4rem;
   margin-bottom: 2.4rem;
 }
+@media only screen and (max-width: 533px) {
+  .good-card-price {
+    font-size: 2.4rem;
+    margin-bottom: 1.6rem;
+  }
+}
 
 .godd-card-added {
   display: flex;
+}
+@media only screen and (max-width: 533px) {
+  .godd-card-added {
+    flex-direction: column;
+    gap: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
 }
 
 .good-card-buy-good, .good-card-add-to-favorite {
@@ -1956,6 +2043,11 @@ h2 {
   border-radius: 0.8rem;
   border: none;
   font-size: 1.8rem;
+}
+@media only screen and (max-width: 533px) {
+  .good-card-buy-good, .good-card-add-to-favorite {
+    width: 100%;
+  }
 }
 
 .godd-card-added {

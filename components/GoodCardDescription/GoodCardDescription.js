@@ -64,51 +64,59 @@ function GoodCardDescription({ props, breadCrumpData }) {
     return (
         <div className="good-card-right-column">
             {/* <h4 className='good-card-title'>{title.split(' ').slice(0, 4).join(' ')}</h4> */}
-            <h4 className='good-card-title'>{title}</h4>
-            <div className='good-card-tech-info'>
-                <p className="good-card-number">Код товару: {id}</p>
-                <p className={`top-sellers-availability ${available ? "" : "sail-prise"}`}>{available ? "Є в  наявності" : "Немає в наявності"}</p>
-            </div>
-            <div className="good-card-description">
-                <p className='description-title'>Опис товару</p>
-                <p className="description_par">{title}</p>
-                <div className={`description-text ${!isVisibleAllDescription ? null : "height-auto"}`} dangerouslySetInnerHTML={{ __html: formattedDescription }} />
-                <button className='all-text-view' onClick={() => setIsVisibleAllDescription(!isVisibleAllDescription)}>{textInButton}</button>
-            </div>
-            <p className='good-card-price'>{formattedPrice(price)} грн</p>
-            <div className='godd-card-added'>
-                <button className='good-card-buy-good'
-                    onClick={addGoodToBasket}>Додати до кошика
-                    <div className='good-card-logo-container'>
-                        <Image
-                            alt="image of basket logo"
-                            src="/basket.svg"
-                            quality={100}
-                            fill
-                            sizes="(max-width: 100%)"
-                            style={{
-                                objectFit: 'contain',
-                                width: '100%'
-                            }}
-                        />
+            <div>
+                <div className="header-info-laptop">
+                    <h4 className='good-card-title'>{title}</h4>
+                    <div className='good-card-tech-info'>
+                        <p className="good-card-number">Код товару: {id}</p>
+                        <p className={`top-sellers-availability ${available ? "" : "sail-prise"}`}>{available ? "Є в  наявності" : "Немає в наявності"}</p>
                     </div>
-                </button>
-                <button className='good-card-add-to-favorite' onClick={addGoodToFavorite}>{arrayIndex === -1 ? "Додати до улюбленого" : "Видалити з улюбленого"}
-                    <div className='good-card-logo-container'>
-                        <Image
-                            alt="image of basket heart"
-                            src="/heardlogo.svg"
-                            quality={100}
-                            fill
-                            sizes="(max-width: 100%)"
-                            style={{
-                                objectFit: 'contain',
-                                width: '100%'
-                            }}
-                        />
-                    </div>
-                </button>
+                </div>
+                <div className="good-card-description">
+                    <p className='description-title'>Опис товару</p>
+                    <p className="description_par">{title}</p>
+                    <div className={`description-text ${!isVisibleAllDescription ? null : "height-auto"}`} dangerouslySetInnerHTML={{ __html: formattedDescription }} />
+                    <button className='all-text-view' onClick={() => setIsVisibleAllDescription(!isVisibleAllDescription)}>{textInButton}</button>
+                </div>
             </div>
+            <div>
+                <p className='good-card-price'>{formattedPrice(price)} грн</p>
+                <div className='godd-card-added'>
+                    <button className='good-card-buy-good'
+                        onClick={addGoodToBasket}>Додати до кошика
+                        <div className='good-card-logo-container'>
+                            <Image
+                                alt="image of basket logo"
+                                src="/basket.svg"
+                                quality={100}
+                                fill
+                                sizes="(max-width: 100%)"
+                                style={{
+                                    objectFit: 'contain',
+                                    width: '100%'
+                                }}
+                            />
+                        </div>
+                    </button>
+                    <button className='good-card-add-to-favorite' onClick={addGoodToFavorite}>{arrayIndex === -1 ? "Додати до улюбленого" : "Видалити з улюбленого"}
+                        <div className='good-card-logo-container'>
+                            <Image
+                                alt="image of basket heart"
+                                src="/heardlogo.svg"
+                                quality={100}
+                                fill
+                                sizes="(max-width: 100%)"
+                                style={{
+                                    objectFit: 'contain',
+                                    width: '100%'
+                                }}
+                            />
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+
         </div>
     )
 };

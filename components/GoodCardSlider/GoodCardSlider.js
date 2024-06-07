@@ -25,8 +25,12 @@ function GoodCardSlider({ props }) {
 
 
     const enlargeThePhoto = (event) => {
+        if (window.innerWidth < 533) {
+            return;
+        }
+
         event.stopPropagation();
-        setBiggerPfoto(!biggerPfoto)
+        setBiggerPfoto(!biggerPfoto);
     }
 
 

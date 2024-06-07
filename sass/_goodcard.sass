@@ -14,8 +14,9 @@
     @media only screen and (max-width : 1280px)
         padding: 4rem 7rem 16.8rem
     @media only screen and (max-width : 1024px)
-        padding: 4rem 4.7rem 16.8rem
-
+        padding: 4rem 4.7rem 8rem
+    @media only screen and (max-width : 533px)
+        padding: 2.4rem 1.6rem 8rem
 .good-card-container
     display: flex    
     gap: 7%
@@ -24,7 +25,18 @@
         gap: 6%
     @media only screen and (max-width : 1024px)
         flex-direction: column
-        gap: 3rem
+        // gap: 1.6rem
+        align-items: flex-start
+
+.header-info-mobile
+    display: none
+    @media only screen and (max-width : 1024px)
+        display: block
+    
+.header-info-laptop
+    display: block
+    @media only screen and (max-width : 1024px)
+        display: none
 
 ///////////////////////////////////  LEFT COLUMN   ///////////////////////////////////
 
@@ -38,6 +50,9 @@
     min-height: 48.6rem
     @media only screen and (max-width : 1024px)
         width: 100%
+    @media only screen and (max-width : 533px)
+        min-height: 34.2rem
+        margin-bottom: 1.6rem
 
 .good-card-big-pfoto-column
     background-color: $background-color-items
@@ -49,6 +64,10 @@
     display: flex
     flex-direction: column
     gap: 3.9%
+    @media only screen and (max-width : 1024px)
+        gap: 2.4rem
+    @media only screen and (max-width : 533px)
+        display: none
     
 
 
@@ -63,6 +82,9 @@
     position: absolute   
     left: 26.4%
     top: 0px
+    @media only screen and (max-width : 533px)
+        left: 0
+        width: 100%
 
 .bigger-ptoto
     position: absolute
@@ -71,6 +93,10 @@
     left: 26.4%    
     top: 0px
     z-index: 2
+    // @media only screen and (max-width : 533px)
+    //     position: relative
+    //     width: 100%
+    //     left: 0
   
 
 
@@ -114,6 +140,8 @@
     width: 92%
     height: 63.8%
     transition: 0.5s ease-in-out
+    @media only screen and (max-width : 533px)
+        height: 90%
 
 
 ///////   SLIDER    ///////
@@ -139,6 +167,8 @@
     flex-direction: column
     @media only screen and (max-width : 1024px)
         width: 100%
+    @media only screen and (max-width : 533px)
+        flex-direction: column-reverse
 
 .good-card-title
     font-size: 4rem
@@ -146,6 +176,8 @@
     color: $color-blue
     font-weight: 400
     margin-bottom: 1.6rem
+    @media only screen and (max-width : 533px)
+        font-size: 2.4rem
 
 .good-card-tech-info
     width: 100%
@@ -153,11 +185,14 @@
     align-items: center
     justify-content: space-between
     margin-bottom: 1.6rem
+    
 
 .good-card-number
     font-size: 1.8rem
     font-weight: 400
-    line-height: 150%    
+    line-height: 150%  
+    @media only screen and (max-width : 533px)
+        font-size: 1.4rem  
     
 
 .good-card-description
@@ -225,9 +260,16 @@
 .good-card-price
     font-size: 4rem   
     margin-bottom: 2.4rem
+    @media only screen and (max-width : 533px)
+        font-size: 2.4rem
+        margin-bottom: 1.6rem
 
 .godd-card-added
     display: flex
+    @media only screen and (max-width : 533px)
+        flex-direction: column
+        gap: 1.6rem
+        margin-bottom: 1.6rem
 
 .good-card-buy-good, .good-card-add-to-favorite
     display: flex
@@ -239,6 +281,8 @@
     border-radius: .8rem
     border: none
     font-size: 1.8rem
+    @media only screen and (max-width : 533px)
+        width: 100%
 
 .godd-card-added
     display: flex
