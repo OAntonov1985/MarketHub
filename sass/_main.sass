@@ -74,6 +74,10 @@
 
 .main-categories-row-one:hover
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) 
+    @media only screen and (max-width: 1024px)
+        box-shadow: none
+        font-size: 3.2rem
+        font-weight: 400
 
 
 .main-categories-row-one .main-item-title, .main-categories-row-two .main-item-title
@@ -87,12 +91,18 @@
     transition: font-size 0.3s, font-weight 0.3s
     text-shadow: 0rem .4rem .4rem rgba(0, 0, 0, 0.25) 
     @media only screen and (max-width: 533px)
-        font-size: 24px
+        font-size: 2.4rem
         padding: 0
 
 .main-categories-row-one:hover .main-item-title, .main-categories-row-two:hover .main-item-title
     font-size: 3.4rem
     font-weight: 500
+    @media only screen and (max-width: 1024px)
+        font-size: 3.2rem
+        font-weight: 400
+    @media only screen and (max-width: 533px)
+        font-size: 2.4rem
+        font-weight: 400
 
 .second-row
     display: flex
@@ -133,6 +143,8 @@
 
 .main-categories-row-two:hover
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) 
+    @media only screen and (max-width: 1024px)
+        box-shadow: none
 
 
 
@@ -171,19 +183,22 @@
     height: 48.8rem
     padding: 1.6rem .8rem    
     width: 22.4%    
-    max-width: 35rem
-    
+    max-width: 35rem    
     min-width: 27rem
     // max-width: 30%
     border-radius: 3.2rem
     border: 1px solid $border-color-secondary
     transition: box-shadow 0.3s ease
     text-decoration: none
+    @media only screen and (max-width : 533px)
+        border-radius: 4px
 
 .top-sellers-item:hover
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
     .container-for-icon-favorite, .container-for-icon-add-to-basket
         opacity: 1
+    @media only screen and (max-width : 1024px)
+        box-shadow: none
 
 .top-sellers-in-favorite
     max-width: 30.8rem
@@ -232,6 +247,8 @@
     opacity: 0
     transition: opacity 0.3s ease
     z-index: 99999
+    @media only screen and (max-width : 1024px)
+        opacity: 1
 
 .container-for-icon-favorite
     right: 16.4%
@@ -275,10 +292,13 @@
     font-style: normal
     font-weight: 400
     line-height: normal
-    // max-width: 134px
+    height: 2.6rem
+    background-color: #F4FFF2
     text-align: center
+    display: flex
+    align-items: center
     @media only screen and (max-width : 533px)
-        font-size: 1.4rem
+        // font-size: 1.4rem
 
 .noavailability
     display: block
@@ -287,7 +307,9 @@
     color: $red-color-first
     border-radius: .4rem
     background: #FFDEDE
-    max-width: 138px
+    // max-width: 138px
+    height: auto
+    white-space: nowrap
 
 .sail-prise
     color: $red-color-first
