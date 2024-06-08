@@ -33,7 +33,7 @@ function GoodCard({ props, breadCrumpData }) {
                     <Link href={`/${category.name}/${subcategory.name}`} id={subcategory.id} className='bread-crum-text-way'>/
                         <p>{subcategory.name}</p>
                     </Link>
-                    <p className='bread-crum-text-way title-name'>/{title}</p>
+                    <p className='bread-crum-text-way title-name'>/{title.split(' ').slice(0, 3).join(' ')}</p>
                 </div>
                 <div className="good-card-container">
                     <div className='header-info-mobile'>

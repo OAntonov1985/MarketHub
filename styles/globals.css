@@ -938,7 +938,7 @@ h2 {
 .top-sellers-prise-and-availability {
   min-height: 2.8rem;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -978,6 +978,8 @@ h2 {
 
 .sail-prise {
   color: #BA0000;
+  background-color: #ffdede;
+  border-radius: 0.4rem;
 }
 
 .footer {
@@ -1695,6 +1697,7 @@ h2 {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  white-space: nowrap;
 }
 @media only screen and (max-width: 533px) {
   .bread-crum-text-way {
@@ -1703,7 +1706,7 @@ h2 {
 }
 
 .title-name {
-  overflow-wrap: break-word;
+  white-space: wrap;
 }
 
 .empty-categorie {
@@ -1883,7 +1886,7 @@ h2 {
   right: 1px;
   transform: translateY(-50%);
   background-color: #E5E7EA;
-  z-index: 777;
+  z-index: 7;
   display: flex;
   align-items: center;
   justify-content: center;
