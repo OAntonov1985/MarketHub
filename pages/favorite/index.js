@@ -20,7 +20,7 @@ function Favorite() {
             <div className='favorite-conteiner'>
                 <Header />
                 <div className='favorite-content'>
-                    <h4 className='basket-with-goods-title'>Улюблене</h4>
+                    <h4 className='basket-with-goods-title title-favorite'>Улюблене</h4>
                     {userFavorite.length === 0 ? <Emptyfavorite /> : <div className='goods-list-goods-items item-favorite'>
                         {!!userFavorite && userFavorite.map(props => {
                             return (
