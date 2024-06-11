@@ -982,6 +982,10 @@ h2 {
   border-radius: 0.4rem;
 }
 
+.title-container {
+  margin: auto;
+}
+
 .footer {
   background-color: #012767;
   padding: 2.4rem 9rem;
@@ -1820,6 +1824,7 @@ h2 {
 @media only screen and (max-width: 1024px) {
   .good-card-left-column {
     width: 100%;
+    margin-bottom: 2.4rem;
   }
 }
 @media only screen and (max-width: 533px) {
@@ -2418,7 +2423,7 @@ h2 {
 .goods-list-goods-items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 2.4rem;
   width: 77.2%;
   height: auto;
@@ -2523,6 +2528,28 @@ h2 {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  margin: 4rem 9rem 10rem;
+}
+@media only screen and (max-width: 1024px) {
+  .basket-page-content {
+    margin: 4.1rem 7rem;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .basket-page-content {
+    margin: 4.1rem 5rem;
+    justify-content: flex-start;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .basket-page-content {
+    margin: 3.1rem 3rem;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .basket-page-content {
+    margin: 2.4rem 1.6rem;
+  }
 }
 
 .empty-basket {
@@ -2534,7 +2561,22 @@ h2 {
   width: 40rem;
   height: 33.8rem;
   position: relative;
+  margin: auto;
   margin-bottom: 4rem;
+}
+@media only screen and (max-width: 800px) {
+  .empty-basket-image-container {
+    width: 17rem;
+    height: 15rem;
+    margin-top: 2.6rem;
+    margin-bottom: 2.7rem;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .empty-basket-image-container {
+    margin-top: 2.1rem;
+    margin-bottom: 1.7rem;
+  }
 }
 
 .empty-basket-text {
@@ -2543,17 +2585,30 @@ h2 {
   color: #116ACC;
   margin-bottom: 4rem;
 }
+@media only screen and (max-width: 800px) {
+  .empty-basket-text {
+    margin-bottom: 2.4rem;
+  }
+}
+@media only screen and (max-width: 533px) {
+  .empty-basket-text {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+  }
+}
 
 .empty-basket-button {
   display: block;
   margin: 0 auto;
   background-color: #76CA66;
+  color: #F8FAFC;
   border: none;
   font-size: 1.8rem;
   font-weight: 500;
   padding: 1.1rem 2.7rem;
   border-radius: 0.8rem;
   cursor: pointer;
+  margin-bottom: 6.2rem;
 }
 
 .good-item-title {
@@ -2561,7 +2616,6 @@ h2 {
 }
 
 .basket-with-goods {
-  padding: 4rem 9rem 10rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -2579,12 +2633,13 @@ h2 {
 }
 @media only screen and (max-width: 800px) {
   .basket-with-goods-title {
-    text-align: center;
+    font-size: 3.2rem;
   }
 }
 @media only screen and (max-width: 533px) {
   .basket-with-goods-title {
     margin-bottom: 2.4rem;
+    font-size: 2.4rem;
   }
 }
 
@@ -2610,7 +2665,6 @@ h2 {
   padding: 2.4rem;
   display: flex;
   justify-content: space-between;
-  gap: 3.2rem;
 }
 
 .good-item-image {
@@ -2625,6 +2679,7 @@ h2 {
   position: relative;
   margin: 0 auto;
   max-width: 86%;
+  min-width: 12.5rem;
   height: 100%;
 }
 
@@ -2683,8 +2738,8 @@ h2 {
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
+  min-width: 12rem;
 }
-
 .good-item-total-cross-image-container {
   position: relative;
   width: 2.4rem;
@@ -2707,6 +2762,11 @@ h2 {
   display: flex;
   gap: 4rem;
   margin-bottom: 4rem;
+}
+@media only screen and (max-width: 800px) {
+  .basket-with-goods-buttons-row {
+    justify-content: space-between;
+  }
 }
 
 .basket-with-goods-new-customer, .basket-with-goods-regular-customer {
@@ -2733,11 +2793,22 @@ h2 {
   display: flex;
   width: 100%;
 }
+@media only screen and (max-width: 800px) {
+  .basket-with-goods-columns {
+    justify-content: space-between;
+    gap: 1.7rem;
+  }
+}
 
 .basket-with-goods-left-column, .basket-with-goods-right-column {
   display: flex;
   flex-direction: column;
   width: 50%;
+}
+@media only screen and (max-width: 800px) {
+  .basket-with-goods-left-column, .basket-with-goods-right-column {
+    width: 30rem;
+  }
 }
 
 .basket-recepient-info, .basket-placing-order, .basket-first-row {
@@ -2814,6 +2885,11 @@ h2 {
 .delivery-sity, .delivery-post-office {
   text-overflow: ellipsis;
 }
+@media only screen and (max-width: 1024px) {
+  .delivery-sity, .delivery-post-office {
+    max-width: 31.5rem;
+  }
+}
 
 .display-none {
   bodred: none;
@@ -2864,6 +2940,11 @@ h2 {
   transition: all 0.2s ease-in-out;
   margin-bottom: 2.4rem;
   max-width: 40rem;
+}
+@media only screen and (max-width: 1024px) {
+  .basket-with-goods-item {
+    max-width: 31.5rem;
+  }
 }
 
 .basket-with-goods-item:hover {
@@ -2928,6 +3009,12 @@ h2 {
 .basket-total-button {
   padding: 0.8rem 1.7rem;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1024px) {
+  .input-in-basket {
+    max-width: 30rem !important;
+  }
 }
 
 .modal-overlay {
@@ -3049,7 +3136,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex: 1 1 100%;
   height: 100%;
 }
@@ -3070,10 +3157,10 @@ h2 {
   }
 }
 
-@media only screen and (max-width: 533px) {
-  .title-favorite {
-    display: none;
-  }
+.favorite-title {
+  margin-top: 13.6rem;
+  margin-bottom: 22.1rem;
+  text-align: center;
 }
 
 .userPage {

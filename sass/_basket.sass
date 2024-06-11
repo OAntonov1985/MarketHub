@@ -5,7 +5,7 @@
     display: flex
     flex-direction: column
     min-height: 100vh
-    max-width: 192rem    
+    max-width: 192rem        
     margin: 0 auto
 
 .basket-page-content
@@ -13,7 +13,19 @@
     display: flex
     flex-direction: column
     align-items: flex-start
-    justify-content: center   
+    justify-content: center 
+    margin: 4rem 9rem 10rem
+    @media only screen and (max-width : 1024px)
+        margin: 4.1rem 7rem
+    @media only screen and (max-width : 800px)
+        margin: 4.1rem 5rem
+        justify-content: flex-start
+    @media only screen and (max-width : 600px)
+        margin: 3.1rem 3rem
+    @media only screen and (max-width : 533px)
+        margin: 2.4rem 1.6rem
+    
+
     
     
 ////////////////////////////////// EMPTY BASKET  //////////////////////////////////
@@ -26,36 +38,54 @@
     width: 40rem
     height: 33.8rem
     position: relative
-    margin-bottom: 4rem
+    margin: auto
+    margin-bottom: 4rem    
+    @media only screen and (max-width : 800px)
+        width: 17rem
+        height: 15rem
+        margin-top: 2.6rem
+        margin-bottom: 2.7rem
+    @media only screen and (max-width : 533px)
+        margin-top: 2.1rem
+        margin-bottom: 1.7rem
+
 
 .empty-basket-text
     font-size: 4rem
     line-height: 150%
     color: $color-blue
     margin-bottom: 4rem
+    @media only screen and (max-width : 800px)
+        margin-bottom: 2.4rem
+    @media only screen and (max-width : 533px)
+        font-size: 2.4rem
+        margin-bottom: 2rem
 
 .empty-basket-button
     display: block
     margin: 0 auto
     background-color: $valid-field-border
+    color: $color-white
     border: none
     font-size: 1.8rem
     font-weight: 500
     padding: 1.1rem 2.7rem
     border-radius: .8rem
     cursor: pointer
+    margin-bottom: 6.2rem
 
 .good-item-title
     z-index: -5
 //////////////////////////////////  BASKET  WITH GOODS  //////////////////////////////////
 
 .basket-with-goods
-    padding: 4rem 9rem 10rem
+    // padding: 4rem 9rem 10rem
     display: flex
     flex-direction: column
     align-items: flex-start
     justify-content: center
     width: 100%
+    
 
 .basket-with-goods-title
     display: block
@@ -65,9 +95,11 @@
     color: $color-blue
     margin-bottom: 4rem
     @media only screen and (max-width : 800px)
-        text-align: center
+        // text-align: center
+        font-size: 3.2rem
     @media only screen and (max-width : 533px)
         margin-bottom: 2.4rem
+        font-size: 2.4rem
 
 .basket-with-goods-list
     width: 100%
@@ -93,7 +125,7 @@
     padding: 2.4rem
     display: flex
     justify-content: space-between
-    gap: 3.2rem
+    // gap: 3.2rem
 
 
 .good-item-image
@@ -107,6 +139,7 @@
     position: relative
     margin: 0 auto
     max-width: 86%
+    min-width: 12.5rem
     height: 100%
 
 
@@ -169,6 +202,8 @@
     flex-direction: column
     align-items: flex-end
     justify-content: space-between
+    min-width: 12rem
+    @media only screen and (max-width : 1024px)
 
 
 .good-item-total-cross-image-container
@@ -194,6 +229,8 @@
     display: flex
     gap: 4rem
     margin-bottom: 4rem
+    @media only screen and (max-width : 800px)
+        justify-content: space-between
 
 .basket-with-goods-new-customer, .basket-with-goods-regular-customer
     display: block
@@ -221,12 +258,19 @@
 
 .basket-with-goods-columns
     display: flex
-    width: 100%     
-
+    width: 100%
+    @media only screen and (max-width : 800px)
+        justify-content: space-between
+        gap: 1.7rem
+   
 .basket-with-goods-left-column, .basket-with-goods-right-column
     display: flex
     flex-direction: column
     width: 50%
+    @media only screen and (max-width : 800px)
+        width: 30rem
+
+
 
 .basket-recepient-info, .basket-placing-order, .basket-first-row
     width: 100%
@@ -234,8 +278,7 @@
 //////////////////////////////////  BASKET FORM  //////////////////////////////////
 
 .basket-user-form
-    width: 100%
-    // width: 47.6%
+    width: 100%    
     margin-bottom: 4rem
 
 .basket-label-title
@@ -300,6 +343,8 @@
 
 .delivery-sity, .delivery-post-office
     text-overflow: ellipsis
+    @media only screen and (max-width : 1024px)
+        max-width: 31.5rem
     
 
 .display-none
@@ -349,6 +394,8 @@
     transition: all 0.2s ease-in-out
     margin-bottom: 2.4rem
     max-width: 40rem
+    @media only screen and (max-width : 1024px)
+        max-width: 31.5rem
 
 .basket-with-goods-item:hover
     border: 1px solid $valid-field-border
@@ -411,3 +458,8 @@
 .basket-total-button
     padding: .8rem 1.7rem
     cursor: pointer
+
+
+.input-in-basket
+    @media only screen and (max-width: 1024px)
+        max-width: 30rem !important

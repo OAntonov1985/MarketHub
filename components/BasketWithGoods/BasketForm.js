@@ -135,7 +135,7 @@ function BasketForm() {
                     <input
                         id="userName"
                         type="text"
-                        className={inputNameClass}
+                        className={`${inputNameClass} input-in-basket`}
                         placeholder="Введіть своє ім’я"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
@@ -152,7 +152,7 @@ function BasketForm() {
                     <input
                         id="userSurname"
                         type="text"
-                        className={inputSurnameClass}
+                        className={`${inputSurnameClass} input-in-basket`}
                         placeholder="Введіть своє прізвище"
                         value={userSurname}
                         onChange={(e) => setUserSurname(e.target.value)}
@@ -169,7 +169,7 @@ function BasketForm() {
                     <input
                         id="userPhone"
                         type="number"
-                        className={inputPhoneClass}
+                        className={`${inputPhoneClass} input-in-basket`}
                         placeholder="Введіть свій номер телефону"
                         value={userPhone}
                         onChange={(e) => setUserPfone(e.target.value)}
@@ -184,7 +184,7 @@ function BasketForm() {
                     <input
                         id="userEmail"
                         type="text"
-                        className={inputEmailClass}
+                        className={`${inputEmailClass} input-in-basket`}
                         placeholder="Введіть свою пошту"
                         value={userEmail}
                         onChange={(e) => setUserEmail(e.target.value)}

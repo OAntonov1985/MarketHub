@@ -7,7 +7,6 @@ import BasketTotalRow from './BasketTotalRow';
 
 function BasketWithGoods() {
 
-
     return (
         <div className='basket-with-goods'>
             <BasketFirstRow />

@@ -58,7 +58,7 @@ function BaskerGoodRow({ props }) {
                 </Link>
 
                 <div className='good-item-description-column'>
-                    <Link className='good-item-description-title' href={`/${id}/${title}/${id}`}>{title}</Link>
+                    <Link className='good-item-description-title' href={`/${id}/${title}/${id}`}>{title.split(' ').slice(0, 3).join(' ')}</Link>
                     <div className='good-item-description-number'>
                         <div className='good-item-description-selsector-number'>
                             <div className="selsector-number-minus">
