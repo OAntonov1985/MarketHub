@@ -40,6 +40,7 @@ function BaskerGoodRow({ props }) {
 
     return (
         <div className="basket-with-good-item">
+            <Link className='good-item-description-title after-533' href={`/${id}/${title}/${id}`}>{title.split(' ').slice(0, 3).join(' ')}</Link>
             <div className='good-item-left-column'>
                 <Link className="good-item-image" href={`/${id}/${title}/${id}`}>
                     <div className='good-item-image-container'>
@@ -48,9 +49,9 @@ function BaskerGoodRow({ props }) {
                             src={thumbnail}
                             quality={100}
                             fill
-                            sizes="(max-width: 100%)"
+                            sizes="(width: 100%)"
                             style={{
-                                objectFit: 'contain',
+                                objectFit: 'cover',
                                 width: '100%'
                             }}
                         />
@@ -58,7 +59,7 @@ function BaskerGoodRow({ props }) {
                 </Link>
 
                 <div className='good-item-description-column'>
-                    <Link className='good-item-description-title' href={`/${id}/${title}/${id}`}>{title.split(' ').slice(0, 3).join(' ')}</Link>
+                    <Link className='good-item-description-title before-533' href={`/${id}/${title}/${id}`}>{title.split(' ').slice(0, 3).join(' ')}</Link>
                     <div className='good-item-description-number'>
                         <div className='good-item-description-selsector-number'>
                             <div className="selsector-number-minus">

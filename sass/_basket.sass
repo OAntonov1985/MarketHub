@@ -107,6 +107,9 @@
     flex-direction: column
     gap: 4rem
     margin-bottom: 5rem
+    @media only screen and (max-width : 533px)
+        gap: 2.4rem
+        margin-bottom: 4rem
 
 
 //////////////////////////////////  GOOD ITEM LEFT COLUMN  //////////////////////////////////
@@ -115,6 +118,12 @@
 .good-item-left-column
     display: flex
     gap: 3.2rem
+    @media only screen and (max-width : 800px)
+        gap: 2rem
+    @media only screen and (max-width : 533px)
+        gap: .7rem
+        height: 6rem
+        align-items: center
 
 .basket-with-good-item
     position: relative
@@ -125,7 +134,16 @@
     padding: 2.4rem
     display: flex
     justify-content: space-between
-    // gap: 3.2rem
+    @media only screen and (max-width : 800px)
+        gap: 1rem
+        padding: 1.6rem
+    @media only screen and (max-width : 533px)
+        height: 12.4rem
+        border-radius: .4rem
+        background-color: $background-color-items
+        padding: 1.6rem 1.2rem
+        flex-direction: column
+        position: relative
 
 
 .good-item-image
@@ -134,6 +152,12 @@
     border-radius: 1.4rem
     background-color: $background-color-items
     cursor: pointer
+    @media only screen and (max-width : 533px)
+        width: 6rem
+        height: 6rem
+        display: flex
+        align-items: center
+        justify-content: center
 
 .good-item-image-container
     position: relative
@@ -141,6 +165,9 @@
     max-width: 86%
     min-width: 12.5rem
     height: 100%
+    @media only screen and (max-width : 533px)
+        min-width: 5rem        
+        height: 5rem       
 
 
 
@@ -151,13 +178,20 @@
     justify-content: center
     height: 100%
     
+
+    
     
 
 
 .good-item-description-title, .good-item-description-total-price, .good-item-total-price
     font-size: 2.4rem
     font-weight: normal
-    color: #000000
+    // color: #000000
+    @media only screen and (max-width : 600px)
+        font-size: 2rem
+    @media only screen and (max-width : 533px)
+        font-size: 1.6rem
+        color: #000000
 
 .good-item-description-title
     cursor: pointer
@@ -167,6 +201,11 @@
     display: flex
     flex-direction: column
     justify-content: center
+    @media only screen and (max-width : 533px)
+        margin: auto
+        justify-content: flex-start
+        // width: 8.7rem
+        // height: 2.4rem
     
    
 .good-item-description-selsector-number
@@ -181,6 +220,10 @@
     border: 1px solid $color-text-gray
     border-radius: .8rem
     gap: .4rem
+    @media only screen and (max-width : 533px)        
+        width: 8.7rem
+        height: 2.4rem
+        border: none
 
 .selsector-number-minus, .selsector-number-plus
     position: relative
@@ -203,7 +246,10 @@
     align-items: flex-end
     justify-content: space-between
     min-width: 12rem
-    @media only screen and (max-width : 1024px)
+    @media only screen and (max-width : 533px)
+        position: absolute
+        right: 8px
+        height: 74%
 
 
 .good-item-total-cross-image-container
@@ -224,6 +270,8 @@
     line-height: 150%
     color: $color-text-main
     margin-bottom: 4rem
+    @media only screen and (max-width : 533px)
+        margin-bottom: 2rem
 
 .basket-with-goods-buttons-row
     display: flex
@@ -231,6 +279,9 @@
     margin-bottom: 4rem
     @media only screen and (max-width : 800px)
         justify-content: space-between
+    @media only screen and (max-width : 533px)
+        gap: 1rem
+        margin-bottom: 1.6rem
 
 .basket-with-goods-new-customer, .basket-with-goods-regular-customer
     display: block
@@ -242,6 +293,10 @@
     background-color: $background-color
     border-radius: .5rem
     cursor: pointer
+    @media only screen and (max-width : 533px)
+        width: 16.4rem
+        padding: .8rem 1.5rem
+        font-size: 1.4rem
 
 .active-button
     border: 1px solid $valid-field-border
@@ -262,6 +317,9 @@
     @media only screen and (max-width : 800px)
         justify-content: space-between
         gap: 1.7rem
+    @media only screen and (max-width : 533px)
+        flex-direction: column
+        gap: 0
    
 .basket-with-goods-left-column, .basket-with-goods-right-column
     display: flex
@@ -269,6 +327,17 @@
     width: 50%
     @media only screen and (max-width : 800px)
         width: 30rem
+    @media only screen and (max-width : 533px)
+        width: 100%
+
+.basket-with-goods-left-column label, .basket-with-goods-right-column label
+    @media only screen and (max-width : 533px)  
+        margin-bottom: .8rem    
+
+.basket-with-goods-left-column input, .basket-with-goods-right-column input
+    @media only screen and (max-width : 533px)  
+        margin-bottom: 1.6rem     
+        
 
 
 
@@ -280,6 +349,8 @@
 .basket-user-form
     width: 100%    
     margin-bottom: 4rem
+    @media only screen and (max-width : 533px)
+        margin-bottom: 2.4rem
 
 .basket-label-title
     font-size: 1.8rem
@@ -287,6 +358,8 @@
     line-height: 150%
     color: $color-text-main
     margin-bottom: .4rem
+    @media only screen and (max-width : 533px)
+        margin-bottom: .8rem
 
 .basket-input
     // width: 100%
@@ -329,6 +402,8 @@
     max-height: 15rem
     overflow-y: auto
     transition:  0.3s ease-in-out
+    @media only screen and (max-width : 1024px)
+        width: 40rem
     
 
 
@@ -345,6 +420,8 @@
     text-overflow: ellipsis
     @media only screen and (max-width : 1024px)
         max-width: 31.5rem
+    @media only screen and (max-width : 533px)
+        max-width: 100%
     
 
 .display-none
@@ -359,6 +436,12 @@
     left: 0px
     z-index: 666
     background-color: $color-white
+    @media only screen and (max-width : 1024px)
+        left: -8.2rem
+    @media only screen and (max-width : 533px)
+        left: 0px
+        width: 100%
+
 
 .diplay-block-post-office
     top: 190px 
@@ -373,16 +456,27 @@
 
 .basket-with-goods-content
     display: flex
-    // gap: 27.4%
+    @media only screen and (max-width : 800px)
+        justify-content: space-between
+        gap: 1.7rem
+    @media only screen and (max-width : 533px)
+        flex-direction: column
+        gap: 0
  
 .basket-with-good-left-column, .basket-with-good-right-column
     width: 50%
+    // max-width: 30rem
     display: flex
     flex-direction: column
     position: relative
+    @media only screen and (max-width : 533px)
+        max-width: 100%
+        width: 100%
    
 .basket-with-good-left-column
     padding-top: 3rem
+    @media only screen and (max-width : 533px)
+        padding-top: 0
 
 .basket-with-goods-item
     display: flex
@@ -396,6 +490,8 @@
     max-width: 40rem
     @media only screen and (max-width : 1024px)
         max-width: 31.5rem
+    @media only screen and (max-width : 533px)
+        max-width: 100%
 
 .basket-with-goods-item:hover
     border: 1px solid $valid-field-border
@@ -431,6 +527,10 @@
     padding: 2.4rem
     display: flex
     justify-content: space-between
+    @media only screen and (max-width : 533px)
+        border-radius: .4rem
+        flex-direction: column
+
 
 .modify-title
     margin-bottom: 0
@@ -440,9 +540,14 @@
     flex-direction: column
     align-items: flex-start
     gap: 2.4rem
+    @media only screen and (max-width : 533px)
+        gap: 1.6rem
+        margin-bottom: 3rem
 
 .basket-with-goods-row
     font-size: 2rem
+    @media only screen and (max-width : 533px)
+        font-size: 1.6rem
 
 .basket-with-goods-row
     span
@@ -454,12 +559,27 @@
     display: flex
     flex-direction: columns
     align-items: flex-end
+    @media only screen and (max-width : 533px)
+        width: 100%
 
 .basket-total-button
     padding: .8rem 1.7rem
     cursor: pointer
+    @media only screen and (max-width : 533px)
+        width: 100%
 
 
 .input-in-basket
     @media only screen and (max-width: 1024px)
         max-width: 30rem !important
+    @media only screen and (max-width : 533px)
+        max-width: 100% !important
+
+.after-533
+    display: none
+    @media only screen and (max-width : 533px)
+        display: block
+
+.before-533
+    @media only screen and (max-width : 533px)
+        display: none
