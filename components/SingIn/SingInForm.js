@@ -54,6 +54,7 @@ function SingInForm({ props }) {
                     password: body.password,
                 });
 
+                console.log(result)
                 if (result.error) {
                     console.error('Помилка входу:', result.error);
                     alert('Користувача з такою поштою або паролем не знайдено.')

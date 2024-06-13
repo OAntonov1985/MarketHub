@@ -148,8 +148,6 @@ function Header({ transparentBackground }) {
         const handleClickOutside = (event) => {
             const isSearchHeaderClicked = event.target.closest('.search-results-header');
             const isInputFieldClicked = event.target.closest('.header-input-field');
-            console.log(isSearchHeaderClicked)
-            console.log(isInputFieldClicked)
 
             if (isSearchHeaderClicked && !isInputFieldClicked) {
                 setIsVisibleSearchResult(false);

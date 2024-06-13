@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { connectMongoDB } from "../../../config/mongodb";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
@@ -8,14 +8,12 @@ import mongoose from "mongoose";
 import { serialize } from 'cookie';
 
 
-
 const authOptions = (req, res) => {
     return {
         session: {
             strategy: "jwt",
         },
         providers: [
-            process.env.VERCEL_ENV === "preview",
             GoogleProvider({
                 name: "google",
                 clientId: process.env.GOOGLE_CLIENT_ID,
@@ -32,22 +30,37 @@ const authOptions = (req, res) => {
                     const { email, password } = credentials;
                     try {
                         await connectMongoDB();
-                        const userExists = await mongoose.connection.collection("users").findOne({ email, password });
 
-                        if (userExists.email == email && userExists.password == password) {
-                            return userExists;
+                        if (!mongoose.connection.readyState) {
+                            throw new Error("Помилка підключення до бази даних");
                         }
-                        else if (userExists.email == email && userExists.password !== password) {
-                            return null
+                        const userExists = await mongoose.connection.collection("users").findOne({ email });
+                        if (userExists) {
+                            if (userExists.email === email && userExists.password === password) {
+                                const { nameAs, email, password, pfone } = userExists;
+                                const cookies = [
+                                    serialize('userName', nameAs.nameAs, { path: '/' }),
+                                    serialize('userSurname', nameAs.surnameAs, { path: '/' }),
+                                    serialize('userEmail', email, { path: '/' }),
+                                    serialize('userPassword', password, { path: '/' }),
+                                    // serialize('userToken', token, { path: '/' }),
+                                    pfone.length > 0 ? serialize('userPhone', pfone, { path: '/' }) : null
+                                ].filter(Boolean);
+
+                                res.setHeader('Set-Cookie', cookies);
+                                return userExists;
+                            } else {
+                                console.log("Помилка авторизакії!");
+                                return null;
+                            }
+                        } else {
+                            console.log("Authorization failed: user not found");
+                            return null;
                         }
-                        else if (!userExists) {
-                            return new Error("Користувача з такою поштою не знайдено.")
-                        }
-                        return null;
                     } catch (error) {
-                        console.error("Error processing signIn callback:", error);
+                        console.error("Error in authorize function:", error);
+                        throw new Error("An error occurred while processing your request.");
                     }
-                    return null
                 }
             })
         ],
@@ -56,29 +69,25 @@ const authOptions = (req, res) => {
             async signIn({ user, account }) {
                 if (account.provider === "google" || account.provider === "facebook") {
                     const { name, email } = user;
-                    // const customArg = context.query.customArg;
-                    // console.log(customArg)
-                    // console.log(profile)
-                    const userInf0 = {
-                        name: name.split(' ')[0],
-                        surname: name.split(' ')[1],
-                        nameAs: {
-                            nameAs: name.split(' ')[0],
-                            surnameAs: name.split(' ')[1],
-                        },
-                        email,
-                        userOrders: {},
-                        userProductsToSale: {},
-                        password: "password",
-                        pfone: ""
-                    }
+                    // const userInf0 = {
+                    //     name: name.split(' ')[0],
+                    //     surname: name.split(' ')[1] || '',
+                    //     nameAs: {
+                    //         nameAs: name.split(' ')[0],
+                    //         surnameAs: name.split(' ')[1] || '',
+                    //     },
+                    //     email,
+                    //     userOrders: {},
+                    //     userProductsToSale: {},
+                    //     password: "password",
+                    //     pfone: ""
+                    // };
 
                     try {
                         await connectMongoDB();
                         const userExists = await mongoose.connection.collection("users").findOne({ email });
 
                         if (userExists) {
-                            // console.log(userExists)
                             const { nameAs, email, password, pfone } = userExists;
                             const cookies = [
                                 serialize('userName', nameAs.nameAs, { path: '/' }),
@@ -91,69 +100,21 @@ const authOptions = (req, res) => {
 
                             res.setHeader('Set-Cookie', cookies);
                             return userExists;
+
+                        } else {
+                            return null;
                         }
-                        else if (!userExists) {
-                            await mongoose.connection.collection("users").insertOne(userInf0);
-                            return userInf0;
-                            // return null;
-                        }
-                        return null;
                     } catch (error) {
                         console.error("Error processing signIn callback:", error);
+                        return null;
                     }
-                    // return user;
                 }
-                // else if (account.provider === "google1") {
-                //     const { name, email } = user;
-                //     console.log("google1")
-
-
-                //     const userInf0 = {
-                //         name: name.split(' ')[0],
-                //         surname: name.split(' ')[1],
-                //         nameAs: {
-                //             nameAs: name.split(' ')[0],
-                //             surnameAs: name.split(' ')[1],
-                //         },
-                //         email,
-                //         userOrders: {},
-                //         userProductsToSale: {},
-                //         password: "password",
-                //         pfone: ""
-                //     }
-
-                //     try {
-                //         await connectMongoDB();
-                //         const userExists = await mongoose.connection.collection("users").findOne({ email });
-
-                //         if (userExists) {
-                //             return null;
-
-                //         }
-                //         else if (!userExists) {
-                //             await mongoose.connection.collection("users").insertOne(userInf0);
-                //             return userInf0;
-                //             // return userExists;
-                //         }
-                //         return null;
-                //     } catch (error) {
-                //         console.error("Error processing signIn callback:", error);
-                //     }
-                //     return userInf0;
-                // }
-
-
+                return true;
             },
         },
-        // pages: {
-        //     signIn: '/loginpage',
-        //     error: '/error'
-        // },
-        secret: process.env.NEXTAUTN_SECRET
+        secret: process.env.NEXTAUTH_SECRET
     };
-
-}
-
+};
 
 export default (req, res) => {
     return NextAuth(req, res, authOptions(req, res));

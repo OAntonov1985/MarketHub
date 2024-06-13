@@ -9,6 +9,7 @@ function BasketTotalRow() {
     const { totalPriseInAllBasket } = useSelector((state) => state.user);
 
     const [isOpen, setIsOpen] = useState(false);
+    console.log(quantityOfGoods)
 
     const toggleFunction = () => {
         setIsOpen(!isOpen);
