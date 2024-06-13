@@ -76,7 +76,9 @@ function SingInForm({ props }) {
                 callbackUrl: "/userpage"
 
             });
+
             if (result) {
+                // console.log(result)
                 router.push('/userpage');
             } else {
                 setTimeout(() => {

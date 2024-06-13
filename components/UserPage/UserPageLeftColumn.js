@@ -5,7 +5,7 @@ import LeftColumnGoodsList from './LeftColumnGoodsList';
 import LeftColumnUserInfo from './LeftColumnUserInfo';
 import LeftColumnUserOrders from './LeftColumnUserOrders';
 import { useState, useEffect } from 'react';
-import { setCategorieToRender, setPhotoArrayLength } from '@/slices/userSlice';
+import { setCategorieToRender, setPhotoArrayLength, setUserName } from '@/slices/userSlice';
 import { signOut } from "next-auth/react";
 import Cookies from 'js-cookie';
 
@@ -31,6 +31,7 @@ function UserPageLeftColumn() {
     }, [pfotoArrayLength]);
 
     function SingOutFunc() {
+        dispatch(setUserName(""));
         Cookies.remove('userName', { path: '/' })
         Cookies.remove('userSurname', { path: '/' })
         Cookies.remove('userEmail', { path: '/' })
