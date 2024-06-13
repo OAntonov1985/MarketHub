@@ -15,7 +15,6 @@ const authOptions = (req, res) => {
             strategy: "jwt",
         },
         providers: [
-            process.env.VERCEL_ENV === "preview",
             GoogleProvider({
                 name: "google",
                 clientId: process.env.GOOGLE_CLIENT_ID,
