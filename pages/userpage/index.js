@@ -8,6 +8,7 @@ import Spinner from '@/components/Spinner/Spinner';
 import { useSelector } from 'react-redux';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 
 
@@ -16,10 +17,11 @@ export default function UserPage() {
     const isSession = useSession();
     const { status } = isSession;
     const router = useRouter();
-    // console.log(isSession)
+    const userName = Cookies.get('userName');
 
 
-    if (status === "authenticated" || status === "loading") {
+
+    if (status === "authenticated" || status === "loading" || userName) {
         return (
             <div className='userPage'>
                 {loading ? <Spinner /> : null}

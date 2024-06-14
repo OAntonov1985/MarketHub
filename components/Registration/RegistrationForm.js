@@ -3,12 +3,18 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from "next/image";
 import RegistrationFunction from '@/pages/api/RegistrationFunction';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveSpinner } from '@/slices/userSlice';
 import { signIn } from 'next-auth/react';
 
 
+
 function RegistrationForm({ props }) {
-    const { setLoading } = props;
     const router = useRouter();
+    const dispatch = useDispatch();
+    const { loading } = useSelector((state) => state.user);
+
+
     //////////   userName    //////////
     const [userName, setUserName] = useState('');
     const [inputNameClass, setInputNameClass] = useState("user-name");
@@ -24,7 +30,7 @@ function RegistrationForm({ props }) {
             setShowErrorName(false);
         };
     };
-
+    // {loading === true ? <Spinner /> : null}
     //////////   userSurname    //////////
     const [userSurname, setUserSurname] = useState('');
     const [inputSurnameClass, setInputSurnameClass] = useState("user-surname");
@@ -116,25 +122,25 @@ function RegistrationForm({ props }) {
         );
     };
 
-    async function singInWithGoogle() {
+    // async function singInWithGoogle() {
 
-        try {
-            const result = await signIn('google1', {
-                redirect: true,
-                callbackUrl: "/userpage"
-            });
-            if (result) {
-                router.push('/userpage');
-            } else {
-                setTimeout(() => {
-                    alert('Користувача з такою поштою не знайдено.');
-                }, 1000);
-            }
+    //     try {
+    //         const result = await signIn('google1', {
+    //             redirect: true,
+    //             callbackUrl: "/userpage"
+    //         });
+    //         if (result) {
+    //             router.push('/userpage');
+    //         } else {
+    //             setTimeout(() => {
+    //                 alert('Користувача з такою поштою не знайдено.');
+    //             }, 1000);
+    //         }
 
-        } catch (error) {
-            alert('помилка входу:', error);
-        }
-    }
+    //     } catch (error) {
+    //         alert('помилка входу:', error);
+    //     }
+    // }
 
 
 
@@ -145,27 +151,47 @@ function RegistrationForm({ props }) {
         }
 
         else if (showErrorName === false && showErrorSurname === false && showErrorEmail === false && showErrorPhone === false && showErrorPassword === false && showErrorConfirmPassword === false) {
-            setLoading(true)
+            dispatch(setActiveSpinner(true));
             const body = {
-                "firstname": userName,
-                "lastname": userSurname,
+                "name": userName,
+                "surname": userSurname,
+                "nameAs": {
+                    "nameAs": userName,
+                    "surnameAs": userSurname
+                },
                 "email": userEmail,
-                "phone": userPhone,
+                "userOrders": {},
+                "userProductsToSale": {},
+                "pfone": userPhone,
                 "password": userPassword
             };
 
-            const { JWTToken, Errormasage } = await RegistrationFunction(body);
+            const { userInfo, Errormasage } = await RegistrationFunction(body);
             if (Errormasage) {
-                setLoading(false);
+                dispatch(setActiveSpinner(false));
             }
-            else if (JWTToken) {
-                setLoading(false);
-                router.push('/userpage');
+            else if (userInfo) {
+                dispatch(setActiveSpinner(false));
+                const { email, password } = userInfo;
+                try {
+                    const result = await signIn('credentials', {
+                        redirect: false,
+                        email: email,
+                        password: password,
+                    });
+
+                    if (result.error) {
+                        console.error('Помилка входу:', result.error);
+                    } else {
+                        router.push('/userpage');
+                    }
+                } catch (error) {
+                    console.error('Помилка входу:', error);
+                }
             };
         }
         else alert('Помилка заповнення одного з полів');
     };
-
 
     return (
         <>
@@ -286,7 +312,7 @@ function RegistrationForm({ props }) {
                     <a href="#" className='politcik-registration-link'>  Політикою конфіденційності</a>
                 </p> */}
             </form>
-            <p className='use-social-network-par'>Або скористайся соціальними мережами</p>
+            {/* <p className='use-social-network-par'>Або скористайся соціальними мережами</p>
             <div className='social-buttons'>
                 <button onClick={() => singInWithFacebook()} className='social-button'>
                     <p>Facebook</p>
@@ -319,7 +345,7 @@ function RegistrationForm({ props }) {
                         />
                     </div>
                 </button>
-            </div >
+            </div > */}
         </>
     );
 };

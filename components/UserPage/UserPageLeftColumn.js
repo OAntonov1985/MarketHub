@@ -32,12 +32,13 @@ function UserPageLeftColumn() {
 
     function SingOutFunc() {
         dispatch(setUserName(""));
-        Cookies.remove('userName', { path: '/' })
-        Cookies.remove('userSurname', { path: '/' })
-        Cookies.remove('userEmail', { path: '/' })
-        Cookies.remove('userPassword', { path: '/' })
-        Cookies.remove('userToken', { path: '/' })
-        Cookies.remove('userPhone', { path: '/' })
+        Cookies.remove('userName', { path: '/' });
+        Cookies.remove('userSurname', { path: '/' });
+        Cookies.remove('userEmail', { path: '/' });
+        Cookies.remove('userPassword', { path: '/' });
+        Cookies.remove('userToken', { path: '/' });
+        Cookies.remove('userPhone', { path: '/' });
+        Cookies.remove('userID', { path: '/' });
         signOut({ callbackUrl: "/" })
     }
 

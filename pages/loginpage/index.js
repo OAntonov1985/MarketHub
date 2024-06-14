@@ -7,20 +7,21 @@ import Head from 'next/head';
 import backgroundImageg from "@/public/Back.png"
 import Spinner from '@/components/Spinner/Spinner';
 import { useRouter } from 'next/navigation';
-;
+import { useSelector } from 'react-redux';
+import { loading } from "@/slices/userSlice";
 
 
 
 function LogInPage() {
     const [isRegistration, setIsRegistration] = useState(true);
-    const [loading, setLoading] = useState(false);
+    const { loading } = useSelector((state) => state.user);
     const router = useRouter();
 
 
     const toggleMode = () => {
         setIsRegistration(prevState => !prevState);
     };
-    const obj = { loading, setLoading, toggleMode, isRegistration }
+    const obj = { loading, toggleMode, isRegistration }
 
     return (
         <>

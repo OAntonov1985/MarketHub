@@ -1,15 +1,13 @@
 
 import Cookies from 'js-cookie';
-import { URLADRESS } from '@/components/Constants';
+import { MaketHubURL } from '@/components/Constants';
 
 export default async function RegistrationFunction(body) {
-    let JWTToken
-    let Errormasage
+    let userInfo;
+    let Errormasage;
 
-    const currentDate = new Date();
-    currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
     try {
-        const response = await fetch('https://vps63222.hyperhost.name/markethub/authorization', {
+        const response = await fetch(MaketHubURL + `createNewUser`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,9 +18,7 @@ export default async function RegistrationFunction(body) {
         if (response.ok) {
             const data = await response.json()
                 .then(data => {
-                    Cookies.set('jwtToken', data.token, { expires: currentDate });
-                    Cookies.set('userName', data.username, { expires: currentDate });
-                    JWTToken = data.token;
+                    userInfo = data.user;
                 })
 
         } else {
@@ -34,5 +30,5 @@ export default async function RegistrationFunction(body) {
         alert('Упс.... Щось пішло не так. зверніться до розробників');
         Errormasage = true;
     };
-    return { JWTToken, Errormasage }
+    return { userInfo, Errormasage }
 }

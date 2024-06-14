@@ -1,21 +1,10 @@
-"use client"
-
+"use client";
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import singInFunction from '@/pages/api/SingInFunction';
 import Image from "next/image";
-import Link from 'next/link';
-import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
-import { setUserName } from '@/slices/userSlice';
 import { signIn } from 'next-auth/react';
-import SingIn from './SingIn';
-import authOptions from "../../pages/api/auth/[...nextauth]"
-
-// import { useDispatch } from 'react-redux';
-
-
 
 
 function SingInForm({ props }) {
