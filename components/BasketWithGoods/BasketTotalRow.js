@@ -4,14 +4,15 @@ import formattedPrice from '../HelperFunctions/FormattedPrice';
 import { useSelector } from 'react-redux';
 import ModalWindowInBasket from './ModalWindow';
 
-function BasketTotalRow() {
+function BasketTotalRow({ clientPersonalInfo, clientAdressInfo }) {
     const { quantityOfGoods } = useSelector((state) => state.user);
     const { totalPriseInAllBasket } = useSelector((state) => state.user);
 
     const [isOpen, setIsOpen] = useState(false);
-    console.log(quantityOfGoods)
 
     const toggleFunction = () => {
+        console.log(clientPersonalInfo)
+        console.log(clientAdressInfo)
         setIsOpen(!isOpen);
     }
 

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 
-function BasketForm() {
+function BasketForm({ setClientPersonalInfo }) {
     const { userInfo } = useSelector((state) => state.user);
 
     const [userName, setUserName] = useState('');
@@ -75,7 +75,14 @@ function BasketForm() {
     const userPhoneInCookies = Cookies.get('userPhone');
     const userEmailInCookies = Cookies.get('userEmail');
 
-
+    // setClientPersonalInfo
+    const clientInfo = {
+        "clientName": userName,
+        "clientSurName": userSurname,
+        "clientPfone": userPhone,
+        "clientEmail": userEmail
+    };
+    setClientPersonalInfo(clientInfo);
 
     useEffect(() => {
         if (userNameInCookies) {
@@ -193,9 +200,6 @@ function BasketForm() {
                     {showErrorEmail !== false ? <p className='paragraf-buttom basket-form-massage'>Невірний формат пошти. example123@gmail.com</p> : null}
                 </div>
             </div>
-
-
-
         </form>
     )
 };

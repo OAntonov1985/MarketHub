@@ -122,28 +122,6 @@ function RegistrationForm({ props }) {
         );
     };
 
-    // async function singInWithGoogle() {
-
-    //     try {
-    //         const result = await signIn('google1', {
-    //             redirect: true,
-    //             callbackUrl: "/userpage"
-    //         });
-    //         if (result) {
-    //             router.push('/userpage');
-    //         } else {
-    //             setTimeout(() => {
-    //                 alert('Користувача з такою поштою не знайдено.');
-    //             }, 1000);
-    //         }
-
-    //     } catch (error) {
-    //         alert('помилка входу:', error);
-    //     }
-    // }
-
-
-
     async function handleclick(event) {
         event.preventDefault();
         if (userPassword !== userConfirmPassword) {
@@ -171,7 +149,6 @@ function RegistrationForm({ props }) {
                 dispatch(setActiveSpinner(false));
             }
             else if (userInfo) {
-                dispatch(setActiveSpinner(false));
                 const { email, password } = userInfo;
                 try {
                     const result = await signIn('credentials', {
@@ -179,7 +156,7 @@ function RegistrationForm({ props }) {
                         email: email,
                         password: password,
                     });
-
+                    dispatch(setActiveSpinner(false));
                     if (result.error) {
                         console.error('Помилка входу:', result.error);
                     } else {

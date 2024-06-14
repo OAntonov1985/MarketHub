@@ -9,7 +9,7 @@ import GetListCities from '@/pages/api/GetListCities';
 
 
 
-function BasketDeliveryInfo() {
+function BasketDeliveryInfo({ setClientAdresslInfo }) {
     const [cargoCarrier, setCargoCarier] = useState("nova");
     const [isDisplaingSearchResult, setIsDisplaingSearchResult] = useState(false);
 
@@ -18,7 +18,7 @@ function BasketDeliveryInfo() {
 
     const [dataPostOffice, setDataPostOffice] = useState([]);
     const [inpitValuedeliveryPostOffice, setInpitValuedeliveryPostOffice] = useState("");
-    const [searchResultPostOffice, setSearchResultPostOffice] = useState([])
+    const [searchResultPostOffice, setSearchResultPostOffice] = useState([]);
 
 
 
@@ -67,6 +67,12 @@ function BasketDeliveryInfo() {
     const updateDeliveryPostOffice = (event) => {
         setIsDisplaingSearchResult(false);
         setInpitValuedeliveryPostOffice(event.target.innerHTML);
+        const deliveryInfo = {
+            "deliveryCompaty": cargoCarrier,
+            "deliveryCity": deliveryCity,
+            "deliveryPost": inpitValuedeliveryPostOffice
+        };
+        setClientAdresslInfo(deliveryInfo)
     }
 
     return (

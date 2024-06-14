@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from 'react';
 import Head from 'next/head';
@@ -6,7 +6,6 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import EmptyBasket from '@/components/EmptyBasket/EmptyBasket';
 import BasketWithGoods from '@/components/BasketWithGoods/BasketWithGoods';
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import BasketForm from './BasketForm';
 import Cookies from 'js-cookie';
 
-function BasketPlacingOrder() {
+function BasketPlacingOrder({ setClientPersonalInfo }) {
     const [isNewUser, setIsNewUser] = useState("active-button");
 
     const userNameInCookies = Cookies.get('userName');
@@ -48,7 +48,7 @@ function BasketPlacingOrder() {
                     onClick={toggleUser}
                 >Я постійний клієнт</button>
             </div>
-            <BasketForm />
+            <BasketForm setClientPersonalInfo={setClientPersonalInfo} />
         </div>
     )
 }

@@ -105,7 +105,7 @@ function GoodsList({ props, id, total, setGoods }) {
     }
 
 
-
+    console.log(listGoods)
     return (
         <div className='goods-list'>
             {listGoods && listGoods.length ?
