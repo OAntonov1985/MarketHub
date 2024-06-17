@@ -8,7 +8,7 @@ import GoodCardDescription from '../GoodCardDescription/GoodCardDescription';
 import { useRouter } from 'next/router';
 
 function GoodCard({ props, breadCrumpData }) {
-    const { category, subcategory, title } = breadCrumpData || {};
+    const { category, subcategory, title, seller_id } = breadCrumpData || {};
     const router = useRouter();
     // console.log(router)
     // const { category, subcategory } = router.query;

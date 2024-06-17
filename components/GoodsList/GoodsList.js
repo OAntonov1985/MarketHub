@@ -102,10 +102,9 @@ function GoodsList({ props, id, total, setGoods }) {
                 getFilteredDataMinMax();
             } else getFilteredDataInSearchPage();
         } else setActivePage(1);
-    }
+    };
 
 
-    console.log(listGoods)
     return (
         <div className='goods-list'>
             {listGoods && listGoods.length ?

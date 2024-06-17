@@ -75,14 +75,17 @@ function BasketForm({ setClientPersonalInfo }) {
     const userPhoneInCookies = Cookies.get('userPhone');
     const userEmailInCookies = Cookies.get('userEmail');
 
-    // setClientPersonalInfo
-    const clientInfo = {
-        "clientName": userName,
-        "clientSurName": userSurname,
-        "clientPfone": userPhone,
-        "clientEmail": userEmail
-    };
-    setClientPersonalInfo(clientInfo);
+
+
+    useEffect(() => {
+        const clientInfo = {
+            "clientName": userName,
+            "clientSurName": userSurname,
+            "clientPfone": userPhone,
+            "clientEmail": userEmail
+        };
+        setClientPersonalInfo(clientInfo);
+    })
 
     useEffect(() => {
         if (userNameInCookies) {

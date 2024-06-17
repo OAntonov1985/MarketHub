@@ -11,7 +11,8 @@ import GetListCities from '@/pages/api/GetListCities';
 
 function BasketDeliveryInfo({ setClientAdresslInfo }) {
     const [cargoCarrier, setCargoCarier] = useState("nova");
-    const [isDisplaingSearchResult, setIsDisplaingSearchResult] = useState(false);
+    const [isDisplaingSearchResultCity, setIsDisplaingSearchResultCity] = useState(false);
+    const [isDisplaingSearchResultCargo, setIsDisplaingSearchResultCargo] = useState(false);
 
     const [cityData, setCityData] = useState([]);
     const [deliveryCity, setDeliveryCity] = useState("");
@@ -35,7 +36,7 @@ function BasketDeliveryInfo({ setClientAdresslInfo }) {
         const departamentID = event.target.id;
         setDeliveryCity(event.target.innerHTML);
         setCityData([]);
-        setIsDisplaingSearchResult(false);
+        setIsDisplaingSearchResultCity(false);
 
         const { dataDepartment } = await GetListDepartments(departamentID);
         if (dataDepartment.data.length > 0) {
@@ -51,13 +52,13 @@ function BasketDeliveryInfo({ setClientAdresslInfo }) {
 
         if (dataCities.data[0].Addresses.length > 0) {
             setCityData(dataCities.data[0].Addresses);
-            setIsDisplaingSearchResult(true);
+            setIsDisplaingSearchResultCity(true);
         }
 
     };
 
     const departmentSelection = (event) => {
-        setIsDisplaingSearchResult(true);
+        setIsDisplaingSearchResultCargo(true);
         setInpitValuedeliveryPostOffice(event.target.value);
         const searchQuery = event.target.value.toLowerCase();
         const searchResults = dataPostOffice.filter(item => item.Description.toLowerCase().includes(searchQuery));
@@ -65,7 +66,7 @@ function BasketDeliveryInfo({ setClientAdresslInfo }) {
     }
 
     const updateDeliveryPostOffice = (event) => {
-        setIsDisplaingSearchResult(false);
+        setIsDisplaingSearchResultCargo(false);
         setInpitValuedeliveryPostOffice(event.target.innerHTML);
         const deliveryInfo = {
             "deliveryCompaty": cargoCarrier,
@@ -151,9 +152,10 @@ function BasketDeliveryInfo({ setClientAdresslInfo }) {
                         placeholder="Введіть місто"
                         value={deliveryCity}
                         onChange={citySelection}
+                        onClick={() => setDeliveryCity("")}
                         required
                     />
-                    <div className={`search-results ${(isDisplaingSearchResult === false || cityData.length == 0) ? "display-none" : "diplay-block"} `}>
+                    <div className={`search-results ${(isDisplaingSearchResultCity === false || cityData.length == 0) ? "display-none" : "diplay-block"} `}>
                         {cityData.map((item, index) => (
                             <div key={index} className="search-result-item" onClick={updateDeliveryCity} id={item.DeliveryCity}>
                                 {item.Present}
@@ -170,11 +172,12 @@ function BasketDeliveryInfo({ setClientAdresslInfo }) {
                         className="basket-input active-field delivery-post-office"
                         placeholder="Введіть номер відділення"
                         onChange={departmentSelection}
+                        onClick={() => setInpitValuedeliveryPostOffice("")}
                         value={inpitValuedeliveryPostOffice}
                         required
                     />
                     <div
-                        className={`search-results-delivery-offise ${(isDisplaingSearchResult === false || inpitValuedeliveryPostOffice.length == 0 || searchResultPostOffice.length == 0) ? "display-none" : "diplay-block-post-office"} `}
+                        className={`search-results-delivery-offise ${(isDisplaingSearchResultCargo === false || inpitValuedeliveryPostOffice.length == 0 || searchResultPostOffice.length == 0) ? "display-none" : "diplay-block-post-office"} `}
 
                     >
                         {searchResultPostOffice.map((item, index) => (

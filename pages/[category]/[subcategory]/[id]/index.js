@@ -37,7 +37,8 @@ export async function getServerSideProps(context) {
             subcategory: good ? good.sub_category_detail : null,
             title: good ? good.title : null,
             id: good.id,
-            available: good.available
+            available: good.available,
+            seller_id: good ? good.seller_id : null
         };
     }
 

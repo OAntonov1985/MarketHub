@@ -14,7 +14,7 @@ function GoodCardDescription({ props, breadCrumpData }) {
     const [textInButton, setTextInButton] = useState("Докладніше");
 
 
-    const { title, description, price, thumbnail, available } = props;
+    const { title, description, price, thumbnail, available, seller_id } = props;
     const { id } = breadCrumpData;
     const dispatch = useDispatch();
     const { userFavorite } = useSelector((state) => state.user);
@@ -36,7 +36,8 @@ function GoodCardDescription({ props, breadCrumpData }) {
                     price: price,
                     thumbnail: thumbnail,
                     number: 1,
-                    totalPrice: price
+                    totalPrice: price,
+                    seller_id: seller_id
                 }
             ));
         }
