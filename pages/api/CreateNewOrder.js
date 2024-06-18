@@ -1,6 +1,5 @@
 import { MaketHubURL } from '@/components/Constants';
 
-
 export default async function CreateNewOrder(body) {
     let result;
 
@@ -14,7 +13,6 @@ export default async function CreateNewOrder(body) {
         });
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
             result = data;
         } else {
             throw new Error('Упс.... Щось пішло не так. зверніться до розробників');

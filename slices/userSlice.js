@@ -159,12 +159,21 @@ const userSlice = createSlice({
         },
         setSearchTotalResult: (state, action) => {
             state.total = action.payload;
+        },
+        setClearUserBasket: (state, action) => {
+            state.userBasket = [];
+            state.quantityOfGoods = 0;
+            state.totalPriseInAllBasket = 0;
+
+            const updatedBasketJSON = JSON.stringify(state.userBasket);
+            localStorage.setItem('BASKET', updatedBasketJSON);
+
         }
     }
 });
 
 
 
-export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite, setCategorieToRender, setPhotoArrayLength, setActiveSpinner, setActiveSubItemInGood, setGoodToEdit, setSearchPearchPhrase, setSearchActive, setSearchTotalResult } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite, setCategorieToRender, setPhotoArrayLength, setActiveSpinner, setActiveSubItemInGood, setGoodToEdit, setSearchPearchPhrase, setSearchActive, setSearchTotalResult, setClearUserBasket } = userSlice.actions;
 
 export default userSlice.reducer;

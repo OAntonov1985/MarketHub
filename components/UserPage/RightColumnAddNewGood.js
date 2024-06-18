@@ -43,7 +43,7 @@ function RightColumnAddNewGood() {
 
     const dispatch = useDispatch();
     const router = useRouter();
-    const userID = Cookies.get('userID');
+    const userID = parseInt(Cookies.get('userID'));
 
 
     const fetchData = async () => {
@@ -126,7 +126,7 @@ function RightColumnAddNewGood() {
                         brend: productBrend,
                         category_details: categoryInfo,
                         sub_category_detail: subCategoryInfo,
-                        seller_id: 1003,
+                        seller_id: userID,
                         create_at: formattedDate,
                         how_many_solds: 0
                     }
@@ -165,11 +165,7 @@ function RightColumnAddNewGood() {
             if (!Array.isArray(productDescription)) {
                 console.log(productDescription.split('.').map(item => item + "."))
             }
-
-
         }
-
-
     }
 
 

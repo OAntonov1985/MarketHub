@@ -45,7 +45,7 @@ function Header({ transparentBackground }) {
 
     // const session = getSession() 
     // const allCookies = Cookies.get();
-    // console.log(allCookies)
+    // console.log(userBasket)
 
 
 
