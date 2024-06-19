@@ -3440,9 +3440,17 @@ h2 {
   flex: 1 1 auto;
   margin: 4rem 0 14rem;
 }
+@media only screen and (max-width: 768px) {
+  .userPage-content {
+    padding: 4rem 0 15rem 4rem;
+    margin: 0;
+    gap: 4rem;
+  }
+}
 
 .userPage-left-column {
   width: 20%;
+  min-width: 22.8rem;
   height: 69.4rem;
   padding: 2.4rem;
   color: #FBFBFB;
@@ -3451,6 +3459,11 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+@media only screen and (max-width: 1280px) {
+  .userPage-left-column {
+    padding: 1.6rem;
+  }
 }
 
 .exit-button {
@@ -3481,12 +3494,22 @@ h2 {
   font-weight: normal;
   margin-bottom: 2.4rem;
 }
+@media only screen and (max-width: 1280px) {
+  .left-column-title {
+    font-size: 2.8rem;
+  }
+}
 
 .left-column-item {
   margin-bottom: 2.4rem;
   font-size: 2.4rem;
   font-weight: normal;
   cursor: pointer;
+}
+@media only screen and (max-width: 1200px) {
+  .left-column-item {
+    font-size: 2.2rem;
+  }
 }
 
 .left-column-orders-list, .left-column-goods-list {
@@ -3504,9 +3527,24 @@ h2 {
 .list-open-orders {
   height: 31.2rem;
 }
+@media only screen and (max-width: 1200px) {
+  .list-open-orders {
+    height: 30.2rem;
+  }
+}
 
 .list-open-goods {
   height: 20.8rem;
+}
+@media only screen and (max-width: 1397px) {
+  .list-open-goods {
+    height: 23.4rem;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .list-open-goods {
+    height: 22.5rem;
+  }
 }
 
 .userPage-left-column-orders, .userPage-left-column-goods {
@@ -3519,7 +3557,7 @@ h2 {
   width: 2.4rem;
   height: 2.4rem;
   position: relative;
-  margin-bottom: 2.4rem;
+  min-width: 2.4rem;
   transform: rotate(-90deg);
   transition: transform 0.5s ease;
 }
@@ -3539,6 +3577,13 @@ h2 {
   width: 2.4rem;
   height: 2.4rem;
   position: relative;
+  min-width: 2.4rem;
+}
+@media only screen and (max-width: 1180px) {
+  .orders-li-image-container, .goods-li-image-container {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
 }
 
 .userPage-right-column {
@@ -3546,14 +3591,42 @@ h2 {
   height: 69.4rem;
   border: 1px solid #34C3DD;
 }
+@media only screen and (max-width: 768px) {
+  .userPage-right-column {
+    border: none;
+  }
+}
 
 .right-culumn-user-info-container {
   padding: 2.4rem;
+}
+@media only screen and (max-width: 768px) {
+  .right-culumn-user-info-container {
+    padding: 0 4rem 0 0;
+  }
+}
+
+.user-info-title {
+  display: none;
+}
+@media only screen and (max-width: 768px) {
+  .user-info-title {
+    display: block;
+    font-size: 3.2rem;
+    font-weight: 500;
+    color: #012767;
+    margin-bottom: 2.4rem;
+  }
 }
 
 .user-info-form {
   display: flex;
   flex-direction: column;
+}
+@media only screen and (max-width: 768px) {
+  .user-info-form {
+    max-width: 34.3rem;
+  }
 }
 
 .user-info-form-label, .product-name-title, .product-price-title, .product-price-photo, .product-description-title {
@@ -3562,9 +3635,17 @@ h2 {
   color: #012767;
   margin-bottom: 1rem;
 }
+@media only screen and (max-width: 768px) {
+  .user-info-form-label, .product-name-title, .product-price-title, .product-price-photo, .product-description-title {
+    margin-left: 0;
+    color: #012767 !important;
+    margin-bottom: 1.2rem;
+  }
+}
 
 .user-info-form-input, .product-name-form-input, .product-price-form-input {
   max-width: 49.8rem;
+  width: 100%;
   height: 6rem;
   margin-bottom: 2.4rem;
   padding: 1.5rem;
@@ -3574,11 +3655,25 @@ h2 {
   border-radius: 0.8rem;
   outline: 1px solid #012767;
 }
+@media only screen and (max-width: 768px) {
+  .user-info-form-input, .product-name-form-input, .product-price-form-input {
+    height: 4rem;
+    border-radius: 0.4rem;
+    font-size: 2rem;
+  }
+}
 
 .form-input-unactive {
   color: #6B7280;
   outline: 1px solid #6B7280;
   border: 1px solid #6B7280;
+}
+@media only screen and (max-width: 768px) {
+  .form-input-unactive {
+    color: #000000;
+    outline: 1px solid #000000;
+    border: 1px solid #000000;
+  }
 }
 
 .form-input-unactive-text {
@@ -3597,6 +3692,13 @@ h2 {
   display: flex;
   justify-content: space-between;
   padding: 0 1.6rem;
+  width: 100%;
+}
+@media only screen and (max-width: 768px) {
+  .user-info-buttons-container {
+    padding: 0;
+    width: 100%;
+  }
 }
 
 .user-info-button {
@@ -3606,24 +3708,58 @@ h2 {
   cursor: pointer;
   font-size: 2.2rem;
 }
+@media only screen and (max-width: 768px) {
+  .user-info-button {
+    font-size: 1.8rem;
+  }
+}
+
+.button-edit {
+  margin-left: 33.8rem;
+}
+@media only screen and (max-width: 810px) {
+  .button-edit {
+    display: block;
+    margin-left: auto;
+  }
+}
 
 .button-display-none {
-  opacity: 0;
+  display: none;
   cursor: auto;
 }
 
-.button-edit::after {
+.button-edit::after, .button-cansel::after {
   content: "";
   display: block;
   border-bottom: 2px solid #012767;
   width: 17rem;
   height: 0px;
 }
+@media only screen and (max-width: 768px) {
+  .button-edit::after, .button-cansel::after {
+    width: 14rem;
+  }
+}
+
+.button-cansel::after {
+  width: 10.5rem;
+}
+@media only screen and (max-width: 768px) {
+  .button-cansel::after {
+    width: 8.5rem;
+  }
+}
 
 .button-save {
   border: 1px solid #76CA66;
   padding: 0.8rem 3.6rem;
   border-radius: 0.4rem;
+}
+@media only screen and (max-width: 768px) {
+  .button-save {
+    padding: 0.8rem 2.8rem;
+  }
 }
 
 .add-new-good {

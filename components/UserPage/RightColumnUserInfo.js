@@ -57,6 +57,7 @@ function RightColumnUserInfo() {
 
     return (
         <div className='right-culumn-user-info-container'>
+            <h4 className='user-info-title'>Мій профіль</h4>
             <form className="user-info-form">
                 <label htmlFor="userName"
                     className={`user-info-form-label ${isActiveFields ? "" : "form-input-unactive-text"}`}>
@@ -115,17 +116,19 @@ function RightColumnUserInfo() {
             </form>
             <div className='user-info-buttons-container'>
                 <button
-                    className={`user-info-button button-cansel ${isActiveFields ? "" : "button-display-none"}`}
+                    className={`user-info-button button-cansel  ${isActiveFields ? "" : "button-display-none"}`}
                     disabled={!isActiveFields}
                     onClick={deleteChanges}>
                     Відмінити</button>
-                <button className={`user-info-button button-edit ${isActiveFields ? "button-display-none" : ""}`}
-                    onClick={changeUserData}
-                >Редагувати дані</button>
                 <button
                     className={`user-info-button button-save ${isActiveFields ? "" : "button-display-none"}`}
                     onClick={saveChanges}
                 >Зберегти</button>
+            </div>
+            <div className='user-info-buttons-container-edit'>
+                <button className={`user-info-button button-edit ${isActiveFields ? "button-display-none" : ""}`}
+                    onClick={changeUserData}
+                >Редагувати дані</button>
             </div>
 
         </div>
