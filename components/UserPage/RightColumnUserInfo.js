@@ -18,29 +18,45 @@ function RightColumnUserInfo() {
 
     //////////   userPhone    //////////
     const [userPhone, setUserPfone] = useState(pfone);
-    const [showErrorPhone, setShowErrorPhone] = useState(false);
-    function validateUserTel(e) {
-        setUserPfone(e)
-        if (userPhone.length === 12) {
-            setShowErrorPhone(true);
-        }
-        else setShowErrorPhone(false);
-    };
+
 
     //////////   userPassword    //////////
     const [userPassword, setUserPassword] = useState('XXXXXXXX');
 
+    //////////   userEmail    //////////
+    const [userEmail, setUserEmail] = useState(email);
+    const [inputEmailClass, setInputEmailClass] = useState("user-email");
+    const [showErrorEmail, setShowErrorEmail] = useState(false);
+
+    function validateEmail() {
+        if (/^[a-zA-Z0-9]{3,}@[a-zA-Z0-9]{3,}\.[a-zA-Z0-9]{2,}$/.test(userEmail)) {
+            setShowErrorEmail(false);
+            setInputEmailClass("user-email border-green")
+        }
+        else {
+            setShowErrorEmail(true);
+            setInputEmailClass("user-email border-red")
+        }
+    }
+    // console.log(userPhone.length)
+
     function saveChanges() {
         if (userName.trim().length <= 2) alert("Їм'я має містити більше ніж 2 символи");
         else if (userSurname.trim().length <= 2) alert("Прізвище має містити більше ніж 2 символи");
-        else if (showErrorPhone) alert("Невірно введений телефон. Спробуйте ще");
+        else if (userPhone.length < 12) alert("Невірно введений телефон. Спробуйте ще");
         else if (userPassword.trim().length <= 6) alert("Мінімальна кількість символів в паролі має бути більше шести!");
-        else if (userName.trim().length > 2 && userSurname.trim().length > 2 && !showErrorPhone && userPassword.trim().length > 6) setIsActiveFields(!isActiveFields);
-        console.log(1 + parseInt("11"))
-        console.log(userName)
-        console.log(userSurname)
-        console.log(userPhone)
-        console.log(userPassword)
+        else if (userName.trim().length > 2 && userSurname.trim().length > 2 && userPhone.length !== 12 && userPassword.trim().length > 6) setIsActiveFields(!isActiveFields);
+        const newUserInfo = {
+            newUserName: userName,
+            newUserSurname: userSurname,
+            newUserPhone: userPhone,
+            newUserPassword: userPassword
+        }
+
+        console.log(newUserInfo)
+        // console.log(userSurname)
+        // console.log(userPhone)
+        // console.log(userPassword)
     }
 
     function changeUserData() {
@@ -83,10 +99,10 @@ function RightColumnUserInfo() {
                     className={`user-info-form-label ${isActiveFields ? "" : "form-input-unactive-text"}`}>
                     Номер телефону</label>
                 <input name="userPhone" id="userPhone"
-                    className={isActiveFields ? (`user-info-form-input ${showErrorPhone ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    className={isActiveFields ? (`user-info-form-input ${userPhone.trim().length < 12 ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
                     disabled={!isActiveFields}
                     type="number"
-                    onChange={(e) => validateUserTel(e.target.value)}
+                    onChange={(e) => setUserPfone(e.target.value)}
                     placeholder="Введіть ваш номер телефону"
                     value={userPhone} />
 
@@ -94,12 +110,13 @@ function RightColumnUserInfo() {
                     className={`user-info-form-label ${isActiveFields ? "" : "form-input-unactive-text"}`}>
                     Електрона пошта</label>
                 <input name="userEmail" id="userEmail"
-                    className="user-info-form-input form-input-unactive"
-                    disabled
-                    readOnly
+                    className={isActiveFields ? (`user-info-form-input ${showErrorEmail ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    disabled={!isActiveFields}
                     placeholder="Введіть вашу пошту"
                     autoComplete="userEmail"
-                    value={email} />
+                    onChange={(e) => setUserEmail(e.target.value)}
+                    onBlur={(e) => validateEmail(e.target.value)}
+                    value={userEmail} />
 
                 <label htmlFor="userPassword"
                     className={`user-info-form-label ${isActiveFields ? "" : "form-input-unactive-text"}`}>
@@ -109,6 +126,7 @@ function RightColumnUserInfo() {
                     id="userPassword"
                     className={isActiveFields ? (`user-info-form-input ${userPassword.trim().length <= 6 ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
                     disabled={!isActiveFields}
+                    onClick={() => setUserPassword("")}
                     onChange={(e) => setUserPassword(e.target.value)}
                     placeholder="Введіть вашпароль"
                     autoComplete="current-password"
