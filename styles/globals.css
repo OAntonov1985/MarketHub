@@ -3762,6 +3762,11 @@ h2 {
   }
 }
 
+.unactive-button {
+  border: 1px solid #6B7280;
+  color: #6B7280;
+}
+
 .add-new-good {
   width: 100%;
   height: 100%;

@@ -35,20 +35,14 @@ function Header({ transparentBackground }) {
     const { quantityOfFavorite } = useSelector((state) => state.user);
     const { total } = useSelector((state) => state.user);
     let { userName } = useSelector((state) => state.user);
+    // console.log(userName)
 
     const pathname = usePathname();
     const router = useRouter();
 
 
     const isSession = useSession();
-    const { data, status } = isSession;
-
-    // const session = getSession() 
-    // const allCookies = Cookies.get();
-    // console.log(userBasket)
-
-
-
+    const { status } = isSession;
 
 
     useEffect(() => {
@@ -86,10 +80,11 @@ function Header({ transparentBackground }) {
 
 
 
+
     useEffect(() => {
-        if (status == "authenticated") {
-            dispatch(setUserName(data.user.name.split(' ')[0]));
-            setHeaderName(<div className='header-user-name'>Привіт, {data.user.name.split(' ')[0]}!</div>);
+        if (status == "authenticated" || status == "loading") {
+            dispatch(setUserName(userName));
+            setHeaderName(<div className='header-user-name'>Привіт, {userName}!</div>);
             setUserPath("/userpage");
         }
 
@@ -98,7 +93,7 @@ function Header({ transparentBackground }) {
             setHeaderName(null);
             setUserPath("/loginpage");
         }
-    }, [status]);
+    }, [status, userName]);
 
 
     useEffect(() => {
