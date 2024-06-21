@@ -43,40 +43,43 @@ function RightColumnUserInfo() {
 
 
     async function saveChanges() {
-        if (userName.trim().length <= 2) alert("Їм'я має містити більше ніж 2 символи");
-        else if (userSurname.trim().length <= 2) alert("Прізвище має містити більше ніж 2 символи");
-        else if (userPhone.length < 12) alert("Невірно введений телефон. Спробуйте ще");
-        else if (userPassword.trim().length <= 6) alert("Мінімальна кількість символів в паролі має бути більше шести!");
-        else if (userName.trim().length > 2 && userSurname.trim().length > 2 && userPhone.length !== 12 && userPassword.trim().length > 6) setIsActiveFields(!isActiveFields);
-        const newUserInfo = {
-            userId: id,
-            newUserName: userName.trim(),
-            newUserSurname: userSurname.trim(),
-            newUserPhone: userPhone.trim(),
-            newUserEmail: userEmail.trim(),
-            ...(userPassword !== 'XXXXXXXX' && { newUserPassword: userPassword.trim() })
-        };
-        dispatch(setActiveSpinner(true));
-        const { result } = await ChangeUserInfo(newUserInfo);
-        if (result.status == 200) {
-            if (name !== userName) {
-                dispatch(setUserName(userName));
-                Cookies.set('userName', userName, { path: '/' });
-            }
-            if (surName !== userSurname) {
-                Cookies.set('userSurname', userSurname, { path: '/' });
-            }
-            if (pfone !== userPhone) {
-                Cookies.set('userPhone', userPhone, { path: '/' });
-            }
-            if (email !== userEmail) {
-                Cookies.set('userEmail', userEmail, { path: '/' });
+        if (isChangeClientInfo) {
+            if (userName.trim().length <= 2) alert("Їм'я має містити більше ніж 2 символи");
+            else if (userSurname.trim().length <= 2) alert("Прізвище має містити більше ніж 2 символи");
+            else if (userPhone.length < 12) alert("Невірно введений телефон. Спробуйте ще");
+            else if (userPassword.trim().length <= 6) alert("Мінімальна кількість символів в паролі має бути більше шести!");
+            else if (userName.trim().length > 2 && userSurname.trim().length > 2 && userPhone.length !== 12 && userPassword.trim().length > 6) setIsActiveFields(!isActiveFields);
+            const newUserInfo = {
+                userId: id,
+                newUserName: userName.trim(),
+                newUserSurname: userSurname.trim(),
+                newUserPhone: userPhone.trim(),
+                newUserEmail: userEmail.trim(),
+                ...(userPassword !== 'XXXXXXXX' && { newUserPassword: userPassword.trim() })
+            };
+            dispatch(setActiveSpinner(true));
+            const { result } = await ChangeUserInfo(newUserInfo);
+            if (result.status == 200) {
+                if (name !== userName) {
+                    dispatch(setUserName(userName));
+                    Cookies.set('userName', userName, { path: '/' });
+                }
+                if (surName !== userSurname) {
+                    Cookies.set('userSurname', userSurname, { path: '/' });
+                }
+                if (pfone !== userPhone) {
+                    Cookies.set('userPhone', userPhone, { path: '/' });
+                }
+                if (email !== userEmail) {
+                    Cookies.set('userEmail', userEmail, { path: '/' });
+                }
+                dispatch(setActiveSpinner(false));
+                alert("Облікові дані успішно змінено");
             }
             dispatch(setActiveSpinner(false));
-            alert("Облікові дані успішно змінено");
+            setIsActiveFields(false);
         }
-        dispatch(setActiveSpinner(false));
-        setIsActiveFields(false);
+
     }
 
     function changeUserData() {
@@ -85,13 +88,14 @@ function RightColumnUserInfo() {
 
     function deleteChanges() {
         setIsActiveFields(!isActiveFields);
-        setUserName(name);
+        setUserNameIn(name);
         setUserSurname(surName);
         setUserPfone(pfone);
         setUserEmail(email);
         setUserPassword('XXXXXXXX');
+        setIsChangeClientInfo(false);
     }
-    console.log(isChangeClientInfo)
+
 
     useEffect(() => {
         if (name !== userName || surName !== userSurname || userPassword !== 'XXXXXXXX' || pfone !== userPhone) {
@@ -99,7 +103,7 @@ function RightColumnUserInfo() {
         } else {
             setIsChangeClientInfo(false);
         }
-    }, [name, surName, userPassword, pfone, userName, userSurname]);
+    }, [userName, userSurname, userPassword, userPhone, userName, userSurname]);
 
     return (
         <div className='right-culumn-user-info-container'>
@@ -173,7 +177,6 @@ function RightColumnUserInfo() {
                         ${isActiveFields ? "" : "button-display-none"} 
                         ${!isChangeClientInfo ? "unactive-button" : ""}`}
                     onClick={saveChanges}
-                    disabled={isChangeClientInfo}
                 >Зберегти</button>
             </div>
             <div className='user-info-buttons-container-edit'>

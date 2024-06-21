@@ -3,11 +3,16 @@
 .right-culumn-user-orders-container    
     display: flex
     flex-direction: column   
-    justify-content: space-between
+    justify-content: flex-start
     height: 100%
     font-size: 1.8rem
     color: $color-text-main
     padding: 2.4rem
+    @media only screen and (max-width : 1120px)
+        padding: 0
+        
+        
+        
 
 .selector-bottom
     margin-bottom: 0
@@ -76,10 +81,104 @@
     grid-template-columns: minmax(10.7%, auto) minmax(20.4%, auto) minmax(20.4%, auto) minmax(15%, auto) minmax(15%, auto)
     gap: 1rem
     margin-bottom: 2rem
+    @media only screen and (max-width : 1120px)
+        display: none
 
 .grid-item   
     text-align: left 
     align-items: flex-start
     margin-bottom: 2rem    
     overflow-wrap: break-word
+    
+    
 
+.headet-subtitle
+    @media only screen and (max-width : 1120px)
+        // display: none
+
+
+
+//////////////////////////////ORDER LIST FLEX //////////////////////////////
+
+.orders-list-flex
+    display: none
+    @media only screen and (max-width : 1120px)
+        display: block
+       
+
+.order-left-column
+    
+
+.order-item-in-userpage
+    list-style-type: none
+    height: 11.6rem
+    border: 1px solid #000000
+    border-radius: .4rem
+    margin-bottom: 2.4rem
+    display: flex
+    font-size: 1.2rem
+    padding: 1.2rem
+    // gap: 1.6rem
+    justify-content: space-between
+
+.order-left-column-order-img-container
+    position: relative
+    width: 7rem
+    height: 7rem
+    border: 1px solid #000000
+
+.order-left-column-order-number
+    margin-bottom: .8rem
+    
+
+.order-left-column-order-number
+    margin-right: 1.6rem
+
+
+.order-central-column
+    flex:  1 1 auto
+    margin-right: 1rem
+    // div
+    //     margin-bottom: 1.2rem
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+.order-central-column-good-title
+    font-size: 1.6rem
+
+.order-central-column-good-title 
+
+
+
+.order-right-column
+    display: flex
+    flex-direction: column   
+    justify-content: space-between
+    
+.order-right-column-up-string
+    // display: flex
+    // gap: 1.6rem
+    // align-items: flex-start
+    text-align: right
+
+.container-in-userpage
+    width: 1.6rem !important
+    height: 1.6rem !important
+    gap:  .2rem !important
+
+.logo-of-point-in-userpage
+    width: .3rem !important
+    height: .3rem !important
+    
+
+.order-central-column-good-name
+    // white-space: nowrap
+    // overflow: hidden  
+    text-overflow: ellipsis
+    // max-width: 80%
+
+
+.order-central-column-user-info
+    display: flex
+    flex-wrap: wrap

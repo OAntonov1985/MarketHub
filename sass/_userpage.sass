@@ -3,24 +3,22 @@
 .userPage
     display: flex
     flex-direction: column
-    min-height: 100%
+    min-height: 100vh 
     max-width: 192rem    
-    margin: 0 auto
-    // position: relative
+    margin: 0 auto    
 
 .userPage-content
     display: flex
     gap: 1.7%
-    flex: 1 1 auto
-    margin: 4rem 0 14rem
-    @media only screen and (max-width : 768px)
-        padding: 4rem 0 15rem 4rem
-        margin: 0
+    flex: 1 1 auto    
+    margin: 4rem 0 14rem    
+    @media only screen and (max-width : 1120px)        
+        margin: 4rem 4rem 10rem 4rem
         gap: 4rem
+        flex: 1 1 auto 
 
 //////////////////   LEFT COLUMN   //////////////////
-.userPage-left-column
-    // width: 26.9%
+.userPage-left-column    
     width: 20.0%
     min-width: 22.8rem
     height: 69.4rem   
@@ -33,6 +31,7 @@
     justify-content: space-between
     @media only screen and (max-width : 1280px)
         padding: 1.6rem
+        height: auto 
     
 
 .exit-button
@@ -147,8 +146,9 @@
     width: 78.3%
     height: 69.4rem
     border: 1px solid $color-hover-button 
-    @media only screen and (max-width : 768px)
+    @media only screen and (max-width : 1120px)
         border: none
+        height: auto
    
     
 
@@ -156,14 +156,14 @@
 //////////////////   RIGHT COLUMN  USER INFO  //////////////////
 .right-culumn-user-info-container
     padding: 2.4rem
-    @media only screen and (max-width : 768px)
-        padding: 0 4rem 0 0
-        // max-width: 34.3rem
+    @media only screen and (max-width : 1120px)
+        padding: 0 
+        
 
 
 .user-info-title
     display: none
-    @media only screen and (max-width : 768px)
+    @media only screen and (max-width : 1120px)
         display: block
         font-size: 3.2rem
         font-weight: 500
@@ -173,8 +173,8 @@
 .user-info-form
     display: flex
     flex-direction: column
-    @media only screen and (max-width : 768px)
-        max-width: 34.3rem
+    @media only screen and (max-width : 1120px)
+        // max-width: 34.3rem
    
 
 .user-info-form-label, .product-name-title, .product-price-title, .product-price-photo, .product-description-title
@@ -182,7 +182,7 @@
     font-size: 2.2rem
     color: $color-text-main
     margin-bottom: 1rem
-    @media only screen and (max-width : 768px)
+    @media only screen and (max-width : 1120px)
         margin-left: 0
         color: $color-background-loginpage !important
         margin-bottom: 1.2rem
@@ -208,7 +208,7 @@
     color: #6B7280    
     outline: 1px solid  #6B7280
     border: 1px solid  #6B7280
-    @media only screen and (max-width : 768px)
+    @media only screen and (max-width : 1120px)
         color: #000000 
         outline: 1px solid  #000000
         border: 1px solid  #000000
@@ -227,7 +227,7 @@
     justify-content: space-between
     padding: 0 1.6rem
     width: 100%
-    @media only screen and (max-width : 768px)
+    @media only screen and (max-width : 1120px)
         padding: 0 
         width: 100%
 
@@ -243,7 +243,7 @@
 
 .button-edit
     margin-left: 33.8rem
-    @media only screen and (max-width : 810px)        
+    @media only screen and (max-width : 1120px)        
         display: block
         margin-left: auto
     
@@ -277,6 +277,7 @@
 .unactive-button
     border: 1px solid #6B7280
     color: #6B7280
+    cursor: auto
 
     
    

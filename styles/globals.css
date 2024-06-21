@@ -3429,7 +3429,7 @@ h2 {
 .userPage {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 100vh;
   max-width: 192rem;
   margin: 0 auto;
 }
@@ -3440,11 +3440,11 @@ h2 {
   flex: 1 1 auto;
   margin: 4rem 0 14rem;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1120px) {
   .userPage-content {
-    padding: 4rem 0 15rem 4rem;
-    margin: 0;
+    margin: 4rem 4rem 10rem 4rem;
     gap: 4rem;
+    flex: 1 1 auto;
   }
 }
 
@@ -3463,6 +3463,7 @@ h2 {
 @media only screen and (max-width: 1280px) {
   .userPage-left-column {
     padding: 1.6rem;
+    height: auto;
   }
 }
 
@@ -3591,25 +3592,26 @@ h2 {
   height: 69.4rem;
   border: 1px solid #34C3DD;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1120px) {
   .userPage-right-column {
     border: none;
+    height: auto;
   }
 }
 
 .right-culumn-user-info-container {
   padding: 2.4rem;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1120px) {
   .right-culumn-user-info-container {
-    padding: 0 4rem 0 0;
+    padding: 0;
   }
 }
 
 .user-info-title {
   display: none;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1120px) {
   .user-info-title {
     display: block;
     font-size: 3.2rem;
@@ -3623,19 +3625,13 @@ h2 {
   display: flex;
   flex-direction: column;
 }
-@media only screen and (max-width: 768px) {
-  .user-info-form {
-    max-width: 34.3rem;
-  }
-}
-
 .user-info-form-label, .product-name-title, .product-price-title, .product-price-photo, .product-description-title {
   margin-left: 1.6rem;
   font-size: 2.2rem;
   color: #012767;
   margin-bottom: 1rem;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1120px) {
   .user-info-form-label, .product-name-title, .product-price-title, .product-price-photo, .product-description-title {
     margin-left: 0;
     color: #012767 !important;
@@ -3668,7 +3664,7 @@ h2 {
   outline: 1px solid #6B7280;
   border: 1px solid #6B7280;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1120px) {
   .form-input-unactive {
     color: #000000;
     outline: 1px solid #000000;
@@ -3694,7 +3690,7 @@ h2 {
   padding: 0 1.6rem;
   width: 100%;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1120px) {
   .user-info-buttons-container {
     padding: 0;
     width: 100%;
@@ -3717,7 +3713,7 @@ h2 {
 .button-edit {
   margin-left: 33.8rem;
 }
-@media only screen and (max-width: 810px) {
+@media only screen and (max-width: 1120px) {
   .button-edit {
     display: block;
     margin-left: auto;
@@ -3765,6 +3761,7 @@ h2 {
 .unactive-button {
   border: 1px solid #6B7280;
   color: #6B7280;
+  cursor: auto;
 }
 
 .add-new-good {
@@ -3881,11 +3878,16 @@ h2 {
 .right-culumn-user-orders-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100%;
   font-size: 1.8rem;
   color: #012767;
   padding: 2.4rem;
+}
+@media only screen and (max-width: 1120px) {
+  .right-culumn-user-orders-container {
+    padding: 0;
+  }
 }
 
 .selector-bottom {
@@ -3953,12 +3955,95 @@ h2 {
   gap: 1rem;
   margin-bottom: 2rem;
 }
+@media only screen and (max-width: 1120px) {
+  .grid-container {
+    display: none;
+  }
+}
 
 .grid-item {
   text-align: left;
   align-items: flex-start;
   margin-bottom: 2rem;
   overflow-wrap: break-word;
+}
+
+.orders-list-flex {
+  display: none;
+}
+@media only screen and (max-width: 1120px) {
+  .orders-list-flex {
+    display: block;
+  }
+}
+
+.order-item-in-userpage {
+  list-style-type: none;
+  height: 11.6rem;
+  border: 1px solid #000000;
+  border-radius: 0.4rem;
+  margin-bottom: 2.4rem;
+  display: flex;
+  font-size: 1.2rem;
+  padding: 1.2rem;
+  justify-content: space-between;
+}
+
+.order-left-column-order-img-container {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+  border: 1px solid #000000;
+}
+
+.order-left-column-order-number {
+  margin-bottom: 0.8rem;
+}
+
+.order-left-column-order-number {
+  margin-right: 1.6rem;
+}
+
+.order-central-column {
+  flex: 1 1 auto;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.order-central-column-good-title {
+  font-size: 1.6rem;
+}
+
+.order-right-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.order-right-column-up-string {
+  text-align: right;
+}
+
+.container-in-userpage {
+  width: 1.6rem !important;
+  height: 1.6rem !important;
+  gap: 0.2rem !important;
+}
+
+.logo-of-point-in-userpage {
+  width: 0.3rem !important;
+  height: 0.3rem !important;
+}
+
+.order-central-column-good-name {
+  text-overflow: ellipsis;
+}
+
+.order-central-column-user-info {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .right-culumn-user-list-to-render-container {

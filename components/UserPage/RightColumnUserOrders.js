@@ -6,6 +6,7 @@ import PageIndexserSmall from './PageIndexserSmall';
 import GetUserPurchases from '@/pages/api/GetUserPurchases';
 import { useDispatch } from 'react-redux';
 import { setActiveSpinner } from '@/slices/userSlice';
+import OrderListFlex from './OrderListFlex';
 
 
 function RightColumnUserOrders() {
@@ -29,18 +30,20 @@ function RightColumnUserOrders() {
     useEffect(() => {
         fetchData();
     }, [activePage]);
+    console.log(userPurchases)
 
 
 
 
     return (
         <div className='right-culumn-user-orders-container'>
+            <h4 className='user-info-title'>Мої покупки</h4>
             <div className="grid-container">
-                <div className='order-info-date grid-item'>Дата  та час</div>
-                <div className='order-info-goods grid-item'>Назва і фото товару</div>
-                <div className='order-info-buyer grid-item'>Дані про продавця</div>
-                <div className='order-info-amount grid-item'>Сума замовлення</div>
-                <div className='order-info-order-status grid-item'>Статус замовлення</div>
+                <div className='order-info-date grid-item  headet-subtitle'>Дата  та час</div>
+                <div className='order-info-goods grid-item headet-subtitle'>Назва і фото товару</div>
+                <div className='order-info-buyer grid-item headet-subtitle'>Дані про продавця</div>
+                <div className='order-info-amount grid-item headet-subtitle'>Сума замовлення</div>
+                <div className='order-info-order-status grid-item headet-subtitle'>Статус замовлення</div>
                 {userPurchases && userPurchases.map((item, index) => {
                     let classList = 'order-info-order-status';
                     switch (item.order_status) {
@@ -95,6 +98,8 @@ function RightColumnUserOrders() {
                     );
                 })}
             </div>
+            <OrderListFlex userPurchases={userPurchases} />
+
             <PageIndexserSmall total={totalUserPurchases} setActivePage={setActivePage} activePage={activePage} />
         </div>
     );
