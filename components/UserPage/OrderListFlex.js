@@ -3,7 +3,7 @@ import Image from 'next/image';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
 
 export default function OrderListFlex({ userPurchases }) {
-    console.log(userPurchases[0])
+
     return (
         <ul className='orders-list-flex'>
             {userPurchases.map((item, index) => (
