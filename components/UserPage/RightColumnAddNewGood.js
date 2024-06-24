@@ -81,6 +81,7 @@ function RightColumnAddNewGood() {
             alert('Упс.... Щось пішло не так. зверніться до розробників');
         }
     };
+    console.log(goodToEdit)
 
     useEffect(() => {
         if (goodToEdit) {
@@ -219,7 +220,7 @@ function RightColumnAddNewGood() {
     // console.log(goodSaved)
 
     return (
-        <>
+        <>  <h4 className='user-info-title'>{goodToEdit ? "Редагувати" : "Додати"} товар</h4>
             <form className="add-new-good" onSubmit={handleSubmit}>
                 <label htmlFor="product-name" className="product-name-title">
                     Назва товару

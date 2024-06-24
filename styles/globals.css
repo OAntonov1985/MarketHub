@@ -3402,7 +3402,7 @@ h2 {
   display: flex;
   justify-content: flex-start;
 }
-@media only screen and (max-width: 533px) {
+@media only screen and (max-width: 800px) {
   .item-favorite {
     justify-content: center;
   }
@@ -3463,8 +3463,7 @@ h2 {
 
 .userPage-left-column {
   width: 20%;
-  min-width: 22.8rem;
-  height: 69.4rem;
+  min-width: 25.8rem;
   padding: 2.4rem;
   color: #FBFBFB;
   background-color: #012767;
@@ -3473,36 +3472,37 @@ h2 {
   flex-direction: column;
   justify-content: space-between;
 }
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1120px) {
   .userPage-left-column {
     justify-content: flex-start;
     padding: 1.6rem;
     gap: 4rem;
+    min-width: 22.8rem;
   }
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1120px) {
   .buy {
     transition: 0.5s ease-out;
     height: 38rem;
   }
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1120px) {
   .orders {
     transition: 0.5s ease-out;
     height: 67.8rem;
   }
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1120px) {
   .personal {
     transition: 0.5s ease-out;
     height: 38rem;
   }
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1120px) {
   .goods {
     transition: 0.5s ease-out;
     height: 60.4rem;
@@ -3631,13 +3631,18 @@ h2 {
 
 .userPage-right-column {
   width: 78.3%;
-  height: 69.4rem;
   border: 1px solid #34C3DD;
 }
 @media only screen and (max-width: 1120px) {
   .userPage-right-column {
     border: none;
     height: auto;
+  }
+}
+
+@media only screen and (max-width: 1120px) {
+  .goods-list-flex {
+    display: block;
   }
 }
 
@@ -3692,6 +3697,14 @@ h2 {
   border: 1px solid #012767;
   border-radius: 0.8rem;
   outline: 1px solid #012767;
+}
+@media only screen and (max-width: 1120px) {
+  .user-info-form-input, .product-name-form-input, .product-price-form-input {
+    width: 87%;
+    font-size: 2rem;
+    height: 4rem;
+    padding: 0 1.5rem;
+  }
 }
 @media only screen and (max-width: 768px) {
   .user-info-form-input, .product-name-form-input, .product-price-form-input {
@@ -3813,6 +3826,11 @@ h2 {
   flex-direction: column;
   overflow: auto;
   padding: 2.4rem;
+}
+@media only screen and (max-width: 1120px) {
+  .add-new-good {
+    padding: 0 0.1rem;
+  }
 }
 
 .photo-previews-row {
@@ -4054,6 +4072,10 @@ h2 {
   justify-content: space-between;
 }
 
+.column-in-goodslist {
+  justify-content: space-around;
+}
+
 .order-central-column-good-title {
   font-size: 1.6rem;
 }
@@ -4062,9 +4084,15 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-end;
+  max-width: 10rem;
 }
 
-.order-right-column-up-string {
+.show-edit-menu {
+  font-size: 1.8rem !important;
+}
+
+.order-right-column-up-string, .order-right-column-down-string {
   text-align: right;
 }
 
@@ -4096,7 +4124,12 @@ h2 {
   font-size: 1.8rem;
   color: #012767;
   overflow: hidden;
-  padding: 2.4rem;
+  padding: 2.4rem 2.4rem 0 2.4rem;
+}
+@media only screen and (max-width: 1120px) {
+  .right-culumn-user-list-to-render-container {
+    padding: 0;
+  }
 }
 
 .grid-container-users-goods {
@@ -4104,6 +4137,11 @@ h2 {
   grid-template-columns: minmax(4.7%, auto) minmax(10.4%, auto) minmax(35.4%, auto) minmax(10%, auto) minmax(2%, auto);
   gap: 1rem;
   margin-bottom: 2rem;
+}
+@media only screen and (max-width: 1120px) {
+  .grid-container-users-goods {
+    display: none;
+  }
 }
 
 .user-good-description {

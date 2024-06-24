@@ -99,7 +99,6 @@ function RightColumnUserOrders() {
                 })}
             </div>
             <OrderListFlex userPurchases={userPurchases} />
-
             <PageIndexserSmall total={totalUserPurchases} setActivePage={setActivePage} activePage={activePage} />
         </div>
     );

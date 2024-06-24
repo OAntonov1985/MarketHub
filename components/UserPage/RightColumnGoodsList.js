@@ -9,6 +9,8 @@ import SetProductAvability from '@/pages/api/SetProductAvability';
 import DeleteGood from '@/pages/api/DeleteGood';
 import GetLinksOfImages from '@/pages/api/GetLinksOfImages';
 import deleteImagesAndFolder from '@/pages/api/DeleteFilesInFireBase';
+import Cookies from 'js-cookie';
+
 
 
 function RightColumnGoodsList() {
@@ -21,11 +23,14 @@ function RightColumnGoodsList() {
 
     const objectToSend = { userGoodsToSale, totalUserGoodsToSale, setActivePage, activePage, setActiveItem, activeItem, changeGoodAvability, deleteGood };
 
-    // console.log(userGoodsToSale)
+    const userIDInCoocies = Cookies.get("userID");
+    const iserID = +userIDInCoocies;
+
+
     const fetchData = async () => {
         dispatch(setActiveSpinner(true));
         try {
-            const result = await GetusersGoodsToSale(1003, activePage - 1, activeSubItemInGood === "Активні товари" ? true : activeSubItemInGood === "Неактивні товари" ? false : undefined);
+            const result = await GetusersGoodsToSale(iserID, activePage - 1, activeSubItemInGood === "Активні товари" ? true : activeSubItemInGood === "Неактивні товари" ? false : undefined);
             // console.log(result)
             setUserGoodsToSale(result.result.data);
             setTotalUserGoodsToSale(result.result.total);
@@ -87,9 +92,9 @@ function RightColumnGoodsList() {
 
     return (
         <>
-            {activeSubItemInGood === "Додати товар" ? < RightColumnAddNewGood /> : < RightColumnUsersGoodsListToRender
-                objectToSend={objectToSend}
-            />}
+            {activeSubItemInGood === "Додати товар" ?
+                < RightColumnAddNewGood /> :
+                < RightColumnUsersGoodsListToRender objectToSend={objectToSend} />}
         </>
     )
 }

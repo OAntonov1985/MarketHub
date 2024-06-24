@@ -41,10 +41,9 @@ function UserPageLeftColumn() {
         Cookies.remove('userID', { path: '/' });
         signOut({ callbackUrl: "/" })
     }
-    console.log(categoryToRender)
+    // console.log(isActiveCategorie)
 
     return (
-        // <div className={`userPage-left-column ${categoryToRender == "Покупки" ? "buy" : ''} ${categoryToRender == "Замовлення" ? "orders" : ''}`}>
         <div className={`userPage-left-column ${categoryToRender === "Покупки" ? "buy" : ""} ${categoryToRender === "Замволення" ? "orders" : ""} ${categoryToRender == "Особисті дані" ? "personal" : ""} ${categoryToRender == "Товари" ? "goods" : ""}`}>
             <div>
                 <h4 className={'left-column-title'}>Привіт, {userName}</h4>

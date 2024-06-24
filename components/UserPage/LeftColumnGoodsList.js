@@ -8,6 +8,7 @@ function LeftColumnGoodsList({ objToSend }) {
     const dispatch = useDispatch();
     const { activeSubItemInGood } = useSelector((state) => state.user);
 
+
     return (
         <div className='left-column-item'>
             <div className='userPage-left-column-goods' id="Товари"

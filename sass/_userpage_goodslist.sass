@@ -8,13 +8,18 @@
     font-size: 1.8rem
     color: $color-text-main   
     overflow: hidden    
-    padding: 2.4rem 
+    padding: 2.4rem  2.4rem 0 2.4rem
+    @media only screen and (max-width : 1120px)
+        padding: 0
+    
 
 .grid-container-users-goods
     display: grid      
     grid-template-columns: minmax(4.7%, auto) minmax(10.4%, auto) minmax(35.4%, auto) minmax(10%, auto) minmax(2%, auto)
     gap: 1rem
     margin-bottom: 2rem
+    @media only screen and (max-width : 1120px)
+        display: none
 
 .user-good-description
     overflow: hidden

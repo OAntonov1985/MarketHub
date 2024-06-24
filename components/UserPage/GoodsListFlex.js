@@ -1,26 +1,16 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import PageIndexserSmall from './PageIndexserSmall';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setActiveSubItemInGood, setGoodToEdit } from '@/slices/userSlice';
-import GoodsListFlex from './GoodsListFlex';
 
 
-function RightColumnUsersGoodsListToRender({ objectToSend }) {
-    const { userGoodsToSale, totalUserGoodsToSale, setActivePage, activePage, setActiveItem, activeItem, changeGoodAvability, deleteGood } = objectToSend;
 
+export default function GoodsListFlex({ userGoodsToSale, activeItem, setActiveItem, deleteGood, changeGoodAvability }) {
     const dispatch = useDispatch();
-
-    const toggleEditMenu = (itemId) => {
-        const editMenu = document.getElementById(itemId);
-        if (editMenu) {
-            editMenu.classList.toggle('show-edit-menu');
-        }
-        setActiveItem(itemId === activeItem ? null : itemId);
-    };
+    const { activeSubItemInGood } = useSelector((state) => state.user);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -45,42 +35,45 @@ function RightColumnUsersGoodsListToRender({ objectToSend }) {
         dispatch(setGoodToEdit(event.target.id));
     };
 
-
+    const toggleEditMenu = (itemId) => {
+        const editMenu = document.getElementById(itemId);
+        if (editMenu) {
+            editMenu.classList.toggle('show-edit-menu');
+        }
+        setActiveItem(itemId === activeItem ? null : itemId);
+    };
     return (
-        <div className='right-culumn-user-list-to-render-container'>
-            <div className="grid-container-users-goods">
-                <div className='user-good-title grid-item'>Назва товару</div>
-                <div className='user-good-id grid-item'>Код товару</div>
-                <div className='user-good-description grid-item'>Опис товару</div>
-                <div className='user-good-price grid-item'>Ціна</div>
-                <div className='user-good-selector grid-item'></div>
-                {userGoodsToSale && userGoodsToSale.map((item, index) => {
-                    return (
-                        <React.Fragment key={index}>
-                            <div className='order-info-goods grid-item' >
+        <div className='right-culumn-user-orders-container goods-list-flex'>
+            <h4 className='user-info-title'>{activeSubItemInGood}</h4>
+            <ul className='orders-list-flex'>
+                {userGoodsToSale.map((item, index) => (
+                    <li className='order-item-in-userpage' key={index}>
+                        <div className='order-left-column'>
+                            <div className='order-left-column-order-number'>№{item.id}</div>
+                            <div className='order-left-column-order-img-container'>
                                 <Link
-                                    href={`/${item.category_details.name}/${item.sub_category_detail.name}/${item.id}`}
-                                    className='good-photo'>
+                                    href={`/${item.category_details.name}/${item.sub_category_detail.name}/${item.good_id}`}
+                                    className='good-photo-inuserpage'>
                                     <Image
                                         alt="image of good"
-                                        src={item.thumbnail}
+                                        src={item.thumbnail ? item.thumbnail : "/defaultPhoto.png"}
                                         quality={100}
                                         fill
-                                        sizes="(max-width: 100%)"
                                         style={{
-                                            objectFit: 'contain',
-                                            width: '100%'
+                                            objectFit: 'contain'
                                         }}
                                     />
                                 </Link>
-                                <Link
-                                    href={`/${item.category_details.name}/${item.sub_category_detail.name}/${item.id}`}
-                                    className='good-title order-title'>{item.title.split(' ').slice(0, 3).join(' ')}
-                                </Link>
                             </div>
-                            <div>{item.id}</div>
-                            <div className='user-good-description grid-item'>{item.description}</div>
-                            <div className='order-info-amount grid-item'>{formattedPrice(item.price)} грн</div>
+                        </div>
+                        <div className='order-central-column column-in-goodslist'>
+                            <div className='order-central-column-good-title'>Назва товару:</div>
+                            <div className='order-central-column-good-name'>
+                                {item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title}
+                            </div>
+                            <div> {formattedPrice(item.price)}  грн</div>
+                        </div>
+                        <div className='order-right-column'>
                             <div className='order-info-points-container' id={`${item.id} ${item.available}`} onClick={() => toggleEditMenu(item.id)}>
                                 <div className='order-info-points'>
                                     <Image
@@ -140,17 +133,13 @@ function RightColumnUsersGoodsListToRender({ objectToSend }) {
                                     >Видалити</div>
                                 </div>
                             </div>
-                        </React.Fragment>
-                    );
-                })}
-            </div>
-            < GoodsListFlex userGoodsToSale={userGoodsToSale} activeItem={activeItem} setActiveItem={setActiveItem} deleteGood={deleteGood} changeGoodAvability={changeGoodAvability} />
-            {totalUserGoodsToSale < 6 ? null :
-                < PageIndexserSmall total={totalUserGoodsToSale} setActivePage={setActivePage} activePage={activePage} />
-            }
-
+                            <div className='order-right-column-down-string'>{item.available ? "Товар в продажу" : "Товар  вилучений з продажу"}</div>
+                        </div>
+                    </li>
+                )
+                )}
+            </ul>
         </div>
-    )
-}
 
-export default React.memo(RightColumnUsersGoodsListToRender);
+    );
+}

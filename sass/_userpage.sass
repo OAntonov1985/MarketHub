@@ -20,8 +20,8 @@
 //////////////////   LEFT COLUMN   //////////////////
 .userPage-left-column    
     width: 20.0%
-    min-width: 22.8rem
-    height: 69.4rem   
+    min-width: 25.8rem
+    // height: 69.4rem   
     padding: 2.4rem
     color: $background-color
     background-color: $color-background-loginpage
@@ -29,29 +29,29 @@
     display: flex
     flex-direction: column
     justify-content: space-between
-    @media only screen and (max-width : 1280px)
+    @media only screen and (max-width : 1120px)
         justify-content: flex-start
         padding: 1.6rem
         gap: 4rem       
-        // height: 68.4rem
+        min-width: 22.8rem
     
 .buy
-    @media only screen and (max-width : 1280px)
+    @media only screen and (max-width : 1120px)
         transition:  .5s ease-out
         height: 38rem
 
 .orders
-    @media only screen and (max-width : 1280px)
+    @media only screen and (max-width : 1120px)
         transition:  .5s ease-out
         height: 67.8rem
 
 .personal
-    @media only screen and (max-width : 1280px)
+    @media only screen and (max-width : 1120px)
         transition:  .5s ease-out
         height: 38rem
 
 .goods
-    @media only screen and (max-width : 1280px)
+    @media only screen and (max-width : 1120px)
         transition:  .5s ease-out
         height: 60.4rem
 
@@ -168,14 +168,16 @@
 
 .userPage-right-column    
     width: 78.3%
-    height: 69.4rem
+    // height: 69.4rem
     border: 1px solid $color-hover-button 
     @media only screen and (max-width : 1120px)
         border: none
         height: auto
    
-    
-
+.goods-list-flex
+    // display: none
+    @media only screen and (max-width : 1120px)
+        display: block
 
 //////////////////   RIGHT COLUMN  USER INFO  //////////////////
 .right-culumn-user-info-container
@@ -223,6 +225,11 @@
     border: 1px solid $color-text-main
     border-radius: .8rem
     outline: 1px solid $color-text-main
+    @media only screen and (max-width : 1120px)
+        width: 87%
+        font-size: 2rem
+        height: 4rem 
+        padding: 0 1.5rem
     @media only screen and (max-width : 768px)
         height: 4rem
         border-radius: .4rem

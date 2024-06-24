@@ -39,69 +39,8 @@ export default function OrderListFlex({ userPurchases }) {
                         <div> {formattedPrice(item.order_total_price)}  грн</div>
                     </div>
                     <div className='order-right-column'>
-                        <div className='order-right-column-up-string'>18.02.2024
-                            {/* <div>18.02.2024</div> */}
-                            {/* <div className='order-info-points-container container-in-userpage'
-                            // id={`${item.id} ${item.available}`} onClick={() => toggleEditMenu(item.id)}
-                            >
-                                <div className='order-info-points'>
-                                    <Image
-                                        className='logo-of-point-in-userpage'
-                                        alt="logo of point"
-                                        src="/point3.svg"
-                                        quality={100}
-                                        fill
-                                        sizes="(max-width: 100%)"
-                                        style={{
-                                            objectFit: 'contain',
-                                            width: '100%'
-                                        }}
-                                    />
-                                </div>
-                                <div className='order-info-points'>
-                                    <Image
-                                        className='logo-of-point-in-userpage'
-                                        alt="logo of point"
-                                        src="/point3.svg"
-                                        quality={100}
-                                        fill
-                                        sizes="(max-width: 100%)"
-                                        style={{
-                                            objectFit: 'contain',
-                                            width: '100%'
-                                        }}
-                                    />
-                                </div>
-                                <div className='order-info-points'>
-                                    <Image
-                                        className='logo-of-point-in-userpage'
-                                        alt="logo of point"
-                                        src="/point3.svg"
-                                        quality={100}
-                                        fill
-                                        sizes="(max-width: 100%)"
-                                        style={{
-                                            objectFit: 'contain',
-                                            width: '100%'
-                                        }}
-                                    />
-                                </div>
-                                <div className={`edit-menu ${activeItem === item.id ? "show-edit-menu" : ""}`} id={item.id}>
-                                    <div
-                                        id={item.id}
-                                        onClick={(event) => changeGoodAvability(event, item.available)}>
-                                        {item.available === true ? "Деактивувати" : "Активувати"}
-                                    </div>
-                                    <div
-                                        id={item.id}
-                                        onClick={(event) => pushToEditGood(event)}>
-                                        Редагувати</div>
-                                    <div
-                                        id={item.id}
-                                        onClick={(event) => deleteGood(event, item.title)}
-                                    >Видалити</div>
-                                </div>
-                            </div> */}
+                        <div className='order-right-column-up-string'>{item.orderTime ? item.orderTime : "18.02.2024"}
+
                         </div>
                         <div>Обробляється</div>
                     </div>
