@@ -40,11 +40,17 @@ function BasketTotalRow({ clientPersonalInfo, clientAdressInfo }) {
             const sellerArray = [];
             userBasket.forEach(item => sellerArray.push(item.seller_id));
             const originSellers = Array.from(new Set(sellerArray));
+            const today = new Date();
+            const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+            const formattedDate = today.toLocaleDateString('uk-UA', options);
             const newOrder = {
                 "userInfo": clientPersonalInfo,
                 "userAdress": clientAdressInfo,
                 "userBuyingGoods": userBasket,
-                "sellersIDArray": originSellers
+                "sellersIDArray": originSellers,
+                "orderTime": formattedDate,
+                "orderStatus": 'newOrder'
+
             };
 
             const { result } = await CreateNewOrder(newOrder);

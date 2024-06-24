@@ -5,7 +5,7 @@ import GetdBrands from '@/pages/api/GetBrands';
 import { useRouter } from 'next/router';
 
 function AsideFilter({ id, objToAsideFilter }) {
-    const { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, isVisibleAsideFilter, setIsVisibleAsideFilter } = objToAsideFilter;
+    const { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, isVisibleAsideFilter, setIsVisibleAsideFilter, updatetBrands } = objToAsideFilter;
     const [brandsArray, setBrandsArray] = useState([]);
 
     const router = useRouter();
@@ -20,6 +20,7 @@ function AsideFilter({ id, objToAsideFilter }) {
     useEffect(() => {
         GetdBrandsFromDB();
     }, []);
+    // console.log(brandrToFilterSearch)
 
 
     function ChekcInputValue(event, inputType) {
@@ -46,8 +47,13 @@ function AsideFilter({ id, objToAsideFilter }) {
         }
     }
 
+
     useEffect(() => {
-    }, [brandsToFilter]);
+        if (updatetBrands.length !== 0) {
+            setBrandsArray(updatetBrands);
+        }
+    });
+
 
 
 
@@ -61,7 +67,7 @@ function AsideFilter({ id, objToAsideFilter }) {
             <div className="goods-producer">
                 <p className='goods-producer-title'>Виробник:</p>
                 <ul className='goods-producer-list'>
-                    {brandsArray.map(item => {
+                    {(brandsToFilter.length > 0 ? brandsToFilter : brandsArray).map(item => {
                         return <li key={item}>
                             <label className='input-label'>
                                 <input

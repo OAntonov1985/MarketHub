@@ -9,7 +9,10 @@ import EmptySearch from '@/components/EmptySearch';
 
 function SearchResultPage() {
     const [goods, setGoods] = useState([]);
-    const [total, setTotal] = useState([]);
+    const [total, setTotal] = useState("");
+    const [brandrToFilterSearch, setBrandrToFilterSearch] = useState([]);
+
+
 
     const { searchPhrase } = useSelector((state) => state.user);
     const { total: totalFromStore } = useSelector((state) => state.user);
@@ -22,6 +25,7 @@ function SearchResultPage() {
                     const result = await GetSearchResult(searchPhrase);
                     setGoods(result.result.data.splice(0, 12));
                     setTotal(result.result.total);
+                    setBrandrToFilterSearch(result.result.brends)
 
                 } catch (error) {
                     alert('Упс.... Щось пішло не так. зверніться до розробників');
@@ -34,8 +38,6 @@ function SearchResultPage() {
         searchingFunction()
     }, [])
 
-
-
     return (
         <>
             <Head>
@@ -46,7 +48,7 @@ function SearchResultPage() {
             <div className='category-page'>
                 <Header />
                 <div className='category-main-content'>
-                    {(totalFromStore && totalFromStore > 0) ? ((goods && goods.length > 0) ? <GoodsList props={goods} id={100} total={total} setGoods={setGoods} /> : null)
+                    {(totalFromStore && totalFromStore > 0) ? ((goods && goods.length > 0) ? <GoodsList props={goods} id={100} total={total} setGoods={setGoods} brandrToFilterSearch={brandrToFilterSearch} setBrandrToFilterSearch={setBrandrToFilterSearch} /> : null)
                         : <EmptySearch />}
                 </div>
                 <Footer />

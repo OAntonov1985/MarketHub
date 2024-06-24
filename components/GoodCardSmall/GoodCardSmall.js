@@ -17,6 +17,7 @@ function GoodCardSmall({ props, isFavorite }) {
     const [isInFavorite, setIsInFavorite] = useState(false);
     const [className, setClassname] = useState(false)
     const dispatch = useDispatch();
+    const [imgSrc, setImgSrc] = useState(thumbnail ? thumbnail : "/defaultPhoto.png");
     // console.log(sub_category_detail)
 
 
@@ -127,10 +128,11 @@ function GoodCardSmall({ props, isFavorite }) {
                 <div className="container-for-imafe-top-sellers">
                     <Image
                         alt="image of good"
-                        src={thumbnail ? thumbnail : "defaultPhoto.png"}
+                        src={imgSrc}
                         quality={30}
                         fill
                         sizes="(max-width: 100%)"
+                        onError={() => setImgSrc("/defaultPhoto.png")}
                         style={{
                             objectFit: 'contain',
                             width: '100%'

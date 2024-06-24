@@ -692,7 +692,7 @@ h2 {
     align-items: center;
     width: 92%;
     height: 92px;
-    border-radius: 4px;
+    border-radius: 0.4rem !important;
     padding: 8px;
   }
 }
@@ -819,9 +819,9 @@ h2 {
   justify-content: space-between;
   margin-bottom: 14rem;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   .top-sellers-row {
-    justify-content: space-around;
+    justify-content: center;
   }
 }
 @media only screen and (max-width: 533px) {
@@ -836,12 +836,9 @@ h2 {
   display: flex;
   flex-direction: column;
   align-content: center;
-  flex: 1 1 auto;
   height: 48.8rem;
   padding: 1.6rem 0.8rem;
-  width: 22.4%;
-  max-width: 35rem;
-  min-width: 27rem;
+  width: 30.8rem;
   border-radius: 3.2rem;
   border: 1px solid #00E6F4;
   transition: box-shadow 0.3s ease;
@@ -2173,6 +2170,12 @@ h2 {
   max-width: 30rem;
 }
 
+.filter-options-container {
+  display: flex;
+  gap: 1.6rem;
+  justify-content: flex-end;
+}
+
 .selected-sort-option {
   font-size: 1.8rem;
   height: 4rem;
@@ -2184,19 +2187,21 @@ h2 {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  flex: 1 1 auto;
+  width: auto;
 }
 
 .filter-button {
   display: none;
   width: 2.4rem;
+  margin-top: 0.9rem;
   height: 100%;
   cursor: pointer;
 }
 @media only screen and (max-width: 1024px) {
   .filter-button {
-    display: block;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
 }
 
@@ -2441,6 +2446,7 @@ h2 {
 @media only screen and (max-width: 1024px) {
   .goods-list-goods-items {
     width: 100%;
+    justify-content: center;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -3393,6 +3399,13 @@ h2 {
 .item-favorite {
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+@media only screen and (max-width: 533px) {
+  .item-favorite {
+    justify-content: center;
+  }
 }
 
 .empty-favorite {
@@ -4144,6 +4157,16 @@ h2 {
 .search-result-title {
   font-size: 2.4rem;
   color: #012767;
+  text-align: center;
+}
+
+.in-searchpage {
+  height: auto;
+}
+@media only screen and (max-width: 768px) {
+  .in-searchpage {
+    flex-direction: column;
+  }
 }
 
 .search-result-title span {

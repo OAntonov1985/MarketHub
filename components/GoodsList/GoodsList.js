@@ -11,11 +11,11 @@ import GetSearchResultInPage from '@/pages/api/GetSearchResultInPage';
 import { setSearchTotalResult } from '@/slices/userSlice';
 
 
-function GoodsList({ props, id, total, setGoods }) {
+function GoodsList({ props, id, total, brandrToFilterSearch }) {
     const [listGoods, setListGoods] = useState(props);  /// Отримує список товарів з бекенду ///
     const [selectedFilterOption, setSelectedFilterOption] = useState("Новинки"); /// Встановлює опцію сортування (Новинки Від Від) ///
     const [activePage, setActivePage] = useState(1); /// Встановлює активну сторінку перегляду знизу ///
-    const [totalItems, setTotalItems] = useState(); /// Отримує загальну кількість одиниць товарів ///
+    const [totalItems, setTotalItems] = useState(total || null); /// Отримує загальну кількість одиниць товарів ///
 
     const [prciseStart, setPriceStart] = useState(''); /// Встановлює значення в полі ВІД e aside фільтрі ///
     const [prciseEnd, setPriceEnd] = useState('');  /// Встановлює значення в полі ДО e aside фільтрі ///
@@ -24,9 +24,10 @@ function GoodsList({ props, id, total, setGoods }) {
     const [sortIndex, setSortIndex] = useState(0); /// Встановлює сортування (-1, 1, 0)///
     const [pageLoaded, setPageLoaded] = useState(false); /// Запобігає зайвому запуску функції ///
     const [isVisibleAsideFilter, setIsVisibleAsideFilter] = useState(false);  /// Відображає чи скриває бічний фільтр в мобільній ///
+    const [updatetBrands, setUpdatetBrands] = useState(brandrToFilterSearch || []);
 
 
-    const objToAsideFilter = { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, isVisibleAsideFilter, setIsVisibleAsideFilter };
+    const objToAsideFilter = { setIsAvailabale, setPriceStart, setPriceEnd, setBrandsTofilter, brandsToFilter, applyChangesAsideFilter, prciseEnd, prciseStart, isAvailabale, isVisibleAsideFilter, setIsVisibleAsideFilter, updatetBrands };
 
     const router = useRouter();
     const dispatch = useDispatch();
@@ -34,15 +35,12 @@ function GoodsList({ props, id, total, setGoods }) {
     const { searchPhrase } = useSelector((state) => state.user);
     const { searchActive } = useSelector((state) => state.user);
 
-
-
     async function getFilteredDataMinMax() {
         const { result } = await GetFilteredData(id, sortIndex, activePage === 1 ? 0 : activePage - 1,
             prciseStart, prciseEnd, brandsToFilter, isAvailabale, subCategoryName);
         setTotalItems(result.total)
         setListGoods(result.data);
     };
-
 
 
     async function getFilteredDataInSearchPage() {
@@ -53,6 +51,7 @@ function GoodsList({ props, id, total, setGoods }) {
         setTotalItems(result.total);
         setListGoods(result.data);
     }
+
 
     function selectPageAndGetData() {
         if (router.pathname !== "/searchresultpage") {
@@ -76,12 +75,14 @@ function GoodsList({ props, id, total, setGoods }) {
             async function getFilteredDataInSearchPage() {
                 const { result } = await GetSearchResultInPage(searchPhrase, 0, 0,
                     null, null, []);
+                setUpdatetBrands(result.brands);
                 setTotalItems(result.total)
                 setListGoods(result.data);
             };
             getFilteredDataInSearchPage();
         }
-    }, [searchActive])
+    }, [searchActive]);
+
 
 
     useEffect(() => {
@@ -104,7 +105,6 @@ function GoodsList({ props, id, total, setGoods }) {
         } else setActivePage(1);
     };
 
-
     return (
         <div className='goods-list'>
             {listGoods && listGoods.length ?
@@ -120,7 +120,7 @@ function GoodsList({ props, id, total, setGoods }) {
                             })}
                         </div>
                     </div>
-                    <PageIndexer total={total} setActivePage={setActivePage} activePage={activePage} totalItems={totalItems} sortIndex={sortIndex} selectPageAndGetData={selectPageAndGetData} />
+                    {totalItems < 12 ? null : <PageIndexer total={total} setActivePage={setActivePage} activePage={activePage} totalItems={totalItems} sortIndex={sortIndex} selectPageAndGetData={selectPageAndGetData} />}
                 </> : null}
         </div>
     )

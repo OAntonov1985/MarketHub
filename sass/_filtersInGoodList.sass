@@ -18,6 +18,13 @@
 .filter-container
     width: 86%
     max-width: 30rem
+    // display: flex
+    // gap: 1.6rem
+
+.filter-options-container
+    display: flex
+    gap: 1.6rem
+    justify-content: flex-end
 
 .selected-sort-option   
     font-size: 1.8rem   
@@ -30,17 +37,19 @@
     align-items: center
     justify-content: space-between     
     cursor: pointer
+    flex:  1 1 auto
+    width: auto
 
 .filter-button
     display: none
     width: 2.4rem
-    // height: 2.4rem
+    margin-top: .9rem
     height: 100%
     cursor: pointer
-    @media only screen and (max-width : 1024px)
-        display: block
+    // align-items: flex-start
+    @media only screen and (max-width : 1024px)        
         display: flex
-        align-items: center
+        align-items: flex-start
 
 
 .filter-arrow-button    
