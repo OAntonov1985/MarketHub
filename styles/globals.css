@@ -3460,6 +3460,11 @@ h2 {
     flex: 1 1 auto;
   }
 }
+@media only screen and (max-width: 660px) {
+  .userPage-content {
+    margin: 2.4rem 1.6rem 6rem;
+  }
+}
 
 .userPage-left-column {
   width: 20%;
@@ -3478,6 +3483,15 @@ h2 {
     padding: 1.6rem;
     gap: 4rem;
     min-width: 22.8rem;
+  }
+}
+@media only screen and (max-width: 660px) {
+  .userPage-left-column {
+    width: 100%;
+    min-width: 100%;
+    color: #012767;
+    background-color: #F8FAFC;
+    padding: 0;
   }
 }
 
@@ -3501,7 +3515,6 @@ h2 {
     height: 38rem;
   }
 }
-
 @media only screen and (max-width: 1120px) {
   .goods {
     transition: 0.5s ease-out;
@@ -3509,6 +3522,36 @@ h2 {
   }
 }
 
+.display-none-in-userpage {
+  display: block;
+}
+@media only screen and (max-width: 660px) {
+  .display-none-in-userpage {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  .display-block {
+    display: block;
+    width: 100% !important;
+  }
+}
+
+.header-container {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.arrou-image-container {
+  z-index: 2;
+  margin-top: 0.2rem;
+  position: relative;
+  width: 2.4rem;
+  height: 3.7rem;
+  display: none;
+  display: block;
+}
 .exit-button {
   font-size: 1.6rem;
   color: #FBFBFB;
@@ -3516,6 +3559,15 @@ h2 {
   background-color: #012767;
   cursor: pointer;
   position: relative;
+}
+@media only screen and (max-width: 660px) {
+  .exit-button {
+    color: #012767;
+    background-color: #F8FAFC;
+    border: 1px solid #000000;
+    border-radius: 0.4rem;
+    padding: 0.8rem 1.6rem;
+  }
 }
 
 .exit-button::after {
@@ -3530,6 +3582,11 @@ h2 {
 
 .active-color {
   color: #76CA66;
+}
+@media only screen and (max-width: 660px) {
+  .active-color {
+    color: #012767;
+  }
 }
 
 .left-column-title {
@@ -3552,6 +3609,14 @@ h2 {
 @media only screen and (max-width: 1200px) {
   .left-column-item {
     font-size: 2.2rem;
+  }
+}
+@media only screen and (max-width: 660px) {
+  .left-column-item {
+    font-size: 2rem;
+    border: 2px solid #000000;
+    border-radius: 0.4rem;
+    padding: 0.8rem 1.6rem;
   }
 }
 
@@ -3654,7 +3719,6 @@ h2 {
     padding: 0;
   }
 }
-
 .user-info-title {
   display: none;
 }
@@ -3711,6 +3775,12 @@ h2 {
     height: 4rem;
     border-radius: 0.4rem;
     font-size: 2rem;
+  }
+}
+@media only screen and (max-width: 660px) {
+  .user-info-form-input, .product-name-form-input, .product-price-form-input {
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -3772,6 +3842,7 @@ h2 {
   .button-edit {
     display: block;
     margin-left: auto;
+    height: 3.9rem;
   }
 }
 

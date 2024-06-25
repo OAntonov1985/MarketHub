@@ -3,7 +3,8 @@ import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
 import ChangeUserInfo from '@/pages/api/ChangeUserInfo';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserName, setActiveSpinner } from '@/slices/userSlice';
+import { setUserName, setActiveSpinner, setRenderInfo } from '@/slices/userSlice';
+import Image from 'next/image';
 
 
 function RightColumnUserInfo() {
@@ -21,6 +22,7 @@ function RightColumnUserInfo() {
     const [userPassword, setUserPassword] = useState('XXXXXXXX');
     const [userPhone, setUserPfone] = useState(pfone);
     const [isChangeClientInfo, setIsChangeClientInfo] = useState(false);
+    const { renderInfo } = useSelector((state) => state.user);
 
 
     //////////   userEmail    //////////
@@ -107,7 +109,24 @@ function RightColumnUserInfo() {
 
     return (
         <div className='right-culumn-user-info-container'>
-            <h4 className='user-info-title'>Мій профіль</h4>
+            <div className='header-container' onClick={() => dispatch(setRenderInfo("start"))}>
+                <div className='arrou-image-container'>
+                    <Image
+                        className='logo-of-point'
+                        alt="logo of point"
+                        src="/arrow-left.svg"
+                        quality={100}
+                        fill
+                        sizes="(max-width: 100%)"
+                        style={{
+                            objectFit: 'contain',
+                            width: '100%'
+                        }}
+                    />
+                </div>
+                <h4 className='user-info-title'>Мій профіль</h4>
+            </div>
+
             <form className="user-info-form">
                 <label htmlFor="userName"
                     className={`user-info-form-label ${isActiveFields ? "" : "form-input-unactive-text"}`}>

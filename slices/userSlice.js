@@ -16,7 +16,8 @@ const initialState = {
     goodToEdit: '',
     searchPhrase: '',
     searchActive: 1,
-    total: ""
+    total: "",
+    renderInfo: "start"
 };
 
 
@@ -167,13 +168,16 @@ const userSlice = createSlice({
 
             const updatedBasketJSON = JSON.stringify(state.userBasket);
             localStorage.setItem('BASKET', updatedBasketJSON);
-
+        },
+        setRenderInfo: (state, action) => {
+            console.log(action.payload)
+            state.renderInfo = action.payload;
         }
     }
 });
 
 
 
-export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite, setCategorieToRender, setPhotoArrayLength, setActiveSpinner, setActiveSubItemInGood, setGoodToEdit, setSearchPearchPhrase, setSearchActive, setSearchTotalResult, setClearUserBasket } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite, setCategorieToRender, setPhotoArrayLength, setActiveSpinner, setActiveSubItemInGood, setGoodToEdit, setSearchPearchPhrase, setSearchActive, setSearchTotalResult, setClearUserBasket, setRenderInfo } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -14,6 +14,8 @@ function UserPageLeftColumn() {
     const { categoryToRender } = useSelector((state) => state.user);
     const [isActiveCategorie, setIsActiveCatogorie] = useState(categoryToRender);
     const { pfotoArrayLength } = useSelector((state) => state.user);
+    const { renderInfo } = useSelector((state) => state.user);
+
 
     const objToSend = { setIsActiveCatogorie, setActiveItem, isActiveCategorie };
 
@@ -41,13 +43,21 @@ function UserPageLeftColumn() {
         Cookies.remove('userID', { path: '/' });
         signOut({ callbackUrl: "/" })
     }
-    // console.log(isActiveCategorie)
+
+
+
 
     return (
-        <div className={`userPage-left-column ${categoryToRender === "Покупки" ? "buy" : ""} ${categoryToRender === "Замволення" ? "orders" : ""} ${categoryToRender == "Особисті дані" ? "personal" : ""} ${categoryToRender == "Товари" ? "goods" : ""}`}>
+        <div className={`userPage-left-column 
+            ${categoryToRender === "Покупки" ? "buy" : ""} 
+        ${categoryToRender === "Замволення" ? "orders" : ""} 
+        ${categoryToRender == "Особисті дані" ? "personal" : ""} 
+        ${categoryToRender == "Товари" ? "goods" : ""} 
+        ${renderInfo == "start" ? "display-block" : "display-none-in-userpage"}`}>
             <div>
                 <h4 className={'left-column-title'}>Привіт, {userName}</h4>
-                <LeftColumnUserInfo isActiveCategorie={isActiveCategorie} setActiveItem={setActiveItem} />
+                <LeftColumnUserInfo isActiveCategorie={isActiveCategorie}
+                    setActiveItem={setActiveItem} />
                 <LeftColumnOrdersList objToSend={objToSend} />
                 <LeftColumnGoodsList objToSend={objToSend} />
                 <LeftColumnUserOrders isActiveCategorie={isActiveCategorie} setActiveItem={setActiveItem} />
