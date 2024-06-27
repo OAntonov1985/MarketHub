@@ -143,6 +143,7 @@ function Header({ transparentBackground }) {
         const handleClickOutside = (event) => {
             const isSearchHeaderClicked = event.target.closest('.search-results-header');
             const isInputFieldClicked = event.target.closest('.header-input-field');
+            const isActiveBurgerMenu = event.target.closest('.burger');
 
             if (isSearchHeaderClicked && !isInputFieldClicked) {
                 setIsVisibleSearchResult(false);
@@ -153,6 +154,9 @@ function Header({ transparentBackground }) {
             if (isSearchHeaderClicked) {
                 setSearchText("");
                 setSearchResult([]);
+            }
+            if (!isActiveBurgerMenu) {
+                setIsVisibleMenu(false);
             }
         };
 

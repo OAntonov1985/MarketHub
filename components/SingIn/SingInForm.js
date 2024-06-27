@@ -43,12 +43,13 @@ function SingInForm({ props }) {
                     password: body.password,
                 });
 
-                // console.log(result)
-                if (result.error) {
+                console.log(result)
+                if (result) {
+                    router.push('/userpage');
+
+                } else {
                     console.error('Помилка входу:', result.error);
                     alert('Користувача з такою поштою або паролем не знайдено.')
-                } else {
-                    router.push('/userpage');
                 }
             } catch (error) {
                 console.error('Помилка входу:', error);

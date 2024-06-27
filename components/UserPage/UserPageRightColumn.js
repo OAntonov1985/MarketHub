@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 function UserPageRightColumn() {
     const { categoryToRender } = useSelector((state) => state.user);
     const { renderInfo } = useSelector((state) => state.user);
-    console.log(categoryToRender)
+    // console.log(categoryToRender)
 
     return (
         <div className={`userPage-right-column ${renderInfo == "userInfo" || renderInfo == "userGoodsList" || renderInfo == "userPurchases" ? "display-block" : "display-none-in-userpage"}`}>

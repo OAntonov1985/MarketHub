@@ -8,7 +8,7 @@ function LeftColumnUserInfo({ isActiveCategorie, setActiveItem }) {
 
     const { renderInfo } = useSelector((state) => state.user);
     const dispatch = useDispatch();
-    console.log(renderInfo)
+    // console.log(renderInfo)
 
     function SelectorToRenderInfo(event) {
         if (window.matchMedia('(max-width: 660px)').matches) {

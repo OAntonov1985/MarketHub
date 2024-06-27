@@ -8,20 +8,27 @@ import Spinner from '@/components/Spinner/Spinner';
 import { useSelector } from 'react-redux';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 
 
 export default function UserPage() {
     const { loading } = useSelector((state) => state.user);
+    const [isClient, setIsClient] = useState(false);
     const isSession = useSession();
     const { status } = isSession;
     const router = useRouter();
     const userName = Cookies.get('userName');
 
 
+    useEffect(() => {
+        if ((status === "authenticated" && userName && userName.length > 0) ||
+            (status === "loading" && userName && userName.length > 0)) setIsClient(true);
+        else setIsClient(false);
+    }, [status, userName]);
 
-    if (status === "authenticated" || status === "loading" || userName) {
+    if (isClient) {
         return (
             <div className='userPage'>
                 {loading ? <Spinner /> : null}
