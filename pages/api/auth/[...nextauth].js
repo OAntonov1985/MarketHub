@@ -102,6 +102,9 @@ const authOptions = (req, res) => {
                 }
             },
         },
+        pages: {
+            signIn: '/loginpage'
+        },
         secret: process.env.NEXTAUTN_SECRET
     };
 
