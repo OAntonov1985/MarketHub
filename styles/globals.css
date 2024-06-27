@@ -3727,14 +3727,19 @@ h2 {
 }
 .user-info-title {
   display: none;
+  font-size: 3.2rem;
+  font-weight: 500;
+  color: #012767;
+  margin-bottom: 2.4rem;
+  text-align: center;
+  margin-top: 2.4rem;
+  width: 100%;
 }
 @media only screen and (max-width: 1120px) {
   .user-info-title {
     display: block;
-    font-size: 3.2rem;
-    font-weight: 500;
-    color: #012767;
-    margin-bottom: 2.4rem;
+    margin-top: 0;
+    text-align: left;
   }
 }
 
@@ -3894,6 +3899,10 @@ h2 {
   border: 1px solid #6B7280;
   color: #6B7280;
   cursor: auto;
+}
+
+.arrow-component {
+  display: block;
 }
 
 .add-new-good {

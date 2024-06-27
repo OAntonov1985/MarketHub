@@ -7,7 +7,7 @@ import GetUserPurchases from '@/pages/api/GetUserPurchases';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActiveSpinner, setRenderInfo } from '@/slices/userSlice';
 import OrderListFlex from './OrderListFlex';
-
+import ArrowComponent from './ArrowComponent';
 
 function RightColumnUserOrders() {
     const [userPurchases, setUserPurchases] = useState([]);
