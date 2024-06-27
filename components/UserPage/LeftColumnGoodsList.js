@@ -60,7 +60,7 @@ function LeftColumnGoodsList({ objToSend }) {
                         />
                     </div>
                     Активні товари</li>
-                <li className={`left-column-goods-li ${activeSubItemInGood === "Неактивні товари" ? "active-color" : ""}`} id="Неактивні товари" onClick={(event) => { dispatch(setActiveSubItemInGood(event.target.id));; dispatch(setRenderInfo("userGoodsList")) }}>
+                <li className={`left-column-goods-li ${activeSubItemInGood === "Неактивні товари" ? "active-color" : ""}`} id="Неактивні товари" onClick={(event) => { dispatch(setActiveSubItemInGood(event.target.id)); dispatch(setRenderInfo("userGoodsList")) }}>
                     <div className='goods-li-image-container'>
                         <Image
                             alt="icon of cirkle"
@@ -75,7 +75,7 @@ function LeftColumnGoodsList({ objToSend }) {
                         />
                     </div>
                     Неактивні товари</li>
-                <li className={`left-column-goods-li ${activeSubItemInGood === "Додати товар" ? "active-color" : ""}`} id="Додати товар" onClick={(event) => dispatch(setActiveSubItemInGood(event.target.id))}>
+                <li className={`left-column-goods-li ${activeSubItemInGood === "Додати товар" ? "active-color" : ""}`} id="Додати товар" onClick={(event) => { dispatch(setActiveSubItemInGood(event.target.id)); dispatch(setRenderInfo("userGoodsList")) }}>
                     <div className='goods-li-image-container'>
                         <Image
                             alt="icon of cirkle"

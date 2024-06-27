@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import PhotoUploader from './PhotoUploader';
 import Cookies from 'js-cookie';
 import GetGoodByID from '@/pages/api/GetGoodByID';
-import { setActiveSpinner, setGoodToEdit } from '@/slices/userSlice';
+import { setActiveSpinner, setGoodToEdit, setRenderInfo } from '@/slices/userSlice';
 import { Computers, Phones, Household, GameConsoles, Audio, Categories } from '../Constants';
 import AddNewGood from '@/pages/api/AddNewGood';
 import { useRouter } from 'next/router';
 import { uploadImagesToStorage } from '@/pages/api/DownloadImages';
+import Image from 'next/image';
 
 
 
@@ -81,7 +82,6 @@ function RightColumnAddNewGood() {
             alert('Упс.... Щось пішло не так. зверніться до розробників');
         }
     };
-    console.log(goodToEdit)
 
     useEffect(() => {
         if (goodToEdit) {
@@ -137,6 +137,7 @@ function RightColumnAddNewGood() {
                     if (addNewGoodREsult.result.status == "SUCCESS") {
                         setNewGoodId(addNewGoodREsult.result.id);
                         dispatch(setActiveSpinner(false));
+                        setIsModalOpen(true);
                         clearAllFields();
                     } else {
                         dispatch(setActiveSpinner(false));
@@ -171,7 +172,7 @@ function RightColumnAddNewGood() {
 
 
     function clearAllFields() {
-        setIsModalOpen(true);
+        // setIsModalOpen(true);
         setProductName('');
         setProductBrend('');
         setProductPrice('');
@@ -215,12 +216,39 @@ function RightColumnAddNewGood() {
         router.push(`/${categoryInfo.name}/${subCategoryInfo.name}/${newGoodId}`);
     }
 
+    // function ClearForm() {
+    //     setProductName('');
+    //     setProductBrend("");
+    //     setProductPrice('');
+    //     setProductDescription("");
+    //     setCategoryValue(Categories[0].name);
+    //     setSubCaregoryValue(Computers[0].name);
+    //     setPhotosArray(Array.from({ length: 4 }))
+    // }
 
 
-    // console.log(goodSaved)
+
+    // console.log(productName.length)
 
     return (
-        <>  <h4 className='user-info-title'>{goodToEdit ? "Редагувати" : "Додати"} товар</h4>
+        <>
+            <div className='header-container' onClick={() => { dispatch(setRenderInfo("start")); clearAllFields() }}>
+                <div className='arrou-image-container'>
+                    <Image
+                        className='logo-of-point'
+                        alt="logo of point"
+                        src="/arrow-left.svg"
+                        quality={100}
+                        fill
+                        sizes="(max-width: 100%)"
+                        style={{
+                            objectFit: 'contain',
+                            width: '100%'
+                        }}
+                    />
+                </div>
+                <h4 className='user-info-title'>{productName.length > 0 ? "Редагувати товар" : "Додати товар"}</h4>
+            </div>
             <form className="add-new-good" onSubmit={handleSubmit}>
                 <label htmlFor="product-name" className="product-name-title">
                     Назва товару

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { setActiveSubItemInGood, setGoodToEdit } from '@/slices/userSlice';
+import { setActiveSubItemInGood, setGoodToEdit, setRenderInfo } from '@/slices/userSlice';
 
 
 
@@ -42,10 +42,26 @@ export default function GoodsListFlex({ userGoodsToSale, activeItem, setActiveIt
         }
         setActiveItem(itemId === activeItem ? null : itemId);
     };
-    // console.log(renderInfo)
+
     return (
         <div className={`right-culumn-user-orders-container goods-list-flex `}>
-            <h4 className='user-info-title'>{activeSubItemInGood}</h4>
+            <div className='header-container' onClick={() => dispatch(setRenderInfo("start"))}>
+                <div className='arrou-image-container'>
+                    <Image
+                        className='logo-of-point'
+                        alt="logo of point"
+                        src="/arrow-left.svg"
+                        quality={100}
+                        fill
+                        sizes="(max-width: 100%)"
+                        style={{
+                            objectFit: 'contain',
+                            width: '100%'
+                        }}
+                    />
+                </div>
+                <h4 className='user-info-title'>{activeSubItemInGood}</h4>
+            </div>
             <ul className='orders-list-flex'>
                 {userGoodsToSale.map((item, index) => (
                     <li className='order-item-in-userpage' key={index}>

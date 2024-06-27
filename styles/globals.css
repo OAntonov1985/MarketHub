@@ -3621,6 +3621,7 @@ h2 {
     font-size: 2rem;
     border: 2px solid #000000;
     border-radius: 0.4rem;
+    cursor: default;
     padding: 0.8rem 1.6rem;
   }
 }
@@ -3915,6 +3916,11 @@ h2 {
   flex-wrap: wrap;
   margin-bottom: 2.4rem;
 }
+@media only screen and (max-width: 660px) {
+  .photo-previews-row {
+    justify-content: center;
+  }
+}
 
 .photo-preview {
   position: relative;
@@ -3989,6 +3995,12 @@ h2 {
   color: #012767;
   outline: 1px solid #012767;
   resize: none;
+}
+@media only screen and (max-width: 1120px) {
+  .product-description-form-input {
+    margin-bottom: 2.4rem;
+    width: 99%;
+  }
 }
 
 .button-container {

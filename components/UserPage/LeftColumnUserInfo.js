@@ -12,7 +12,8 @@ function LeftColumnUserInfo({ isActiveCategorie, setActiveItem }) {
 
     function SelectorToRenderInfo(event) {
         if (window.matchMedia('(max-width: 660px)').matches) {
-            dispatch(setRenderInfo("userInfo"))
+            dispatch(setRenderInfo("userInfo"));
+            setActiveItem(event.target.id);
         } else setActiveItem(event.target.id)
     }
 

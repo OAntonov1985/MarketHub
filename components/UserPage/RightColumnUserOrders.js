@@ -4,8 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PageIndexserSmall from './PageIndexserSmall';
 import GetUserPurchases from '@/pages/api/GetUserPurchases';
-import { useDispatch } from 'react-redux';
-import { setActiveSpinner } from '@/slices/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveSpinner, setRenderInfo } from '@/slices/userSlice';
 import OrderListFlex from './OrderListFlex';
 
 
@@ -14,6 +14,7 @@ function RightColumnUserOrders() {
     const [totalUserPurchases, setTotalUserPurchases] = useState(0);
     const [activePage, setActivePage] = useState(1);
     const dispatch = useDispatch();
+    const { renderInfo } = useSelector((state) => state.user);
 
     const fetchData = async () => {
         dispatch(setActiveSpinner(true));
@@ -36,8 +37,24 @@ function RightColumnUserOrders() {
 
 
     return (
-        <div className='right-culumn-user-orders-container'>
-            <h4 className='user-info-title'>Мої покупки</h4>
+        <div className={`right-culumn-user-orders-container  ${renderInfo == "userPurchases" ? "display-block" : "display-none-in-userpage"}`}>
+            <div className='header-container' onClick={() => dispatch(setRenderInfo("start"))}>
+                <div className='arrou-image-container'>
+                    <Image
+                        className='logo-of-point'
+                        alt="logo of point"
+                        src="/arrow-left.svg"
+                        quality={100}
+                        fill
+                        sizes="(max-width: 100%)"
+                        style={{
+                            objectFit: 'contain',
+                            width: '100%'
+                        }}
+                    />
+                </div>
+                <h4 className='user-info-title'>Мої покупки</h4>
+            </div>
             <div className="grid-container">
                 <div className='order-info-date grid-item  headet-subtitle'>Дата  та час</div>
                 <div className='order-info-goods grid-item headet-subtitle'>Назва і фото товару</div>

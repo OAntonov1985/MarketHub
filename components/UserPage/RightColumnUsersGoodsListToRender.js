@@ -11,6 +11,7 @@ import GoodsListFlex from './GoodsListFlex';
 
 function RightColumnUsersGoodsListToRender({ objectToSend }) {
     const { userGoodsToSale, totalUserGoodsToSale, setActivePage, activePage, setActiveItem, activeItem, changeGoodAvability, deleteGood } = objectToSend;
+    const [image, setImage] = useState()
 
     const dispatch = useDispatch();
 
@@ -63,7 +64,7 @@ function RightColumnUsersGoodsListToRender({ objectToSend }) {
                                     className='good-photo'>
                                     <Image
                                         alt="image of good"
-                                        src={item.thumbnail}
+                                        src={item.thumbnail ? item.thumbnail : "/defaultPhoto.png"}
                                         quality={100}
                                         fill
                                         sizes="(max-width: 100%)"
