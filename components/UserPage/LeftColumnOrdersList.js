@@ -10,7 +10,8 @@ function LeftColumnOrdersList({ objToSend }) {
 
     return (
         <div className='left-column-item' >
-            <div className='userPage-left-column-orders' id="Замволення"
+            <div className='userPage-left-column-orders'
+                id="Замволення"
                 onClick={(event) => {
                     setIsActiveCatogorie("");
                     setActiveItem(event.target.id);

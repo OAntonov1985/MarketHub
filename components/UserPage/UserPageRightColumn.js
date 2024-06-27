@@ -10,7 +10,7 @@ function UserPageRightColumn() {
     const { renderInfo } = useSelector((state) => state.user);
 
     return (
-        <div className={`userPage-right-column ${renderInfo == "userInfo" ? "display-block" : "display-none-in-userpage"}`}>
+        <div className={`userPage-right-column ${renderInfo == "userInfo" || renderInfo == "userGoodsList" ? "display-block" : "display-none-in-userpage"}`}>
             {categoryToRender === "Особисті дані" ? <RightColumnUserInfo /> : null}
             {categoryToRender === "Товари" ? <RightColumnGoodsList /> : null}
             {categoryToRender === "Замволення" ? <RightColumnOrders /> : null}

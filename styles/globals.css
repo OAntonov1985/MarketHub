@@ -3550,8 +3550,13 @@ h2 {
   width: 2.4rem;
   height: 3.7rem;
   display: none;
-  display: block;
 }
+@media only screen and (max-width: 660px) {
+  .arrou-image-container {
+    display: block;
+  }
+}
+
 .exit-button {
   font-size: 1.6rem;
   color: #FBFBFB;

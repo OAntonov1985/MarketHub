@@ -11,7 +11,6 @@ function LeftColumnUserInfo({ isActiveCategorie, setActiveItem }) {
     console.log(renderInfo)
 
     function SelectorToRenderInfo(event) {
-        // console.log(777)
         if (window.matchMedia('(max-width: 660px)').matches) {
             dispatch(setRenderInfo("userInfo"))
         } else setActiveItem(event.target.id)

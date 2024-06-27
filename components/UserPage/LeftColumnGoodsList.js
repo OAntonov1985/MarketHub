@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveSubItemInGood } from '@/slices/userSlice';
+import { setActiveSubItemInGood, setRenderInfo } from '@/slices/userSlice';
 
 function LeftColumnGoodsList({ objToSend }) {
     const { setIsActiveCatogorie, setActiveItem, isActiveCategorie } = objToSend;
@@ -30,7 +30,7 @@ function LeftColumnGoodsList({ objToSend }) {
             </div>
             <ul className={`left-column-goods-list ${isActiveCategorie === "Товари" ? "list-open-goods" : ""}`}>
                 <li className={`left-column-goods-li ${activeSubItemInGood === "Всі товари" ? "active-color" : ""}`} id="Всі товари"
-                    onClick={(event) => dispatch(setActiveSubItemInGood(event.target.id))}>
+                    onClick={(event) => { dispatch(setActiveSubItemInGood(event.target.id)); dispatch(setRenderInfo("userGoodsList")) }}>
                     <div className='goods-li-image-container'>
                         <Image
                             alt="icon of cirkle"
@@ -45,7 +45,7 @@ function LeftColumnGoodsList({ objToSend }) {
                         />
                     </div>
                     Всі товари</li>
-                <li className={`left-column-goods-li ${activeSubItemInGood === "Активні товари" ? "active-color" : ""}`} id="Активні товари" onClick={(event) => dispatch(setActiveSubItemInGood(event.target.id))}>
+                <li className={`left-column-goods-li ${activeSubItemInGood === "Активні товари" ? "active-color" : ""}`} id="Активні товари" onClick={(event) => { dispatch(setActiveSubItemInGood(event.target.id)); dispatch(setRenderInfo("userGoodsList")) }}>
                     <div className='goods-li-image-container'>
                         <Image
                             alt="icon of cirkle"
@@ -60,7 +60,7 @@ function LeftColumnGoodsList({ objToSend }) {
                         />
                     </div>
                     Активні товари</li>
-                <li className={`left-column-goods-li ${activeSubItemInGood === "Неактивні товари" ? "active-color" : ""}`} id="Неактивні товари" onClick={(event) => dispatch(setActiveSubItemInGood(event.target.id))}>
+                <li className={`left-column-goods-li ${activeSubItemInGood === "Неактивні товари" ? "active-color" : ""}`} id="Неактивні товари" onClick={(event) => { dispatch(setActiveSubItemInGood(event.target.id));; dispatch(setRenderInfo("userGoodsList")) }}>
                     <div className='goods-li-image-container'>
                         <Image
                             alt="icon of cirkle"

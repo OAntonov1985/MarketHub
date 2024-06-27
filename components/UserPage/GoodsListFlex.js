@@ -1,9 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { setActiveSubItemInGood, setGoodToEdit } from '@/slices/userSlice';
 
 
@@ -11,7 +10,8 @@ import { setActiveSubItemInGood, setGoodToEdit } from '@/slices/userSlice';
 export default function GoodsListFlex({ userGoodsToSale, activeItem, setActiveItem, deleteGood, changeGoodAvability }) {
     const dispatch = useDispatch();
     const { activeSubItemInGood } = useSelector((state) => state.user);
-
+    const { renderInfo } = useSelector((state) => state.user);
+    // userGoodsList
     useEffect(() => {
         const handleClickOutside = (event) => {
             const isEditMenuClicked = event.target.classList.contains('order-info-points-container');
@@ -42,8 +42,9 @@ export default function GoodsListFlex({ userGoodsToSale, activeItem, setActiveIt
         }
         setActiveItem(itemId === activeItem ? null : itemId);
     };
+    // console.log(renderInfo)
     return (
-        <div className='right-culumn-user-orders-container goods-list-flex'>
+        <div className={`right-culumn-user-orders-container goods-list-flex `}>
             <h4 className='user-info-title'>{activeSubItemInGood}</h4>
             <ul className='orders-list-flex'>
                 {userGoodsToSale.map((item, index) => (
