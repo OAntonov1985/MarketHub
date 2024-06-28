@@ -48,10 +48,11 @@ function SingInForm({ props }) {
                     router.push('/userpage');
 
                 }
-                // else {
-                //     console.error('Помилка входу:', result.error);
-                //     alert('Користувача з такою поштою або паролем не знайдено.')
-                // }
+                if (result.ok == false) {
+                    console.error('Помилка входу:', result.error);
+                    alert('Користувача з такою поштою або паролем не знайдено.');
+                    router.push('/loginpage')
+                }
             } catch (error) {
                 console.error('Помилка входу:', error);
             }
@@ -93,7 +94,6 @@ function SingInForm({ props }) {
                 router.push('/userpage');
             }
             else {
-                console.log(result)
                 setTimeout(() => {
                     alert('Користувача з такою поштою не знайдено.');
                 }, 1000);
@@ -106,7 +106,7 @@ function SingInForm({ props }) {
 
 
     function validateEmail() {
-        if (/^[a-zA-Z0-9]{3,}@[a-zA-Z0-9]{3,}\.[a-zA-Z0-9]{2,}$/.test(userEmail)) {
+        if (/^[a-zA-Z0-9._%+-\u0400-\u04FF]{3,}@[a-zA-Z0-9.-]{3,}\.[a-zA-Z]{2,}$/.test(userEmail)) {
             setShowErrorEmail(false);
             setInputEmailClass("user-email border-green")
         }

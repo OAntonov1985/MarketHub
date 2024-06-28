@@ -29,9 +29,10 @@ function RightColumnUserInfo() {
     const [userEmail, setUserEmail] = useState(email);
     const [inputEmailClass, setInputEmailClass] = useState("user-email");
     const [showErrorEmail, setShowErrorEmail] = useState(false);
-
+    const emailRegex = /^[a-zA-Z0-9._%+-\u0400-\u04FF]{3,}@[a-zA-Z0-9.-]{3,}\.[a-zA-Z]{2,}$/;
     function validateEmail() {
-        const emailRegex = /^[^\s@]{3,}@.{3,}\..{2,}$/;
+        // const emailRegex = /^[^\s@]{3,}@.{3,}\..{2,}$/;
+
 
         if (emailRegex.test(userEmail)) {
             setShowErrorEmail(false);
@@ -49,6 +50,7 @@ function RightColumnUserInfo() {
             if (userName.trim().length <= 2) alert("Їм'я має містити більше ніж 2 символи");
             else if (userSurname.trim().length <= 2) alert("Прізвище має містити більше ніж 2 символи");
             else if (userPhone.length < 12) alert("Невірно введений телефон. Спробуйте ще");
+            else if (!emailRegex.test(userEmail)) alert("Невірно введений пароль!");
             else if (userPassword.trim().length <= 6) alert("Мінімальна кількість символів в паролі має бути більше шести!");
             else if (userName.trim().length > 2 && userSurname.trim().length > 2 && userPhone.length !== 12 && userPassword.trim().length > 6) setIsActiveFields(!isActiveFields);
             const newUserInfo = {
@@ -100,12 +102,12 @@ function RightColumnUserInfo() {
 
 
     useEffect(() => {
-        if (name !== userName || surName !== userSurname || userPassword !== 'XXXXXXXX' || pfone !== userPhone) {
+        if (name !== userName || surName !== userSurname || userPassword !== 'XXXXXXXX' || pfone !== userPhone || email !== userEmail) {
             setIsChangeClientInfo(true);
         } else {
             setIsChangeClientInfo(false);
         }
-    }, [userName, userSurname, userPassword, userPhone, userName, userSurname]);
+    }, [userName, userSurname, userPassword, userPhone, userName, userSurname, userEmail]);
 
     return (
         <div className='right-culumn-user-info-container'>

@@ -4213,6 +4213,15 @@ h2 {
   flex-wrap: wrap;
 }
 
+.goods-list-flex {
+  display: none;
+}
+@media only screen and (max-width: 1120px) {
+  .goods-list-flex {
+    display: block;
+  }
+}
+
 .right-culumn-user-list-to-render-container {
   display: flex;
   flex-direction: column;
