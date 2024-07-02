@@ -290,22 +290,28 @@
         font-size: 2rem
         height: 4rem 
         padding: 0 1.5rem
+        outline: 1px solid  $color-black
+        border: 1px solid  $color-black
     @media only screen and (max-width : 768px)
         height: 4rem
         border-radius: .4rem
         font-size: 2rem
     @media only screen and (max-width : 660px)
         width: 100%
-        max-width: 100%
+        max-width: 100%     
+
+.product-name-form-input::placeholder, .product-price-form-input::placeholder
+    @media only screen and (max-width : 1120px)
+        color: $color-text-main
 
 .form-input-unactive
     color: #6B7280    
     outline: 1px solid  #6B7280
     border: 1px solid  #6B7280
     @media only screen and (max-width : 1120px)
-        color: #000000 
-        outline: 1px solid  #000000
-        border: 1px solid  #000000
+        color: $color-black 
+        outline: 1px solid  $color-black
+        border: 1px solid  $color-black
         
 
 .form-input-unactive-text

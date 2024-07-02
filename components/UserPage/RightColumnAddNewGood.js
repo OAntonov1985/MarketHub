@@ -19,6 +19,7 @@ function RightColumnAddNewGood() {
     const [subCaregorySelest, setSubCaregorySelest] = useState(Computers); // субкатегорія для рендерінгу селекту
     const [categoryValue, setCategoryValue] = useState(Categories[0].name); // назва категорії
     const [subCaregoryValue, setSubCaregoryValue] = useState(Computers[0].name); // назва субкатегорії
+    const [isEdit, setIsEdit] = useState("Додати товар"); // назва субкатегорії
 
     const [goodSaved, setGoodSaved] = useState(null);
 
@@ -40,6 +41,7 @@ function RightColumnAddNewGood() {
     const [pfotosArray, setPhotosArray] = useState(Array.from({ length: pfotoArrayLength }, () => null)); // масив фото
 
     const { goodToEdit } = useSelector((state) => state.user);  //товар для редагування
+    // console.log(goodToEdit)
 
 
     const dispatch = useDispatch();
@@ -56,6 +58,7 @@ function RightColumnAddNewGood() {
             setProductPrice(result.result.price);
             setProductBrend(result.result.brend);
             setCategoryValue(result.result.category_details.name);
+            console.log(result.result.description)
 
             if (result.result.category_details.id == "100") setSubCaregorySelest(Computers)
             else if (result.result.category_details.id == "200") setSubCaregorySelest(Phones)
@@ -78,6 +81,7 @@ function RightColumnAddNewGood() {
             setPhotosArray([result.result.thumbnail, ...result.result.images])
             dispatch(setActiveSpinner(false));
             dispatch(setGoodToEdit(''));
+            setIsEdit("Редагувати товар");
         } catch (error) {
             alert('Упс.... Щось пішло не так. зверніться до розробників');
         }
@@ -86,8 +90,8 @@ function RightColumnAddNewGood() {
     useEffect(() => {
         if (goodToEdit) {
             fetchData();
-        };
-    }, [goodToEdit])
+        } else setIsEdit("Додати товар");
+    }, [])
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -216,19 +220,6 @@ function RightColumnAddNewGood() {
         router.push(`/${categoryInfo.name}/${subCategoryInfo.name}/${newGoodId}`);
     }
 
-    // function ClearForm() {
-    //     setProductName('');
-    //     setProductBrend("");
-    //     setProductPrice('');
-    //     setProductDescription("");
-    //     setCategoryValue(Categories[0].name);
-    //     setSubCaregoryValue(Computers[0].name);
-    //     setPhotosArray(Array.from({ length: 4 }))
-    // }
-
-
-
-    // console.log(productName.length)
 
     return (
         <>
@@ -247,7 +238,7 @@ function RightColumnAddNewGood() {
                         }}
                     />
                 </div>
-                <h4 className='user-info-title'>{productName.length > 0 ? "Редагувати товар" : "Додати товар"}</h4>
+                <h4 className='user-info-title'>{isEdit}</h4>
             </div>
             <form className="add-new-good" onSubmit={handleSubmit}>
                 <label htmlFor="product-name" className="product-name-title">

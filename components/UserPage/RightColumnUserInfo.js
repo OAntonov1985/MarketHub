@@ -46,48 +46,52 @@ function RightColumnUserInfo() {
 
 
     async function saveChanges() {
+
         if (isChangeClientInfo) {
             if (userName.trim().length <= 2) alert("Їм'я має містити більше ніж 2 символи");
             else if (userSurname.trim().length <= 2) alert("Прізвище має містити більше ніж 2 символи");
-            else if (userPhone.length < 12) alert("Невірно введений телефон. Спробуйте ще");
+            else if (userPhone.trim().length < 12) alert("Невірно введений телефон. Спробуйте ще");
             else if (!emailRegex.test(userEmail)) alert("Невірно введений пароль!");
             else if (userPassword.trim().length <= 6) alert("Мінімальна кількість символів в паролі має бути більше шести!");
-            else if (userName.trim().length > 2 && userSurname.trim().length > 2 && userPhone.length !== 12 && userPassword.trim().length > 6) setIsActiveFields(!isActiveFields);
-            const newUserInfo = {
-                userId: id,
-                newUserName: userName.trim(),
-                newUserSurname: userSurname.trim(),
-                newUserPhone: userPhone.trim(),
-                newUserEmail: userEmail.trim(),
-                ...(userPassword !== 'XXXXXXXX' && { newUserPassword: userPassword.trim() })
-            };
-            dispatch(setActiveSpinner(true));
-            const { result } = await ChangeUserInfo(newUserInfo);
-            if (result.status == 200) {
-                if (name !== userName) {
-                    dispatch(setUserName(userName));
-                    Cookies.set('userName', userName, { path: '/' });
-                }
-                if (surName !== userSurname) {
-                    Cookies.set('userSurname', userSurname, { path: '/' });
-                }
-                if (pfone !== userPhone) {
-                    Cookies.set('userPhone', userPhone, { path: '/' });
-                }
-                if (email !== userEmail) {
-                    Cookies.set('userEmail', userEmail, { path: '/' });
+            // console.log(emailRegex.test(userEmail))
+            if (userName.trim().length > 2
+                && userSurname.trim().length > 2
+                && emailRegex.test(userEmail)
+                && userPhone.trim().length >= 11
+                && userPassword.trim().length > 6) {
+                setIsActiveFields(!isActiveFields);
+                const newUserInfo = {
+                    userId: id,
+                    newUserName: userName.trim(),
+                    newUserSurname: userSurname.trim(),
+                    newUserPhone: userPhone.trim(),
+                    newUserEmail: userEmail.trim(),
+                    ...(userPassword !== 'XXXXXXXX' && { newUserPassword: userPassword.trim() })
+                };
+                dispatch(setActiveSpinner(true));
+                const { result } = await ChangeUserInfo(newUserInfo);
+                if (result.status == 200) {
+                    if (name !== userName) {
+                        dispatch(setUserName(userName));
+                        Cookies.set('userName', userName, { path: '/' });
+                    }
+                    if (surName !== userSurname) {
+                        Cookies.set('userSurname', userSurname, { path: '/' });
+                    }
+                    if (pfone !== userPhone) {
+                        Cookies.set('userPhone', userPhone, { path: '/' });
+                    }
+                    if (email !== userEmail) {
+                        Cookies.set('userEmail', userEmail, { path: '/' });
+                    }
+                    dispatch(setActiveSpinner(false));
+                    alert("Облікові дані успішно змінено");
+                    setUserPassword('XXXXXXXX')
                 }
                 dispatch(setActiveSpinner(false));
-                alert("Облікові дані успішно змінено");
+                setIsActiveFields(false);
             }
-            dispatch(setActiveSpinner(false));
-            setIsActiveFields(false);
         }
-
-    }
-
-    function changeUserData() {
-        setIsActiveFields(true);
     }
 
     function deleteChanges() {
@@ -111,7 +115,7 @@ function RightColumnUserInfo() {
 
     return (
         <div className='right-culumn-user-info-container'>
-            <div className='header-container' onClick={() => dispatch(setRenderInfo("start"))}>
+            <div className='header-container' onClick={() => { dispatch(setRenderInfo("start")); setIsActiveFields(false) }}>
                 <div className='arrou-image-container'>
                     <Image
                         className='logo-of-point'
@@ -134,38 +138,49 @@ function RightColumnUserInfo() {
                     className={`user-info-form-label ${isActiveFields ? "" : "form-input-unactive-text"}`}>
                     Ваше ім’я</label>
                 <input name="userName" id="userName"
-                    className={isActiveFields ? (`user-info-form-input ${userName.trim().length <= 2 ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    // className={isActiveFields ? (`user-info-form-input ${userName.trim().length <= 2 ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    className="user-info-form-input"
                     disabled={!isActiveFields}
                     onChange={(e) => setUserNameIn(e.target.value)}
                     placeholder="Введіть ваше ім'я"
+                    maxLength="15"
                     value={userName} />
 
                 <label htmlFor="userSurname"
                     className={`user-info-form-label ${isActiveFields ? "" : "form-input-unactive-text"}`}>
                     Ваше прізвище</label>
                 <input name="userSurname" id="userSurname"
-                    className={isActiveFields ? (`user-info-form-input ${userSurname.trim().length <= 2 ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    // className={isActiveFields ? (`user-info-form-input ${userSurname.trim().length <= 2 ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    className="user-info-form-input"
                     disabled={!isActiveFields}
                     onChange={(e) => setUserSurname(e.target.value)}
                     placeholder="Введіть ваше прізвище"
+                    maxLength="15"
                     value={userSurname} />
 
                 <label htmlFor="userPhone"
                     className={`user-info-form-label ${isActiveFields ? "" : "form-input-unactive-text"}`}>
                     Номер телефону</label>
                 <input name="userPhone" id="userPhone"
-                    className={isActiveFields ? (`user-info-form-input ${userPhone.trim().length < 12 ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    // className={isActiveFields ? (`user-info-form-input ${userPhone.trim().length < 12 ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    className="user-info-form-input"
                     disabled={!isActiveFields}
                     type="number"
-                    onChange={(e) => setUserPfone(e.target.value)}
+                    onChange={(e) => {
+                        if (e.target.value.length <= 15) {
+                            setUserPfone(e.target.value.replace(/[^0-9]/g, ''));
+                        }
+                    }}
                     placeholder="Введіть ваш номер телефону"
+                    max="15"
                     value={userPhone} />
 
                 <label htmlFor="userEmail"
                     className={`user-info-form-label ${isActiveFields ? "" : "form-input-unactive-text"}`}>
                     Електрона пошта</label>
                 <input name="userEmail" id="userEmail"
-                    className={isActiveFields ? (`user-info-form-input ${showErrorEmail ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    // className={isActiveFields ? (`user-info-form-input ${showErrorEmail ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    className="user-info-form-input"
                     disabled={!isActiveFields}
                     placeholder="Введіть вашу пошту"
                     autoComplete="userEmail"
@@ -177,14 +192,17 @@ function RightColumnUserInfo() {
                     className={`user-info-form-label ${isActiveFields ? "" : "form-input-unactive-text"}`}>
                     Пароль</label>
                 <input name="userPassword"
-                    type={!isActiveFields ? "password" : "text"}
+                    // type={!isActiveFields ? "password" : "text"}
+                    type="text"
                     id="userPassword"
-                    className={isActiveFields ? (`user-info-form-input ${userPassword.trim().length <= 6 ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    // className={isActiveFields ? (`user-info-form-input ${userPassword.trim().length <= 6 ? "form-input-border-red" : "form-input-border-green"}`) : `user-info-form-input ${isActiveFields ? "" : "form-input-unactive"}`}
+                    className="user-info-form-input"
                     disabled={!isActiveFields}
                     onClick={() => setUserPassword("")}
                     onChange={(e) => setUserPassword(e.target.value)}
-                    placeholder="Введіть вашпароль"
+                    placeholder="Введіть ваш пароль"
                     autoComplete="current-password"
+                    maxLength="20"
                     value={userPassword} />
             </form>
             <div className='user-info-buttons-container'>
@@ -202,7 +220,7 @@ function RightColumnUserInfo() {
             </div>
             <div className='user-info-buttons-container-edit'>
                 <button className={`user-info-button button-edit ${isActiveFields ? "button-display-none" : ""}`}
-                    onClick={changeUserData}
+                    onClick={() => setIsActiveFields(true)}
                 >Редагувати дані</button>
             </div>
 

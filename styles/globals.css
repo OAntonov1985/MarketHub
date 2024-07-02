@@ -3294,7 +3294,6 @@ h2 {
 }
 @media only screen and (max-width: 533px) {
   .modal-content {
-    height: 24rem;
     width: 93.5%;
     border-radius: 0.4rem;
   }
@@ -3331,10 +3330,10 @@ h2 {
 
 .in-userpage {
   width: 67.3rem;
-  min-height: 18rem;
   background-color: #FBFBFB;
   border: 1px solid #012767;
   border-radius: 0px;
+  max-width: 80%;
 }
 
 .modal-in-userpage-title {
@@ -3342,6 +3341,7 @@ h2 {
   font-size: 3.2rem;
   font-weight: normal;
   margin-bottom: 2.6rem;
+  text-align: center;
 }
 
 .modal-content-button-in-userpage {
@@ -3779,6 +3779,8 @@ h2 {
     font-size: 2rem;
     height: 4rem;
     padding: 0 1.5rem;
+    outline: 1px solid #000000;
+    border: 1px solid #000000;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -3792,6 +3794,12 @@ h2 {
   .user-info-form-input, .product-name-form-input, .product-price-form-input {
     width: 100%;
     max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1120px) {
+  .product-name-form-input::placeholder, .product-price-form-input::placeholder {
+    color: #012767;
   }
 }
 
@@ -4009,6 +4017,8 @@ h2 {
   .product-description-form-input {
     margin-bottom: 2.4rem;
     width: 99%;
+    outline: 1px solid #000000;
+    border: 1px solid #000000;
   }
 }
 

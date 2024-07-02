@@ -12,8 +12,6 @@ import ArrowComponent from './ArrowComponent';
 
 function RightColumnUsersGoodsListToRender({ objectToSend }) {
     const { userGoodsToSale, totalUserGoodsToSale, setActivePage, activePage, setActiveItem, activeItem, changeGoodAvability, deleteGood } = objectToSend;
-    console.log(userGoodsToSale.length)
-    const [src, setSrs] = useState("/defaultPhoto.png")
 
     const dispatch = useDispatch();
 

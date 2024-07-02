@@ -170,7 +170,6 @@ const userSlice = createSlice({
             localStorage.setItem('BASKET', updatedBasketJSON);
         },
         setRenderInfo: (state, action) => {
-            console.log(action.payload)
             state.renderInfo = action.payload;
         }
     }

@@ -31,7 +31,7 @@ function RightColumnUserOrders() {
     useEffect(() => {
         fetchData();
     }, [activePage]);
-    console.log(userPurchases)
+    // console.log(userPurchases)
 
 
 
@@ -91,7 +91,7 @@ function RightColumnUserOrders() {
                                     className='good-photo'>
                                     <Image
                                         alt="image of good"
-                                        src={item.order_goods_pfoto}
+                                        src={item.order_goods_pfoto ? item.order_goods_pfoto : "/defaultPhoto.png"}
                                         quality={100}
                                         fill
                                         sizes="(max-width: 100%)"
