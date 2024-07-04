@@ -342,7 +342,7 @@ function RightColumnAddNewGood() {
                 isModalOpen && (
                     <div className="modal-overlay">
                         <div className="modal-content in-userpage">
-                            <h4 className='modal-in-userpage-title'>Товар додано до каталогу.</h4>
+                            <h4 className='modal-in-userpage-title'>Товар додано до каталогу</h4>
                             <button className='modal-content-button-in-userpage' onClick={() => setIsModalOpen(false)}>Продовжити</button>
                             <p className='modal-paragraf-or'>або</p>
                             <button className='modal-content-button-in-userpage' onClick={pushUserToNewGood}>Подивитись товар на сайті</button>

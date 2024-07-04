@@ -32,7 +32,7 @@ export default function OrderListFlex({ userPurchases }) {
                             {item.order_goods_title.length > 20 ? item.order_goods_title.slice(0, 20) + "..." : item.order_goods_title}
                         </div>
                         <div className='order-central-column-user-info'>
-                            <div>Покупець:</div>
+                            <div>Покупець:&nbsp;</div>
                             <div> {item.order_client_info.name} {item.order_client_info.surname}</div>
                         </div>
 

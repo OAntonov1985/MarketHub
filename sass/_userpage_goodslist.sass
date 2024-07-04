@@ -8,7 +8,7 @@
     font-size: 1.8rem
     color: $color-text-main   
     overflow: hidden    
-    padding: 2.4rem  2.4rem 0 2.4rem
+    padding: 2.4rem  2.4rem 0 2.4rem    
     @media only screen and (max-width : 1120px)
         padding: 0
     
@@ -20,6 +20,11 @@
     margin-bottom: 2rem
     @media only screen and (max-width : 1120px)
         display: none
+
+.container-in-orders
+    // grid-template-columns: repeat(5, auto)
+    grid-template-columns: minmax(12rem, auto) minmax(19rem, auto) minmax(15rem, auto) minmax(10rem, auto) minmax(17rem, auto)
+   
 
 .user-good-description
     overflow: hidden
@@ -63,3 +68,50 @@
 
 .show-edit-menu
     display: block
+
+.bodrers-3
+    border-top: 1px solid black
+    border-bottom:  1px solid black
+    border-left: 1px solid black
+    border-top-left-radius: .4rem
+    border-bottom-left-radius: .4rem
+    
+
+.bodrers-2
+    border-top: 1px solid black
+    border-bottom:  1px solid black
+
+.bodrers--3
+    border-top: 1px solid black
+    border-bottom:  1px solid black
+    border-right: 1px solid black
+    border-top-right-radius: .4rem
+    border-bottom-right-radius: .4rem
+    cursor: pointer
+
+.photo-in-orders
+    margin: 1px 0
+
+.flex-center
+    display: flex
+    flex-direction: column
+    justify-content: center
+   
+.selector-in-orders
+    height: 3.8rem
+    width: 100%
+    cursor: pointer
+    color: $color-background-loginpage
+    font-size: 1.6rem
+    border-radius: .4rem
+    border: 1px solid $color-black
+    // text-indent: 5px
+    padding: .5rem
+
+
+
+.selector-in-orders:focus-visible   
+    outline: none
+
+.options-in-odreds
+    padding: .5rem
