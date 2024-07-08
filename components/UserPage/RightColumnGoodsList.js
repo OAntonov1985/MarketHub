@@ -31,7 +31,6 @@ function RightColumnGoodsList() {
         dispatch(setActiveSpinner(true));
         try {
             const result = await GetusersGoodsToSale(iserID, activePage - 1, activeSubItemInGood === "Активні товари" ? true : activeSubItemInGood === "Неактивні товари" ? false : undefined);
-            // console.log(result)
             setUserGoodsToSale(result.result.data);
             setTotalUserGoodsToSale(result.result.total);
             dispatch(setActiveSpinner(false));

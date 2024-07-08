@@ -4130,6 +4130,7 @@ h2 {
   display: flex;
   gap: 1rem;
   align-items: center;
+  justify-content: center;
 }
 
 .good-photo {
@@ -4270,6 +4271,12 @@ h2 {
   .goods-list-flex {
     display: block;
   }
+}
+
+.modify {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
 }
 
 .right-culumn-user-list-to-render-container {
