@@ -1,10 +1,10 @@
 import { MaketHubURL } from "../../components/Constants";
 
-export default async function GetUsersOrders(id, skip) {
+export default async function GetUsersOrders(id, skip, orderStatus) {
     let result;
 
     try {
-        const response = await fetch(MaketHubURL + `getUserOrders/${id}/${skip}`, {
+        const response = await fetch(MaketHubURL + `getUserOrders/${id}/${skip}/${orderStatus}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

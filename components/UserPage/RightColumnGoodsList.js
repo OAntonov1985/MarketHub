@@ -14,7 +14,7 @@ import Cookies from 'js-cookie';
 
 
 function RightColumnGoodsList() {
-    const [userGoodsToSale, setUserGoodsToSale] = useState([]);
+    const [userGoodsToSale, setUserGoodsToSale] = useState(null);
     const [totalUserGoodsToSale, setTotalUserGoodsToSale] = useState(0);
     const { activeSubItemInGood } = useSelector((state) => state.user);
     const [activePage, setActivePage] = useState(1);
@@ -29,6 +29,7 @@ function RightColumnGoodsList() {
 
     const fetchData = async () => {
         dispatch(setActiveSpinner(true));
+        setUserGoodsToSale(null)
         try {
             const result = await GetusersGoodsToSale(iserID, activePage - 1, activeSubItemInGood === "Активні товари" ? true : activeSubItemInGood === "Неактивні товари" ? false : undefined);
             setUserGoodsToSale(result.result.data);

@@ -13,6 +13,7 @@ const initialState = {
     categoryToRender: "Особисті дані",
     pfotoArrayLength: 4,
     activeSubItemInGood: "Всі товари",
+    activeSubItemInOrder: "Всі замовлення",
     goodToEdit: '',
     searchPhrase: '',
     searchActive: 1,
@@ -149,6 +150,9 @@ const userSlice = createSlice({
         setActiveSubItemInGood: (state, action) => {
             state.activeSubItemInGood = action.payload;
         },
+        setActiveSubItemInOrders: (state, action) => {
+            state.activeSubItemInOrder = action.payload;
+        },
         setGoodToEdit: (state, action) => {
             state.goodToEdit = action.payload;
         },
@@ -177,6 +181,6 @@ const userSlice = createSlice({
 
 
 
-export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite, setCategorieToRender, setPhotoArrayLength, setActiveSpinner, setActiveSubItemInGood, setGoodToEdit, setSearchPearchPhrase, setSearchActive, setSearchTotalResult, setClearUserBasket, setRenderInfo } = userSlice.actions;
+export const { increaseGood, totalGoods, reduceGood, setUserInfo, setUserName, setTotalPriseInAllBasket, setUserBasket, setInitialBasket, deleteItemInBasket, setUserFavorite, setinitialFavorite, setTotalFavorite, setCategorieToRender, setPhotoArrayLength, setActiveSpinner, setActiveSubItemInGood, setGoodToEdit, setSearchPearchPhrase, setSearchActive, setSearchTotalResult, setClearUserBasket, setRenderInfo, setActiveSubItemInOrders } = userSlice.actions;
 
 export default userSlice.reducer;

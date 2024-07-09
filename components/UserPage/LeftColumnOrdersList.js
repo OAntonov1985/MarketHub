@@ -1,11 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setActiveSubItemInOrders } from '@/slices/userSlice';
 
 
 function LeftColumnOrdersList({ objToSend }) {
+    const dispatch = useDispatch();
     const { setIsActiveCatogorie, setActiveItem, isActiveCategorie } = objToSend;
-    const [activeItemInOrders, setActiveItemInOrders] = useState("Всі замовлення");
+    const { activeSubItemInOrder } = useSelector((state) => state.user);
 
 
     return (
@@ -14,6 +17,7 @@ function LeftColumnOrdersList({ objToSend }) {
                 id="Замволення"
                 onClick={(event) => {
                     setIsActiveCatogorie("");
+                    // dispatch(setActiveSubItemInOrders(event.target.id));
                     setActiveItem(event.target.id);
                 }}>
                 Замовлення
@@ -32,13 +36,13 @@ function LeftColumnOrdersList({ objToSend }) {
                 </div>
             </div>
             <ul className={`left-column-orders-list ${isActiveCategorie === "Замволення" ? 'list-open-orders' : ''}`}>
-                <li className={`left-column-orders-li ${activeItemInOrders === "Всі замовлення" ? "active-color" : ""}`} id="Всі замовлення"
-                    onClick={(event) => setActiveItemInOrders(event.target.id)}
+                <li className={`left-column-orders-li ${activeSubItemInOrder === "Всі замовлення" ? "active-color" : ""}`} id="Всі замовлення"
+                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}
                 >
                     <div className='orders-li-image-container'>
                         <Image
                             alt="icon of cirkle"
-                            src={activeItemInOrders === "Всі замовлення" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
+                            src={activeSubItemInOrder == "Всі замовлення" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
                             quality={100}
                             fill
                             sizes="(max-width: 100%)"
@@ -49,11 +53,12 @@ function LeftColumnOrdersList({ objToSend }) {
                         />
                     </div>
                     Всі замовлення</li>
-                <li className={`left-column-orders-li ${activeItemInOrders === "Нові" ? "active-color" : ""}`} id="Нові" onClick={(event) => setActiveItemInOrders(event.target.id)}>
+                <li className={`left-column-orders-li ${activeSubItemInOrder === "Нові" ? "active-color" : ""}`} id="Нові"
+                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}>
                     <div className='orders-li-image-container'>
                         <Image
                             alt="icon of cirkle"
-                            src={activeItemInOrders === "Нові" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
+                            src={activeSubItemInOrder === "Нові" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
                             quality={100}
                             fill
                             sizes="(max-width: 100%)"
@@ -64,11 +69,12 @@ function LeftColumnOrdersList({ objToSend }) {
                         />
                     </div>
                     Нові</li>
-                <li className={`left-column-orders-li ${activeItemInOrders === "В обробці" ? "active-color" : ""}`} id="В обробці" onClick={(event) => setActiveItemInOrders(event.target.id)}>
+                <li className={`left-column-orders-li ${activeSubItemInOrder === "В обробці" ? "active-color" : ""}`} id="В обробці"
+                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}>
                     <div className='orders-li-image-container'>
                         <Image
                             alt="icon of cirkle"
-                            src={activeItemInOrders === "В обробці" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
+                            src={activeSubItemInOrder === "В обробці" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
                             quality={100}
                             fill
                             sizes="(max-width: 100%)"
@@ -79,11 +85,12 @@ function LeftColumnOrdersList({ objToSend }) {
                         />
                     </div>
                     В обробці</li>
-                <li className={`left-column-orders-li ${activeItemInOrders === "Доставляються" ? "active-color" : ""}`} id="Доставляються" onClick={(event) => setActiveItemInOrders(event.target.id)}>
+                <li className={`left-column-orders-li ${activeSubItemInOrder === "Доставляються" ? "active-color" : ""}`} id="Доставляються"
+                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}>
                     <div className='orders-li-image-container'>
                         <Image
                             alt="icon of cirkle"
-                            src={activeItemInOrders === "Доставляються" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
+                            src={activeSubItemInOrder === "Доставляються" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
                             quality={100}
                             fill
                             sizes="(max-width: 100%)"
@@ -94,11 +101,12 @@ function LeftColumnOrdersList({ objToSend }) {
                         />
                     </div>
                     Доставляються</li>
-                <li className={`left-column-orders-li ${activeItemInOrders === "Успішні" ? "active-color" : ""}`} id="Успішні" onClick={(event) => setActiveItemInOrders(event.target.id)}>
+                <li className={`left-column-orders-li ${activeSubItemInOrder === "Успішні" ? "active-color" : ""}`} id="Успішні"
+                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}>
                     <div className='orders-li-image-container'>
                         <Image
                             alt="icon of cirkle"
-                            src={activeItemInOrders === "Успішні" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
+                            src={activeSubItemInOrder === "Успішні" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
                             quality={100}
                             fill
                             sizes="(max-width: 100%)"
@@ -109,11 +117,12 @@ function LeftColumnOrdersList({ objToSend }) {
                         />
                     </div>
                     Успішні</li>
-                <li className={`left-column-orders-li ${activeItemInOrders === "Неуспішні" ? "active-color" : ""}`} id="Неуспішні" onClick={(event) => setActiveItemInOrders(event.target.id)}>
+                <li className={`left-column-orders-li ${activeSubItemInOrder === "Неуспішні" ? "active-color" : ""}`} id="Неуспішні"
+                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}>
                     <div className='orders-li-image-container'>
                         <Image
                             alt="icon of cirkle"
-                            src={activeItemInOrders === "Неуспішні" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
+                            src={activeSubItemInOrder === "Неуспішні" ? "circle_check.svg" : "/checkmark-circle-outline.svg"}
                             quality={100}
                             fill
                             sizes="(max-width: 100%)"

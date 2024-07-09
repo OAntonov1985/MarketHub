@@ -47,113 +47,122 @@ function RightColumnUsersGoodsListToRender({ objectToSend }) {
     };
 
 
-    return (
-        <>{userGoodsToSale.length == 0 ?
+    if (!userGoodsToSale) {
+        return (
+            <div className='right-culumn-user-list-to-render-container'></div>
+        );
+    }
+
+    if (userGoodsToSale.length === 0) {
+        return (
             <ArrowComponent title={"Ви ще не додали жодного товару для продажу"} />
-            :
-            <div className='right-culumn-user-list-to-render-container'>
-                <div className="grid-container-users-goods">
-                    <div className='user-good-title grid-item'>Назва товару</div>
-                    <div className='user-good-id grid-item'>Код товару</div>
-                    <div className='user-good-description grid-item'>Опис товару</div>
-                    <div className='user-good-price grid-item'>Ціна</div>
-                    <div className='user-good-selector grid-item'></div>
-                    {userGoodsToSale && userGoodsToSale.map((item, index) => {
-                        return (
-                            <React.Fragment key={index}>
-                                <div className='order-info-goods grid-item' >
-                                    <Link
-                                        href={`/${item.category_details.name}/${item.sub_category_detail.name}/${item.id}`}
-                                        className='good-photo'>
-                                        <Image
-                                            alt="image of good"
-                                            src={item.thumbnail ? item.thumbnail : "/defaultPhoto.png"}
-                                            quality={100}
-                                            fill
-                                            sizes="(max-width: 100%)"
-                                            style={{
-                                                objectFit: 'contain',
-                                                width: '100%'
-                                            }}
-                                        />
-                                    </Link>
-                                    <Link
-                                        href={`/${item.category_details.name}/${item.sub_category_detail.name}/${item.id}`}
-                                        className='good-title order-title'>{item.title.split(' ').slice(0, 3).join(' ')}
-                                    </Link>
+        );
+    }
+
+
+    return (
+        <div className='right-culumn-user-list-to-render-container'>
+            <div className="grid-container-users-goods">
+                <div className='user-good-title grid-item'>Назва товару</div>
+                <div className='user-good-id grid-item'>Код товару</div>
+                <div className='user-good-description grid-item'>Опис товару</div>
+                <div className='user-good-price grid-item'>Ціна</div>
+                <div className='user-good-selector grid-item'></div>
+                {userGoodsToSale && userGoodsToSale.map((item, index) => {
+                    return (
+                        <React.Fragment key={index}>
+                            <div className='order-info-goods grid-item' >
+                                <Link
+                                    href={`/${item.category_details.name}/${item.sub_category_detail.name}/${item.id}`}
+                                    className='good-photo'>
+                                    <Image
+                                        alt="image of good"
+                                        src={item.thumbnail ? item.thumbnail : "/defaultPhoto.png"}
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%'
+                                        }}
+                                    />
+                                </Link>
+                                <Link
+                                    href={`/${item.category_details.name}/${item.sub_category_detail.name}/${item.id}`}
+                                    className='good-title order-title'>{item.title.split(' ').slice(0, 3).join(' ')}
+                                </Link>
+                            </div>
+                            <div>{item.id}</div>
+                            <div className='user-good-description grid-item'>{item.description}</div>
+                            <div className='order-info-amount grid-item'>{formattedPrice(item.price)} грн</div>
+                            <div className='order-info-points-container' id={`${item.id} ${item.available}`} onClick={() => toggleEditMenu(item.id)}>
+                                <div className='order-info-points'>
+                                    <Image
+                                        className='logo-of-point'
+                                        alt="logo of point"
+                                        src="/point.svg"
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%'
+                                        }}
+                                    />
                                 </div>
-                                <div>{item.id}</div>
-                                <div className='user-good-description grid-item'>{item.description}</div>
-                                <div className='order-info-amount grid-item'>{formattedPrice(item.price)} грн</div>
-                                <div className='order-info-points-container' id={`${item.id} ${item.available}`} onClick={() => toggleEditMenu(item.id)}>
-                                    <div className='order-info-points'>
-                                        <Image
-                                            className='logo-of-point'
-                                            alt="logo of point"
-                                            src="/point.svg"
-                                            quality={100}
-                                            fill
-                                            sizes="(max-width: 100%)"
-                                            style={{
-                                                objectFit: 'contain',
-                                                width: '100%'
-                                            }}
-                                        />
-                                    </div>
-                                    <div className='order-info-points'>
-                                        <Image
-                                            className='logo-of-point'
-                                            alt="logo of point"
-                                            src="/point.svg"
-                                            quality={100}
-                                            fill
-                                            sizes="(max-width: 100%)"
-                                            style={{
-                                                objectFit: 'contain',
-                                                width: '100%'
-                                            }}
-                                        />
-                                    </div>
-                                    <div className='order-info-points'>
-                                        <Image
-                                            className='logo-of-point'
-                                            alt="logo of point"
-                                            src="/point.svg"
-                                            quality={100}
-                                            fill
-                                            sizes="(max-width: 100%)"
-                                            style={{
-                                                objectFit: 'contain',
-                                                width: '100%'
-                                            }}
-                                        />
-                                    </div>
-                                    <div className={`edit-menu ${activeItem === item.id ? "show-edit-menu" : ""}`} id={item.id}>
-                                        <div
-                                            id={item.id}
-                                            onClick={(event) => changeGoodAvability(event, item.available)}>
-                                            {item.available === true ? "Деактивувати" : "Активувати"}
-                                        </div>
-                                        <div
-                                            id={item.id}
-                                            onClick={(event) => pushToEditGood(event)}>
-                                            Редагувати</div>
-                                        <div
-                                            id={item.id}
-                                            onClick={(event) => deleteGood(event, item.title)}
-                                        >Видалити</div>
-                                    </div>
+                                <div className='order-info-points'>
+                                    <Image
+                                        className='logo-of-point'
+                                        alt="logo of point"
+                                        src="/point.svg"
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%'
+                                        }}
+                                    />
                                 </div>
-                            </React.Fragment>
-                        );
-                    })}
-                </div>
-                < GoodsListFlex userGoodsToSale={userGoodsToSale} activeItem={activeItem} setActiveItem={setActiveItem} deleteGood={deleteGood} changeGoodAvability={changeGoodAvability} />
-                {totalUserGoodsToSale < 6 ? null :
-                    < PageIndexserSmall total={totalUserGoodsToSale} setActivePage={setActivePage} activePage={activePage} />
-                }
+                                <div className='order-info-points'>
+                                    <Image
+                                        className='logo-of-point'
+                                        alt="logo of point"
+                                        src="/point.svg"
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%'
+                                        }}
+                                    />
+                                </div>
+                                <div className={`edit-menu ${activeItem === item.id ? "show-edit-menu" : ""}`} id={item.id}>
+                                    <div
+                                        id={item.id}
+                                        onClick={(event) => changeGoodAvability(event, item.available)}>
+                                        {item.available === true ? "Деактивувати" : "Активувати"}
+                                    </div>
+                                    <div
+                                        id={item.id}
+                                        onClick={(event) => pushToEditGood(event)}>
+                                        Редагувати</div>
+                                    <div
+                                        id={item.id}
+                                        onClick={(event) => deleteGood(event, item.title)}
+                                    >Видалити</div>
+                                </div>
+                            </div>
+                        </React.Fragment>
+                    );
+                })}
             </div>
-        }</>
+            < GoodsListFlex userGoodsToSale={userGoodsToSale} activeItem={activeItem} setActiveItem={setActiveItem} deleteGood={deleteGood} changeGoodAvability={changeGoodAvability} />
+            {totalUserGoodsToSale < 6 ? null :
+                < PageIndexserSmall total={totalUserGoodsToSale} setActivePage={setActivePage} activePage={activePage} />
+            }
+        </div>
 
     )
 }
