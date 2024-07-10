@@ -50,7 +50,7 @@
     position: relative
     flex: 0 0 6rem
     cursor: pointer
-
+   
 .order-title
     cursor: pointer
     color: $color-text-main
@@ -64,14 +64,7 @@
 .order_status
     position: relative
 
-// .order_status:after
-//     content: ""
-//     position: absolute
-//     left: 0
-//     bottom: -5px
-//     width: 100%
-//     height: 1px
-//     background-color: red
+
 
     
 
@@ -112,7 +105,7 @@
 
 .order-item-in-userpage
     list-style-type: none
-    height: 11.6rem
+    // min-height: 11.6rem
     border: 1px solid #000000
     border-radius: .4rem
     margin-bottom: 2.4rem
@@ -198,4 +191,72 @@
     display: flex
     flex-direction: column
     padding: 1rem
-    margin: auto
+    // margin: auto
+
+.flex-position
+    flex-direction: column
+    
+
+.order-top-row
+    display: flex
+    justify-content: space-between
+
+
+.orders-top-row-right-part
+    display: flex
+    gap: 1.6rem
+.orders-top-row-left-part
+    margin-left: 3px
+
+.order-central-row
+    display: flex
+    justify-content: space-between
+    gap: 1.6rem
+    // @media only screen and (max-width : 816px)
+    //     flex-direction: column
+    //     gap: .8rem
+    //     gap: 0
+
+.user-info-in-order-part
+    padding-top: .4rem
+    // width: 12rem
+    flex-shrink: 0
+    // display: flex
+    // gap: 1.6rem
+    @media only screen and (max-width : 816px)
+        flex-shrink: 1
+        // width: 100%      
+        // max-width:   
+    //     text-align: center
+    //     padding-top: 0
+    
+
+.price-info
+    // height: 6rem
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+
+.price-info div:first-child 
+    margin-bottom: .8rem
+
+.total-price-info
+    display: flex
+    flex-direction: column
+    width: 8rem
+    height: 100%
+    margin-top: auto
+    flex-shrink: 0
+    @media only screen and (max-width : 816px)
+        margin-left: auto
+        
+
+
+.user-info-in-order-left-part
+    width: 21rem
+    @media only screen and (max-width : 816px)
+        // width: 100%
+
+.mod34
+    @media only screen and (max-width : 816px)
+        // justify-content: center

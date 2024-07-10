@@ -22,7 +22,7 @@ function RightColumnUserInfo() {
     const [userPassword, setUserPassword] = useState('XXXXXXXX');
     const [userPhone, setUserPfone] = useState(pfone);
     const [isChangeClientInfo, setIsChangeClientInfo] = useState(false);
-    const { renderInfo } = useSelector((state) => state.user);
+
 
 
     //////////   userEmail    //////////

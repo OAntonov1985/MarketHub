@@ -4186,7 +4186,6 @@ h2 {
 
 .order-item-in-userpage {
   list-style-type: none;
-  height: 11.6rem;
   border: 1px solid #000000;
   border-radius: 0.4rem;
   margin-bottom: 2.4rem;
@@ -4276,9 +4275,69 @@ h2 {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  margin: auto;
 }
 
+.flex-position {
+  flex-direction: column;
+}
+
+.order-top-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orders-top-row-right-part {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.orders-top-row-left-part {
+  margin-left: 3px;
+}
+
+.order-central-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.6rem;
+}
+
+.user-info-in-order-part {
+  padding-top: 0.4rem;
+  flex-shrink: 0;
+}
+@media only screen and (max-width: 816px) {
+  .user-info-in-order-part {
+    flex-shrink: 1;
+  }
+}
+
+.price-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.price-info div:first-child {
+  margin-bottom: 0.8rem;
+}
+
+.total-price-info {
+  display: flex;
+  flex-direction: column;
+  width: 8rem;
+  height: 100%;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+@media only screen and (max-width: 816px) {
+  .total-price-info {
+    margin-left: auto;
+  }
+}
+
+.user-info-in-order-left-part {
+  width: 21rem;
+}
 .right-culumn-user-list-to-render-container {
   display: flex;
   flex-direction: column;
@@ -4383,6 +4442,13 @@ h2 {
 
 .photo-in-orders {
   margin: 1px 0;
+}
+@media only screen and (max-width: 1120px) {
+  .photo-in-orders {
+    border: 1px solid #000000;
+    border-radius: 0;
+    cursor: auto;
+  }
 }
 
 .flex-center {

@@ -2,13 +2,20 @@ import React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setActiveSubItemInOrders } from '@/slices/userSlice';
+import { setActiveSubItemInOrders, setRenderInfo } from '@/slices/userSlice';
 
 
 function LeftColumnOrdersList({ objToSend }) {
     const dispatch = useDispatch();
     const { setIsActiveCatogorie, setActiveItem, isActiveCategorie } = objToSend;
     const { activeSubItemInOrder } = useSelector((state) => state.user);
+
+    function SelectorToRenderInfo(event) {
+        if (window.matchMedia('(max-width: 660px)').matches) {
+            dispatch(setRenderInfo("userOrdersList"));
+            setActiveItem(event.target.id);
+        } else setActiveItem(event.target.id)
+    }
 
 
     return (
@@ -37,7 +44,7 @@ function LeftColumnOrdersList({ objToSend }) {
             </div>
             <ul className={`left-column-orders-list ${isActiveCategorie === "Замволення" ? 'list-open-orders' : ''}`}>
                 <li className={`left-column-orders-li ${activeSubItemInOrder === "Всі замовлення" ? "active-color" : ""}`} id="Всі замовлення"
-                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}
+                    onClick={(event) => { dispatch(setActiveSubItemInOrders(event.target.id)); dispatch(setRenderInfo("userGoodsList")) }}
                 >
                     <div className='orders-li-image-container'>
                         <Image
@@ -54,7 +61,7 @@ function LeftColumnOrdersList({ objToSend }) {
                     </div>
                     Всі замовлення</li>
                 <li className={`left-column-orders-li ${activeSubItemInOrder === "Нові" ? "active-color" : ""}`} id="Нові"
-                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}>
+                    onClick={(event) => { dispatch(setActiveSubItemInOrders(event.target.id)); dispatch(setRenderInfo("userGoodsList")) }}>
                     <div className='orders-li-image-container'>
                         <Image
                             alt="icon of cirkle"
@@ -70,7 +77,7 @@ function LeftColumnOrdersList({ objToSend }) {
                     </div>
                     Нові</li>
                 <li className={`left-column-orders-li ${activeSubItemInOrder === "В обробці" ? "active-color" : ""}`} id="В обробці"
-                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}>
+                    onClick={(event) => { dispatch(setActiveSubItemInOrders(event.target.id)); dispatch(setRenderInfo("userGoodsList")) }}>
                     <div className='orders-li-image-container'>
                         <Image
                             alt="icon of cirkle"
@@ -86,7 +93,7 @@ function LeftColumnOrdersList({ objToSend }) {
                     </div>
                     В обробці</li>
                 <li className={`left-column-orders-li ${activeSubItemInOrder === "Доставляються" ? "active-color" : ""}`} id="Доставляються"
-                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}>
+                    onClick={(event) => { dispatch(setActiveSubItemInOrders(event.target.id)); dispatch(setRenderInfo("userGoodsList")) }}>
                     <div className='orders-li-image-container'>
                         <Image
                             alt="icon of cirkle"
@@ -102,7 +109,7 @@ function LeftColumnOrdersList({ objToSend }) {
                     </div>
                     Доставляються</li>
                 <li className={`left-column-orders-li ${activeSubItemInOrder === "Успішні" ? "active-color" : ""}`} id="Успішні"
-                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}>
+                    onClick={(event) => { dispatch(setActiveSubItemInOrders(event.target.id)); dispatch(setRenderInfo("userGoodsList")) }}>
                     <div className='orders-li-image-container'>
                         <Image
                             alt="icon of cirkle"
@@ -118,7 +125,7 @@ function LeftColumnOrdersList({ objToSend }) {
                     </div>
                     Успішні</li>
                 <li className={`left-column-orders-li ${activeSubItemInOrder === "Неуспішні" ? "active-color" : ""}`} id="Неуспішні"
-                    onClick={(event) => dispatch(setActiveSubItemInOrders(event.target.id))}>
+                    onClick={(event) => { dispatch(setActiveSubItemInOrders(event.target.id)); dispatch(setRenderInfo("userGoodsList")) }}>
                     <div className='orders-li-image-container'>
                         <Image
                             alt="icon of cirkle"

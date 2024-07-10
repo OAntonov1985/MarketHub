@@ -10,7 +10,7 @@ import ArrowComponent from './ArrowComponent';
 import SetOrderStatus from '@/pages/api/SetOrderStatus';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActiveSpinner } from '@/slices/userSlice';
-import Spinner from '../Spinner/Spinner';
+import OrdersListFlex from './OrdersListFlex';
 
 function RightColumnOrders() {
     const [userGoodsToSale, setUserGoodsToSale] = useState(null);
@@ -149,6 +149,7 @@ function RightColumnOrders() {
                     );
                 })}
             </div>
+            < OrdersListFlex userGoodsToSale={userGoodsToSale} />
             {
                 totalUserGoodsToSale < 6 ? null :
                     <PageIndexserSmall total={totalUserGoodsToSale} setActivePage={setActivePage} activePage={activePage} />
