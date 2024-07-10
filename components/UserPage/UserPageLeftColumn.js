@@ -5,7 +5,7 @@ import LeftColumnGoodsList from './LeftColumnGoodsList';
 import LeftColumnUserInfo from './LeftColumnUserInfo';
 import LeftColumnUserOrders from './LeftColumnUserOrders';
 import { useState, useEffect } from 'react';
-import { setCategorieToRender, setPhotoArrayLength, setUserName } from '@/slices/userSlice';
+import { setCategorieToRender, setPhotoArrayLength, setUserName, setActiveSubItemInOrders, setActiveSubItemInGood, setRenderInfo } from '@/slices/userSlice';
 import { signOut } from "next-auth/react";
 import Cookies from 'js-cookie';
 
@@ -43,6 +43,15 @@ function UserPageLeftColumn() {
         Cookies.remove('userID', { path: '/' });
         signOut({ callbackUrl: "/" })
     }
+
+    useEffect(() => {
+        dispatch(setActiveSubItemInOrders("Всі замовлення"));
+        dispatch(setActiveSubItemInGood("Всі товари"));
+        dispatch(setCategorieToRender("Особисті дані"));
+        dispatch(setRenderInfo("start"));
+        setIsActiveCatogorie("Особисті дані");
+
+    }, [])
 
 
 

@@ -35,12 +35,10 @@ function RightColumnOrders() {
         if (activeSubItemInOrder == "Неуспішні") orderStatus = 'Неуспішне';
         dispatch(setActiveSpinner(true));
         const fetchOrders = async () => {
-            console.log(orderStatus)
             try {
                 const res = await GetUsersOrders(userID, activePage - 1, orderStatus);
                 setUserGoodsToSale(res.result.orders);
                 setTotalUserGoodsToSale(res.result.total)
-                // console.log(res.result.orders);
             } catch (error) {
                 console.error('Error fetching user orders:', error);
             }

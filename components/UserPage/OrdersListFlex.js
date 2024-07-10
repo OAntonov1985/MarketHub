@@ -12,7 +12,6 @@ export default function OrdersListFlex({ userGoodsToSale }) {
             <ArrowComponent title={activeSubItemInOrder} />
             <ul className='orders-list-flex'>
                 {userGoodsToSale.map((item, index) => (
-                    console.log(item),
                     <li className='order-item-in-userpage flex-position' key={index}>
                         <div className='order-top-row'>
                             <div className='orders-top-row-left-part'>№ {item.orderNum}</div>
