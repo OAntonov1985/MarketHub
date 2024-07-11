@@ -1,12 +1,56 @@
 import ArrowComponent from './ArrowComponent';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+import { setActiveSpinner } from '@/slices/userSlice';
 import Link from 'next/link';
 import Image from 'next/image';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
+import SetOrderStatus from '@/pages/api/SetOrderStatus';
 
 
-export default function OrdersListFlex({ userGoodsToSale }) {
+export default function OrdersListFlex({ userGoodsToSale, activeItem, setActiveItem }) {
     const { activeSubItemInOrder } = useSelector((state) => state.user);
+    const userID = parseInt(Cookies.get('userID'));
+    const dispatch = useDispatch();
+
+    async function ChangeOrderStatus(event) {
+        // console.log(event.target.id);
+        // console.log(activeItem)
+        // console.log(userID)
+        // console.log(event.target.id)
+
+        dispatch(setActiveSpinner(true));
+
+        try {
+            const result = await SetOrderStatus(userID, activeItem, event.target.id);
+            dispatch(setActiveSpinner(false));
+            alert(result.result.message);
+        } catch (error) {
+            alert(error);
+        }
+        dispatch(setActiveSpinner(false));
+        setActiveItem(null);
+    }
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            const isActiveMenu = event.target.closest('.t-container');
+
+            if (!isActiveMenu) {
+                setActiveItem(null);
+            }
+        };
+
+        window.addEventListener('click', handleClickOutside);
+
+        return () => {
+            window.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
+
     return (
         <div className={`right-culumn-user-orders-container goods-list-flex `}>
             <ArrowComponent title={activeSubItemInOrder} />
@@ -16,20 +60,8 @@ export default function OrdersListFlex({ userGoodsToSale }) {
                         <div className='order-top-row'>
                             <div className='orders-top-row-left-part'>№ {item.orderNum}</div>
                             <div className='orders-top-row-right-part'>{item.orderTime}
-                                <div> <div className='order-info-points'>
-                                    <Image
-                                        className='logo-of-point'
-                                        alt="logo of point"
-                                        src="/point.svg"
-                                        quality={100}
-                                        fill
-                                        sizes="(max-width: 100%)"
-                                        style={{
-                                            objectFit: 'contain',
-                                            width: '100%'
-                                        }}
-                                    />
-                                </div>
+                                <div className='t-container' id={item.orderNum}
+                                    onClick={(event) => activeItem ? setActiveItem(null) : setActiveItem(+event.currentTarget.id)}>
                                     <div className='order-info-points'>
                                         <Image
                                             className='logo-of-point'
@@ -57,7 +89,28 @@ export default function OrdersListFlex({ userGoodsToSale }) {
                                                 width: '100%'
                                             }}
                                         />
-                                    </div></div>
+                                    </div>
+                                    <div className='order-info-points'>
+                                        <Image
+                                            className='logo-of-point'
+                                            alt="logo of point"
+                                            src="/point.svg"
+                                            quality={100}
+                                            fill
+                                            sizes="(max-width: 100%)"
+                                            style={{
+                                                objectFit: 'contain',
+                                                width: '100%'
+                                            }}
+                                        />
+                                    </div>
+                                    <div className={`edit-menu menu-in-orders ${activeItem === item.orderNum ? "show-edit-menu" : ""}`} id={item.orderNum}>
+                                        <div id={"В обробці"} onClick={(event) => ChangeOrderStatus(event)}>В обробці</div>
+                                        <div id={"Відправлене"} onClick={(event) => ChangeOrderStatus(event)}>Відправлене</div>
+                                        <div id={"Успішне"} onClick={(event) => ChangeOrderStatus(event)}>Успішне</div>
+                                        <div id={"Неуспішне"} onClick={(event) => ChangeOrderStatus(event)}>Неуспішне</div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -101,15 +154,7 @@ export default function OrdersListFlex({ userGoodsToSale }) {
                                 <div>+{item.userInfo.clientPfone}</div>
 
                             </div>
-                            <div className='total-price-info'>{item.orderStatus}
-                                {/* <div>Всього:</div>
-                                <div>
-                                    {item.userBuyingGoods && (
-                                        formattedPrice(
-                                            item.userBuyingGoods.reduce((total, item) => total + item.totalPrice, 0)
-                                        )
-                                    )} грн
-                                </div> */}
+                            <div className='total-price-info'>{item.orderStatus == "newOrder" ? "Нове замовлення" : item.orderStatus}
 
                             </div>
                         </div>

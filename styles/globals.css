@@ -3974,6 +3974,25 @@ h2 {
   padding: 1rem;
 }
 
+.t-container {
+  width: 1.6rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.menu-in-orders {
+  height: 124px !important;
+  width: 160px !important;
+}
+
+.menu-in-orders div {
+  padding: 2px;
+}
+
 .add-new-good {
   width: 100%;
   height: 100%;
@@ -4309,7 +4328,7 @@ h2 {
 
 .orders-top-row-right-part {
   display: flex;
-  gap: 1.6rem;
+  gap: 5px;
 }
 
 .orders-top-row-left-part {

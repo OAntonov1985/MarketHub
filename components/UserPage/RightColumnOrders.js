@@ -17,6 +17,7 @@ function RightColumnOrders() {
     const [totalUserGoodsToSale, setTotalUserGoodsToSale] = useState(0);
     const [activePage, setActivePage] = useState(1);
     const { activeSubItemInOrder } = useSelector((state) => state.user);
+    const [activeItem, setActiveItem] = useState(null);
     const dispatch = useDispatch();
 
 
@@ -45,7 +46,7 @@ function RightColumnOrders() {
             dispatch(setActiveSpinner(false));
         };
         fetchOrders();
-    }, [activeSubItemInOrder])
+    }, [activeSubItemInOrder, activePage]);
 
 
     async function changeOrderStatus(e) {
@@ -147,7 +148,7 @@ function RightColumnOrders() {
                     );
                 })}
             </div>
-            < OrdersListFlex userGoodsToSale={userGoodsToSale} />
+            < OrdersListFlex userGoodsToSale={userGoodsToSale} activeItem={activeItem} setActiveItem={setActiveItem} />
             {
                 totalUserGoodsToSale < 6 ? null :
                     <PageIndexserSmall total={totalUserGoodsToSale} setActivePage={setActivePage} activePage={activePage} />

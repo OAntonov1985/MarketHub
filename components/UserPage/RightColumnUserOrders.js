@@ -16,6 +16,7 @@ function RightColumnUserOrders() {
     const dispatch = useDispatch();
     const { renderInfo } = useSelector((state) => state.user);
 
+
     const fetchData = async () => {
         dispatch(setActiveSpinner(true));
         try {
@@ -27,6 +28,7 @@ function RightColumnUserOrders() {
             alert('Упс.... Щось пішло не так. зверніться до розробників');
         }
     };
+
 
     useEffect(() => {
         fetchData();

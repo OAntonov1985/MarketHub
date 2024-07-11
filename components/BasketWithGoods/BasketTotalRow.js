@@ -12,24 +12,8 @@ function BasketTotalRow({ clientPersonalInfo, clientAdressInfo }) {
     const { quantityOfGoods } = useSelector((state) => state.user);
     const { totalPriseInAllBasket } = useSelector((state) => state.user);
     const { userBasket } = useSelector((state) => state.user);
-    // console.log(userBasket)
 
     const [isOpen, setIsOpen] = useState(false);
-    // console.log(clientPersonalInfo);
-
-
-    // const router = useRouter();
-    // const dispatch = useDispatch();
-
-
-    // const { userFavorite } = useSelector((state) => state.user);
-    // const { quantityOfFavorite } = useSelector((state) => state.user);
-    // const { total } = useSelector((state) => state.user);
-    // let { userName } = useSelector((state) => state.user);
-    // console.log(quantityOfGoods)
-    // console.log(userBasket)
-    // console.log(total)
-    // console.log(userName)
 
 
     async function newOrder() {
@@ -49,7 +33,7 @@ function BasketTotalRow({ clientPersonalInfo, clientAdressInfo }) {
                 "userBuyingGoods": userBasket,
                 "sellersIDArray": originSellers,
                 "orderTime": formattedDate,
-                "orderStatus": 'newOrder'
+                "orderStatus": 'Нове замовлення'
 
             };
 
