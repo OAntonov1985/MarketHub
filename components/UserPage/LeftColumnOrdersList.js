@@ -17,18 +17,25 @@ function LeftColumnOrdersList({ objToSend }) {
         } else setActiveItem(event.target.id)
     }
 
+    const handleCategorieClick = () => {
+        if (isActiveCategorie === "Замволення") {
+            setIsActiveCatogorie("Особисті дані");
+            setActiveItem("Особисті дані");
+        } else if (isActiveCategorie !== "Замволення") {
+            setIsActiveCatogorie("Замволення");
+            setActiveItem("Замволення");
+        }
+    };
 
     return (
         <div className='left-column-item' >
             <div className='userPage-left-column-orders'
                 id="Замволення"
-                onClick={(event) => {
-                    setIsActiveCatogorie("");
-                    // dispatch(setActiveSubItemInOrders(event.target.id));
-                    setActiveItem(event.target.id);
-                }}>
+                onClick={(event) => handleCategorieClick(event)}
+            >
                 Замовлення
-                <div className={`left-column-item-image-container ${isActiveCategorie === "Замволення" ? "image-container-transform" : ""}`}>
+                <div className={`left-column-item-image-container ${isActiveCategorie === "Замволення" ? "image-container-transform" : ""}`} id="Замволення"
+                    onClick={() => handleCategorieClick()}>
                     <Image
                         alt="icon of cirkle"
                         src="/useritem.svg"

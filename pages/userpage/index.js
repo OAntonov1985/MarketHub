@@ -28,7 +28,7 @@ export default function UserPage() {
         else setIsClient(false);
     }, [status, userName]);
 
-    if (isClient) {
+    if (status === "authenticated") {
         return (
             <div className='userPage'>
                 {loading ? <Spinner /> : null}
@@ -45,17 +45,21 @@ export default function UserPage() {
                 <Footer />
             </div>
         )
-    } else return (
-        <>
-            <div className="modal-overlay" >
-                <div className="modal-content" >
-                    <h4 className='modal-title'>Вітаємо!</h4>
-                    <h4 className='modal-title'>Виконайте авторизацію або реєстрацію  щоб продовжити як користувач!</h4>
-                    <button className='modal-button' onClick={() => router.push("/loginpage")}>До сторінки авторизації</button>
+    } else if (status === "unauthenticated") {
+        return (
+            <>
+                <div className="modal-overlay" >
+                    <div className="modal-content" >
+                        <h4 className='modal-title'>Вітаємо!</h4>
+                        <h4 className='modal-title'>Виконайте авторизацію або реєстрацію  щоб продовжити як користувач!</h4>
+                        <button className='modal-button' onClick={() => router.push("/loginpage")}>До сторінки авторизації</button>
+                    </div>
                 </div>
-            </div>
-        </>
-    );
+            </>
+        );
+    }
+    // else return null
+
 }
 
 

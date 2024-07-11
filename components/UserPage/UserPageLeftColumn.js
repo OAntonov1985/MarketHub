@@ -51,10 +51,7 @@ function UserPageLeftColumn() {
         dispatch(setRenderInfo("start"));
         setIsActiveCatogorie("Особисті дані");
 
-    }, [])
-
-
-
+    }, []);
 
     return (
         <div className={`userPage-left-column 

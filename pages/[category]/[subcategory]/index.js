@@ -4,6 +4,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import Head from 'next/head';
 import React from 'react';
+import EmptyCategorie from '@/components/EmptyCategotie/EmptyCategorie';
 
 
 function SubCategoryPage({ goods, id, total }) {
@@ -19,7 +20,9 @@ function SubCategoryPage({ goods, id, total }) {
                 <Header />
                 <div className="subcategory-main-content">
                     <BreadCrumps goods={goods[0]} />
-                    <GoodsList props={goods} total={total} id={id} />
+                    {goods.length === 0 ? <EmptyCategorie /> : (
+                        <GoodsList props={goods} total={total} id={id} />
+                    )}
                 </div>
                 <Footer />
             </div>

@@ -22,7 +22,7 @@ function BreadCrumps({ goods }) {
             <Link href={`/${goods ? goods.category_details.name : router.query.category}`} id={goods ? goods.category_details.id : null} className='bread-crum-text-way'>/
                 <p>{goods ? goods.category_details.name : router.query.category}</p>
             </Link>
-            {router.pathname === "/[category]" ? null : <p className='bread-crum-text-way'>/{goods ? goods.sub_category_detail.name : router.query.category}</p>}
+            {router.pathname === "/[category]" ? null : <p className='bread-crum-text-way'>/{goods ? goods.sub_category_detail.name : router.query.subcategory}</p>}
         </div >
     )
 };

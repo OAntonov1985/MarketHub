@@ -8,13 +8,24 @@ function LeftColumnGoodsList({ objToSend }) {
     const dispatch = useDispatch();
     const { activeSubItemInGood } = useSelector((state) => state.user);
 
+    const handleCategorieClick = () => {
+        if (isActiveCategorie === "Товари") {
+            setIsActiveCatogorie("Особисті дані");
+            setActiveItem("Особисті дані");
+        } else if (isActiveCategorie !== "Товари") {
+            setIsActiveCatogorie("Товари");
+            setActiveItem("Товари");
+        }
+    };
+
 
     return (
         <div className='left-column-item'>
             <div className='userPage-left-column-goods' id="Товари"
-                onClick={(event) => { setIsActiveCatogorie(""); setActiveItem(event.target.id); }}>
+                onClick={handleCategorieClick}>
                 Товари
-                <div className={`left-column-item-image-container ${isActiveCategorie === "Товари" ? "image-container-transform" : ""}`}>
+                <div className={`left-column-item-image-container ${isActiveCategorie === "Товари" ? "image-container-transform" : ""}`}
+                    onClick={handleCategorieClick}>
                     <Image
                         alt="image of good"
                         src="/useritem.svg"
