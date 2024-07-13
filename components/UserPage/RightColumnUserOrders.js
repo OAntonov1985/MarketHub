@@ -33,6 +33,8 @@ function RightColumnUserOrders() {
     useEffect(() => {
         fetchData();
     }, [activePage]);
+
+
     // console.log(userPurchases)
 
 

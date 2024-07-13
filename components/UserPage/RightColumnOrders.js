@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import formattedPrice from '../HelperFunctions/FormattedPrice';
@@ -19,13 +19,12 @@ function RightColumnOrders() {
     const { activeSubItemInOrder } = useSelector((state) => state.user);
     const [activeItem, setActiveItem] = useState(null);
     const dispatch = useDispatch();
-
-
-
-
     const userID = parseInt(Cookies.get('userID'));
 
-    useEffect(() => {
+    const prevActiveSubItemInOrder = useRef(activeSubItemInOrder);
+    const prevActivePage = useRef(activePage);
+
+    async function fetchOrders(num) {
         setUserGoodsToSale(null);
         let orderStatus = null;
         if (activeSubItemInOrder == "Всі замовлення") orderStatus = null;
@@ -35,17 +34,32 @@ function RightColumnOrders() {
         if (activeSubItemInOrder == "Успішні") orderStatus = 'Успішне';
         if (activeSubItemInOrder == "Неуспішні") orderStatus = 'Неуспішне';
         dispatch(setActiveSpinner(true));
-        const fetchOrders = async () => {
-            try {
-                const res = await GetUsersOrders(userID, activePage - 1, orderStatus);
-                setUserGoodsToSale(res.result.orders);
-                setTotalUserGoodsToSale(res.result.total)
-            } catch (error) {
-                console.error('Error fetching user orders:', error);
-            }
-            dispatch(setActiveSpinner(false));
-        };
-        fetchOrders();
+        try {
+            const res = await GetUsersOrders(userID, num, orderStatus);
+            setUserGoodsToSale(res.result.orders);
+            setTotalUserGoodsToSale(res.result.total)
+        } catch (error) {
+            console.error('Error fetching user orders:', error);
+        }
+        dispatch(setActiveSpinner(false));
+    };
+
+
+    useEffect(() => {
+        fetchOrders(0);
+    }, []);
+
+
+    useEffect(() => {
+        if (prevActiveSubItemInOrder.current !== activeSubItemInOrder) {
+            setActivePage(1);
+            fetchOrders(0);
+        } else if (prevActivePage.current !== activePage) {
+            fetchOrders(activePage - 1);
+        }
+
+        prevActiveSubItemInOrder.current = activeSubItemInOrder;
+        prevActivePage.current = activePage;
     }, [activeSubItemInOrder, activePage]);
 
 

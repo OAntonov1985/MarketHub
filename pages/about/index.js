@@ -140,6 +140,19 @@ export default function About() {
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <h4 className='about-title'> Технології, які використані на даному проекті:</h4>
+                        <ul className='tech-list'>
+                            <li className='tech-list-li'>NextJS</li>
+                            <li className='tech-list-li'>NextAuth</li>
+                            <li className='tech-list-li'>Redux Toolkit</li>
+                            <li className='tech-list-li'>Інтеграція API Нової пошти для вибору міст і відділень.</li>
+                            <li className='tech-list-li'>Деплой на портал Versel.</li>
+                            <li className='tech-list-li'>Experss JS</li>
+                            <li className='tech-list-li'>Mongodb Atlas</li>
+                            <li className='tech-list-li'>Firebase</li>
+                        </ul>
+                    </div>
 
                 </div>
                 <Footer />
