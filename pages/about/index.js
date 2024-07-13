@@ -200,6 +200,23 @@ export default function About() {
                                     <Image
                                         className='photo-our-team'
                                         alt="photo-our-team"
+                                        src={"/tech-img/Sass_Logo_Color.svg"}
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%'
+                                        }}>
+                                    </Image>
+                                </div>
+                                <p className='tech-title'>SASS</p>
+                            </div>
+                            <div className="tech-container">
+                                <div className='tech-image-container'>
+                                    <Image
+                                        className='photo-our-team'
+                                        alt="photo-our-team"
                                         src={"/tech-img/nova poshta-50.svg"}
                                         quality={100}
                                         fill
