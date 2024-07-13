@@ -141,19 +141,153 @@ export default function About() {
                         </div>
                     </div>
                     <div>
-                        <h4 className='about-title'> Технології, які використані на даному проекті:</h4>
-                        <ul className='tech-list'>
-                            <li className='tech-list-li'>NextJS</li>
-                            <li className='tech-list-li'>NextAuth</li>
-                            <li className='tech-list-li'>Redux Toolkit</li>
-                            <li className='tech-list-li'>Інтеграція API Нової пошти для вибору міст і відділень.</li>
-                            <li className='tech-list-li'>Деплой на портал Versel.</li>
-                            <li className='tech-list-li'>Experss JS</li>
-                            <li className='tech-list-li'>Mongodb Atlas</li>
-                            <li className='tech-list-li'>Firebase</li>
-                        </ul>
-                    </div>
+                        <h4 className='tech-steck-title'> Технології, які використані на даному проекті:</h4>
+                        <div className='tech-steck'>
+                            <div className="tech-container">
+                                <div className='tech-image-container'>
+                                    <Image
+                                        className='photo-our-team'
+                                        alt="photo-our-team"
+                                        src={"/tech-img/Next.js.svg"}
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%'
+                                        }}>
+                                    </Image>
+                                </div>
+                                <p className='tech-title'>Next JS</p>
+                            </div>
+                            <div className="tech-container">
+                                <div className='tech-image-container'>
+                                    <Image
+                                        className='photo-our-team'
+                                        alt="photo-our-team"
+                                        src={"/tech-img/NextAuth.svg"}
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%',
+                                            padding: 10
+                                        }}>
+                                    </Image>
+                                </div>
+                                <p className='tech-title'>NextAuth</p>
+                            </div>
+                            <div className="tech-container">
+                                <div className='tech-image-container'>
+                                    <Image
+                                        className='photo-our-team'
+                                        alt="photo-our-team"
+                                        src={"/tech-img/redux toolkit.svg"}
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%'
+                                        }}>
+                                    </Image>
+                                </div>
+                                <p className='tech-title'>Redux Toolkit</p>
+                            </div>
+                            <div className="tech-container">
+                                <div className='tech-image-container'>
+                                    <Image
+                                        className='photo-our-team'
+                                        alt="photo-our-team"
+                                        src={"/tech-img/nova poshta-50.svg"}
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%',
 
+                                        }}>
+                                    </Image>
+                                </div>
+                                <p className='tech-title'>API Нової пошти</p>
+                            </div>
+                            <div className="tech-container">
+                                <div className='tech-image-container'>
+                                    <Image
+                                        className='photo-our-team'
+                                        alt="photo-our-team"
+                                        src={"/tech-img/vercel-svgrepo-com2.svg"}
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%',
+
+                                        }}>
+                                    </Image>
+                                </div>
+                                <p className='tech-title'>Versel</p>
+                            </div>
+                            <div className="tech-container">
+                                <div className='tech-image-container'>
+                                    <Image
+                                        className='photo-our-team'
+                                        alt="photo-our-team"
+                                        src={"/tech-img/icons8-express-js1.svg"}
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%',
+                                            padding: 24
+
+                                        }}>
+                                    </Image>
+                                </div>
+                                <p className='tech-title'>Express JS</p>
+                            </div>
+                            <div className="tech-container">
+                                <div className='tech-image-container'>
+                                    <Image
+                                        className='photo-our-team'
+                                        alt="photo-our-team"
+                                        src={"/tech-img/MongoDB.svg"}
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%',
+
+                                        }}>
+                                    </Image>
+                                </div>
+                                <p className='tech-title'>Mongo DB Atlas</p>
+                            </div>
+                            <div className="tech-container">
+                                <div className='tech-image-container'>
+                                    <Image
+                                        className='photo-our-team'
+                                        alt="photo-our-team"
+                                        src={"/tech-img/firebase-svgrepo-com.svg"}
+                                        quality={100}
+                                        fill
+                                        sizes="(max-width: 100%)"
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '100%',
+
+                                        }}>
+                                    </Image>
+                                </div>
+                                <p className='tech-title'>Firebase</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <Footer />
             </div>
