@@ -4556,6 +4556,11 @@ h2 {
     text-align: center;
   }
 }
+@media only screen and (max-width: 480px) {
+  .about-title {
+    font-size: 3rem;
+  }
+}
 
 .about-content {
   display: flex;
@@ -4567,6 +4572,11 @@ h2 {
   .about-content {
     margin: 2.4rem 6rem 10rem;
     gap: 2.4rem;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .about-content {
+    gap: 3rem;
   }
 }
 @media only screen and (max-width: 740px) {
@@ -4581,6 +4591,12 @@ h2 {
   gap: 2.4rem;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-bottom: 4.4rem;
+}
+@media only screen and (max-width: 480px) {
+  .about-container {
+    margin-bottom: 2.4rem;
+  }
 }
 
 .photo-our-team {
@@ -4692,6 +4708,12 @@ h2 {
 @media only screen and (max-width: 740px) {
   .tech-steck-title {
     text-align: center;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .tech-steck-title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
   }
 }
 
