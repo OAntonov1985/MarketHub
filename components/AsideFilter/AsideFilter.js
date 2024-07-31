@@ -20,7 +20,7 @@ function AsideFilter({ id, objToAsideFilter }) {
     useEffect(() => {
         GetdBrandsFromDB();
     }, []);
-    // console.log(brandrToFilterSearch)
+
 
 
     function ChekcInputValue(event, inputType) {
@@ -34,6 +34,7 @@ function AsideFilter({ id, objToAsideFilter }) {
             }
         }
     };
+
 
 
     function checkBrandsFilter(event) {
@@ -67,7 +68,7 @@ function AsideFilter({ id, objToAsideFilter }) {
             <div className="goods-producer">
                 <p className='goods-producer-title'>Виробник:</p>
                 <ul className='goods-producer-list'>
-                    {(brandsToFilter.length > 0 ? brandsToFilter : brandsArray).map(item => {
+                    {brandsArray.map(item => {
                         return <li key={item}>
                             <label className='input-label'>
                                 <input
