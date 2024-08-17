@@ -1792,6 +1792,11 @@ h2 {
   padding: 4rem 9rem 16.8rem;
   flex: 1 1 auto;
 }
+@media only screen and (max-width: 1280px) {
+  .good-card-main-content {
+    padding: 4rem 7rem 16.8rem;
+  }
+}
 @media only screen and (max-width: 1024px) {
   .good-card-main-content {
     padding: 4rem 4.7rem 8rem;
@@ -4660,6 +4665,7 @@ h2 {
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-bottom: 4.4rem;
 }
 
 .tech-container {
@@ -4710,6 +4716,25 @@ h2 {
     font-size: 3rem;
     margin-bottom: 3rem;
   }
+}
+
+.player-wrapper {
+  margin: 0 auto;
+  max-width: 80vw;
+  max-height: 50vh;
+}
+
+.react-player {
+  max-width: 80vw !important;
+  max-height: 50vh !important;
+}
+
+.react-player .control-wrapper {
+  visibility: hidden;
+}
+
+.player-wrapper:hover .react-player .control-wrapper {
+  visibility: visible;
 }
 
 .error-page-auth-container {

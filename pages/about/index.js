@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import ReactPlayer from 'react-player';
 
 
 export default function About() {
+    const playerRef = useRef(null);
     return (
         <>
             <Head>
@@ -304,6 +306,15 @@ export default function About() {
                                 <p className='tech-title'>Firebase</p>
                             </div>
                         </div>
+                    </div>
+                    <div className="player-wrapper">
+                        <ReactPlayer
+                            ref={playerRef}
+                            className="react-player"
+                            url='https://www.youtube.com/watch?v=KY_q2dDd370'
+                            controls
+                            style={{ controls: 'none' }}
+                        />
                     </div>
                 </div>
                 <Footer />
