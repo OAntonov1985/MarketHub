@@ -311,7 +311,7 @@ export default function About() {
                         <ReactPlayer
                             ref={playerRef}
                             className="react-player"
-                            url='https://www.youtube.com/watch?v=KY_q2dDd370'
+                            url='https://www.youtube.com/watch?v=xIoQge7kuT0'
                             controls
                             style={{ controls: 'none' }}
                         />
